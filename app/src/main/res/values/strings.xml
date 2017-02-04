@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Learnfordown</string>
+    <string name="title_activity_login_screen">login_screen</string>
 </resources>
