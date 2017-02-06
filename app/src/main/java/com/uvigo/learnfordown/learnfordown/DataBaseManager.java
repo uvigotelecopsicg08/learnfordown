@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.sql.Timestamp;
+
 /**
  * Created by Juani on 03/02/2017.
  */
@@ -129,12 +131,20 @@ public class DataBaseManager {
         valores.put(CN_NAME_USER,nombre);
         valores.put(CN_AGE_USER,edad);
         db.insert(TABLE_USER,null,valores);
+        Cursor cursor= cargarCursor_user();
+        if(cursor!=null) {
+            if (cursor.moveToLast()) {
+                int id_user = cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER));
+                insertar_Systemlog(id_user, 0);
+            }
+        }
     }
-    public void insertar_Systemlog (int user,float tiempo){
+    public void insertar_Systemlog (int id_user,float tiempo){
         ContentValues valores =new ContentValues();
-        valores.put(CN_ID_USER_LOG,user);
         valores.put(CN_GAME_TIME,tiempo);
-        db.insert(TABLE_USER,null,valores);
+        valores.put(CN_ID_USER_LOG,id_user);
+        valores.put(CN_REGISTER_DATE,new java.util.Date().getTime());
+        db.insert(TABLE_SYSTEM_LOG,null,valores);
     }
 
     public Cursor cargarCursor_user(){
