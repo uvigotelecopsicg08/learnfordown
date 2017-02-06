@@ -1,34 +1,3 @@
 <resources>
     <string name="app_name">Learnfordown</string>
-
-    <string-array name="lvl_letter">
-        <item>Nivel 1</item>
-        <item>Nivel 2</item>
-        <item>Nivel 3</item>
-        <item>Nivel 4</item>
-
-    </string-array>
-    <string name="prompt_letter">LETRA</string>
-
-    <string-array name="lvl_silaba">
-        <item>Sílabas Directas</item>
-        <item>Sílabas Inversas</item>
-        <item>Sílabas Trabadas</item>
-    </string-array>
-    <string name="prompt_silaba">SÍLABA</string>
-    <string-array name="lvl_palabra">
-        <item>Palabras con sílabas directas</item>
-        <item>Palabras con sílabas inversas</item>
-        <item>Palabras con sílabas trabadas</item>
-    </string-array>
-    <string name="prompt_palabra">PALABRA</string>
-
-    <string-array name="lvl_frase">
-        <item>Frases con sílabas directas</item>
-        <item>Frases con sílabas directas States</item>
-        <item>Frases con sílabas directas</item>
-
-    </string-array>
-    <string name="prompt_frase">FRASE</string>
-
 </resources>
