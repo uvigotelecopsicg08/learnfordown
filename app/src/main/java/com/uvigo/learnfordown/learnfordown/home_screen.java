@@ -2,6 +2,8 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 
 public class home_screen extends AppCompatActivity {
 
