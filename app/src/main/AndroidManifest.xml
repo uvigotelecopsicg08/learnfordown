@@ -52,7 +52,13 @@
 
         <activity android:name=".sidirectas_screen" />
         <activity android:name=".siinversas_screen" />
-        <activity android:name=".sitrabadas_screen"></activity>
+        <activity android:name=".sitrabadas_screen" />
+        <activity android:name=".palabrasdi_screen" />
+        <activity android:name=".palabrasin_screen" />
+        <activity android:name=".palabrastra_screen" />
+        <activity android:name=".frasein_screen" />
+        <activity android:name=".frasedi_screen" />
+        <activity android:name=".frasestra_screen"></activity>
     </application>
 
 </manifest>

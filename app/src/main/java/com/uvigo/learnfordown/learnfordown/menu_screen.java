@@ -145,6 +145,30 @@ public class menu_screen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                switch (position){
+                    case 0:
+                        break;
+
+                    case 1:
+                        Intent intent1 = new Intent(menu_screen.this, palabrasdi_screen.class);
+                        startActivity(intent1);
+                        break;
+
+                    case 2:
+                        Intent intent2 = new Intent(menu_screen.this, palabrasin_screen.class);
+                        startActivity(intent2);
+                        break;
+
+                    case 3:
+                        Intent intent3 = new Intent(menu_screen.this, palabrastra_screen.class);
+                        startActivity(intent3);
+                        break;
+
+
+
+
+
+                }
 
             }
 
@@ -158,7 +182,30 @@ public class menu_screen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                switch (position){
+                    case 0:
+                        break;
 
+                    case 1:
+                        Intent intent1 = new Intent(menu_screen.this, frasedi_screen.class);
+                        startActivity(intent1);
+                        break;
+
+                    case 2:
+                        Intent intent2 = new Intent(menu_screen.this, frasein_screen.class);
+                        startActivity(intent2);
+                        break;
+
+                    case 3:
+                        Intent intent3 = new Intent(menu_screen.this, frasestra_screen.class);
+                        startActivity(intent3);
+                        break;
+
+
+
+
+
+                }
             }
 
             @Override
