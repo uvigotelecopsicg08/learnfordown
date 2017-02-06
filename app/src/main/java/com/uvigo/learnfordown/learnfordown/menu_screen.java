@@ -63,9 +63,36 @@ public class menu_screen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                switch (position){
+                    case 0:
+                        break;
+
+                    case 1:
+                        Intent intent1 = new Intent(menu_screen.this, lettergame1lvl_screen.class);
+                        startActivity(intent1);
+                        break;
+
+                    case 2:
+                        Intent intent2 = new Intent(menu_screen.this, lettergame2lvl_screen.class);
+                        startActivity(intent2);
+                        break;
+
+                    case 3:
+                        Intent intent3 = new Intent(menu_screen.this, lettergame3lvl_screen.class);
+                        startActivity(intent3);
+                        break;
+
+                    case 4:
+                        Intent intent4 = new Intent(menu_screen.this, lettergame4lvl_screen.class);
+                        startActivity(intent4);
+                        break;
+
+
+
+
+                }
                 if (position!=0) {
-                    Intent intent = new Intent(menu_screen.this, lettergame1lvl_screen.class);
-                    startActivity(intent);
+
                 }
             }
 

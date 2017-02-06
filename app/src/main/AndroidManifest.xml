@@ -26,10 +26,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".lettergame1lvl_screen"
-            android:screenOrientation="landscape"
-            ></activity>
-
+        <activity
+            android:name=".lettergame1lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".lettergame2lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".lettergame3lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".lettergame4lvl_screen"
+            android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

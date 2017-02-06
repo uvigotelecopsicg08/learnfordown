@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_lettergame1lvl_screen"
+    android:id="@+id/activity_lettergame4lvl_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uvigo.learnfordown.learnfordown.lettergame1lvl_screen"
+    tools:context="com.uvigo.learnfordown.learnfordown.lettergame4lvl_screen"
     android:weightSum="1">
 
 
@@ -20,18 +20,18 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="125dp"
-            android:background="@color/colorGame">
+            android:background="@color/Morado">
 
             <ImageButton
                 android:layout_width="187dp"
                 android:layout_height="match_parent"
                 android:id="@+id/button3"
+                android:onClick="BackArrow"
                 android:src="@mipmap/icon_backarrow"
-                android:background="@color/colorGame"
+                android:background="@color/Morado"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:visibility="visible"
-                android:onClick="BackArrow"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -53,7 +53,7 @@
                 android:id="@+id/button4"
                 android:layout_weight="0.03"
                 android:scaleType="fitCenter"
-                android:background="@color/colorGame" />
+                android:background="@color/Morado" />
 
 
         </LinearLayout>
