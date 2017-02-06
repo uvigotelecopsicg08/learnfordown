@@ -20,17 +20,7 @@
         android:layout_width="match_parent"
         android:layout_height="97dp"
         android:id="@+id/progressBar2"
-        android:foreground="@color/colorPrimaryDark" />
-
-    <ImageButton
-        android:layout_width="312dp"
-        android:layout_height="280dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginLeft="-1050dp"
-        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-        android:id="@+id/imageButton3"
-        android:onClick="sendMessage"
-        android:background="@mipmap/ninoleyendo" />
+        android:foreground="@color/colorPrimary" />
 
 
     <ImageButton
@@ -58,6 +48,16 @@
         android:textColorHighlight="@color/colorPrimary"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold" />
+
+    <ImageButton
+        android:layout_width="312dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="-1050dp"
+        app:srcCompat="?android:attr/activatedBackgroundIndicator"
+        android:id="@+id/imageButton3"
+        android:onClick="sendMessage"
+        android:background="@mipmap/ninoleyendo" />
 
     <TextView
         android:text="¡QUIERO LEER!"

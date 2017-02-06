@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -20,6 +21,7 @@ public class menu_screen extends AppCompatActivity {
     private Spinner  spinner2;
     Spinner spinner;
     TextView titulo;
+    ImageButton BackArrow;
     private Spinner nameValueSpinner;
     private Spinner nameValueSpinner1;
     private Spinner nameValueSpinner2;
@@ -33,7 +35,7 @@ public class menu_screen extends AppCompatActivity {
 
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
-
+        BackArrow = (ImageButton) findViewById(R.id.button3);
         titulo.setTypeface(face);
         nameValueSpinner = (Spinner) findViewById(R.id.spinner);
         nameValueSpinner1 = (Spinner) findViewById(R.id.spinner1);
@@ -107,7 +109,30 @@ public class menu_screen extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                switch (position){
+                    case 0:
+                        break;
 
+                    case 1:
+                        Intent intent1 = new Intent(menu_screen.this, sidirectas_screen.class);
+                        startActivity(intent1);
+                        break;
+
+                    case 2:
+                        Intent intent2 = new Intent(menu_screen.this, siinversas_screen.class);
+                        startActivity(intent2);
+                        break;
+
+                    case 3:
+                        Intent intent3 = new Intent(menu_screen.this, sitrabadas_screen.class);
+                        startActivity(intent3);
+                        break;
+
+
+
+
+
+                }
             }
 
             @Override
@@ -202,5 +227,9 @@ public class menu_screen extends AppCompatActivity {
     void SpinnerFraseUp(View v){
         nameValueSpinner3.setVisibility(View.VISIBLE);
         nameValueSpinner3.performClick();
+    }
+    public void BackArrow (View v){
+        Intent intent1 = new Intent(menu_screen.this, home_screen.class);
+        startActivity(intent1);
     }
 }

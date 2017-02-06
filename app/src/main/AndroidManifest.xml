@@ -13,34 +13,46 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" /> >
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                >
             </intent-filter>
         </activity>
         <activity
             android:name=".menu_screen"
             android:screenOrientation="landscape">
-            <!--intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter-->
-
+            </intent-filter>
         </activity>
         <activity
             android:name=".lettergame1lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".lettergame2lvl_screen"
+        <activity
+            android:name=".lettergame2lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".lettergame3lvl_screen"
+        <activity
+            android:name=".lettergame3lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".lettergame4lvl_screen"
-            android:screenOrientation="landscape" ></activity>
+        <activity
+            android:name=".lettergame4lvl_screen"
+            android:screenOrientation="landscape" />
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".MenuLectura1"></activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
-     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <activity android:name=".MenuLectura1" />
+        <!--
+ ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
+        -->
+
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
+        <activity android:name=".sidirectas_screen" />
+        <activity android:name=".siinversas_screen" />
+        <activity android:name=".sitrabadas_screen"></activity>
     </application>
 
 </manifest>

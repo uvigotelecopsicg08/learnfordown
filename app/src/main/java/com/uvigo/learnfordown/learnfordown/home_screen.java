@@ -32,7 +32,7 @@ public class home_screen extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, MenuLectura1.class);
+        Intent intent = new Intent(this, menu_screen.class);
         startActivity(intent);
     }
 
@@ -42,7 +42,7 @@ public class home_screen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void sendMessage3(View view) {
+   /* public void sendMessage3(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         startActivity(intent);
@@ -52,7 +52,7 @@ public class home_screen extends AppCompatActivity {
         // Do something in response to button
         Intent intent = new Intent(this, DisplayMessageActivity.class);
         startActivity(intent);
-    }
+    }*/
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
