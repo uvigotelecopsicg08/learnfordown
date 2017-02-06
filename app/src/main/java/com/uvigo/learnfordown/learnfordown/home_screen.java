@@ -8,6 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 public class home_screen extends AppCompatActivity {
 
     private GoogleApiClient client;
