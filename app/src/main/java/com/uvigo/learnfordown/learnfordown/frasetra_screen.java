@@ -5,15 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class frasestra_screen extends AppCompatActivity {
+public class frasetra_screen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_frasestra_screen);
+        setContentView(R.layout.activity_frasetra_screen);
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(frasestra_screen.this, menu_screen.class);
+        Intent intent1 = new Intent(frasetra_screen.this, menu_screen.class);
         startActivity(intent1);
     }
 }

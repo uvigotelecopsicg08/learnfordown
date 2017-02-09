@@ -197,7 +197,7 @@ public class menu_screen extends AppCompatActivity {
                         break;
 
                     case 3:
-                        Intent intent3 = new Intent(menu_screen.this, frasestra_screen.class);
+                        Intent intent3 = new Intent(menu_screen.this, frasetra_screen.class);
                         startActivity(intent3);
                         break;
 
