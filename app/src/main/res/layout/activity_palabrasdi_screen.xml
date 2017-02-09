@@ -63,7 +63,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="PALABRAS CON SÍLABAS DIRECTAS!"
+        android:text="¡PALABRAS CON SÍLABAS DIRECTAS!"
         android:layout_width="1274dp"
         android:layout_height="120dp"
         android:id="@+id/textView3"

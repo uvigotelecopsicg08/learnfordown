@@ -26,24 +26,23 @@
     <ImageButton
         android:layout_width="312dp"
         android:layout_height="280dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="230dp"
         android:layout_marginLeft="-1050dp"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton3"
         android:onClick="sendMessage"
-        android:background="@mipmap/ninoleyendo" />
+        android:background="@mipmap/quieroleer" />
 
 
     <ImageButton
         android:layout_width="303dp"
         android:layout_height="293dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="230dp"
         android:layout_marginLeft="200dp"
-        app:srcCompat="@android:drawable/list_selector_background"
+        app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton10"
-        android:scaleType="fitCenter"
         android:onClick="sendMessage2"
-        android:background="@mipmap/ninoescribiendo" />
+        android:background="@mipmap/quieroescribir" />
 
     <TextView
         android:text="¿QUÉ QUIERES HACER HOY?"
@@ -51,45 +50,21 @@
         tools:autoText="false"
         tools:foregroundTint="@color/colorPrimary"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="-990dp"
+        android:layout_marginLeft="-890dp"
         android:textSize="50dp"
-        android:layout_height="62dp"
+        android:layout_height="72dp"
         android:layout_width="692dp"
         style="@style/inicial"
         android:textColorHighlight="@color/colorPrimary"
         android:textColor="@android:color/background_light"
         android:textStyle="normal|bold" />
 
-    <TextView
-        android:text="¡QUIERO LEER!"
-        android:layout_width="430dp"
-        android:layout_height="52dp"
-        android:layout_marginTop="170dp"
-        android:layout_marginLeft="-450dp"
-        android:id="@+id/textView2"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_light"
-        android:textAllCaps="false"
-        android:textStyle="normal|bold"
-        android:lineSpacingExtra="8sp"
-        android:textSize="34sp" />
-
-    <TextView
-        android:text="¡QUIERO ESCRIBIR!"
-        android:layout_width="318dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="170dp"
-        android:layout_marginLeft="20dp"
-        android:id="@+id/textView3"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@android:color/holo_blue_light"
-        android:textStyle="normal|bold" />
 
     <ImageButton
         android:layout_width="84dp"
         android:layout_height="88dp"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="240dp"
         app:srcCompat="@android:drawable/list_selector_background"
         android:id="@+id/imageButton7"
         android:scaleType="fitCenter"

@@ -38,7 +38,7 @@ public class home_screen extends AppCompatActivity {
 
     public void sendMessage2(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
+        Intent intent = new Intent(this, palabrasgame1lvl_screen.class);
         startActivity(intent);
     }
 
