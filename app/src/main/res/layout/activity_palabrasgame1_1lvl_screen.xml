@@ -59,69 +59,66 @@
 
 
 
-    <ImageButton
+    <ImageView
         android:layout_width="297dp"
         android:layout_height="140dp"
         android:layout_marginTop="330dp"
         android:layout_marginLeft="-1150dp"
-        android:onClick="pulsar"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton1"
         android:background="@mipmap/playa" />
 
-    <Button
+    <TextView
         android:text="PLAYA"
-        android:layout_width="314dp"
+        android:layout_width="183dp"
         android:layout_height="82dp"
         android:layout_marginTop="500dp"
-        android:layout_marginLeft="-310dp"
+        android:layout_marginLeft="-210dp"
         android:id="@+id/button1"
-        android:onClick="pulsar"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="34sp" />
+        android:textSize="36sp"
+        android:textAllCaps="false" />
 
 
-    <Button
+    <TextView
         android:text="PLATO"
-        android:layout_width="314dp"
+        android:layout_width="163dp"
         android:layout_height="82dp"
         android:layout_marginTop="500dp"
-        android:layout_marginLeft="500dp"
+        android:layout_marginLeft="600dp"
         android:id="@+id/button3"
-        android:onClick="pulsar"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="34sp" />
+        android:textSize="36sp" />
 
 
 
 
-    <ImageButton
+    <ImageView
         android:layout_width="341dp"
         android:layout_height="215dp"
         android:layout_marginTop="270dp"
-        android:layout_marginLeft="-330dp"
+        android:layout_marginLeft="-280dp"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton3"
-        android:onClick="pulsar"
         android:background="@mipmap/plato" />
 
-    <Button
+    <TextView
         android:text="PLA"
-        android:layout_width="314dp"
+        android:layout_width="167dp"
         android:layout_height="82dp"
         android:layout_marginTop="220dp"
-        android:layout_marginLeft="-750dp"
+        android:layout_marginLeft="-630dp"
         android:id="@+id/button5"
-        android:onClick="pulsar"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="45sp"
-        android:textStyle="normal|bold" />
+        android:textSize="50sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart" />
 
     <ImageButton
         android:layout_width="119dp"
         android:layout_height="105dp"
-        android:layout_marginTop="600dp"
-        android:layout_marginLeft="350dp"
+        android:layout_marginTop="615dp"
+        android:layout_marginLeft="415dp"
         android:onClick="seguir"
         app:srcCompat="@android:drawable/checkbox_on_background"
         android:id="@+id/imageButton"

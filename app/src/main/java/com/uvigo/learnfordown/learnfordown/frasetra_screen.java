@@ -16,4 +16,10 @@ public class frasetra_screen extends AppCompatActivity {
         Intent intent1 = new Intent(frasetra_screen.this, menu_screen.class);
         startActivity(intent1);
     }
+
+    public void nivel1(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, frasegame1lvl_screen.class);
+        startActivity(intent);
+    }
 }
