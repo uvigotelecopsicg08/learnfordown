@@ -9,19 +9,24 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class palabrasgame1lvl_screen extends AppCompatActivity {
+public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     TextView titulo;
     Integer ultimoPulsado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_palabrasgame1lvl_screen);
+        setContentView(R.layout.activity_palabrasgame1_2lvl_screen);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView1);
         titulo.setTypeface(face);
         ultimoPulsado = null;
     }
+    public void BackArrow (View v){
+        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasgame1_1lvl_screen.class);
+        startActivity(intent1);
+    }
+
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
         if(ultimoPulsado != null) {
