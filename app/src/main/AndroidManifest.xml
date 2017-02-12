@@ -13,8 +13,8 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
@@ -22,6 +22,7 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -50,35 +51,34 @@
 
         <activity
             android:name=".sidirectas_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".siinversas_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".sitrabadas_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".palabrasdi_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".palabrasin_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".palabrastra_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".frasein_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".frasedi_screen"
-            android:screenOrientation="landscape"/>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".frasetra_screen"
-            android:screenOrientation="landscape"/>
-        <activity
-            android:name=".palabrasgame1lvl_screen"
-            android:screenOrientation="landscape">
-        </activity>
+            android:screenOrientation="landscape" />
+        <activity android:name=".palabrasgame1_1lvl_screen" />
+        <activity android:name=".palabrasgame1_2lvl_screen" />
+        <activity android:name=".frasegame1lvl_screen"></activity>
     </application>
 
 </manifest>

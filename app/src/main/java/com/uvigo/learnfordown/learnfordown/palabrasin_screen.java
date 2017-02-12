@@ -16,4 +16,10 @@ public class palabrasin_screen extends AppCompatActivity {
         Intent intent1 = new Intent(palabrasin_screen.this, menu_screen.class);
         startActivity(intent1);
     }
+
+    public void nivel1(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(this, palabrasgame1_1lvl_screen.class);
+        startActivity(intent);
+    }
 }
