@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:weightSum="1"
+    android:background="@mipmap/ic_launcher1"
+    android:layout_width="match_parent">
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:background="@color/colorGame">
+
+        <TextView
+            android:text="¡ESCRIBE LA FRASE!"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView1"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="60sp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:paddingTop="25dp" />
+
+    </LinearLayout>
+
+
+    <ImageButton
+        android:layout_width="102dp"
+        android:layout_height="115dp"
+        android:id="@+id/button4"
+        android:src="@mipmap/icon_backarrow"
+        android:background="@color/colorGame"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:layout_marginLeft="-1250dp"
+        android:visibility="visible"
+        android:onClick="BackArrow"
+        android:scaleType="fitCenter" />
+
+    <ImageButton
+        android:src="@mipmap/icon_help"
+        android:layout_width="102dp"
+        android:layout_height="115dp"
+        android:id="@+id/button0"
+        android:layout_weight="0.03"
+        android:scaleType="fitCenter"
+        android:layout_marginTop="0dp"
+        android:layout_marginLeft="1020dp"
+        android:background="@color/colorGame" />
+
+    <ImageView
+        android:layout_width="341dp"
+        android:layout_height="215dp"
+        android:layout_marginTop="270dp"
+        android:layout_marginLeft="-1180dp"
+        app:srcCompat="?android:attr/activatedBackgroundIndicator"
+        android:id="@+id/foto"
+        android:background="@mipmap/plato" />
+
+    <Button
+        android:text="PLANO"
+        android:layout_width="183dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="-310dp"
+        android:id="@+id/button1"
+        android:onClick="pulsar"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="36sp"
+        android:textAllCaps="false" />
+
+
+    <Button
+        android:text="PLATO"
+        android:layout_width="163dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="200dp"
+        android:id="@+id/button2"
+        android:onClick="pulsar"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="36sp" />
+
+    <Button
+        android:text="PLÁTANO"
+        android:layout_width="163dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="600dp"
+        android:layout_marginLeft="200dp"
+        android:id="@+id/button3"
+        android:onClick="pulsar"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="36sp" />
+
+
+
+
+
+
+    <TextView
+        android:text="COMPRÉ UN _ _ _"
+        android:layout_width="623dp"
+        android:layout_height="82dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="-530dp"
+        android:id="@+id/button5"
+        android:background="@color/common_google_signin_btn_text_dark_pressed"
+        android:textSize="50sp"
+        android:textStyle="normal|bold"
+        android:textAlignment="textStart" />
+
+
+
+
+</LinearLayout>
