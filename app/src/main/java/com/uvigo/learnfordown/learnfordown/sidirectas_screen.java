@@ -18,4 +18,8 @@ public class sidirectas_screen extends AppCompatActivity {
         Intent intent1 = new Intent(sidirectas_screen.this, menu_screen.class);
         startActivity(intent1);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(sidirectas_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 }

@@ -18,4 +18,8 @@ public class sitrabadas_screen extends AppCompatActivity {
         Intent intent1 = new Intent(sitrabadas_screen.this, menu_screen.class);
         startActivity(intent1);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(sitrabadas_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 }

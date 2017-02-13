@@ -21,5 +21,9 @@ public class frasedi_screen extends AppCompatActivity {
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
         startActivity(intent);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(frasedi_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 
 }

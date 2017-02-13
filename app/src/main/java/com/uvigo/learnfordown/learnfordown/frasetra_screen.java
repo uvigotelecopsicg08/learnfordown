@@ -22,4 +22,8 @@ public class frasetra_screen extends AppCompatActivity {
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
         startActivity(intent);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(frasetra_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 }
