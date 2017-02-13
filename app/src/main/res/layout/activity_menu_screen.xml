@@ -70,6 +70,8 @@
             android:background="@android:color/white"
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
+            android:layout_marginTop="20dp"
+
             android:onClick="SpinnerLetterUp"
             android:paddingLeft="100sp"
             android:textAlignment="viewStart"
@@ -81,10 +83,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
 
-            > </Spinner>
+            android:background="@color/Blanco"> </Spinner>
 
         <Button
             android:text="SÍLABAS"
+            android:layout_marginTop="20dp"
+
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,10 +108,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
 
-            ></Spinner>
+            android:background="@color/Blanco"></Spinner>
 
         <Button
             android:text="PALABRAS"
+            android:layout_marginTop="20dp"
+
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -127,10 +133,12 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
 
-            ></Spinner>
+            android:background="@color/Blanco"></Spinner>
 
         <Button
             android:text="FRASES"
+            android:layout_marginTop="20dp"
+
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -149,7 +157,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
-            ></Spinner>
+            android:background="@color/Blanco"></Spinner>
 
     </LinearLayout>
 
