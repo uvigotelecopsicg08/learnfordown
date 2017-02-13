@@ -91,9 +91,7 @@ public class menu_screen extends AppCompatActivity {
 
 
                 }
-                if (position!=0) {
 
-                }
             }
 
             @Override

@@ -5,9 +5,18 @@
     <color name="colorAccent">#FF4081</color>
     <color name="colorGame">#ffa620</color>
     <color name="Naranja">#ffa620</color>
+    <color name="NaranjaClarito">#fdb84f</color>
+
     <color name="Verde">#2eaf25</color>
+    <color name="VerdeClarito">#6df264</color>
     <color name="Rojo">#f51729</color>
+    <color name="RojoClarito">#f92f3f</color>
     <color name="Morado">#9e0be7</color>
+    <color name="MoradoClarito">#c653ff</color>
+    <color name="Blanco">#ffffff</color>
+    <color name="Negro">#000000</color>
+
+
 
 
 
