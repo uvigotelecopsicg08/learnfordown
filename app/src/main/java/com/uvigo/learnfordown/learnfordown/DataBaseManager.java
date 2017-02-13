@@ -236,19 +236,22 @@ public class DataBaseManager {
 
     }
 
-    public Cursor getNivel(String tipo, int dificultad){
+    public Cursor getNivel(String tipo, int dificultad,int id_user){
         Cursor cursor;
-        String columnas[] = new String[]{CN_ID_LEVEL};
+        String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
+        String columnas[] = new String[]{TABLE_LEVEL_USER+"."+CN_ID_LEVEL,CN_STEP};
 
         if(dificultad==-1){
-            String whereClause = CN_TYPE+" = ? ";
-            String[] whereArgs = new String[] {tipo};
+            String whereClause = CN_TYPE+" = ? AND "+CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+                    " AND "+CN_ID_USER_LEVEL+" = ?";
+            String[] whereArgs = new String[] {tipo,String.valueOf(id_user)};
              cursor= db.query(TABLE_LEVEL,columnas,whereClause,whereArgs,null,null,null,null);
         }
         else{
-            String whereClause =CN_TYPE+" = ? AND "+CN_DIFFICULTY+" = ?";
-            String[] whereArgs = new String[] {tipo,String.valueOf(dificultad)};
-            cursor= db.query(TABLE_LEVEL,columnas,whereClause,whereArgs,null,null,null,null);
+            String whereClause =CN_TYPE+" = ? AND "+CN_DIFFICULTY+" = ? AND "+CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+                    " AND "+CN_ID_USER_LEVEL+" = ?";
+            String[] whereArgs = new String[] {tipo,String.valueOf(dificultad),String.valueOf(id_user)};
+            cursor= db.query(tablas,columnas,whereClause,whereArgs,null,null,null,null);
         }
         return cursor;
     }
@@ -276,13 +279,14 @@ public class DataBaseManager {
         db.update(TABLE_LEVEL_USER, valores,whereClause, whereArgs);
         //Insertar referencia a log
     }
-    public Cursor buscarFotos(String tipo,int id_user){
+    public Cursor buscarFotos(String tipo,int id_user,String subnivel){
 
         String tablas=TABLE_AFFINITY+","+TABLE_WORD;
-        String whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD;
+        String whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
+                CN_LETTER+" = ?";
         System.out.println(whereClause);
         System.out.println(id_user);
-        String[] whereArgs = new String[] {String.valueOf(id_user)};
+        String[] whereArgs = new String[] {String.valueOf(id_user),subnivel};
         String orderBy= CN_AFINITY_RATE +" ASC";
         Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
         if(cursor==null){
