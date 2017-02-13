@@ -48,6 +48,7 @@
             <ImageButton
                 android:src="@mipmap/ic_home"
                 android:layout_width="102dp"
+                android:onClick="goHome"
                 android:layout_height="130dp"
                 android:id="@+id/button5"
                 android:layout_weight="0.03"

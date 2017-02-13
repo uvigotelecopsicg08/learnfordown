@@ -18,8 +18,9 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+    String Correcta;
     TextView titulo;
-    ImageButton BackArrow;
+    ImageButton BackArrow,Home;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         BackArrow = (ImageButton) findViewById(R.id.button3);
+        Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
 
         horizontalList=new ArrayList<String>();
@@ -55,6 +57,20 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame1lvl_screen.this, menu_screen.class);
         startActivity(intent1);
+    }
+    public void goHome (View v){
+        Intent intent1 = new Intent(lettergame1lvl_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
+    public void ButtonCheck (View v){
+        Button b = (Button)v;
+        String buttonText = b.getText().toString();
+        if (Correcta.equals(buttonText)){
+//Codigo de Animacion Acierto
+        } else{
+            //Codigo de Animacion Fallo
+
+        }
     }
 
 }

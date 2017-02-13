@@ -7,12 +7,14 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
     TextView titulo;
+    String Correcta;
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
@@ -67,5 +69,19 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame4lvl_screen.this, menu_screen.class);
         startActivity(intent1);
+    }
+    public void goHome (View v){
+        Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
+    public void ButtonCheck (View v){
+        Button b = (Button)v;
+        String buttonText = b.getText().toString();
+        if (Correcta.equals(buttonText)){
+//Codigo de Animacion Acierto
+        } else{
+            //Codigo de Animacion Fallo
+
+        }
     }
 }
