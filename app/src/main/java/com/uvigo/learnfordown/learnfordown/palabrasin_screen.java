@@ -31,6 +31,4 @@ TextView titulo;
         Intent intent = new Intent(this, palabrasgame1_1lvl_screen.class);
         startActivity(intent);
     }
-
-
 }

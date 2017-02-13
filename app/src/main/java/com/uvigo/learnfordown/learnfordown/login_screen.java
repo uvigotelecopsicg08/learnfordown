@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -52,6 +53,10 @@ public class login_screen extends AppCompatActivity {
         System.out.println("  "+nombre+"   "+edad);
 
 
+    }
+    public void goHome (View v){
+        Intent intent1 = new Intent(login_screen.this, home_screen.class);
+        startActivity(intent1);
     }
 
 

@@ -31,4 +31,8 @@ TextView titulo;
         Intent intent = new Intent(this, palabrasgame1_1lvl_screen.class);
         startActivity(intent);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(palabrastra_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 }

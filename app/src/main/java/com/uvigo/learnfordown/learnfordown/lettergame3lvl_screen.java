@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 public class lettergame3lvl_screen extends AppCompatActivity {
     TextView titulo;
-    String Correcta;
+    String Correcta="";
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
