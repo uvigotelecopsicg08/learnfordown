@@ -2,7 +2,9 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
+import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,9 +15,12 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+
 public class home_screen extends AppCompatActivity {
 
     private GoogleApiClient client;
+    private   GestionNiveles gn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +30,31 @@ public class home_screen extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //Prueba bd
+
+        Context context =this.getApplicationContext();
+        context.deleteDatabase("learn.sqlite");
+        DataBaseManager db = new DataBaseManager(context);
+
+        db.insertar_nivel (0,"leerletras",1,"p");
+        db.insertar_nivel (1,"leerletras",2,"p");
+        db.insertar_nivel (2,"leerletras",3,"p");
+        db.insertar_nivel (4,"leerletras",1,"c");
+        db.insertar_foto("c","ca","directas","casa","La casa es blanca",R.drawable.casa,"casa");
+        db.insertar_foto("p","pe","directas","perro","El perro es marrón",R.drawable.perro,"animales");
+        db.insertar_user("pepe",5);
+
+
+        gn = new GestionNiveles(context);
+        gn.setNivel("leerletras",1);
+        ArrayList<FotoPalabra> fp=gn.getFotos();
+        System.out.println(fp);
+        System.out.println("Holhhha");
+        for(int i=0;i<fp.size();i++){
+           System.out.println(fp.get(i).getPalabra());
+        }
+
+
     }
 
     /**
@@ -84,5 +114,6 @@ public class home_screen extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+        gn.close();
     }
 }

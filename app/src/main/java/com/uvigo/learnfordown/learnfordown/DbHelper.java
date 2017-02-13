@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper  extends SQLiteOpenHelper  {
     private static final String DB_learn = "learn.sqlite";
-    private static final int DB_SCHEME_VERSION=1;
+    private static final int DB_SCHEME_VERSION=2;
     public DbHelper(Context context) {
         super(context, DB_learn, null, DB_SCHEME_VERSION);
     }
@@ -23,6 +23,14 @@ public class DbHelper  extends SQLiteOpenHelper  {
         System.out.println(DataBaseManager.CREATE_TABLE_AFFINITY);
         System.out.println(DataBaseManager.CREATE_TABLE_NIVELUSER);
         System.out.println(DataBaseManager.CREATE_TABLE_SYSTEM);
+        /*
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_LEVEL_USER);
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_AFFINITY);
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_SYSTEM_LOG);
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_USER);
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_WORD);
+        db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_LEVEL);
+        */
         db.execSQL(DataBaseManager.CREATE_TABLE_USER);
         db.execSQL(DataBaseManager.CREATE_TABLE_LEVEL);
         db.execSQL(DataBaseManager.CREATE_TABLE_WORD);

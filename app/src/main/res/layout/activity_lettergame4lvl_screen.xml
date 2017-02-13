@@ -45,7 +45,15 @@
                 android:textAlignment="center"
                 android:textColor="@android:color/white"
                 android:paddingTop="25dp" />
-
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:onClick="goHome"
+                android:layout_height="130dp"
+                android:id="@+id/button5"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/Morado" />
             <ImageButton
                 android:src="@mipmap/icon_help"
                 android:layout_width="102dp"
@@ -57,9 +65,40 @@
 
 
         </LinearLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/Blanco"
+            android:layout_weight="1.06"
+            android:weightSum="1">
 
+            <ImageView
+                android:layout_width="439dp"
+                android:layout_height="300dp"
+                android:src="@drawable/raton"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_marginTop="28dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_weight="0.21" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view2"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="151dp" />
 
     </LinearLayout>
 
 </RelativeLayout>
-
