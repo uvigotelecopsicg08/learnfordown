@@ -17,6 +17,7 @@ public class GestionNiveles {
     private int dificultad;
     private int id_user;
     private String tipo;
+    private String subnivel;
     DataBaseManager db;
 
 
@@ -66,10 +67,11 @@ public class GestionNiveles {
     }
     public void setNivel(String tipo,int dificultad){
         this.tipo=tipo;
-       Cursor cursor= db.getNivel(tipo,dificultad);
+       Cursor cursor= db.getNivel(tipo,dificultad,id_user);
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
                 id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                subnivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
             }
         }
     }
@@ -87,7 +89,7 @@ public class GestionNiveles {
                 tiposilaba="directas";
             }
         }
-       Cursor cursor=  db.buscarFotos(tiposilaba,id_user);
+       Cursor cursor=  db.buscarFotos(tiposilaba,id_user,subnivel);
         ArrayList<FotoPalabra> fotos=new ArrayList<FotoPalabra>();
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
@@ -112,6 +114,7 @@ public class GestionNiveles {
             if (cursor.moveToLast()) {
                 tipo = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE));
                 dificultad= cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_DIFFICULTY));
+                subnivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
             }
         }
     }
