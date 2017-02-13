@@ -8,7 +8,7 @@
 
     <Button
 
-        android:textSize="25sp"
+        android:textSize="45sp"
         android:text="A"
         android:padding="16dp"
         android:id="@+id/button4"

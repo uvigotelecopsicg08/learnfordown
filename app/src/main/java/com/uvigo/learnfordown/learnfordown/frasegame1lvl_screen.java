@@ -46,7 +46,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frasegame1lvl_screen);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
-        titulo = (TextView) findViewById(R.id.textView1);
+        titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -61,6 +61,10 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
     public void BackArrow(View v) {
         Intent intent1 = new Intent(frasegame1lvl_screen.this, menu_screen.class);
+        startActivity(intent1);
+    }
+    public void goHome (View v){
+        Intent intent1 = new Intent(frasegame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
 

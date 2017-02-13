@@ -36,7 +36,7 @@
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:text="¿POR QUÉ LETRA EMPIEZA?"
+                android:text="¿POR QUÉ SÍLABA EMPIEZA?"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
@@ -93,12 +93,13 @@
                 android:layout_height="228dp"
                 android:layout_marginTop="107dp"
                 android:layout_below="@+id/textView4"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:scrollbarSize="@android:dimen/app_icon_size" />
 
             <TextView
                 android:gravity="center"
-                android:paddingTop="0sp"
-                android:text="C"
+                android:paddingTop="0dp"
+                android:text="CA"
                 android:background="@color/NaranjaClarito"
                 android:id="@+id/textView4"
                 android:layout_weight="0.25"

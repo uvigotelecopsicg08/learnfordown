@@ -14,7 +14,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 import android.support.v7.widget.RecyclerView;
-public class lettergame1lvl_screen extends AppCompatActivity {
+public class silabasgame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
@@ -24,7 +24,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lettergame1lvl_screen);
+        setContentView(R.layout.activity_silabasgame1lvl_screen);
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
@@ -33,15 +33,15 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
 
         horizontalList=new ArrayList<String>();
-        horizontalList.add("A");
-        horizontalList.add("B");
-        horizontalList.add("C");
-        horizontalList.add("D");
-        horizontalList.add("E");
+        horizontalList.add("CA");
+        horizontalList.add("QUE");
+        horizontalList.add("QUI");
+        horizontalList.add("CO");
+        horizontalList.add("CU");
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
@@ -55,11 +55,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(lettergame1lvl_screen.this, menu_screen.class);
+        Intent intent1 = new Intent(silabasgame1lvl_screen.this, menu_screen.class);
         startActivity(intent1);
     }
     public void goHome (View v){
-        Intent intent1 = new Intent(lettergame1lvl_screen.this, home_screen.class);
+        Intent intent1 = new Intent(silabasgame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
     public void ButtonCheck (View v){
