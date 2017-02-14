@@ -62,9 +62,6 @@
 
     </LinearLayout>
 
-
-
-
     <ImageButton
         android:layout_width="263dp"
         android:layout_height="82dp"
@@ -74,7 +71,6 @@
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton1"
         android:background="@mipmap/playa" />
-
 
     <Button
         android:text="PLATO"
@@ -118,7 +114,6 @@
         android:onClick="pulsar"
         android:layout_weight="0.13"
         android:background="@mipmap/plato" />
-
 
     <Button
         android:text="PLANETA"

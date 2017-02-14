@@ -10,7 +10,6 @@
     android:layout_width="match_parent">
 
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -38,7 +37,7 @@
                 android:scaleType="fitCenter" />
 
             <TextView
-                android:text="¡APRENDAMOS"
+                android:text="¡APRENDAMOS!"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView2"
@@ -70,12 +69,6 @@
 
         </LinearLayout>
 
-
-
-
-
-
-
     <ImageView
         android:layout_width="297dp"
         android:layout_height="140dp"
@@ -96,7 +89,6 @@
         android:textSize="36sp"
         android:textAllCaps="false" />
 
-
     <TextView
         android:text="PLATO"
         android:layout_width="163dp"
@@ -107,9 +99,6 @@
         android:background="@color/common_google_signin_btn_text_dark_pressed"
         android:textSize="36sp" />
 
-
-
-
     <ImageView
         android:layout_width="341dp"
         android:layout_height="215dp"
@@ -118,10 +107,6 @@
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton3"
         android:background="@mipmap/plato" />
-
-
-
-
 
     <ImageButton
         android:layout_width="119dp"
@@ -146,8 +131,6 @@
             android:layout_alignBottom="@+id/imageView2"
             android:textSize="150sp"
             android:textColor="@color/Negro" />
-
-
 
     </LinearLayout>
 

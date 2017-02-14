@@ -151,9 +151,10 @@
         android:maxHeight="@dimen/activity_horizontal_margin"
         android:minWidth="@dimen/activity_horizontal_margin" />
 
-    <!--numStars: indica que consta de esas estrellas
-    stepSize:  determina  la cantidad de aumento o disminución de tasa
-    rating: estrellas seleccionadas por defecto-->
+
+            <!--numStars: indica que consta de esas estrellas
+            stepSize:  determina  la cantidad de aumento o disminución de tasa
+            rating: estrellas seleccionadas por defecto-->
 
 
         </RelativeLayout>
