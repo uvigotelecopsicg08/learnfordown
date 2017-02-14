@@ -29,6 +29,7 @@
                 android:id="@+id/button3"
                 android:src="@mipmap/icon_backarrow"
                 android:background="@color/colorPrimary"
+                android:onClick="BackArrow"
                 android:adjustViewBounds="true"
                 android:cropToPadding="true"
                 android:visibility="visible"
@@ -48,6 +49,17 @@
                 android:textSize="60sp"
                 android:textStyle="normal|bold"
                 android:fontFamily="sans-serif" />
+
+
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button9"
+                android:onClick="goHome"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorPrimary" />
 
             <ImageButton
                 android:src="@mipmap/icon_help"
@@ -117,10 +129,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button7"
+                android:onClick="siguiente"
                 android:layout_marginLeft="550sp"
                 android:layout_marginTop="50sp"
-                android:padding="50px"
-             />
+                android:padding="30px"
+                android:textSize="34sp"
+                android:layout_alignParentBottom="true" />
         </RelativeLayout>
 
 

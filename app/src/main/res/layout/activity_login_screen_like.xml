@@ -31,6 +31,7 @@ android:weightSum="1">
         android:src="@mipmap/icon_backarrow"
         android:background="@color/colorPrimary"
         android:adjustViewBounds="true"
+        android:onClick="BackArrow"
         android:cropToPadding="true"
         android:visibility="visible"
         android:scaleType="fitCenter" />
@@ -49,6 +50,16 @@ android:weightSum="1">
         android:textSize="60sp"
         android:textStyle="normal|bold"
         android:fontFamily="sans-serif" />
+
+    <ImageButton
+        android:src="@mipmap/ic_home"
+        android:layout_width="102dp"
+        android:layout_height="130dp"
+        android:id="@+id/button6"
+        android:onClick="goHome"
+        android:layout_weight="0.03"
+        android:scaleType="fitCenter"
+        android:background="@color/colorPrimary" />
 
     <ImageButton
         android:src="@mipmap/icon_help"

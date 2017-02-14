@@ -53,4 +53,13 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
         }
 
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(login_screen_like.this, home_screen.class);
+        startActivity(intent1);
+    }
+
+    public void BackArrow(View v) {
+        Intent intent1 = new Intent(login_screen_like.this, login_screen.class);
+        startActivity(intent1);
+    }
 }

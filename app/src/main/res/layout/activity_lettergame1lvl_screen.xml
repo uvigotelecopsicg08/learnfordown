@@ -97,7 +97,7 @@
 
             <TextView
                 android:gravity="center"
-                android:paddingTop="20sp"
+                android:paddingTop="0sp"
                 android:text="C"
                 android:background="@color/NaranjaClarito"
                 android:id="@+id/textView4"

@@ -40,6 +40,12 @@
             android:screenOrientation="landscape" />
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
+        <activity
+            android:name=".login_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".login_screen_like"
+            android:screenOrientation="landscape" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -78,7 +84,30 @@
             android:screenOrientation="landscape" />
         <activity android:name=".palabrasgame1_1lvl_screen" />
         <activity android:name=".palabrasgame1_2lvl_screen" />
-        <activity android:name=".frasegame1lvl_screen"></activity>
+        <activity android:name=".frasegame1lvl_screen" />
+        <activity android:name=".silabasgame1lvl_screen" />
+        <activity android:name=".silabasgame2lvl_screen" />
+        <activity android:name=".silabasgame3lvl_screen" />
+        <activity android:name=".silabasgame4lvl_screen" />
+        <activity android:name=".menu_write_screen" />
+        <activity android:name=".frasedi_w_screen" />
+        <activity android:name=".frasein_w_screen" />
+        <activity android:name=".frasetra_w_screen" />
+        <activity android:name=".palabrasdi_w_screen" />
+        <activity android:name=".palabrasin_w_screen" />
+        <activity android:name=".palabrastra_w_screen" />
+        <activity android:name=".sidirectas_w_screen" />
+        <activity android:name=".siinversas_w_screen" />
+        <activity android:name=".sitrabadas_w_screen" />
+        <activity android:name=".frasegame1lvl_w_screen" />
+        <activity android:name=".lettergame1lvl_w_screen" />
+        <activity android:name=".lettergame2lvl_w_screen" />
+        <activity android:name=".lettergame3lvl_w_screen" />
+        <activity android:name=".lettergame4lvl_w_screen" />
+        <activity android:name=".silabasgame1lvl_w_screen" />
+        <activity android:name=".silabasgame2lvl_w_screen" />
+        <activity android:name=".silabasgame3lvl_w_screen" />
+        <activity android:name=".silabasgame4lvl_w_screen"></activity>
     </application>
 
 </manifest>

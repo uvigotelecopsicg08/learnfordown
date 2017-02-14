@@ -86,7 +86,7 @@
                 android:layout_alignBottom="@+id/textView4" />
 
             <TextView
-                android:paddingTop="20sp"
+                android:paddingTop="0sp"
                 android:text="T"
                 android:gravity="center"
                 android:background="@color/VerdeClarito"

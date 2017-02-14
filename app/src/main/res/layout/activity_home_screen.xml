@@ -83,6 +83,14 @@
         android:textColor="@android:color/holo_blue_light"
         android:textStyle="normal|bold" />
 
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="125dp"
+        android:background="@color/Blanco"
+        android:layout_weight="0.88"
+        android:weightSum="1">
+
     <ImageButton
         android:layout_width="84dp"
         android:layout_height="88dp"
@@ -104,6 +112,7 @@
         android:onClick="sendMessage4"
         android:background="@mipmap/ajustes" />
 
+    </RelativeLayout>
 
 </LinearLayout>
 

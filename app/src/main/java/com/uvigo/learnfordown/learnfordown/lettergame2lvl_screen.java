@@ -21,7 +21,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
     TextView titulo;
-    String Correcta;
+    String Correcta="";
     ImageButton BackArrow,Home;
 
     @Override

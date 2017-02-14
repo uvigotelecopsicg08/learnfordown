@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lettergame1lvl_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uvigo.learnfordown.learnfordown.lettergame1lvl_screen"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/colorGame">
+
+            <ImageButton
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:src="@mipmap/icon_backarrow"
+                android:background="@color/colorGame"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:visibility="visible"
+                android:onClick="BackArrow"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:text="¿POR QUÉ SÍLABA EMPIEZA?"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="60sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="25dp" />
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button5"
+                android:onClick="goHome"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+            <ImageButton
+                android:src="@mipmap/icon_help"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button4"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/Blanco"
+            android:layout_weight="0.88"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="439dp"
+                app:srcCompat="@drawable/casa"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_marginStart="106dp"
+                android:layout_alignParentStart="true"
+                android:layout_height="250dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/horizontal_recycler_view"
+                android:orientation="horizontal"
+                android:background="#fff"
+                android:layout_width="match_parent"
+                android:layout_height="228dp"
+                android:layout_marginTop="107dp"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentEnd="true"
+                android:scrollbarSize="@android:dimen/app_icon_size" />
+
+            <TextView
+                android:gravity="center"
+                android:paddingTop="0dp"
+                android:text="CA"
+                android:background="@color/NaranjaClarito"
+                android:id="@+id/textView4"
+                android:layout_weight="0.25"
+                android:layout_width="200dp"
+                android:layout_marginEnd="238dp"
+                android:layout_height="200dp"
+                android:layout_alignBottom="@+id/imageView2"
+                android:layout_alignParentEnd="true"
+                android:textSize="150sp"
+                android:textColor="@color/Negro" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>
+

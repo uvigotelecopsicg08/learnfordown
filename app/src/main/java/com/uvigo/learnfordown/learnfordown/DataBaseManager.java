@@ -66,12 +66,6 @@ public class DataBaseManager {
     public static final String CN_STEP ="subnivel";
 
 
-
-
-
-
-
-
     public static final String CREATE_TABLE_USER ="create table "+TABLE_USER+" ("+CN_ID_USER+
             " integer primary key autoincrement,"
             + CN_NAME_USER + " VARCHAR(50) NOT NULL,"

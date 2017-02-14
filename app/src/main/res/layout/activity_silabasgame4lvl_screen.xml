@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_lettergame4lvl_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uvigo.learnfordown.learnfordown.lettergame4lvl_screen"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/Morado">
+
+            <ImageButton
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:onClick="BackArrow"
+                android:src="@mipmap/icon_backarrow"
+                android:background="@color/Morado"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:visibility="visible"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:text="¿POR QUÉ LETRA EMPIEZA?"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="60sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="25dp" />
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:onClick="goHome"
+                android:layout_height="130dp"
+                android:id="@+id/button5"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/Morado" />
+            <ImageButton
+                android:src="@mipmap/icon_help"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button4"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/Morado" />
+
+
+        </LinearLayout>
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/Blanco"
+            android:layout_weight="1.06"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="439dp"
+                android:layout_height="300dp"
+                android:src="@drawable/raton"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_marginTop="28dp"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true" />
+
+
+        </RelativeLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="144dp"
+            android:layout_weight="0.21" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view2"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="151dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_menu_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uvigo.learnfordown.learnfordown.home_screen"
+    android:weightSum="1">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:background="@color/colorPrimary">
+
+            <ImageButton
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:src="@mipmap/icon_backarrow"
+                android:background="@color/colorPrimary"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:visibility="visible"
+                android:onClick="BackArrow"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:text="¿QUÉ QUIERES PRACTICAR?"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="25dp"
+                android:textAllCaps="false"
+                android:textAppearance="@style/TextAppearance.AppCompat"
+                android:textSize="60sp"
+                android:textStyle="normal|bold"
+                android:fontFamily="sans-serif" />
+
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button7"
+                android:onClick="goHome"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorPrimary" />
+
+            <ImageButton
+                android:src="@mipmap/icon_help"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button4"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorPrimary" />
+
+
+        </LinearLayout>
+
+        <Button
+            android:text="LETRAS"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button6"
+            android:background="@android:color/white"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="45sp"
+            android:layout_marginTop="20dp"
+
+            android:onClick="SpinnerLetterUp"
+            android:paddingLeft="100sp"
+            android:textAlignment="viewStart"
+            android:layout_weight="0.15" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350sp"
+
+            android:background="@color/Blanco"> </Spinner>
+
+        <Button
+            android:text="SÍLABAS"
+            android:layout_marginTop="20dp"
+
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button8"
+            android:paddingLeft="100sp"
+
+            android:background="@android:color/white"
+            android:onClick="SpinnerSilabaUp"
+
+            android:textSize="45sp"
+            android:textAlignment="viewStart"
+            android:layout_weight="0.15" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350sp"
+
+            android:background="@color/Blanco"></Spinner>
+
+        <Button
+            android:text="PALABRAS"
+            android:layout_marginTop="20dp"
+
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button9"
+            android:paddingLeft="100sp"
+
+            android:onClick="SpinnerPalabraUp"
+            android:background="@android:color/white"
+            android:textSize="45sp"
+
+            android:textAlignment="viewStart"
+            android:layout_weight="0.15" />
+
+        <Spinner
+            android:id="@+id/spinner2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350sp"
+
+            android:background="@color/Blanco"></Spinner>
+
+        <Button
+            android:text="FRASES"
+            android:layout_marginTop="20dp"
+
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button10"
+            android:paddingLeft="100sp"
+
+            android:background="@android:color/white"
+            android:textSize="45sp"
+            android:onClick="SpinnerFraseUp"
+
+            android:textAlignment="viewStart"
+            android:layout_weight="0.15" />
+
+        <Spinner
+            android:id="@+id/spinner3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="350sp"
+            android:background="@color/Blanco"></Spinner>
+
+    </LinearLayout>
+
+</RelativeLayout>
+
