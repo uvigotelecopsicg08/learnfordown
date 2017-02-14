@@ -36,6 +36,8 @@ public class DataBaseManager {
     public static final String CN_SENTENCE= "frase";
     public static final String CN_PHOTO= "foto";
     public static final String CN_TOPIC= "tema";
+    public static final String CN_NUMBER_SYLLABLES= "numero_silabas";
+    public static final String CN_SOUND= "sonido";
 
     //Tabla SystemLog
 
@@ -94,7 +96,9 @@ public class DataBaseManager {
             CN_WORD+"  VARCHAR(50) NOT NULL UNIQUE,"+
             CN_SENTENCE+" VARCHAR(200) NOT NULL,"+
             CN_PHOTO+ "  integer NOT NULL,"+
-            CN_TOPIC+" VARCHAR(50) NOT NULL); ";
+            CN_TOPIC+" VARCHAR(50) NOT NULL,"+
+            CN_NUMBER_SYLLABLES +" integer NOT NULL,"+
+            CN_SOUND +" VARCHAR(50) NOT NULL);";
 
 
     public static final String CREATE_TABLE_SYSTEM="create table "+TABLE_SYSTEM_LOG+" ("+CN_ID_SYSTEM_LOG+
@@ -117,10 +121,10 @@ public class DataBaseManager {
 
 
     public static final String CREATE_TABLE_LEVEL="create table "+TABLE_LEVEL+" ("+CN_ID_LEVEL+
-            " integer primary key,"
+            " integer primary key autoincrement,"
             + CN_TYPE+ " VARCHAR(50),"
             + CN_DIFFICULTY+ " integer NOT NULL,"
-            + CN_STEP +" VARCHAR(50) );";
+            + CN_STEP +" VARCHAR(50)  NOT NULL );";
 
 
 
@@ -193,16 +197,16 @@ public class DataBaseManager {
         valores.put(CN_REGISTER_DATE,new java.util.Date().getTime());
         db.insert(TABLE_SYSTEM_LOG,null,valores);
     }
-    public void insertar_nivel (int id_level,String tipo,int dificultad,String subnivel){
+    public void insertar_nivel (String tipo,int dificultad,String subnivel){
 
         ContentValues valores =new ContentValues();
-        valores.put(CN_ID_LEVEL,id_level);
+      //  valores.put(CN_ID_LEVEL,id_level);
         valores.put(CN_TYPE,tipo);
         valores.put(CN_DIFFICULTY,dificultad);
         valores.put(CN_STEP,subnivel);
         db.insert(TABLE_LEVEL,null,valores);
     }
-    public void insertar_foto(String letra,String silaba,String tipoSilaba,String palabra,String frase,int foto,String tema){
+    public void insertar_foto(String letra,String silaba,String tipoSilaba,String palabra,String frase,int foto,String tema,int numero_silabas,String  sonido){
         ContentValues valores =new ContentValues();
         valores.put(CN_LETTER,letra);
         valores.put(CN_SYLLABLE,silaba);
@@ -211,6 +215,8 @@ public class DataBaseManager {
         valores.put(CN_SENTENCE,frase);
         valores.put(CN_PHOTO,foto);
         valores.put(CN_TOPIC,tema);
+        valores.put(CN_NUMBER_SYLLABLES,numero_silabas);
+        valores.put(CN_SOUND,sonido);
         db.insert(TABLE_WORD,null,valores);
 
     }
@@ -283,7 +289,7 @@ public class DataBaseManager {
 
         String tablas=TABLE_AFFINITY+","+TABLE_WORD;
         String whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
-                CN_LETTER+" = ?";
+                CN_SOUND+" = ?";
         System.out.println(whereClause);
         System.out.println(id_user);
         String[] whereArgs = new String[] {String.valueOf(id_user),subnivel};

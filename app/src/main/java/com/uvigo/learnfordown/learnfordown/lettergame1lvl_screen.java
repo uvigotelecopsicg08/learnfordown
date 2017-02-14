@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,14 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
+
+        Context context = this.getApplicationContext();
+        GestionNiveles  gn = new GestionNiveles(context);
+        gn.setNivel("leerletras",1);
+        ArrayList<FotoPalabra> fp=gn.getFotos();
+        for(int i=0;i<fp.size();i++){
+            System.out.println(fp.get(i).getPalabra());
+        }
 
         horizontalList=new ArrayList<String>();
         horizontalList.add("A");

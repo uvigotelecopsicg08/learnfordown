@@ -36,23 +36,10 @@ public class home_screen extends AppCompatActivity {
         context.deleteDatabase("learn.sqlite");
         DataBaseManager db = new DataBaseManager(context);
 
-        db.insertar_nivel (0,"leerletras",1,"p");
-        db.insertar_nivel (1,"leerletras",2,"p");
-        db.insertar_nivel (2,"leerletras",3,"p");
-        db.insertar_nivel (4,"leerletras",1,"c");
-        db.insertar_foto("c","ca","directas","casa","La casa es blanca",R.drawable.casa,"casa");
-        db.insertar_foto("p","pe","directas","perro","El perro es marrón",R.drawable.perro,"animales");
+        InsertData iD = new InsertData(context);
+        iD.insertar();
         db.insertar_user("pepe",5);
 
-
-        gn = new GestionNiveles(context);
-        gn.setNivel("leerletras",1);
-        ArrayList<FotoPalabra> fp=gn.getFotos();
-        System.out.println(fp);
-        System.out.println("Holhhha");
-        for(int i=0;i<fp.size();i++){
-           System.out.println(fp.get(i).getPalabra());
-        }
 
 
     }

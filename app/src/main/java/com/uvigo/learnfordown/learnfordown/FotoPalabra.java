@@ -16,6 +16,7 @@ public class FotoPalabra {
     private int foto;
     private String tema;
 
+
     public FotoPalabra(String letra, String silaba, String tipo_silaba, String palabra, String frase, int foto, String tema) {
         this.letra = letra;
         this.silaba = silaba;
@@ -24,6 +25,7 @@ public class FotoPalabra {
         this.frase = frase;
         this.foto = foto;
         this.tema = tema;
+        utilizada =false;
     }
 
     public String getLetra() {
@@ -82,5 +84,14 @@ public class FotoPalabra {
         this.tema = tema;
     }
 
+    public boolean isUtilizada() {
+        return utilizada;
+    }
+
+    public void setUtilizada(boolean utilizada) {
+        this.utilizada = utilizada;
+    }
+
+    private boolean utilizada;
 
 }
