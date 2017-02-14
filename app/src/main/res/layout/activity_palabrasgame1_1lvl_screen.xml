@@ -114,9 +114,9 @@
         android:layout_marginTop="140dp"
         android:layout_marginLeft="1150dp"
         android:onClick="seguir"
-        app:srcCompat="@android:drawable/checkbox_on_background"
+        app:srcCompat="@mipmap/ic_nextarrow"
         android:id="@+id/imageButton"
-        android:backgroundTint="@color/Verde" />
+        android:backgroundTint="@color/Blanco" />
 
         <TextView
             android:gravity="center"

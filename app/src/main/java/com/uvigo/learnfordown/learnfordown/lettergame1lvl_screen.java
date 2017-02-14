@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
+import android.view.animation.Transformation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -21,7 +23,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
-    String Correcta="";
+    String Correcta="C";
     TextView titulo;
     ImageButton BackArrow,Home;
     @Override
@@ -77,10 +79,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         Button b = (Button)v;
         String buttonText = b.getText().toString();
         if (Correcta.equals(buttonText)){
-        /*    Animation movimiento;
-            movimiento = AnimationUtils.loadAnimation(this, R.anim.mover)
-            movimiento.reset();
-            b.startAnimation(movimiento);*/
+            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                    -50.0f, 0.0f);
+            animation.setDuration(2000);
+            animation.setFillAfter(true);
+            b.startAnimation(animation);
 //Codigo de Animacion Acierto
         } else{
             //Codigo de Animacion Fallo
