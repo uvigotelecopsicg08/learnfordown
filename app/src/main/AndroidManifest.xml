@@ -76,13 +76,20 @@
         <activity
             android:name=".frasetra_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".palabrasgame1_1lvl_screen" />
-        <activity android:name=".palabrasgame1_2lvl_screen" />
-        <activity android:name=".frasegame1lvl_screen" />
-        <activity android:name=".silabasgame1lvl_screen" />
-        <activity android:name=".silabasgame2lvl_screen" />
-        <activity android:name=".silabasgame3lvl_screen" />
-        <activity android:name=".silabasgame4lvl_screen"></activity>
+        <activity android:name=".palabrasgame1_1lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".palabrasgame1_2lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".frasegame1lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame1lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame2lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame3lvl_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame4lvl_screen"
+            android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

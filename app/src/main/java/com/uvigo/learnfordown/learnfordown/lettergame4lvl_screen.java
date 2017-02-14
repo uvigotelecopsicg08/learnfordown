@@ -1,12 +1,14 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ import java.util.ArrayList;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
     TextView titulo;
-    String Correcta="";
+    String Correcta="R";
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
@@ -35,7 +37,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         horizontalList=new ArrayList<String>();
         horizontalList.add("A");
-        horizontalList.add("B");
+        horizontalList.add("R");
         horizontalList.add("C");
         horizontalList.add("D");
         horizontalList.add("E");
@@ -46,7 +48,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
         horizontalList2=new ArrayList<String>();
-        horizontalList2.add("A");
+        horizontalList2.add("R");
         horizontalList2.add("B");
         horizontalList2.add("C");
         horizontalList2.add("D");
@@ -78,6 +80,12 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         Button b = (Button)v;
         String buttonText = b.getText().toString();
         if (Correcta.equals(buttonText)){
+            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                    -50.0f, 0.0f);
+            animation.setDuration(2000);
+            animation.setFillAfter(true);
+            b.startAnimation(animation);
+            b.setBackgroundColor(Color.GREEN);
 //Codigo de Animacion Acierto
         } else{
             //Codigo de Animacion Fallo

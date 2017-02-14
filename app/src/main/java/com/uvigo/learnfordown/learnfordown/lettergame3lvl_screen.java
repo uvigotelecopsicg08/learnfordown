@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -58,6 +59,11 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         Button b = (Button)v;
         String buttonText = b.getText().toString();
         if (Correcta.equals(buttonText)){
+            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                    -50.0f, 0.0f);
+            animation.setDuration(400);
+            animation.setFillAfter(true);
+            b.startAnimation(animation);
 //Codigo de Animacion Acierto
         } else{
             //Codigo de Animacion Fallo
