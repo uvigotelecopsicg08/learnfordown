@@ -9,6 +9,8 @@
     android:background="@mipmap/ic_launcher1"
     android:layout_width="match_parent">
 
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -67,11 +69,11 @@
         android:layout_height="125dp"
         android:layout_marginTop="125dp"
         android:layout_marginLeft="-1310dp"
-        android:background="@color/colorGame">
+        android:background="@color/Rojo">
     </LinearLayout>
 
     <TextView
-        android:text="FRASES CON SÍLABAS INVERSAS!"
+        android:text="¡PALABRAS CON LAS SÍLABAS TRABADAS!"
         android:layout_width="1274dp"
         android:layout_height="120dp"
         android:id="@+id/textView3"
@@ -81,7 +83,10 @@
         android:layout_marginLeft="-1310dp"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:paddingTop="25dp" />
+        android:paddingTop="25dp"
+        android:background="@android:color/holo_red_light" />
+
+
 
     <Button
         android:text="Nivel 1"
@@ -147,5 +152,4 @@
         android:textAlignment="center"
         android:textColor="@color/Morado" />
 </LinearLayout>
-
 

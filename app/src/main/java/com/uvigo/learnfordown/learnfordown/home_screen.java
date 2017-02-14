@@ -59,7 +59,6 @@ public class home_screen extends AppCompatActivity {
            System.out.println(fp.get(i).getPalabra());
         }
 
-
     }
 
     /**
@@ -67,9 +66,20 @@ public class home_screen extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         // Do something in response to button
-        Intent intent = new Intent(this, menu_screen.class);
+        Intent intent = new Intent(home_screen.this, menu_screen.class);
         startActivity(intent);
     }
+
+    public void sendMessage2(View view) {
+        // Do something in response to button
+        Intent intent = new Intent(home_screen.this, menu_write_screen.class);
+        startActivity(intent);
+    }
+    public void ajustes (View view){
+        Intent intent = new Intent(home_screen.this, login_screen.class);
+        startActivity(intent);
+    }
+
     public void salir(View view) {
         // Do something in response to button
         finish();
@@ -78,6 +88,8 @@ public class home_screen extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
 
 
     /**

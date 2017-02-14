@@ -81,7 +81,6 @@
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
             android:layout_marginTop="20dp"
-
             android:onClick="SpinnerLetterUp"
             android:paddingLeft="100sp"
             android:textAlignment="viewStart"

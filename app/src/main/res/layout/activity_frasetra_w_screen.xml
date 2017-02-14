@@ -9,6 +9,8 @@
     android:background="@mipmap/ic_launcher1"
     android:layout_width="match_parent">
 
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -71,7 +73,7 @@
     </LinearLayout>
 
     <TextView
-        android:text="FRASES CON SÍLABAS INVERSAS!"
+        android:text="FRASES CON SÍLABAS TRABADAS!"
         android:layout_width="1274dp"
         android:layout_height="120dp"
         android:id="@+id/textView3"
@@ -82,6 +84,8 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:paddingTop="25dp" />
+
+
 
     <Button
         android:text="Nivel 1"
