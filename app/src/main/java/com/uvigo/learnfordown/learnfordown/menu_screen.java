@@ -277,4 +277,8 @@ public class menu_screen extends AppCompatActivity {
         Intent intent1 = new Intent(menu_screen.this, home_screen.class);
         startActivity(intent1);
     }
+    public void goHome (View v){
+        Intent intent1 = new Intent(menu_screen.this, home_screen.class);
+        startActivity(intent1);
+    }
 }

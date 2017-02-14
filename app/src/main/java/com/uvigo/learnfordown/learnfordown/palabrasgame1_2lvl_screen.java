@@ -75,8 +75,5 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         }
         ultimoPulsado = v.getId();
     }
-    public void goHome (View v){
-        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, home_screen.class);
-        startActivity(intent1);
-    }
+
 }
