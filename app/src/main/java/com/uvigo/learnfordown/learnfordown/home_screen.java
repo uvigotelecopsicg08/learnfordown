@@ -115,6 +115,6 @@ public class home_screen extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
-        gn.close();
+
     }
 }

@@ -14,6 +14,7 @@ import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,9 +24,15 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
-    String Correcta="C";
-    TextView titulo;
+    String Correcta;
+    TextView titulo,letracorrecta;
     ImageButton BackArrow,Home;
+    ImageView palabra;
+    GestionNiveles  gn;
+    String tipoNivel="leerletras";
+    boolean siguientepalabra=true;
+    ArrayList<FotoPalabra> fp;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,33 +42,39 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
+        palabra= (ImageView)findViewById(R.id.imageView2);
+        letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
 
         Context context = this.getApplicationContext();
-        GestionNiveles  gn = new GestionNiveles(context);
-        gn.setNivel("leerletras",1);
-        ArrayList<FotoPalabra> fp=gn.getFotos();
-        for(int i=0;i<fp.size();i++){
-            System.out.println(fp.get(i).getPalabra());
-        }
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
+      //  gn.close();
 
-        horizontalList=new ArrayList<String>();
-        horizontalList.add("A");
-        horizontalList.add("B");
-        horizontalList.add("C");
-        horizontalList.add("D");
-        horizontalList.add("E");
+            System.out.println("Se crea la activity");
+          horizontalList = new ArrayList<String>();
+          horizontalList.add("A");
+          horizontalList.add("B");
+          horizontalList.add(fp.get(i).getLetra().toUpperCase());
+          horizontalList.add("D");
+          horizontalList.add("E");
+          palabra.setImageResource(fp.get(i).getFoto());
+         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
+          Correcta= fp.get(i).getLetra().toUpperCase();
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+          horizontalAdapter = new HorizontalAdapter(horizontalList);
 
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
-
-
+          LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+          horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
+          horizontal_recycler_view.setAdapter(horizontalAdapter);
 
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+
+
+
+
 
 
 
@@ -84,11 +97,57 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             animation.setDuration(2000);
             animation.setFillAfter(true);
             b.startAnimation(animation);
+
+            gn.acierto();
+           System.out.println(gn.getDificultad());
+            if(!gn.isnivelCompletado()) {
+                i++;
+                cambiarFoto();
+            }
+            else{
+                System.out.print("el nivel esta finalizado");
+                gn.avanzaNivel();
+                if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
+                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                    //Código para abrir otra pantalla
+                }
+               else {
+                    fp= gn.getFotos();
+                    i=0;
+                    cambiarFoto();
+                    System.out.println("Se debe avanzar el nivel");
+                }
+
+
+            }
 //Codigo de Animacion Acierto
         } else{
             //Codigo de Animacion Fallo
+            gn.fallo();
+            System.out.println("Se ha anotado un fallo");
+
 
         }
+    }
+
+    private void cambiarFoto() {
+        horizontalList.clear();
+        horizontalList = new ArrayList<String>();
+        horizontalList.add("A");
+        horizontalList.add("B");
+        horizontalList.add(fp.get(i).getLetra().toUpperCase());
+        horizontalList.add("D");
+        horizontalList.add("E");
+        palabra.setImageResource(fp.get(i).getFoto());
+        letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
+        Correcta= fp.get(i).getLetra().toUpperCase();
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
     }
 
 }

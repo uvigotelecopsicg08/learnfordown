@@ -256,7 +256,7 @@ public class DataBaseManager {
         return cursor;
     }
     public Cursor getNivelByid(int id_nivel){
-        String columnas[] = new String[]{CN_ID_LEVEL};
+        String columnas[] = new String[]{CN_TYPE,CN_DIFFICULTY,CN_STEP};
         String whereClause = CN_ID_LEVEL+" = ? ";
         String[] whereArgs = new String[] {String.valueOf(id_nivel)};
         Cursor cursor= db.query(TABLE_LEVEL,null,whereClause,whereArgs,null,null,null,null);

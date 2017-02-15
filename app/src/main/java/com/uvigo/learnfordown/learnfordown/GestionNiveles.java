@@ -67,6 +67,7 @@ public class GestionNiveles {
     }
     public void setNivel(String tipo,int dificultad){
         this.tipo=tipo;
+        this.dificultad=dificultad;
        Cursor cursor= db.getNivel(tipo,dificultad,id_user);
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
@@ -117,6 +118,7 @@ public class GestionNiveles {
                 subnivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
             }
         }
+        System.out.println("tipo: "+tipo+"dificultad: "+ dificultad+"subnivel:  "+ subnivel);
     }
     public int getId_nivel() {
         return id_nivel;
@@ -137,6 +139,21 @@ public class GestionNiveles {
     public void setFallos(int fallos) {
         this.fallos = fallos;
     }
+    public int getDificultad() {
+        return dificultad;
+    }
+
+    public void setDificultad(int dificultad) {
+        this.dificultad = dificultad;
+    }
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public void close(){
         db.close();
     }
