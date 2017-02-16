@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Transformation;
 import android.view.animation.TranslateAnimation;
@@ -25,6 +27,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
     String Correcta;
+    Button ButtonActual;
     TextView titulo,letracorrecta;
     ImageButton BackArrow,Home;
     ImageView palabra;
@@ -90,44 +93,61 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     }
     public void ButtonCheck (View v){
         Button b = (Button)v;
-        String buttonText = b.getText().toString();
-        if (Correcta.equals(buttonText)){
-            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
-            animation.setDuration(2000);
-            animation.setFillAfter(true);
-            b.startAnimation(animation);
-
-            gn.acierto();
-           System.out.println(gn.getDificultad());
-            if(!gn.isnivelCompletado()) {
-                i++;
-                cambiarFoto();
-            }
-            else{
-                System.out.print("el nivel esta finalizado");
-                gn.avanzaNivel();
-                if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
-                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                    //Código para abrir otra pantalla
+        ButtonActual = b;
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    ButtonActual.setBackgroundColor(Color.GREEN);
+                    gn.acierto();
                 }
-               else {
-                    fp= gn.getFotos();
-                    i=0;
-                    cambiarFoto();
-                    System.out.println("Se debe avanzar el nivel");
-                }
-
-
             }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())){
+                    System.out.println(gn.getDificultad());
+                    if(!gn.isnivelCompletado()) {
+                        i++;
+                        cambiarFoto();
+                    }
+                    else{
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        }
+                        else {
+                            fp= gn.getFotos();
+                            i=0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+                        }
+
+
+                    }
 //Codigo de Animacion Acierto
-        } else{
-            //Codigo de Animacion Fallo
-            gn.fallo();
-            System.out.println("Se ha anotado un fallo");
+                } else{
+                    //Codigo de Animacion Fallo
+                    gn.fallo();
+                    System.out.println("Se ha anotado un fallo");
 
 
-        }
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        b.startAnimation(animation);
+
     }
 
     private void cambiarFoto() {
