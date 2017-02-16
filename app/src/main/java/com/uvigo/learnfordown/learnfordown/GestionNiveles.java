@@ -120,6 +120,21 @@ public class GestionNiveles {
         }
         System.out.println("tipo: "+tipo+"dificultad: "+ dificultad+"subnivel:  "+ subnivel);
     }
+
+    public void rellenarConletras(String letraElegida,ArrayList<String> horizontalList) {
+        String letras[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        int posicionArray;
+        int posicionesUsadas[]= {-1,-1,-1,-1};
+        horizontalList.add(letraElegida);
+        for(int i=0;i<4;i++){
+            posicionArray=  (int)Math.random()*letras.length;
+            while(letras[posicionArray].equals(letraElegida)||posicionArray==posicionesUsadas[0]||posicionArray==posicionesUsadas[1]||posicionArray==posicionesUsadas[2]||posicionArray==posicionesUsadas[3]){
+                posicionArray=  (int)(Math.random()*letras.length);
+            }
+            horizontalList.add(letras[posicionArray]);
+            posicionesUsadas[i]=posicionArray;
+        }
+    }
     public int getId_nivel() {
         return id_nivel;
     }
