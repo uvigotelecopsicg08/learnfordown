@@ -70,8 +70,8 @@ public class InsertData {
     }
 
     private void insertarNiveles() {
-        db.insertar_nivel ("leerletras",1,"vocales");
         for(int j=1;j<5;j++){
+            db.insertar_nivel ("leerletras",j,"vocales");
             for(int i=0;i<subniveles.length;i++){
                 db.insertar_nivel ("leerletras",j,subniveles[i]);
             }

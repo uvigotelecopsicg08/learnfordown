@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.support.v7.widget.RecyclerView;
 
@@ -36,6 +37,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     boolean siguientepalabra=true;
     ArrayList<FotoPalabra> fp;
     int i=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,16 +55,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
-      //  gn.close();
 
-            System.out.println("Se crea la activity");
           horizontalList = new ArrayList<String>();
-          horizontalList.add("A");
-          horizontalList.add("B");
-          horizontalList.add(fp.get(i).getLetra().toUpperCase());
-          horizontalList.add("D");
-          horizontalList.add("E");
-          palabra.setImageResource(fp.get(i).getFoto());
+          gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle( horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
          letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
           Correcta= fp.get(i).getLetra().toUpperCase();
 
@@ -83,6 +80,9 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
 
     }
+
+
+
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame1lvl_screen.this, menu_screen.class);
         startActivity(intent1);
@@ -153,11 +153,8 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private void cambiarFoto() {
         horizontalList.clear();
         horizontalList = new ArrayList<String>();
-        horizontalList.add("A");
-        horizontalList.add("B");
-        horizontalList.add(fp.get(i).getLetra().toUpperCase());
-        horizontalList.add("D");
-        horizontalList.add("E");
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
         Correcta= fp.get(i).getLetra().toUpperCase();
