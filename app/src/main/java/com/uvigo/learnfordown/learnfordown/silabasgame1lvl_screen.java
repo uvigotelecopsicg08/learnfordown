@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import android.support.v7.widget.RecyclerView;
 public class silabasgame1lvl_screen extends AppCompatActivity {
@@ -19,8 +22,13 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
     String Correcta;
-    TextView titulo;
+    TextView titulo,letracorrecta;
     ImageButton BackArrow,Home;
+    ImageView palabra;
+    GestionNiveles  gn;
+    String tipoNivel="silabasdirectas";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,13 +39,21 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
+        palabra= (ImageView)findViewById(R.id.imageView2);
+        letracorrecta=(TextView)findViewById(R.id.textView4);
+
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
+
 
         horizontalList=new ArrayList<String>();
-        horizontalList.add("CA");
-        horizontalList.add("QUE");
-        horizontalList.add("QUI");
-        horizontalList.add("CO");
-        horizontalList.add("CU");
+        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
+        Collections.shuffle( horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
+        Correcta= fp.get(i).getSilaba().toUpperCase();
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
@@ -66,7 +82,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         Button b = (Button)v;
         String buttonText = b.getText().toString();
         if (Correcta.equals(buttonText)){
-            //Codigo de Animacion Acierto
+            System.out.println("acierto");
         } else{
             //Codigo de Animacion Fallo
 

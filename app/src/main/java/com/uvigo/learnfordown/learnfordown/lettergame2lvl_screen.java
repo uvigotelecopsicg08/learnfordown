@@ -27,9 +27,9 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     TextView titulo;
     String Correcta="";
     ImageButton BackArrow,Home;
-    TextView letracorrecta;
     ImageView palabra;
     GestionNiveles  gn;
+    TextView letracorrecta;
     String tipoNivel="leerletras";
     ArrayList<FotoPalabra> fp;
     int i=0;
@@ -49,7 +49,6 @@ public class lettergame2lvl_screen extends AppCompatActivity {
 
         titulo.setTypeface(face);
 
-        horizontalList=new ArrayList<String>();
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,2);

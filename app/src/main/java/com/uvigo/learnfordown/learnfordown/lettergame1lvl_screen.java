@@ -55,7 +55,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
           horizontalList = new ArrayList<String>();
           gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
-            palabra.setImageResource(fp.get(i).getFoto());
+        palabra.setImageResource(fp.get(i).getFoto());
          letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
           Correcta= fp.get(i).getLetra().toUpperCase();
 
@@ -66,12 +66,6 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
 
           horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
-
-
-
-
 
 
 

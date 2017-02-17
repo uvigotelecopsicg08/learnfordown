@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
@@ -9,65 +10,117 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class lettergame3lvl_screen extends AppCompatActivity {
     TextView titulo;
-    String Correcta="";
+    String Correcta = "";
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+    ImageView palabra;
+    GestionNiveles gn;
+    String tipoNivel = "leerletras";
+    ArrayList<FotoPalabra> fp;
+    int i = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lettergame3lvl_screen);
-        horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+        horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        palabra = (ImageView) findViewById(R.id.imageView2);
+        titulo.setTypeface(face);
 
-        horizontalList=new ArrayList<String>();
-        horizontalList.add("E");
-        horizontalList.add("K");
-        horizontalList.add("I");
-        horizontalList.add("P");
-        horizontalList.add("O");
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel, 3);
+        fp = gn.getFotos();
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+        Collections.shuffle(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta = fp.get(i).getLetra().toUpperCase();
+
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
-
-
-
         horizontal_recycler_view.setAdapter(horizontalAdapter);
     }
-    public void BackArrow (View v){
+
+    public void BackArrow(View v) {
         Intent intent1 = new Intent(lettergame3lvl_screen.this, menu_screen.class);
         startActivity(intent1);
     }
-    public void goHome (View v){
+
+    public void goHome(View v) {
         Intent intent1 = new Intent(lettergame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-    public void ButtonCheck (View v){
-        Button b = (Button)v;
+
+    public void ButtonCheck(View v) {
+        Button b = (Button) v;
         String buttonText = b.getText().toString();
-        if (Correcta.equals(buttonText)){
+        if (Correcta.equals(buttonText)) {
             TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                     -50.0f, 0.0f);
             animation.setDuration(400);
             animation.setFillAfter(true);
             b.startAnimation(animation);
 //Codigo de Animacion Acierto
-        } else{
+            gn.acierto();
+            if (!gn.isnivelCompletado()) {
+                i++;
+                cambiarFoto();
+            } else {
+                System.out.print("el nivel esta finalizado");
+                gn.avanzaNivel();
+                if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
+                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                    //Código para abrir otra pantalla
+                } else {
+                    fp = gn.getFotos();
+                    i = 0;
+                    cambiarFoto();
+                    System.out.println("Se debe avanzar el nivel");
+                }
+
+
+            }
+        } else {
             //Codigo de Animacion Fallo
+            gn.fallo();
+            System.out.println("Se ha anotado un fallo");
+
 
         }
     }
+    private void cambiarFoto() {
+        horizontalList.clear();
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta= fp.get(i).getLetra().toUpperCase();
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
+    }
+
 }
+
