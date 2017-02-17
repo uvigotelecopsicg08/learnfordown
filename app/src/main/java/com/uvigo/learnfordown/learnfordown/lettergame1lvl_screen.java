@@ -31,6 +31,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="leerletras";
+    boolean siguientepalabra=true;
     ArrayList<FotoPalabra> fp;
     int i=0;
 
@@ -51,7 +52,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
-        
+
           horizontalList = new ArrayList<String>();
           gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
@@ -66,19 +67,8 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
 
           horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
-
-
-
-
-
-
-
+        
     }
-
-
-
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame1lvl_screen.this, menu_screen.class);
         startActivity(intent1);

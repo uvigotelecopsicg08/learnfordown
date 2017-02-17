@@ -109,7 +109,21 @@
                 android:layout_alignParentEnd="true"
                 android:textSize="150sp"
                 android:textColor="@color/Negro" />
-
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="50dp"
+                android:numStars="1"
+                android:stepSize="1.0"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:rating="0"
+                android:backgroundTint="@color/amarillo"
+                android:progressTint="#FFFDED1B"
+                android:maxHeight="@dimen/activity_horizontal_margin"
+                android:minWidth="@dimen/activity_horizontal_margin" />
 
         </RelativeLayout>
 

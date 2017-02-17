@@ -83,16 +83,6 @@
                 android:layout_alignParentStart="true"
                 android:layout_marginBottom="13dp" />
 
-            <ImageView
-                android:layout_width="439dp"
-                android:src="@drawable/raton"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_marginTop="21dp"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true"
-                android:layout_height="250dp" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/horizontal_recycler_view"
                 android:orientation="horizontal"
@@ -106,6 +96,30 @@
 
             </android.support.v7.widget.RecyclerView>
 
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="150dp"
+                android:numStars="6"
+                android:stepSize="1.0"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:rating="4"
+                android:backgroundTint="@color/amarillo"
+                android:progressTint="#FFFDED1B"
+                android:maxHeight="@dimen/activity_horizontal_margin"
+                android:minWidth="@dimen/activity_horizontal_margin" />
+
+            <ImageView
+                android:layout_width="439dp"
+                android:src="@drawable/raton"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_height="250dp"
+                android:layout_below="@+id/ratingBar"
+                android:layout_toEndOf="@+id/ratingBar" />
 
         </RelativeLayout>
 

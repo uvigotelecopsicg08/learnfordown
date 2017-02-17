@@ -120,6 +120,22 @@
             android:layout_width="match_parent"
             android:layout_height="151dp" />
 
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_marginTop="-570dp"
+            android:layout_marginLeft="50dp"
+            android:numStars="2"
+            android:stepSize="1.0"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:rating="1"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:maxHeight="@dimen/activity_horizontal_margin"
+            android:minWidth="@dimen/activity_horizontal_margin" />
+
     </LinearLayout>
 
 </RelativeLayout>
