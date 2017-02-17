@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -19,7 +20,8 @@ import java.util.Collections;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
     TextView titulo;
-    String Correcta="R";
+    Button ButtonActual;
+    String Correcta = "R";
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
@@ -36,11 +38,11 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lettergame4lvl_screen);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-        horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-        horizontal_recycler_view2= (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
+        horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+        horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         palabra= (ImageView)findViewById(R.id.imageView2);
@@ -57,7 +59,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         Correcta= fp.get(i).getLetra().toUpperCase();
 
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -79,16 +81,20 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
-    public void BackArrow (View v){
+
+    public void BackArrow(View v) {
         Intent intent1 = new Intent(lettergame4lvl_screen.this, menu_screen.class);
         startActivity(intent1);
     }
-    public void goHome (View v){
+
+    public void goHome(View v) {
         Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-    public void ButtonCheck (View v) {
+
+    public void ButtonCheck(View v) {
         Button b = (Button) v;
+        ButtonActual =b;
         String buttonText = b.getText().toString();
         if (Correcta.equals(buttonText)) {
             TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
@@ -124,7 +130,38 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         } else {
             gn.fallo();
             //Codigo de Animacion Fallo
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    ButtonActual.setBackgroundColor(Color.GREEN);
+                }
+            }
 
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+
+
+                }
+//Codigo de Animacion Acierto
+                else {
+                    //Codigo de Animacion Fallo
+
+
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        b.startAnimation(animation);
         }
     }
     private void cambiarFoto() {
@@ -153,6 +190,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
 
+    }
+}
 
 }
 
