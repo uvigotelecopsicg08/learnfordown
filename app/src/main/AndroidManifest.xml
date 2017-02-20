@@ -80,6 +80,12 @@
             android:name=".frasedi_screen"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".login_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".login_screen_like"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".frasetra_screen"
             android:screenOrientation="landscape" />
         <activity android:name=".palabrasgame1_1lvl_screen"

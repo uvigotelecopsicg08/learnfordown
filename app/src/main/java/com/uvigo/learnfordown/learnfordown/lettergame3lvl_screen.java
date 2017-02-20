@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -11,10 +12,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -25,6 +28,11 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+    ImageView palabra;
+    GestionNiveles gn;
+    String tipoNivel = "leerletras";
+    ArrayList<FotoPalabra> fp;
+    int i = 0;
     int aciertos=0;
     GestionNiveles gn;
     RatingBar ratingbar1 = null;
@@ -38,6 +46,13 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        palabra = (ImageView) findViewById(R.id.imageView2);
+        titulo.setTypeface(face);
+
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel, 3);
+        fp = gn.getFotos();
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
@@ -48,14 +63,13 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
-        horizontalList=new ArrayList<String>();
-        horizontalList.add("E");
-        horizontalList.add("K");
-        horizontalList.add("I");
-        horizontalList.add("P");
-        horizontalList.add("O");
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+        Collections.shuffle(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta = fp.get(i).getLetra().toUpperCase();
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -103,21 +117,58 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
 
 
-                    }
-//Codigo de Animacion Acierto
-                    else {
-                        //Codigo de Animacion Fallo
+                    gn.acierto();
+                    if (!gn.isnivelCompletado()) {
+                        i++;
+                        cambiarFoto();
+                    } else {
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        } else {
+                            fp = gn.getFotos();
+                            i = 0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+                        }
 
 
                     }
-                }
+                } else {
+                    //Codigo de Animacion Fallo
+                    gn.fallo();
+                    System.out.println("Se ha anotado un fallo");
 
-                @Override
-                public void onAnimationRepeat(Animation animation) {
+
 
                 }
-            });
-            b.startAnimation(animation);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        b.startAnimation(animation);
 
     }
+    private void cambiarFoto() {
+        horizontalList.clear();
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta= fp.get(i).getLetra().toUpperCase();
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
+    }
+
 }
+

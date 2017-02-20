@@ -41,12 +41,12 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private HorizontalAdapter horizontalAdapter;
     String Correcta;
     Button ButtonActual;
-    TextView titulo, letracorrecta;
-    ImageButton BackArrow, Home;
+    TextView titulo,letracorrecta;
+    ImageButton BackArrow,Home;
     ImageView palabra;
-    GestionNiveles gn;
-    String tipoNivel = "leerletras";
-    boolean siguientepalabra = true;
+    GestionNiveles  gn;
+    String tipoNivel="leerletras";
+    boolean siguientepalabra=true;
     ArrayList<FotoPalabra> fp;
     int i = 0;
     RatingBar ratingbar1 = null;
@@ -62,13 +62,13 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lettergame1lvl_screen);
-        horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
-        palabra = (ImageView) findViewById(R.id.imageView2);
-        letracorrecta = (TextView) findViewById(R.id.textView4);
+        palabra= (ImageView)findViewById(R.id.imageView2);
+        letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
 
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -83,23 +83,23 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel, 1);
-        fp = gn.getFotos();
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
 
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
-        Collections.shuffle(horizontalList);
+          horizontalList = new ArrayList<String>();
+          gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle( horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
-        letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
-        Correcta = fp.get(i).getLetra().toUpperCase();
+         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
+          Correcta= fp.get(i).getLetra().toUpperCase();
 
-        horizontalAdapter = new HorizontalAdapter(horizontalList);
+          horizontalAdapter = new HorizontalAdapter(horizontalList);
 
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+          LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+          horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+          horizontal_recycler_view.setAdapter(horizontalAdapter);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -107,12 +107,12 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     }
 
 
-    public void BackArrow(View v) {
+
+    public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame1lvl_screen.this, menu_screen.class);
         startActivity(intent1);
     }
-
-    public void goHome(View v) {
+    public void goHome (View v){
         Intent intent1 = new Intent(lettergame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
@@ -147,22 +147,22 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (Correcta.equals(ButtonActual.getText().toString())) {
+                if (Correcta.equals(ButtonActual.getText().toString())){
                     System.out.println(gn.getDificultad());
-                    if (!gn.isnivelCompletado()) {
+                    if(!gn.isnivelCompletado()) {
                         i++;
                         cambiarFoto();
-                    } else {
+                    }
+                    else{
                         System.out.print("el nivel esta finalizado");
                         gn.avanzaNivel();
-                        if (gn.getDificultad() != 1 || !(gn.getTipo().equals(tipoNivel))) {
+                        if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
-
-
-                        } else {
-                            fp = gn.getFotos();
-                            i = 0;
+                        }
+                        else {
+                            fp= gn.getFotos();
+                            i=0;
                             cambiarFoto();
                             System.out.println("Se debe avanzar el nivel");
                         }
@@ -170,7 +170,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
                     }
 //Codigo de Animacion Acierto
-                } else {
+                } else{
                     //Codigo de Animacion Fallo
                     gn.fallo();
                     System.out.println("Se ha anotado un fallo");
@@ -191,11 +191,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private void cambiarFoto() {
         horizontalList.clear();
         horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
-        Correcta = fp.get(i).getLetra().toUpperCase();
+        Correcta= fp.get(i).getLetra().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);

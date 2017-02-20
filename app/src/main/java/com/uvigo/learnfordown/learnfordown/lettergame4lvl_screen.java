@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -12,10 +13,12 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.RatingBar;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Collections;
 import java.util.TreeSet;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
@@ -34,8 +37,13 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     int i=0;
     int aciertos=0;
     RatingBar ratingbar1 = null;
+    ImageView palabra;
+    GestionNiveles  gn;
+    String tipoNivel="leerletras";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
+    int aciertos=0;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,30 +65,35 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        palabra= (ImageView)findViewById(R.id.imageView2);
 
-        horizontalList = new ArrayList<String>();
-        horizontalList.add("A");
-        horizontalList.add("R");
-        horizontalList.add("C");
-        horizontalList.add("D");
-        horizontalList.add("E");
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,4);
+        fp=gn.getFotos();
+
+        horizontalList=new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle( horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta= fp.get(i).getLetra().toUpperCase();
+
 
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
-        horizontalList2 = new ArrayList<String>();
-        horizontalList2.add("R");
-        horizontalList2.add("B");
-        horizontalList2.add("C");
-        horizontalList2.add("D");
-        horizontalList2.add("E");
-
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2);
+        horizontalList2=new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
+        Collections.shuffle( horizontalList2);
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
+
+
+
 
 
         horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -123,6 +136,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
+                    ButtonActual.setEnabled(false);
+                    aciertos++;
                 }
             }
 
@@ -130,13 +145,31 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
 
+                    //Codigo de Animacion Acierto
+                    if (aciertos == 2) {
+                        gn.acierto();
+                        System.out.println("Se ha anotado un acierto");
+                        if (!gn.isnivelCompletado()) {
+                            i++;
+                            cambiarFoto();
+                        } else {
+                            System.out.print("el nivel esta finalizado");
+                            gn.avanzaNivel();
+                            if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
+                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                                //Código para abrir otra pantalla
+                            } else {
+                                fp = gn.getFotos();
+                                i = 0;
+                                cambiarFoto();
+                                System.out.println("Se debe avanzar el nivel");
+                            }
 
-                }
-//Codigo de Animacion Acierto
-                else {
-                    //Codigo de Animacion Fallo
-
-
+                        }
+                        aciertos = 0;
+                    }
+                } else {
+                    gn.fallo();
                 }
             }
 
@@ -148,4 +181,35 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         b.startAnimation(animation);
 
     }
+
+
+
+    private void cambiarFoto() {
+        horizontalList.clear();
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        Collections.shuffle(horizontalList);
+
+        horizontalList2.clear();
+        horizontalList2 = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
+        Collections.shuffle(horizontalList2);
+
+        palabra.setImageResource(fp.get(i).getFoto());
+        Correcta= fp.get(i).getLetra().toUpperCase();
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+        LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
+
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
+        horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+    }
+
+
 }
+

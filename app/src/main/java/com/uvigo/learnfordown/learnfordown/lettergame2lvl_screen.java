@@ -33,9 +33,9 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     TextView titulo;
     String Correcta="";
     ImageButton BackArrow,Home;
-    TextView letracorrecta;
     ImageView palabra;
     GestionNiveles  gn;
+    TextView letracorrecta;
     String tipoNivel="leerletras";
     ArrayList<FotoPalabra> fp;
     int i=0;
@@ -65,7 +65,6 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
-        horizontalList=new ArrayList<String>();
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,2);
@@ -127,6 +126,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
+                    ButtonActual.setEnabled(false);
                     aciertos++;
                 }
             }

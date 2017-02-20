@@ -1,6 +1,8 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +10,15 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import android.support.v7.widget.RecyclerView;
@@ -20,15 +26,26 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+    Button ButtonActual;
     String Correcta;
-    TextView titulo;
+    TextView titulo,letracorrecta;
     ImageButton BackArrow,Home;
+    ImageView palabra;
+    GestionNiveles  gn;
+    String tipoNivel="silabasdirectas";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_silabasgame1lvl_screen);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            tipoNivel = extras.getString("tipoSilaba");
+            System.out.println(tipoNivel);
+        }
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
@@ -44,13 +61,21 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        palabra= (ImageView)findViewById(R.id.imageView2);
+        letracorrecta=(TextView)findViewById(R.id.textView4);
+        System.out.println("Se usa el codigo");
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
+
 
         horizontalList=new ArrayList<String>();
-        horizontalList.add("CA");
-        horizontalList.add("QUE");
-        horizontalList.add("QUI");
-        horizontalList.add("CO");
-        horizontalList.add("CU");
+        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
+        Collections.shuffle( horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
+        Correcta= fp.get(i).getSilaba().toUpperCase();
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
@@ -77,13 +102,79 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     }
     public void ButtonCheck (View v){
         Button b = (Button)v;
-        String buttonText = b.getText().toString();
-        if (Correcta.equals(buttonText)){
-            //Codigo de Animacion Acierto
-        } else{
-            //Codigo de Animacion Fallo
+        ButtonActual = b;
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    ButtonActual.setBackgroundColor(Color.GREEN);
+                    gn.acierto();
+                }
+            }
 
-        }
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())){
+                    System.out.println(gn.getDificultad());
+                    if(!gn.isnivelCompletado()) {
+                        i++;
+                        cambiarFoto();
+                    }
+                    else{
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        }
+                        else {
+                            fp= gn.getFotos();
+                            i=0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+                        }
+
+
+                    }
+//Codigo de Animacion Acierto
+                } else{
+                    //Codigo de Animacion Fallo
+                    gn.fallo();
+                    System.out.println("Se ha anotado un fallo");
+
+
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
+        b.startAnimation(animation);
+
     }
+
+    private void cambiarFoto() {
+        horizontalList.clear();
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
+        Collections.shuffle(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
+        Correcta= fp.get(i).getSilaba().toUpperCase();
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+
+        horizontal_recycler_view.setAdapter(horizontalAdapter);
+    }
+
 
 }

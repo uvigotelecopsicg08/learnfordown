@@ -19,34 +19,43 @@ TextView titulo;
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(sidirectas_screen.this, menu_screen.class);
+
         startActivity(intent1);
     }
     public void goHome (View v){
-        Intent intent1 = new Intent(sidirectas_screen.this, home_screen.class);
-        startActivity(intent1);
+        Intent intent = new Intent(sidirectas_screen.this, home_screen.class);
+        startActivity(intent);
     }
 
     public void nivel1(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, silabasgame1lvl_screen.class);
+        String strName = "silabasdirectas";
+        intent.putExtra("tipoSilaba", strName);
         startActivity(intent);
     }
 
     public void nivel2(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, silabasgame2lvl_screen.class);
+        String strName = "silabasdirectas";
+        intent.putExtra("tipoSilaba", strName);
         startActivity(intent);
     }
 
     public void nivel3(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, silabasgame3lvl_screen.class);
+        String strName = "silabasdirectas";
+        intent.putExtra("tipoSilaba", strName);
         startActivity(intent);
     }
 
     public void nivel4(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, silabasgame4lvl_screen.class);
+        String strName = "silabasdirectas";
+        intent.putExtra("tipoSilaba", strName);
         startActivity(intent);
     }
 }
