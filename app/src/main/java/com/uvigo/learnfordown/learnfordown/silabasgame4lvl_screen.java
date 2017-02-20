@@ -13,9 +13,11 @@ import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Collections;
 
 public class silabasgame4lvl_screen extends AppCompatActivity {
@@ -27,6 +29,8 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view2;
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
     Button ButtonActual;
     ImageView palabra;
     GestionNiveles  gn;
@@ -51,6 +55,15 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         palabra= (ImageView)findViewById(R.id.imageView2);
         titulo.setTypeface(face);
+        RatingBar ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);

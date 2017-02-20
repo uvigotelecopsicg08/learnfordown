@@ -6,8 +6,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.HashMap;
 
 public class palabrasgame1_1lvl_screen extends AppCompatActivity {
     TextView titulo;
@@ -21,6 +24,7 @@ public class palabrasgame1_1lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         ultimoPulsado = null;
+
     }
 
     public void BackArrow(View v) {

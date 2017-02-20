@@ -76,15 +76,6 @@
             android:layout_weight="0.88"
             android:weightSum="1">
 
-            <ImageView
-                android:layout_width="439dp"
-                app:srcCompat="@drawable/casa"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_marginStart="106dp"
-                android:layout_alignParentStart="true"
-                android:layout_height="250dp" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/horizontal_recycler_view"
                 android:orientation="horizontal"
@@ -109,7 +100,32 @@
                 android:layout_alignParentEnd="true"
                 android:textSize="150sp"
                 android:textColor="@color/Negro" />
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/ratingBar"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="150dp"
+                android:numStars="6"
+                android:stepSize="1.0"
+                android:scaleX="2"
+                android:scaleY="2"
+                android:rating="0"
+                android:backgroundTint="@color/amarillo"
+                android:progressTint="#FFFDED1B"
+                android:state_pressed="true"
+                android:maxHeight="@dimen/activity_horizontal_margin"
+                android:minWidth="@dimen/activity_horizontal_margin" />
 
+            <ImageView
+                android:layout_width="339dp"
+                app:srcCompat="@drawable/casa"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_marginStart="73dp"
+                android:layout_height="200dp"
+                android:layout_below="@+id/ratingBar"
+                android:layout_alignStart="@+id/ratingBar" />
 
         </RelativeLayout>
 

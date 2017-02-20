@@ -73,18 +73,6 @@
             android:layout_weight="1.06"
             android:weightSum="1">
 
-            <ImageView
-                android:layout_width="439dp"
-                android:layout_height="300dp"
-                android:src="@drawable/bufanda"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_marginStart="89dp"
-                android:layout_marginTop="15dp"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentStart="true"
-                android:layout_alignBottom="@+id/textView4" />
-
             <TextView
                 android:paddingTop="0sp"
                 android:text="BU"
@@ -98,12 +86,30 @@
                 android:layout_weight="0.25"
                 android:layout_height="200dp"
                 android:layout_width="200dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="227dp" />
+                android:layout_marginEnd="58dp"
+                android:layout_marginBottom="20dp"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="439dp"
+                android:layout_height="300dp"
+                android:src="@drawable/bufanda"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_alignParentBottom="true"
+                android:layout_toStartOf="@+id/textView4"
+                android:layout_marginEnd="60dp" />
 
 
         </RelativeLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view2"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="151dp" />
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/horizontal_recycler_view"
@@ -113,12 +119,21 @@
             android:layout_height="144dp"
             android:layout_weight="0.21" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/horizontal_recycler_view2"
-            android:orientation="horizontal"
-            android:background="#fff"
-            android:layout_width="match_parent"
-            android:layout_height="151dp" />
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_marginTop="-570dp"
+            android:layout_marginLeft="150dp"
+            android:numStars="6"
+            android:stepSize="1.0"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:rating="0"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:maxHeight="@dimen/activity_horizontal_margin"
+            android:minWidth="@dimen/activity_horizontal_margin" />
 
     </LinearLayout>
 

@@ -132,6 +132,9 @@
             android:textSize="150sp"
             android:textColor="@color/Negro" />
 
+
     </LinearLayout>
+
+
 
 </LinearLayout>

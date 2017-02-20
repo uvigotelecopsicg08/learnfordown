@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Collections;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
@@ -34,6 +36,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +49,15 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
         palabra= (ImageView)findViewById(R.id.imageView2);
 
         Context context = this.getApplicationContext();
@@ -91,9 +104,6 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
-
-
 
     public void ButtonCheck(View v) {
         Button b = (Button) v;

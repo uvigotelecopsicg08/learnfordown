@@ -79,9 +79,9 @@
                 android:src="@drawable/raton"
                 android:id="@+id/imageView2"
                 android:layout_weight="0.19"
-                android:layout_marginTop="28dp"
                 android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="208dp" />
 
 
         </RelativeLayout>
@@ -98,6 +98,22 @@
             android:background="#fff"
             android:layout_width="match_parent"
             android:layout_height="151dp" />
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:layout_marginTop="-570dp"
+            android:layout_marginLeft="150dp"
+            android:numStars="6"
+            android:stepSize="1.0"
+            android:scaleX="2"
+            android:scaleY="2"
+            android:rating="0"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:maxHeight="@dimen/activity_horizontal_margin"
+            android:minWidth="@dimen/activity_horizontal_margin" />
 
     </LinearLayout>
 
