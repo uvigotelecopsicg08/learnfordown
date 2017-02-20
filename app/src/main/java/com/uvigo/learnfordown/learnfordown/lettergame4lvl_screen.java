@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.TreeSet;
 
 public class lettergame4lvl_screen extends AppCompatActivity {
     TextView titulo;
@@ -27,7 +28,14 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view2;
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
+    GestionNiveles  gn;
+    String tipoNivel="leerletras";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
+    int aciertos=0;
+    RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +48,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-        RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -89,6 +97,17 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     public void goHome(View v) {
         Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
+    }
+
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (gn.getAciertos() < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        ratingbar1.setRating(rating);
     }
 
     public void ButtonCheck(View v) {

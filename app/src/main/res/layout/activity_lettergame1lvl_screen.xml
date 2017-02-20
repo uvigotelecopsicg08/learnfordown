@@ -71,9 +71,8 @@
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="125dp"
+            android:layout_height="match_parent"
             android:background="@color/Blanco"
-            android:layout_weight="0.88"
             android:weightSum="1">
 
             <android.support.v7.widget.RecyclerView
@@ -111,6 +110,7 @@
                 android:scaleX="2"
                 android:scaleY="2"
                 android:rating="0"
+                android:isIndicator="true"
                 android:backgroundTint="@color/amarillo"
                 android:progressTint="#FFFDED1B"
                 android:state_pressed="true"
@@ -122,10 +122,11 @@
                 app:srcCompat="@drawable/casa"
                 android:id="@+id/imageView2"
                 android:layout_weight="0.19"
-                android:layout_marginStart="73dp"
+                android:layout_marginStart="80dp"
                 android:layout_height="200dp"
                 android:layout_below="@+id/ratingBar"
-                android:layout_alignStart="@+id/ratingBar" />
+                android:layout_alignStart="@+id/ratingBar"
+                android:layout_marginTop="25dp" />
 
         </RelativeLayout>
 

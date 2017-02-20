@@ -93,6 +93,8 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                 public void onAnimationStart(Animation animation) {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
                         ButtonActual.setBackgroundColor(Color.GREEN);
+                        gn.acierto();
+                        pulsar();
                     }
                 }
 

@@ -59,8 +59,8 @@ public class lettergame2lvl_screen extends AppCompatActivity {
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(2, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(5, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
@@ -91,16 +91,10 @@ public class lettergame2lvl_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
-
-
-
-
-
         horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
+
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame2lvl_screen.this, menu_screen.class);
         startActivity(intent1);

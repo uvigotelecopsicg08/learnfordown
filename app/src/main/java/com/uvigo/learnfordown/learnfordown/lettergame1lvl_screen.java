@@ -49,7 +49,6 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     boolean siguientepalabra = true;
     ArrayList<FotoPalabra> fp;
     int i = 0;
-    int amarillo;
     RatingBar ratingbar1 = null;
 
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -73,11 +72,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
 
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-        ratingbar1.setEnabled(false);
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(2, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(5, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
@@ -128,7 +126,6 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             rating = thresholds.get(i);
         }
         ratingbar1.setRating(rating);
-        ratingbar1.setBackgroundColor(amarillo);
     }
 
     public void ButtonCheck(View v) {
