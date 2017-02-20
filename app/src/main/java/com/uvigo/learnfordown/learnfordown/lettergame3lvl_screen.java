@@ -21,7 +21,6 @@ import java.util.Collections;
 public class lettergame3lvl_screen extends AppCompatActivity {
     TextView titulo;
     String Correcta = "";
-    String Correcta="";
     Button ButtonActual;
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
@@ -75,63 +74,63 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
+
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
-            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
-            animation.setDuration(400);
-            animation.setFillAfter(true);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    if (Correcta.equals(ButtonActual.getText().toString())) {
-                        ButtonActual.setBackgroundColor(Color.GREEN);
-                    }
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(400);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    ButtonActual.setBackgroundColor(Color.GREEN);
                 }
+            }
 
-                @Override
-                public void onAnimationEnd(Animation animation) {
-                    if (Correcta.equals(ButtonActual.getText().toString())) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+
+
+                    gn.acierto();
+                    if (!gn.isnivelCompletado()) {
+                        i++;
+                        cambiarFoto();
+                    } else {
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        } else {
+                            fp = gn.getFotos();
+                            i = 0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+                        }
 
 
                     }
-//Codigo de Animacion Acierto
-            gn.acierto();
-            if (!gn.isnivelCompletado()) {
-                i++;
-                cambiarFoto();
-            } else {
-                System.out.print("el nivel esta finalizado");
-                gn.avanzaNivel();
-                if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
-                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                    //Código para abrir otra pantalla
                 } else {
-                    fp = gn.getFotos();
-                    i = 0;
-                    cambiarFoto();
-                    System.out.println("Se debe avanzar el nivel");
-                }
+                    //Codigo de Animacion Fallo
+                    gn.fallo();
+                    System.out.println("Se ha anotado un fallo");
 
+
+
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
             }
-        } else {
-            //Codigo de Animacion Fallo
-            gn.fallo();
-            System.out.println("Se ha anotado un fallo");
-
-
-
-                    }
-                }
-
-                @Override
-                public void onAnimationRepeat(Animation animation) {
-
-                }
-            });
-            b.startAnimation(animation);
+        });
+        b.startAnimation(animation);
 
     }
     private void cambiarFoto() {

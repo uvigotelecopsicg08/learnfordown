@@ -108,6 +108,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
+                    ButtonActual.setEnabled(false);
                     aciertos++;
                 }
             }

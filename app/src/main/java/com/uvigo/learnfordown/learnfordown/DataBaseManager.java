@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import java.util.ArrayList;
+
 /**
  * Created by Juani on 03/02/2017.
  */
@@ -283,10 +285,8 @@ public class DataBaseManager {
 
         String tablas=TABLE_AFFINITY+","+TABLE_WORD;
         String whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
-                CN_SOUND+" = ?";
-        System.out.println(whereClause);
-        System.out.println(id_user);
-        String[] whereArgs = new String[] {String.valueOf(id_user),subnivel};
+                CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ?";
+        String[] whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo};
         String orderBy= CN_AFINITY_RATE +" ASC";
         Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
         if(cursor==null){
@@ -294,5 +294,82 @@ public class DataBaseManager {
         }
         return cursor;
     }
+    public String[] getRelleno(String tipo,String subnivel)
+    {
+        String resultado[]=null;
+        String tablas=TABLE_WORD;
+        String whereClause=null;
+        String whereArgs[]=null;
+        String orderBy =null;
+        String columnas[]=null ;
+        System.out.println(tipo);
+        System.out.println(subnivel);
 
+        if(tipo.contains("letra")) {
+            columnas = new String[]{"letra"};
+        }
+        else{
+            if(tipo.contains("silaba")){
+                columnas=new String[]{"silaba"};
+            }
+            else if(tipo.contains("palabra")){
+                columnas=new String[]{"palabra"};
+            }
+        }
+        orderBy= columnas[0] +" ASC";
+
+        if(subnivel!=null &&!(tipo.equals("leerletras")&&!subnivel.equals("vocales"))) {
+            if(tipo.contains("silaba")){
+                if(tipo.equals("silabasdirectas")){
+                    whereClause = CN_SOUND + " = ? AND "+CN_TYPE_SYLLABE+" = ? " ;
+                    whereArgs = new String[]{subnivel,"directa"};
+                }
+                if(tipo.equals("silabasindirectas")){
+                    whereClause = CN_SOUND + " = ? AND "+CN_TYPE_SYLLABE+" = ? " ;
+                    whereArgs = new String[]{subnivel,"directa"};
+                }
+                if(tipo.equals("silabastrabadas")){
+                    whereClause = CN_SOUND + " = ? AND "+CN_TYPE_SYLLABE+" = ? " ;
+                    whereArgs = new String[]{subnivel,"trabada"};
+                }
+
+            }else {
+                whereClause = CN_SOUND + " = ?";
+                whereArgs = new String[]{subnivel};
+            }
+
+        }
+
+        Cursor cursor= db.query(true,tablas,columnas,whereClause,whereArgs,null,null,orderBy ,null);
+        ArrayList<String> arrayListAux= new ArrayList<>();
+        String stringAux="";
+        if(cursor!=null){
+
+            if (cursor.moveToFirst()) {
+                do {
+                    if(tipo.contains("letra")) {
+                        stringAux =  cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_LETTER));
+                    }
+                    else{
+                        if(tipo.contains("silaba")){
+                            stringAux =  cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SYLLABLE));
+                        }
+                        else if(tipo.contains("palabra")){
+                            stringAux =  cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_WORD));
+                        }
+
+                    }
+                    arrayListAux.add(stringAux);
+                }while(cursor.moveToNext());
+            }
+        }
+        else{
+            System.out.println("El cursor es nulo");
+        }
+    resultado=new String[arrayListAux.size()];
+        for(int i=0;i<arrayListAux.size();i++){
+            resultado[i]=arrayListAux.get(i);
+        }
+    return  resultado;
+    }
 }

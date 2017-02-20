@@ -92,44 +92,13 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
+
+
+
     public void ButtonCheck(View v) {
         Button b = (Button) v;
         ButtonActual =b;
         String buttonText = b.getText().toString();
-        if (Correcta.equals(buttonText)) {
-            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
-            animation.setDuration(2000);
-            animation.setFillAfter(true);
-            b.startAnimation(animation);
-            b.setBackgroundColor(Color.GREEN);
-            aciertos++;
-            //Codigo de Animacion Acierto
-            if (aciertos == 2) {
-                gn.acierto();
-                System.out.println("Se ha anotado un acierto");
-                if (!gn.isnivelCompletado()) {
-                    i++;
-                    cambiarFoto();
-                } else {
-                    System.out.print("el nivel esta finalizado");
-                    gn.avanzaNivel();
-                    if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
-                        System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                        //Código para abrir otra pantalla
-                    } else {
-                        fp = gn.getFotos();
-                        i = 0;
-                        cambiarFoto();
-                        System.out.println("Se debe avanzar el nivel");
-                    }
-
-                }
-                aciertos = 0;
-            }
-        } else {
-            gn.fallo();
-            //Codigo de Animacion Fallo
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                 -50.0f, 0.0f);
         animation.setDuration(2000);
@@ -139,6 +108,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
+                    ButtonActual.setEnabled(false);
+                    aciertos++;
                 }
             }
 
@@ -146,13 +117,31 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
 
+                    //Codigo de Animacion Acierto
+                    if (aciertos == 2) {
+                        gn.acierto();
+                        System.out.println("Se ha anotado un acierto");
+                        if (!gn.isnivelCompletado()) {
+                            i++;
+                            cambiarFoto();
+                        } else {
+                            System.out.print("el nivel esta finalizado");
+                            gn.avanzaNivel();
+                            if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
+                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                                //Código para abrir otra pantalla
+                            } else {
+                                fp = gn.getFotos();
+                                i = 0;
+                                cambiarFoto();
+                                System.out.println("Se debe avanzar el nivel");
+                            }
 
-                }
-//Codigo de Animacion Acierto
-                else {
-                    //Codigo de Animacion Fallo
-
-
+                        }
+                        aciertos = 0;
+                    }
+                } else {
+                    gn.fallo();
                 }
             }
 
@@ -162,8 +151,11 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             }
         });
         b.startAnimation(animation);
-        }
+
     }
+
+
+
     private void cambiarFoto() {
         horizontalList.clear();
         horizontalList = new ArrayList<String>();
@@ -190,8 +182,6 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
 
-    }
-}
 
 }
 

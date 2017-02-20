@@ -79,15 +79,15 @@ public class GestionNiveles {
 
     public ArrayList<FotoPalabra> getFotos(){
         String tiposilaba="";
-        if(tipo.contains("trabadas")){
-            tiposilaba="trabadas";
+        if(tipo.contains("trabada")){
+            tiposilaba="trabada";
         }
         else{
-            if(tipo.contains("inversas")){
-                tiposilaba="inversas";
+            if(tipo.contains("inversa")){
+                tiposilaba="inversa";
             }
             else{
-                tiposilaba="directas";
+                tiposilaba="directa";
             }
         }
        Cursor cursor=  db.buscarFotos(tiposilaba,id_user,subnivel);
@@ -122,19 +122,43 @@ public class GestionNiveles {
     }
 
     public void rellenarConletras(String letraElegida,ArrayList<String> horizontalList) {
-        String letras[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+       // String relleno[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        String relleno[]=null;
+        if(tipo.contains("inversas")||tipo.contains("trabadas")){
+            relleno= generaRelleno();
+            System.out.println("Genero el relleno de manera artificial");
+        }else {
+            relleno = db.getRelleno(tipo, subnivel);
+        }
         int posicionArray;
         int posicionesUsadas[]= {-1,-1,-1,-1};
         horizontalList.add(letraElegida);
         for(int i=0;i<4;i++){
-            posicionArray=  (int)Math.random()*letras.length;
-            while(letras[posicionArray].equals(letraElegida)||posicionArray==posicionesUsadas[0]||posicionArray==posicionesUsadas[1]||posicionArray==posicionesUsadas[2]||posicionArray==posicionesUsadas[3]){
-                posicionArray=  (int)(Math.random()*letras.length);
+            posicionArray=  (int)Math.random()*relleno.length;
+            while((relleno[posicionArray].toUpperCase()).equals(letraElegida)||posicionArray==posicionesUsadas[0]||posicionArray==posicionesUsadas[1]||posicionArray==posicionesUsadas[2]||posicionArray==posicionesUsadas[3]){
+                posicionArray=  (int)(Math.random()*relleno.length);
             }
-            horizontalList.add(letras[posicionArray]);
+            horizontalList.add(relleno[posicionArray]);
             posicionesUsadas[i]=posicionArray;
         }
     }
+
+    private String[] generaRelleno() {
+        String vocales[]= new String[]{"a","e","i","o","u"};
+        String resultado[]=new String[5];
+        if(tipo.contains("inversa")){
+            for(int i=0;i<vocales.length;i++){
+                resultado[i]=vocales[i]+subnivel;
+            }
+        }
+        else{
+            for(int i=0;i<vocales.length;i++){
+                resultado[i]=subnivel+vocales[i];
+            }
+        }
+        return  resultado;
+    }
+
     public int getId_nivel() {
         return id_nivel;
     }
