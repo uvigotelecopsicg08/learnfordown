@@ -27,6 +27,12 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".login_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".login_screen_like"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".lettergame1lvl_screen"
             android:screenOrientation="landscape" />
         <activity

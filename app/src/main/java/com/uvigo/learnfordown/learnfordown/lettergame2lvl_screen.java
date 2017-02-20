@@ -14,10 +14,13 @@ import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 public class lettergame2lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
@@ -37,6 +40,8 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+    RatingBar ratingbar1 = null;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +54,16 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         Home = (ImageButton) findViewById(R.id.button5);
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
-
         titulo.setTypeface(face);
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
         horizontalList=new ArrayList<String>();
         Context context = this.getApplicationContext();
@@ -97,6 +110,17 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (gn.getAciertos() < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        ratingbar1.setRating(rating);
+    }
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -116,8 +140,9 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-                    if (aciertos == 2) {
+                    if (aciertos == 1) {
                         gn.acierto();
+                        pulsar();
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
                             i++;

@@ -9,9 +9,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class silabasgame2lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
@@ -23,6 +25,8 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     TextView titulo;
     String Correcta;
     ImageButton BackArrow,Home;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,15 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         Home = (ImageButton) findViewById(R.id.button5);
 
         titulo.setTypeface(face);
+     RatingBar   ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
         horizontalList=new ArrayList<String>();
         horizontalList.add("PU");

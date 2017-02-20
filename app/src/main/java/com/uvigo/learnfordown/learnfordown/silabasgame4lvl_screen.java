@@ -8,9 +8,11 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class silabasgame4lvl_screen extends AppCompatActivity {
     TextView titulo;
@@ -21,6 +23,8 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view2;
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +36,15 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2= (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        RatingBar ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
         horizontalList=new ArrayList<String>();
         horizontalList.add("FA");

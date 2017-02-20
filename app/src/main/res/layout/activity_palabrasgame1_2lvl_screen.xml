@@ -30,7 +30,7 @@
             android:scaleType="fitCenter" />
 
         <TextView
-            android:text="¿POR QUÉ SÍLABA EMPIEZA?"
+            android:text="¡VAMOS A UNIR!"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/textView2"
@@ -105,14 +105,13 @@
         android:textSize="34sp" />
 
     <ImageButton
-        android:layout_width="20dp"
+        android:layout_width="202dp"
         android:layout_height="150dp"
         android:layout_marginTop="550dp"
-        android:layout_marginLeft="-960dp"
+        android:layout_marginLeft="-970dp"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton3"
         android:onClick="pulsar"
-        android:layout_weight="0.13"
         android:background="@mipmap/plato" />
 
     <Button
@@ -120,7 +119,7 @@
         android:layout_width="314dp"
         android:layout_height="82dp"
         android:layout_marginTop="580dp"
-        android:layout_marginLeft="450dp"
+        android:layout_marginLeft="455dp"
         android:id="@+id/button2"
         android:onClick="pulsar"
         android:background="@color/common_google_signin_btn_text_dark_pressed"
@@ -131,12 +130,12 @@
         android:layout_height="wrap_content"
         android:id="@+id/ratingBar"
         android:layout_marginTop="155dp"
-        android:layout_marginLeft="-1050dp"
-        android:numStars="2"
+        android:layout_marginLeft="-900dp"
+        android:numStars="6"
         android:stepSize="1.0"
         android:scaleX="2"
         android:scaleY="2"
-        android:rating="1"
+        android:rating="0"
         android:backgroundTint="@color/amarillo"
         android:progressTint="#FFFDED1B"
         android:maxHeight="@dimen/activity_horizontal_margin"

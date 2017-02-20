@@ -65,11 +65,11 @@ public class home_screen extends AppCompatActivity {
         startActivity(intent);
     }
     public void ajustes (View view){
-        Intent intent = new Intent(home_screen.this, login_screen.class);
-        startActivity(intent);
+        Intent intent1 = new Intent(home_screen.this, login_screen.class);
+        startActivity(intent1);
     }
 
-    public void salir(View view) {
+    public void salir (View view) {
         // Do something in response to button
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -77,10 +77,6 @@ public class home_screen extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
-
-
-
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.

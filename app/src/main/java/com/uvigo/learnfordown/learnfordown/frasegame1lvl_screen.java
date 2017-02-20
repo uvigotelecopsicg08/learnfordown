@@ -48,15 +48,17 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         contador = 0;
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(5, 2f); //5 aciertos, 2 estrellas
-        thresholds.put(10, 3f); //10 aciertos, 3 estrellas
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
     }
 
     public void BackArrow(View v) {
