@@ -21,6 +21,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.TreeSet;
+
 import android.support.v7.widget.RecyclerView;
 public class silabasgame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
@@ -35,6 +37,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    int contador;
+    RatingBar ratingbar1;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
     @Override
@@ -52,7 +56,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
-      RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        contador=0;
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -100,6 +105,17 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(silabasgame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
+
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (contador < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        ratingbar1.setRating(rating);
+    }
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual = b;
@@ -113,6 +129,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
+                    contador++;
+                    pulsar();
                 }
             }
 

@@ -31,11 +31,6 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view2;
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
-    GestionNiveles  gn;
-    String tipoNivel="leerletras";
-    ArrayList<FotoPalabra> fp;
-    int i=0;
-    int aciertos=0;
     RatingBar ratingbar1 = null;
     ImageView palabra;
     GestionNiveles  gn;
@@ -43,6 +38,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+    int contador;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
     @Override
@@ -57,6 +53,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        contador=0;
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -91,14 +88,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
-
-
-
-
-
         horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
 
@@ -115,7 +105,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (gn.getAciertos() < i) {
+            if (contador < i) {
                 break;
             }
             rating = thresholds.get(i);
@@ -138,6 +128,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
+                    contador++;
+                    pulsar();
                 }
             }
 

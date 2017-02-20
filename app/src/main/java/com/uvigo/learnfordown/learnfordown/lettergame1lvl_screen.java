@@ -49,6 +49,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     boolean siguientepalabra=true;
     ArrayList<FotoPalabra> fp;
     int i = 0;
+    int contador=0;
     RatingBar ratingbar1 = null;
 
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -74,29 +75,30 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(2, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(5, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
 
+        contador = 0;
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
 
-          horizontalList = new ArrayList<String>();
-          gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
+        horizontalList = new ArrayList<String>();
+        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
-         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
-          Correcta= fp.get(i).getLetra().toUpperCase();
+        letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
+        Correcta= fp.get(i).getLetra().toUpperCase();
 
-          horizontalAdapter = new HorizontalAdapter(horizontalList);
+        horizontalAdapter = new HorizontalAdapter(horizontalList);
 
-          LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-          horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
           horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -120,7 +122,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (gn.getAciertos() < i) {
+            if (contador < i) {
                 break;
             }
             rating = thresholds.get(i);
@@ -141,6 +143,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
+                    contador++;
                     pulsar();
                 }
             }

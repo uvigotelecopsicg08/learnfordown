@@ -34,7 +34,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int aciertos=0;
-    GestionNiveles gn;
+    int contador;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
@@ -48,6 +48,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
         palabra = (ImageView) findViewById(R.id.imageView2);
         titulo.setTypeface(face);
+        contador=0;
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
@@ -87,7 +88,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (gn.getAciertos() < i) {
+            if (contador < i) {
                 break;
             }
             rating = thresholds.get(i);
@@ -108,6 +109,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
                         ButtonActual.setBackgroundColor(Color.GREEN);
                         gn.acierto();
+                        contador++;
                         pulsar();
                     }
                 }

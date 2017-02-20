@@ -20,6 +20,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.TreeSet;
 
 public class silabasgame2lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
@@ -30,6 +31,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     private HorizontalAdapter horizontalAdapter2;
     Button ButtonActual;
     TextView titulo,letracorrecta;
+    RatingBar ratingbar1;
     String Correcta;
     ImageButton BackArrow,Home;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -39,6 +41,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    int contador;
     int aciertos=0;
 
     @Override
@@ -57,9 +60,9 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         Home = (ImageButton) findViewById(R.id.button5);
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
-
+        contador=0;
         titulo.setTypeface(face);
-     RatingBar   ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -111,6 +114,17 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (contador < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        ratingbar1.setRating(rating);
+    }
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -125,6 +139,8 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
+                    contador++;
+                    pulsar();
                 }
             }
 

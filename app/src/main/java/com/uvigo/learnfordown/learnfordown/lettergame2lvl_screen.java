@@ -40,6 +40,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+    int contador=0;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
@@ -55,12 +56,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
+        contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(2, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(5, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
@@ -106,7 +108,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (gn.getAciertos() < i) {
+            if (contador < i) {
                 break;
             }
             rating = thresholds.get(i);
@@ -128,6 +130,8 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
+                    contador++;
+                    pulsar();
                 }
             }
 

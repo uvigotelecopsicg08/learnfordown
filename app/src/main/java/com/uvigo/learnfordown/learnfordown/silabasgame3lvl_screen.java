@@ -19,6 +19,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
+import java.util.TreeSet;
 
 public class silabasgame3lvl_screen extends AppCompatActivity {
     TextView titulo;
@@ -28,13 +29,14 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
     private HorizontalAdapter horizontalAdapter;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
-
+    RatingBar ratingbar1;
     Button ButtonActual;
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    int contador;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +51,8 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-      RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        contador=0;
+        RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -90,6 +93,17 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(silabasgame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
+
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (contador < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        ratingbar1.setRating(rating);
+    }
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual = b;
@@ -103,6 +117,8 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
+                    contador++;
+                    pulsar();
                 }
             }
 
