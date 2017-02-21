@@ -111,13 +111,15 @@
                 android:background="@color/NaranjaClarito"
                 android:id="@+id/textView4"
                 android:layout_weight="0.25"
-                android:layout_width="200dp"
-                android:layout_marginEnd="160dp"
+                android:layout_width="250dp"
+                android:layout_marginEnd="64dp"
                 android:layout_height="200dp"
                 android:textSize="150sp"
                 android:textColor="@color/Negro"
                 android:layout_below="@+id/ratingBar"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="64dp" />
 
             <ImageView
                 android:layout_width="439dp"
@@ -125,10 +127,11 @@
                 android:id="@+id/imageView2"
                 android:layout_weight="0.19"
                 android:layout_height="250dp"
-                android:layout_below="@+id/ratingBar"
-                android:layout_alignStart="@+id/ratingBar"
-                android:layout_marginStart="131dp"
-                android:layout_marginTop="15dp" />
+                android:layout_marginEnd="35dp"
+                android:layout_alignTop="@+id/textView4"
+                android:layout_toLeftOf="@+id/textView4"
+                android:layout_toStartOf="@+id/textView4"
+                android:layout_marginRight="35dp" />
         </RelativeLayout>
 
     </LinearLayout>
