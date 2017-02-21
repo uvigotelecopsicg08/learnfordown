@@ -14,58 +14,56 @@
         android:layout_height="wrap_content"
         android:hint="@string/edit_message"/-->
 
-
-    <ProgressBar
-        style="@android:style/Widget.Material.Light.ProgressBar"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="97dp"
-        android:id="@+id/progressBar2"
-        android:foreground="@color/colorPrimary"
-        tools:foreground="@color/colorPrimary" />
-
-    <TextView
-        android:text="¿QUÉ QUIERES HACER HOY?"
-        android:id="@+id/textView"
-        tools:autoText="false"
-        tools:foregroundTint="@color/colorPrimary"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="-1190dp"
-        android:textSize="50dp"
-        android:layout_height="72dp"
-        android:layout_width="692dp"
-        style="@style/inicial"
-        android:textColorHighlight="@color/colorPrimary"
-        android:textColor="@android:color/background_light"
-        android:textStyle="normal|bold" />
-
-    <ImageButton
-        android:src="@mipmap/icon_exit"
-        android:layout_width="84dp"
-        android:layout_height="88dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="290dp"
-        android:id="@+id/imageButton7"
-        android:scaleType="fitCenter"
-        android:background="@color/colorPrimary"
-        android:onClick="salir" />
+        android:layout_height="125dp"
+        android:background="@color/colorPrimary">
 
 
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="84dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="15dp"
-        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-        android:id="@+id/imageButton5"
-        android:onClick="ajustes"
-        android:background="@mipmap/ajustes" />
+        <TextView
+            android:text="¿ QUÉ QUIERES HACER HOY ?"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            android:textSize="60sp"
+            android:layout_marginLeft="100dp"
+            android:textColor="@android:color/white"
+            android:paddingTop="25dp" />
+
+
+        <ImageButton
+            android:src="@mipmap/icon_exit"
+            android:layout_width="102dp"
+            android:layout_height="130dp"
+            android:id="@+id/imagebutton7"
+            android:onClick="salir"
+            android:layout_weight="0.03"
+            android:scaleType="fitCenter"
+            android:background="@color/colorPrimary" />
+
+        <ImageButton
+            android:layout_width="102dp"
+            android:layout_height="130dp"
+            android:id="@+id/imagebutton6"
+            android:layout_weight="0.03"
+            android:scaleType="fitCenter"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:onClick="ajustes"
+            android:background="@mipmap/ajustes" />
+
+
+    </LinearLayout>
+
 
     <RelativeLayout
         android:orientation="horizontal"
         android:layout_width="1283dp"
         android:layout_height="626dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginLeft="-1259dp"
+        android:layout_marginTop="125dp"
+        android:layout_marginLeft="-1280dp"
         android:background="@drawable/fondoinicio"
         android:weightSum="1">
 

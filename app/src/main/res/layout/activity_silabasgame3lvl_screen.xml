@@ -76,17 +76,6 @@
             android:layout_alignParentStart="true">
 
 
-            <ImageView
-                android:layout_width="439dp"
-                android:layout_height="300dp"
-                android:src="@drawable/casa"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="410dp"
-                android:layout_marginTop="14dp" />
-
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/horizontal_recycler_view"
                 android:orientation="horizontal"
@@ -114,6 +103,18 @@
                 android:progressTint="#FFFDED1B"
                 android:maxHeight="@dimen/activity_horizontal_margin"
                 android:minWidth="@dimen/activity_horizontal_margin" />
+
+            <ImageView
+                android:layout_width="439dp"
+                android:layout_height="300dp"
+                android:src="@drawable/casa"
+                android:id="@+id/imageView2"
+                android:layout_weight="0.19"
+                android:layout_marginEnd="51dp"
+                android:layout_alignTop="@+id/ratingBar"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="51dp" />
 
         </RelativeLayout>
 

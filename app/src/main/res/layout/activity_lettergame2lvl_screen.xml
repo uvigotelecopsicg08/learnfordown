@@ -121,9 +121,12 @@
                 android:layout_weight="0.25"
                 android:layout_height="200dp"
                 android:layout_width="200dp"
-                android:layout_marginEnd="175dp"
-                android:layout_below="@+id/ratingBar"
-                android:layout_alignParentEnd="true" />
+                android:layout_marginEnd="28dp"
+                android:layout_alignTop="@+id/ratingBar"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginRight="28dp"
+                android:layout_marginTop="35dp" />
 
             <ImageView
                 android:layout_width="309dp"
@@ -131,10 +134,11 @@
                 android:id="@+id/imageView2"
                 android:layout_weight="0.19"
                 android:layout_height="160dp"
-                android:layout_marginStart="151dp"
-                android:layout_below="@+id/ratingBar"
-                android:layout_alignStart="@+id/ratingBar"
-                android:layout_marginTop="20dp" />
+                android:layout_marginEnd="115dp"
+                android:layout_marginRight="115dp"
+                android:layout_alignBottom="@+id/textView4"
+                android:layout_toLeftOf="@+id/textView4"
+                android:layout_toStartOf="@+id/textView4" />
 
         </RelativeLayout>
 

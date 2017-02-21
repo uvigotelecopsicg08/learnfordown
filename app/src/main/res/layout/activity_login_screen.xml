@@ -84,7 +84,6 @@
             android:textSize="45sp"
             android:onClick="textNombreUp"
             android:paddingLeft="100sp"
-            android:textAlignment="viewStart"
             android:layout_weight="0.15" />
 
         <EditText
