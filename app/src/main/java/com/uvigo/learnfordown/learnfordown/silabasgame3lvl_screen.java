@@ -52,7 +52,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         contador=0;
-        RatingBar  ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella

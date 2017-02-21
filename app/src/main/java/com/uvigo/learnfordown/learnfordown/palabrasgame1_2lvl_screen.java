@@ -1,15 +1,20 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -19,10 +24,16 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     final HashMap<Integer, Float> thresholds = new HashMap<>();
     RatingBar ratingbar1 = null;
     String figure = "plato";
-    String button1 = "plano";
-    String button2 = "plato";
-    String button3 = "platano";
+    HashMap<Integer,String>  map;
+    GestionNiveles  gn;
+    String tipoNivel="palabrassilabasdirectas";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
     int contador;
+    ImageButton imageButton1,imageButton2,imageButton3;
+    Button button1,button2,button3;
+    int aciertos=0;
+
 
 
     @Override
@@ -34,6 +45,22 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
         ultimoPulsado = null;
          ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
+        imageButton2 = (ImageButton) findViewById(R.id.imageButton2);
+        imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
+
+        button1 = (Button)  findViewById(R.id.button1);
+        button2 = (Button)  findViewById(R.id.button2);
+        button3 = (Button)  findViewById(R.id.button3);
+
+
+
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
+        cambiarFoto();
+
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -55,10 +82,10 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
-        if(ultimoPulsado != null) {
+        if(ultimoPulsado != null) {/*
             switch (v.getId()) {
                 case R.id.imageButton1:
-                    if(ultimoPulsado.equals(R.id.button1)){
+                    if(map.get(R.id.imageButton1).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -74,7 +101,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
                 case R.id.imageButton2:
-                    if(ultimoPulsado.equals(R.id.button2)){
+                    if(map.get(R.id.imageButton2).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -90,7 +117,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
                 case R.id.imageButton3:
-                    if(ultimoPulsado.equals(R.id.button3)){
+                    if(map.get(R.id.imageButton3).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -106,7 +133,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
                 case R.id.button1:
-                    if(ultimoPulsado.equals(R.id.imageButton1)){
+                    if(map.get(R.id.button1).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -122,7 +149,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
                 case R.id.button2:
-                    if(ultimoPulsado.equals(R.id.imageButton2)){
+                    if(map.get(R.id.button2).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -138,7 +165,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
                 case R.id.button3:
-                    if(ultimoPulsado.equals(R.id.imageButton3)){
+                    if(map.get(R.id.button3).equals(map.get(ultimoPulsado))){
                         Log.i("pulsar()", "CORRECTO!");
                         Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                         contador++;
@@ -154,8 +181,155 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     break;
             }
+
+
+
+*/
+            if(map.get(v.getId()).equals(map.get(ultimoPulsado))) {
+                Log.i("pulsar()", "CORRECTO!");
+                Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
+                contador++;
+                float rating = 0;
+                for (int i : new TreeSet<>(thresholds.keySet())) {
+                    if (contador < i) {
+                        break;
+                    }
+                    rating = thresholds.get(i);
+                }
+                ratingbar1.setRating(rating);
+                gn.acierto();
+                aciertos++;
+
+                if (aciertos == 3) {
+                    aciertos=0;
+                    if (!gn.isnivelCompletado()) {
+                        i += 3;
+                        cambiarFoto();
+                    } else {
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if (!(gn.getTipo().equals(tipoNivel))) {
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        } else {
+                            fp = gn.getFotos();
+                            i = 0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+
+
+                        }
+                    }
+                }
+            }
+            else{
+                gn.fallo();
+            }
         }
         ultimoPulsado = v.getId();
+        System.out.println("has pulsado: "+map.get(ultimoPulsado));
+    }
+
+    private void cambiarFoto() {
+        map = new HashMap<>();
+        ArrayList<Integer> arrayImageResource= new ArrayList();
+        arrayImageResource.add(fp.get(0+i).getFoto());
+        arrayImageResource.add(fp.get(1+i).getFoto());
+        arrayImageResource.add(fp.get(2+i).getFoto());
+        Collections.shuffle(arrayImageResource);
+        imageButton1.setImageResource(arrayImageResource.get(0));
+        imageButton2.setImageResource(arrayImageResource.get(1));
+        imageButton3.setImageResource(arrayImageResource.get(2));
+
+        if(fp.get(0+i).getFoto()==arrayImageResource.get(0)){
+            map.put(R.id.imageButton1,fp.get(0+i).getPalabra());
+        }else {
+            if(fp.get(0+i).getFoto()==arrayImageResource.get(1)){
+                map.put(R.id.imageButton2,fp.get(0+i).getPalabra());
+            }
+            else{
+                if(fp.get(0+i).getFoto()==arrayImageResource.get(2)) {
+                    map.put(R.id.imageButton3, fp.get(0+i).getPalabra());
+                }
+            }
+        }
+
+        if(fp.get(1+i).getFoto()==arrayImageResource.get(0)){
+            map.put(R.id.imageButton1,fp.get(1+i).getPalabra());
+        }else {
+            if(fp.get(1+i).getFoto()==arrayImageResource.get(1)){
+                map.put(R.id.imageButton2,fp.get(1+i).getPalabra());
+            }
+            else{
+                if(fp.get(1+i).getFoto()==arrayImageResource.get(2)) {
+                    map.put(R.id.imageButton3, fp.get(1+i).getPalabra());
+                }
+            }
+        }
+        if(fp.get(2+i).getFoto()==arrayImageResource.get(0)){
+            map.put(R.id.imageButton1,fp.get(2+i).getPalabra());
+        }else {
+            if(fp.get(2+i).getFoto()==arrayImageResource.get(1)){
+                map.put(R.id.imageButton2,fp.get(2+i).getPalabra());
+            }
+            else{
+                if(fp.get(2+i).getFoto()==arrayImageResource.get(2)) {
+                    map.put(R.id.imageButton3, fp.get(2+i).getPalabra());
+                }
+            }
+        }
+
+
+        ArrayList<String> arrayText= new ArrayList();
+        arrayText.add(fp.get(0+i).getPalabra());
+        arrayText.add(fp.get(1+i).getPalabra());
+        arrayText.add(fp.get(2+i).getPalabra());
+        Collections.shuffle(arrayText);
+        button1.setText(arrayText.get(0));
+        button2.setText(arrayText.get(1));
+        button3.setText(arrayText.get(2));
+
+
+        if(fp.get(0+i).getPalabra()==arrayText.get(0)){
+            map.put(R.id.button1,fp.get(0+i).getPalabra());
+        }else {
+            if(fp.get(0+i).getPalabra()==arrayText.get(1)){
+                map.put(R.id.button2,fp.get(0+i).getPalabra());
+            }
+            else{
+                if(fp.get(0+i).getPalabra()==arrayText.get(2)){
+                    map.put(R.id.button3, fp.get(0+i).getPalabra());
+                }
+            }
+        }
+
+        if(fp.get(1+i).getPalabra()==arrayText.get(0)){
+            map.put(R.id.button1,fp.get(1+i).getPalabra());
+        }else {
+            if(fp.get(1+i).getPalabra()==arrayText.get(1)){
+                map.put(R.id.button2,fp.get(1+i).getPalabra());
+            }
+            else{
+                if(fp.get(1+i).getPalabra()==arrayText.get(2)) {
+                    map.put(R.id.button3, fp.get(1+i).getPalabra());
+                }
+            }
+        }
+        if(fp.get(2+i).getPalabra()==arrayText.get(0)){
+            map.put(R.id.button1,fp.get(2+i).getPalabra());
+        }else {
+            if(fp.get(2+i).getPalabra()==arrayText.get(1)){
+                map.put(R.id.button2,fp.get(2+i).getPalabra());
+            }
+            else{
+                if(fp.get(2+i).getPalabra()==arrayText.get(2)) {
+                    map.put(R.id.button3, fp.get(2+i).getPalabra());
+                }
+            }
+        }
+
+
+
     }
 
 }
