@@ -29,7 +29,6 @@ public class InsertData {
         db.insertar_foto("a","a","directa","abeja","poner frase aqui ",R.drawable.abeja,"animales",3,"vocales");
         db.insertar_foto("a","a","directa","agua","poner frase aqui",R.drawable.agua,"otro",2,"vocales");
         db.insertar_foto("a","a","directa","amarillo","poner frase aqui",R.drawable.amarillo,"otro",4,"vocales");
-        db.insertar_foto("a","a","directa","arbol","poner frase aqui",R.drawable.arbol,"otro",2,"vocales");
         db.insertar_foto("a","al","inversa","alcachofa","poner frase aqui",R.drawable.alcachofa,"otro",4,"l");
         db.insertar_foto("a","ar","inversa","arbol","poner frase aqui",R.drawable.arbol,"otro",2,"r");
         db.insertar_foto("a","al","inversa","almeja","poner frase aqui",R.drawable.almeja,"otro",3,"l");
