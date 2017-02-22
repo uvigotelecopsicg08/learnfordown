@@ -184,6 +184,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
+        System.out.println("+++++++++++++++++"+fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
