@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
@@ -49,6 +50,13 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
 
+        TextView button4 = (TextView)findViewById(R.id.button4);
+        String tmpDownSlash = "";
+        for (int i = 0; i < figure.length(); i++) {
+            tmpDownSlash += " _";
+        }
+        button4.setText(button4.getText() + tmpDownSlash);
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         contador = 0;
@@ -85,7 +93,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                         }
                         rating = thresholds.get(i);
                     }
-                    ratingbar1.setRating(rating);
+                    if (rating != ratingbar1.getRating()) {
+                        ratingbar1.setRating(rating);
+                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+                        toast.show();
+                    }
                 }
                 break;
             case R.id.button2:
@@ -100,7 +113,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                         }
                         rating = thresholds.get(i);
                     }
-                    ratingbar1.setRating(rating);
+                    if (rating != ratingbar1.getRating()) {
+                        ratingbar1.setRating(rating);
+                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+                        toast.show();
+                    }
                 }
                 break;
             case R.id.button3:
@@ -115,7 +133,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                         }
                         rating = thresholds.get(i);
                     }
-                    ratingbar1.setRating(rating);
+                    if (rating != ratingbar1.getRating()) {
+                        ratingbar1.setRating(rating);
+                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+                        toast.show();
+                    }
                 }
                 break;
         }

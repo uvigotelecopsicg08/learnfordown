@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,7 +128,12 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             }
             rating = thresholds.get(i);
         }
-        ratingbar1.setRating(rating);
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+            toast.show();
+        }
     }
 
     public void ButtonCheck(View v) {

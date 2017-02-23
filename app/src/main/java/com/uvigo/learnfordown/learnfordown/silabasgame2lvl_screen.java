@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -16,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.RatingBar;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -122,7 +124,12 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
             }
             rating = thresholds.get(i);
         }
-        ratingbar1.setRating(rating);
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
+            toast.show();
+        }
     }
 
     public void ButtonCheck (View v){

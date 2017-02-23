@@ -125,7 +125,7 @@
 
 
 <TextView
-    android:text="COMPRÉ UN _ _ _"
+    android:text="COMPRÉ UN"
     android:layout_width="623dp"
     android:layout_height="82dp"
     android:layout_marginTop="105dp"

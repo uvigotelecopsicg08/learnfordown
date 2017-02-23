@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -15,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,7 +95,12 @@ public class lettergame3lvl_screen extends AppCompatActivity {
             }
             rating = thresholds.get(i);
         }
-        ratingbar1.setRating(rating);
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+            toast.show();
+        }
     }
 
     public void ButtonCheck (View v){

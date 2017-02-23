@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,8 @@ import java.util.List;
 import java.util.TreeSet;
 
 import android.support.v7.widget.RecyclerView;
+import android.widget.Toast;
+
 public class silabasgame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
@@ -114,7 +117,12 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             }
             rating = thresholds.get(i);
         }
-        ratingbar1.setRating(rating);
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
+            toast.show();
+        }
     }
     public void ButtonCheck (View v){
         Button b = (Button)v;

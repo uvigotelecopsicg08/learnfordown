@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -186,8 +187,6 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 */
             if(map.get(v.getId()).equals(map.get(ultimoPulsado))) {
-                Log.i("pulsar()", "CORRECTO!");
-                Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
                 contador++;
                 float rating = 0;
                 for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -196,7 +195,12 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
                     rating = thresholds.get(i);
                 }
-                ratingbar1.setRating(rating);
+                if (rating != ratingbar1.getRating()) {
+                    ratingbar1.setRating(rating);
+                    Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -180, -50);
+                    toast.show();
+                }
                 gn.acierto();
                 aciertos++;
 
@@ -237,8 +241,11 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         arrayImageResource.add(fp.get(1+i).getFoto());
         arrayImageResource.add(fp.get(2+i).getFoto());
         Collections.shuffle(arrayImageResource);
+    imageButton1.clearFocus();
         imageButton1.setImageResource(arrayImageResource.get(0));
+        imageButton2.clearFocus();
         imageButton2.setImageResource(arrayImageResource.get(1));
+        imageButton3.clearFocus();
         imageButton3.setImageResource(arrayImageResource.get(2));
 
         if(fp.get(0+i).getFoto()==arrayImageResource.get(0)){
@@ -327,9 +334,6 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                 }
             }
         }
-
-
-
     }
 
 }
