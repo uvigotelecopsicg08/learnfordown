@@ -224,7 +224,6 @@ public class InsertData {
         db.insertar_foto("e","es","inversa","espinacas","poner frase aqui",R.drawable.espinacas,"comida",4,"s");
         db.insertar_foto("e","es","inversa","esponja","poner frase aqui",R.drawable.esponja,"otro",3,"s");
         db.insertar_foto("e","es","inversa","estropajo","poner frase aqui",R.drawable.estropajo,"otro",4,"s");
-        db.insertar_foto("o","os","inversa","escoba","poner frase aqui",R.drawable.ostras,"comida",2,"s");
 
         db.insertar_foto("t","ta","directa","tapa","poner frase aqui",R.drawable.tapa,"otro",2,"t");
         db.insertar_foto("t","ta","directa","taza","poner frase aqui",R.drawable.taza,"otro",2,"t");

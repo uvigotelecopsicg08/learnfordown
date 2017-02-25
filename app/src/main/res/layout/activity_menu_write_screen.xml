@@ -72,7 +72,7 @@
         </LinearLayout>
 
         <Button
-            android:text="LETRAS"
+            android:text="LETRASs"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,33 +81,29 @@
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
             android:layout_marginTop="20dp"
-
-            android:onClick="SpinnerLetterUp"
+            android:onClick="letras"
             android:paddingLeft="100sp"
             android:textAlignment="viewStart"
             android:layout_weight="0.15" />
 
-        <Spinner
+        <!--Spinner
             android:id="@+id/spinner"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
 
-            android:background="@color/Blanco"> </Spinner>
+            android:background="@color/Blanco"> </Spinner-->
 
         <Button
             android:text="SÍLABAS"
             android:layout_marginTop="20dp"
-
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button8"
             android:paddingLeft="100sp"
-
             android:background="@android:color/white"
             android:onClick="SpinnerSilabaUp"
-
             android:textSize="45sp"
             android:textAlignment="viewStart"
             android:layout_weight="0.15" />
@@ -123,17 +119,14 @@
         <Button
             android:text="PALABRAS"
             android:layout_marginTop="20dp"
-
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button9"
             android:paddingLeft="100sp"
-
             android:onClick="SpinnerPalabraUp"
             android:background="@android:color/white"
             android:textSize="45sp"
-
             android:textAlignment="viewStart"
             android:layout_weight="0.15" />
 
@@ -142,23 +135,19 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="350sp"
-
             android:background="@color/Blanco"></Spinner>
 
         <Button
             android:text="FRASES"
             android:layout_marginTop="20dp"
-
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/button10"
             android:paddingLeft="100sp"
-
             android:background="@android:color/white"
             android:textSize="45sp"
             android:onClick="SpinnerFraseUp"
-
             android:textAlignment="viewStart"
             android:layout_weight="0.15" />
 

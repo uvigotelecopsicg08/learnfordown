@@ -19,7 +19,6 @@ TextView titulo;
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(sidirectas_screen.this, menu_screen.class);
-
         startActivity(intent1);
     }
     public void goHome (View v){

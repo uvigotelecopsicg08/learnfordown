@@ -86,7 +86,6 @@
         android:paddingTop="25dp" />
 
 
-
     <Button
         android:text="Nivel 1"
         android:textStyle="bold"

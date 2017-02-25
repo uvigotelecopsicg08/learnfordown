@@ -44,6 +44,19 @@
         <activity
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
+
+        <activity
+            android:name=".lettergame1lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".lettergame2lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".lettergame3lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".lettergame4lvl_w_screen"
+            android:screenOrientation="landscape" />
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
         <!--
@@ -65,6 +78,15 @@
             android:name=".sitrabadas_screen"
             android:screenOrientation="landscape" />
         <activity
+            android:name=".sidirectas_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".siinversas_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".sitrabadas_w_screen"
+            android:screenOrientation="landscape" />
+        <activity
             android:name=".palabrasdi_screen"
             android:screenOrientation="landscape" />
         <activity
@@ -80,11 +102,9 @@
             android:name=".frasedi_screen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".login_screen"
+            android:name=".menu_write_screen"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".login_screen_like"
-            android:screenOrientation="landscape" />
+
         <activity
             android:name=".frasetra_screen"
             android:screenOrientation="landscape" />
@@ -101,6 +121,14 @@
         <activity android:name=".silabasgame3lvl_screen"
             android:screenOrientation="landscape" />
         <activity android:name=".silabasgame4lvl_screen"
+            android:screenOrientation="landscape" ></activity>
+        <activity android:name=".silabasgame1lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame2lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame3lvl_w_screen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".silabasgame4lvl_w_screen"
             android:screenOrientation="landscape" ></activity>
     </application>
 
