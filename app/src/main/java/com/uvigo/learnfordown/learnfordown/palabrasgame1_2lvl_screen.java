@@ -244,7 +244,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         arrayImageResource.add(fp.get(1+i).getFoto());
         arrayImageResource.add(fp.get(2+i).getFoto());
         Collections.shuffle(arrayImageResource);
-    imageButton1.clearFocus();
+        imageButton1.clearFocus();
         imageButton1.setImageResource(arrayImageResource.get(0));
         imageButton2.clearFocus();
         imageButton2.setImageResource(arrayImageResource.get(1));
