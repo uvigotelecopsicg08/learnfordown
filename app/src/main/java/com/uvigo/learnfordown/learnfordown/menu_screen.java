@@ -186,6 +186,7 @@ public class menu_screen extends AppCompatActivity {
 
                     case 1:
                         Intent intent1 = new Intent(menu_screen.this, frasedi_screen.class);
+                        System.out.println("este es el menu 1");
                         startActivity(intent1);
                         break;
 

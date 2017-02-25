@@ -1,6 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -8,9 +8,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,21 +20,25 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.TreeSet;
-
-import static android.R.attr.radioButtonStyle;
-import static android.R.attr.rating;
 
 public class frasegame1lvl_screen extends AppCompatActivity {
     TextView titulo;
     RatingBar ratingbar1 = null;
     String figure = "plato";
-    String button1 = "plano";
-    String button2 = "plato";
-    String button3 = "platano";
+    Button button1,button2,button3;
     int contador;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+    ImageView palabra;
+    GestionNiveles  gn;
+    String tipoNivel="silabasdirectas";
+    ArrayList<FotoPalabra> fp;
+    int i=0;
+    int aciertos=0;
+    TextView textView;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -49,13 +53,40 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        palabra = (ImageView) findViewById(R.id.foto);
+         textView = (TextView)findViewById(R.id.button4);
+        button1 = (Button) findViewById(R.id.button1);
+        button2 = (Button) findViewById(R.id.button2);
+        button3 = (Button) findViewById(R.id.button3);
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            tipoNivel = extras.getString("tipoSilaba");
+            System.out.println(tipoNivel);
+        }
+        System.out.println(tipoNivel);
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel, 1);
+        fp = gn.getFotos();
+        figure=fp.get(i).getPalabra().toUpperCase();
+        palabra.setImageResource(fp.get(i).getFoto());
+        ArrayList<String> arrayAux = new ArrayList<>();
+        arrayAux.add(fp.get(i).getPalabra().toUpperCase());
+        arrayAux.add(fp.get(i+1).getPalabra().toUpperCase());
+        arrayAux.add(fp.get(i+2).getPalabra().toUpperCase());
+        Collections.shuffle(arrayAux);
+        button1.setText(arrayAux.get(0));
+        button2.setText(arrayAux.get(1));
+        button3.setText(arrayAux.get(2));
 
-        TextView button4 = (TextView)findViewById(R.id.button4);
+
+
         String tmpDownSlash = "";
-        for (int i = 0; i < figure.length(); i++) {
+        for (int i = 0; i < figure.length()-1; i++) {
             tmpDownSlash += " _";
         }
-        button4.setText(button4.getText() + tmpDownSlash);
+        String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);
+        textView.setText(stringAux);
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -80,6 +111,51 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
     public void pulsar(View v) {
 
+       Button bAxu = (Button) findViewById(v.getId());
+
+        if(bAxu.getText().equals(fp.get(i).getPalabra().toUpperCase())){
+            Log.i("pulsar()", "CORRECTO!");
+            Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
+            contador++;
+            float rating = 0;
+            for (int i : new TreeSet<>(thresholds.keySet())) {
+                if(contador < i) {
+                    break;
+                }
+                rating = thresholds.get(i);
+            }
+            if (rating != ratingbar1.getRating()) {
+                ratingbar1.setRating(rating);
+                Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+                toast.show();
+            }
+            gn.acierto();
+            if(!gn.isnivelCompletado()) {
+                i++;
+                cambiarFoto();
+            }
+            else{
+                System.out.print("el nivel esta finalizado");
+                gn.avanzaNivel();
+                if(!(gn.getTipo().equals(tipoNivel))){
+                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                    //Código para abrir otra pantalla
+                }
+                else {
+                    fp= gn.getFotos();
+                    i=0;
+                    cambiarFoto();
+                    System.out.println("Se debe avanzar el nivel");
+                }
+
+                gn.fallo();
+            }
+
+        }else{
+
+        }
+/*
         switch (v.getId()) {
             case R.id.button1:
                 if (figure.equals(button1)) {
@@ -141,7 +217,28 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     }
                 }
                 break;
+        }*/
+    }
+
+    private void cambiarFoto() {
+
+        figure=fp.get(i).getPalabra().toUpperCase();
+        palabra.setImageResource(fp.get(i).getFoto());
+        ArrayList<String> arrayAux = new ArrayList<>();
+        arrayAux.add(fp.get(i).getPalabra().toUpperCase());
+        arrayAux.add(fp.get(i+1).getPalabra().toUpperCase());
+        arrayAux.add(fp.get(i+2).getPalabra().toUpperCase());
+        Collections.shuffle(arrayAux);
+        button1.setText(arrayAux.get(0));
+        button2.setText(arrayAux.get(1));
+        button3.setText(arrayAux.get(2));
+        String tmpDownSlash = "";
+        for (int i = 0; i < figure.length()-1; i++) {
+            tmpDownSlash += " _";
         }
+        String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);
+        textView.setText(stringAux);
+
     }
 
     /**

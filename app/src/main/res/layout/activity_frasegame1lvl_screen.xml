@@ -84,8 +84,7 @@
     android:layout_marginTop="130dp"
     android:layout_marginLeft="10dp"
     app:srcCompat="?android:attr/activatedBackgroundIndicator"
-    android:id="@+id/foto"
-    android:background="@mipmap/plato" />
+    android:id="@+id/foto" />
 
 <Button
     android:text="PLANO"

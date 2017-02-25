@@ -53,8 +53,11 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         button1 = (Button)  findViewById(R.id.button1);
         button2 = (Button)  findViewById(R.id.button2);
         button3 = (Button)  findViewById(R.id.button3);
-
-
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            tipoNivel = extras.getString("tipoSilaba");
+            System.out.println(tipoNivel);
+        }
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
