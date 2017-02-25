@@ -29,6 +29,9 @@ TextView titulo;
     public void nivel1(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, palabrasgame1_1lvl_screen.class);
+        String strName = "palabrassilabasinversas";
+        intent.putExtra("tipoSilaba", strName);
         startActivity(intent);
+
     }
 }

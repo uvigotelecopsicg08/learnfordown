@@ -15,6 +15,7 @@ import java.util.HashMap;
 public class palabrasgame1_1lvl_screen extends AppCompatActivity {
     TextView titulo;
     Integer ultimoPulsado;
+    String tipoNivel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +25,11 @@ public class palabrasgame1_1lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         ultimoPulsado = null;
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            tipoNivel = extras.getString("tipoSilaba");
+            System.out.println(tipoNivel);
+        }
 
     }
 
@@ -39,6 +45,7 @@ public class palabrasgame1_1lvl_screen extends AppCompatActivity {
     public void seguir(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, palabrasgame1_2lvl_screen.class);
+        intent.putExtra("tipoSilaba", tipoNivel);
         startActivity(intent);
     }
 

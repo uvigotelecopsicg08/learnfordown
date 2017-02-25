@@ -27,8 +27,10 @@ TextView titulo;
         startActivity(intent);
     }
     public void goHome (View v){
-        Intent intent1 = new Intent(frasedi_screen.this, home_screen.class);
-        startActivity(intent1);
+        Intent intent = new Intent(frasedi_screen.this, home_screen.class);
+        String strName = "frasessilabasdirectas";
+        intent.putExtra("tipoSilaba", strName);
+        startActivity(intent);
 
     }
 

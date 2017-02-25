@@ -31,7 +31,7 @@ public class InsertData {
         db.insertar_foto("a","a","directa","amarillo","Me gusta mucho el color",R.drawable.amarillo,"otro",4,"vocales");
 
         db.insertar_foto("b","bu","directa","bufanda","La bufanda abriga",R.drawable.bufanda,"ropa",3,"bv");
-        db.insertar_foto("b","ba","directa","baca","Mi padre puso las maletas en la",R.drawable.baca,"otros",2,"bv");
+        db.insertar_foto("b","ba","directa","baca","Mi padre puso las maletas en la *",R.drawable.baca,"otros",2,"bv");
         db.insertar_foto("b","be","directa","bebe","Mi hermano pequeño es un",R.drawable.bebe,"otros",2,"bv");
         db.insertar_foto("b","bi","directa","biberon","Cuando era pequeño tomaba el",R.drawable.biberon,"comida",3,"bv");
         db.insertar_foto("b","bi","directa","bicicleta","Fui al parque en",R.drawable.bicicleta,"otros",4,"bv");
@@ -178,14 +178,15 @@ public class InsertData {
         db.insertar_foto("o","o","directa","oso","El oso es bonito",R.drawable.oso,"animal",2,"vocales");
 
         db.insertar_foto("p","pla","trabada","planeta","poner frase aqui",R.drawable.planeta,"otro",3,"pl");
-        db.insertar_foto("p","pe","directa","perro","El perro es marrón",R.drawable.perro,"animales",4,"p");
+        db.insertar_foto("p","pe","directa","perro","El * es marrón",R.drawable.perro,"animales",4,"p");
         db.insertar_foto("p","pla","trabada","platano","poner frase aqui",R.drawable.platano,"comida",3,"pl");
-        db.insertar_foto("p","pla","trabada","playa","Me gusta estar en la playa",R.drawable.playa,"playa",2,"pl");
-        db.insertar_foto("p","pa","directa","patata","poner frase aqui",R.drawable.patata,"comida",3,"p");
-        db.insertar_foto("p","pi","directa","pimiento","poner frase aqui",R.drawable.pimiento,"comida",3,"p");
-        db.insertar_foto("p","po","directa","policia","poner frase aqui",R.drawable.policia,"otro",3,"p");
-        db.insertar_foto("p","pu","directa","puma","poner frase aqui",R.drawable.puma,"animales",2,"p");
-        db.insertar_foto("p","pla","trabada","plato","poner frase aqui",R.drawable.plato,"comida",2,"pl");
+        db.insertar_foto("p","pla","trabada","playa","Me gusta estar en la *",R.drawable.playa,"playa",2,"pl");
+        db.insertar_foto("p","pa","directa","patata","Me comi una *",R.drawable.patata,"comida",3,"p");
+        db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"p");
+        db.insertar_foto("p","pi","directa","pimiento","El * es rojo",R.drawable.pimiento,"comida",3,"p");
+        db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
+        db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
+        db.insertar_foto("p","pla","trabada","plato","me compre un *",R.drawable.plato,"comida",2,"pl");
         db.insertar_foto("p","plu","trabada","pluma","poner frase aqui",R.drawable.pluma,"otro",2,"pl");
 
         db.insertar_foto("r","ra","directa","ramas","poner frase aqui",R.drawable.ramas,"otro",2,"r");
@@ -224,7 +225,7 @@ public class InsertData {
         db.insertar_foto("e","es","inversa","espinacas","poner frase aqui",R.drawable.espinacas,"comida",4,"s");
         db.insertar_foto("e","es","inversa","esponja","poner frase aqui",R.drawable.esponja,"otro",3,"s");
         db.insertar_foto("e","es","inversa","estropajo","poner frase aqui",R.drawable.estropajo,"otro",4,"s");
-        db.insertar_foto("o","os","inversa","escoba","poner frase aqui",R.drawable.ostras,"comida",2,"s");
+        db.insertar_foto("o","os","inversa","ostras","poner frase aqui",R.drawable.ostras,"comida",2,"s");
 
         db.insertar_foto("t","ta","directa","tapa","poner frase aqui",R.drawable.tapa,"otro",2,"t");
         db.insertar_foto("t","ta","directa","taza","poner frase aqui",R.drawable.taza,"otro",2,"t");
@@ -268,22 +269,42 @@ public class InsertData {
                 db.insertar_nivel ("silabasdirectas",j, subnivelesDirectas[i]);
             }
         }
-        db.insertar_nivel("palabrassilabasdirectas",1,subnivelesDirectas[0]);
-        db.insertar_nivel("palabrassilabasdirectas",1,"vocales");
+
+        for(int j=1;j<5;j++){
+            for(int i = 0; i< subnivelesDirectas.length; i++){
+                db.insertar_nivel("palabrassilabasdirectas",j,subnivelesDirectas[i]);
+            }
+        }
+       // db.insertar_nivel("palabrassilabasdirectas",1,"vocales");
         for(int j=1;j<5;j++){
             for(int i = 0; i< subnivelesInversas.length; i++){
                 db.insertar_nivel ("silabasinversas",j, subnivelesInversas[i]);
             }
         }
-        db.insertar_nivel("palabrassilabasdirectas",1,"");
-
+        for(int j=1;j<5;j++){
+            for(int i = 0; i< subnivelesInversas.length; i++){
+                db.insertar_nivel("palabrassilabasinversas",j,subnivelesInversas[i]);
+            }
+        }
         for(int j=1;j<5;j++){
             for(int i = 0; i< subnivelesTrabadas.length; i++){
                 db.insertar_nivel ("silabastrabadas",j, subnivelesTrabadas[i]);
             }
         }
-        db.insertar_nivel("frasessilabasdirectas",1,"nivelunico");
-        db.insertar_nivel("frasessilabasinversas",1,"nivelunico");
-        db.insertar_nivel("frasessilabastrabadas",1,"nivelunico");
+        for(int j=1;j<5;j++){
+            for(int i = 0; i< subnivelesDirectas.length; i++){
+                db.insertar_nivel("frasessilabasdirectas",j,subnivelesDirectas[i]);
+            }
+        }
+        for(int j=1;j<5;j++){
+            for(int i = 0; i< subnivelesInversas.length; i++){
+                db.insertar_nivel("frasessilabasinversas",j,subnivelesInversas[i]);
+            }
+        }
+        for(int j=1;j<5;j++){
+            for(int i = 0; i< subnivelesTrabadas.length; i++){
+                db.insertar_nivel("palabrassilabastrabadas",j,subnivelesTrabadas[i]);
+            }
+        }
     }
 }

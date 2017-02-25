@@ -281,12 +281,22 @@ public class DataBaseManager {
         db.update(TABLE_LEVEL_USER, valores,whereClause, whereArgs);
         //Insertar referencia a log
     }
-    public Cursor buscarFotos(String tipo,int id_user,String subnivel){
+    public Cursor buscarFotos(String tipo,int id_user,String subnivel,int numeroSilabas){
 
         String tablas=TABLE_AFFINITY+","+TABLE_WORD;
-        String whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
-                CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ?";
-        String[] whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo};
+      String  whereClause =null;
+        String[] whereArgs=null;
+        if(numeroSilabas>0){
+            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
+                    CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ? AND "+CN_NUMBER_SYLLABLES+ " = ?";
+            whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo,String.valueOf(numeroSilabas)};
+        }
+        else{
+            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
+                    CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ?";
+            whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo};
+        }
+
         String orderBy= CN_AFINITY_RATE +" ASC";
         Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
         if(cursor==null){
