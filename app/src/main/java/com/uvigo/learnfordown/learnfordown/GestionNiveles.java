@@ -92,7 +92,8 @@ public class GestionNiveles {
             }
         }
         if(tipo.contains("palabra")||tipo.contains("frase")){
-            numeroSilabas=dificultad;
+           // numeroSilabas=dificultad;
+            numeroSilabas=-1;
         }
         else{
             numeroSilabas=-1;
