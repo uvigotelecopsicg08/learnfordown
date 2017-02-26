@@ -88,7 +88,7 @@
 
 <Button
     android:text="PLANO"
-    android:layout_width="183dp"
+    android:layout_width="250dp"
     android:layout_height="82dp"
     android:layout_marginTop="450dp"
     android:layout_marginLeft="100dp"
@@ -101,7 +101,7 @@
 
 <Button
     android:text="PLATO"
-    android:layout_width="163dp"
+    android:layout_width="250dp"
     android:layout_height="82dp"
     android:layout_marginTop="450dp"
     android:layout_marginLeft="550dp"
@@ -113,7 +113,7 @@
 
 <Button
     android:text="PLÁTANO"
-    android:layout_width="163dp"
+    android:layout_width="250dp"
     android:layout_height="82dp"
     android:layout_marginTop="450dp"
     android:layout_marginLeft="950dp"
@@ -125,8 +125,8 @@
 
 <TextView
     android:text="COMPRÉ UN"
-    android:layout_width="623dp"
-    android:layout_height="82dp"
+    android:layout_width="823dp"
+    android:layout_height="182dp"
     android:layout_marginTop="105dp"
     android:layout_marginLeft="500dp"
     android:id="@+id/button4"

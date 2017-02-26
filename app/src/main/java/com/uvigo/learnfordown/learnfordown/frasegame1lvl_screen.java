@@ -82,7 +82,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
 
         String tmpDownSlash = "";
-        for (int i = 0; i < figure.length()-1; i++) {
+        for (int i = 0; i < figure.length(); i++) {
             tmpDownSlash += " _";
         }
         String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);
@@ -233,7 +233,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         button2.setText(arrayAux.get(1));
         button3.setText(arrayAux.get(2));
         String tmpDownSlash = "";
-        for (int i = 0; i < figure.length()-1; i++) {
+        for (int i = 0; i < figure.length(); i++) {
             tmpDownSlash += " _";
         }
         String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);

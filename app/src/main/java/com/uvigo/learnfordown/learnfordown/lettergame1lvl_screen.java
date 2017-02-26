@@ -77,10 +77,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
         thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        thresholds.put(20, 3f); //20 aciertos, 3 estrellas
+        thresholds.put(30, 4f); //30 aciertos, 4 estrellas
+        thresholds.put(40, 5f); //40 aciertos, 5 estrellas
+        thresholds.put(50, 6f); //50 aciertos, 6 estrellas
 
 
         contador = 0;

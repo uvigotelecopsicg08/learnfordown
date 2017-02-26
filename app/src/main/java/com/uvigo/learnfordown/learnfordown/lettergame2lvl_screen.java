@@ -67,7 +67,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         thresholds.put(25, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        thresholds.put(79, 6f); //79 aciertos, 6 estrellas
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);

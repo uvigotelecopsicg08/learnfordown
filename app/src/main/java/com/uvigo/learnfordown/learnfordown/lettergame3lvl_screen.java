@@ -60,11 +60,11 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        thresholds.put(15, 2f); //15 aciertos, 2 estrellas
+        thresholds.put(35, 3f); //35 aciertos, 3 estrellas
+        thresholds.put(60, 4f); //60 aciertos, 4 estrellas
+        thresholds.put(90, 5f); //90 aciertos, 5 estrellas
+        thresholds.put(120, 6f); //120 aciertos, 6 estrellas
 
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
