@@ -73,6 +73,8 @@ public class InsertData {
         db.insertar_foto("ch","chu","directa","chupete","El hermano pequeño de Pepe tiene un *",R.drawable.chupete,"otros",3,"ch");
         db.insertar_foto("ch","chu","directa","churrasco","Los domingos comemos *",R.drawable.churrasco,"comida",3,"ch");
         db.insertar_foto("ch","chu","directa","churros","La churrera de la esquina vende * muy ricos",R.drawable.churro,"comida",2,"ch");
+        db.insertar_foto("ch","chi","directa","chimos","Voy a comer * de varios colores",R.drawable.chimos,"comida",2,"ch");
+        db.insertar_foto("ch","chu","directa","chucherías","Las * son malas para los dientes",R.drawable.chucherias,"comida",4,"ch");
 
         db.insertar_foto("d","da","directa","damas","Tengo que aprender a jugar a las *",R.drawable.damas,"otros",2,"d");
         db.insertar_foto("d","de","directa","desierto","En el * hay escasez de agua",R.drawable.desierto,"otros",3,"d");
@@ -81,6 +83,11 @@ public class InsertData {
         db.insertar_foto("d","di","directa","diploma","De mayor quiero tener un *",R.drawable.diploma,"otros",3,"d");
         db.insertar_foto("d","do","directa","domino","La semana pasada le gané a mi primo al *",R.drawable.domino,"otros",3,"d");
         db.insertar_foto("d","du","directa","ducha","Deberían poner más * en las playas",R.drawable.ducha,"casa",2,"d");
+        db.insertar_foto("d","da","directa","datiles","*",R.drawable.datiles,"comida",3,"d");
+        db.insertar_foto("d","de","directa","dedal","*",R.drawable.dedal,"casa",2,"d");
+        db.insertar_foto("d","de","directa","dedo"," * ",R.drawable.dedo,"otros",2,"d");
+        db.insertar_foto("d","di","directa","dinosaurio"," * ",R.drawable.dinosaurio,"animales",4,"d");
+        db.insertar_foto("d","do","directa","doce"," * ",R.drawable.doce,"otros",2,"d");
 
         db.insertar_foto("e","e","directa","elefante","En en zoo hay *",R.drawable.elefante,"animales",4,"vocales");
 
