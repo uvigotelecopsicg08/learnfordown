@@ -29,16 +29,16 @@ public class GestionNiveles {
     }
 
     public boolean isnivelCompletado() {
-        if (dificultad == 1 && aciertos == 3) {
+        if (dificultad == 1 && aciertos >= 3) {
             return true;
         } else {
-            if (dificultad == 2 && aciertos == 5) {
+            if (dificultad == 2 && aciertos >= 5) {
                 return true;
             } else {
-                if (dificultad == 3 && aciertos == 8) {
+                if (dificultad == 3 && aciertos >= 8) {
                     return true;
                 } else {
-                    if (dificultad == 4 && aciertos == 10) {
+                    if (dificultad == 4 && aciertos >= 10) {
                         return true;
                     } else {
                         return false;
@@ -92,8 +92,8 @@ public class GestionNiveles {
             }
         }
         if(tipo.contains("palabra")||tipo.contains("frase")){
-           // numeroSilabas=dificultad;
-            numeroSilabas=-1;
+            numeroSilabas=dificultad;
+          //  numeroSilabas=-1;
         }
         else{
             numeroSilabas=-1;

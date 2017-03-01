@@ -34,7 +34,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
     GestionNiveles  gn;
-    String tipoNivel="silabasdirectas";
+    String tipoNivel="frasessilabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;

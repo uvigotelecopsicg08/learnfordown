@@ -34,6 +34,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     ImageButton imageButton1,imageButton2,imageButton3;
     Button button1,button2,button3;
     int aciertos=0;
+    boolean cambiado=false;
 
 
 
@@ -189,52 +190,73 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 
 */
-            if(map.get(v.getId()).equals(map.get(ultimoPulsado))) {
-                contador++;
-                float rating = 0;
-                for (int i : new TreeSet<>(thresholds.keySet())) {
-                    if (contador < i) {
-                        break;
-                    }
-                    rating = thresholds.get(i);
-                }
-                if (rating != ratingbar1.getRating()) {
-                    ratingbar1.setRating(rating);
-                    Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                    toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -180, -50);
-                    toast.show();
-                }
-                gn.acierto();
-                aciertos++;
-
-                if (aciertos == 3) {
-                    aciertos=0;
-                    if (!gn.isnivelCompletado()) {
-                        i += 3;
-                        cambiarFoto();
+            if (v.getId()!=(ultimoPulsado)){
+                if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
+                    if (findViewById(v.getId()) instanceof Button) {
+                        Button b1 = (Button) findViewById(v.getId());
+                        b1.setEnabled(false);
+                        ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
+                        b2.setEnabled(false);
                     } else {
-                        System.out.print("el nivel esta finalizado");
-                        gn.avanzaNivel();
-                        if (!(gn.getTipo().equals(tipoNivel))) {
-                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                            //Código para abrir otra pantalla
-                        } else {
-                            fp = gn.getFotos();
-                            i = 0;
+                        Button b1 = (Button) findViewById(ultimoPulsado);
+                        b1.setEnabled(false);
+                        ImageButton b2 = (ImageButton) findViewById(v.getId());
+                        b2.setEnabled(false);
+                    }
+                    contador++;
+                    float rating = 0;
+                    for (int i : new TreeSet<>(thresholds.keySet())) {
+                        if (contador < i) {
+                            break;
+                        }
+                        rating = thresholds.get(i);
+                    }
+                    if (rating != ratingbar1.getRating()) {
+                        ratingbar1.setRating(rating);
+                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -180, -50);
+                        toast.show();
+                    }
+                    gn.acierto();
+                    aciertos++;
+
+                    if (aciertos == 3) {
+                        aciertos = 0;
+                        if (!gn.isnivelCompletado()) {
+                            i += 3;
                             cambiarFoto();
-                            System.out.println("Se debe avanzar el nivel");
+                        } else {
+                            System.out.print("el nivel esta finalizado");
+                            gn.avanzaNivel();
+                            cambiado=true;
+                            if (!(gn.getTipo().equals(tipoNivel))) {
+                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                                //Código para abrir otra pantalla
+                            } else {
+                                fp = gn.getFotos();
+                                i = 0;
+                                cambiarFoto();
+                                System.out.println("Se debe avanzar el nivel");
 
 
+                            }
                         }
                     }
+                } else {
+                    gn.fallo();
                 }
             }
-            else{
-                gn.fallo();
-            }
         }
-        ultimoPulsado = v.getId();
-        System.out.println("has pulsado: "+map.get(ultimoPulsado));
+        if(!cambiado) {
+            ultimoPulsado = v.getId();
+            System.out.println("has pulsado: "+map.get(ultimoPulsado));
+        }
+
+        else{
+            ultimoPulsado=0;
+            cambiado=false;
+        }
+
     }
 
     private void cambiarFoto() {
@@ -244,6 +266,13 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         arrayImageResource.add(fp.get(1+i).getFoto());
         arrayImageResource.add(fp.get(2+i).getFoto());
         Collections.shuffle(arrayImageResource);
+        imageButton1.setEnabled(true);
+        imageButton2.setEnabled(true);
+        imageButton3.setEnabled(true);
+        button1.setEnabled(true);
+        button2.setEnabled(true);
+        button3.setEnabled(true);
+
     imageButton1.clearFocus();
         imageButton1.setImageResource(arrayImageResource.get(0));
         imageButton2.clearFocus();
