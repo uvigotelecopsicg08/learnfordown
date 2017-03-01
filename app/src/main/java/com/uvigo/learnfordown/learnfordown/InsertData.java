@@ -44,7 +44,7 @@ public class InsertData {
         db.insertar_foto("b","bri","trabada","bricolaje","poner frase aqui",R.drawable.bricolaje,"otro",4,"bvr");
         db.insertar_foto("b","bro","trabada","brote","Aquí hay un * de hortensias",R.drawable.brote,"otro",2,"bvr");
         db.insertar_foto("b","bol","directa","bol","",R.drawable.bol,"otros",1,"mono");
-        db.insertar_foto("b","buey","directa","buey","Mi padre puso las maletas en la *",R.drawable.buey,"animales",1,"mono");
+        db.insertar_foto("b","buey","directa","buey","",R.drawable.buey,"animales",1,"mono");
 
         db.insertar_foto("c","co","directa","coche","El * de mi madre es gris ",R.drawable.coche,"vehiculos",2,"kcq");
         db.insertar_foto("c","ca","directa","caballo","Ayer monté a * ",R.drawable.caballo,"animales",3,"kcq");
