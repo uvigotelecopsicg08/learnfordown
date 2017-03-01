@@ -139,11 +139,23 @@ public class InsertData {
         db.insertar_foto("a","al","inversa","alcachofa","Esta ensalada lleva *",R.drawable.alcachofa,"comida",4,"l");
         db.insertar_foto("a","al","inversa","albanil","Mi padre trabaja de *",R.drawable.albanil,"otro",3,"l");
         db.insertar_foto("a","al","inversa","almohada","Mi * es muy blandita",R.drawable.almohada,"casa",4,"l");
+        db.insertar_foto("u","ul","inversa","baul","En mi casa hay un * para guardar los juguetes",R.drawable.baul,"casa",2,"l"); //La vocal y el sonido de esto...
 
         db.insertar_foto("ll","lla","directa","llama","poner frase aqui",R.drawable.llama,"animales",2,"lly");
         db.insertar_foto("ll","lla","directa","llave","No puedo perder la * de casa",R.drawable.llave,"otro",2,"lly");
         db.insertar_foto("ll","lla","directa","llavero","Tengo un * con la llave de casa",R.drawable.llavero,"otro",3,"lly");
         db.insertar_foto("ll","llu","directa","lluvia","Me mojaré con la * si no llevo el paraguas",R.drawable.lluvia,"otro",2,"lly");
+        db.insertar_foto("ll","llo","directa","cepillo","poner frase aqui",R.drawable.cepillo,"casa",3,"lly");
+        db.insertar_foto("ll","lla","directa","cerilla","poner frase aqui",R.drawable.cerilla,"casa",3,"lly");
+        db.insertar_foto("ll","llo","directa","criollo","poner frase aqui",R.drawable.criollo,"comida",2,"lly");
+        db.insertar_foto("ll","lla","directa","escobilla","poner frase aqui",R.drawable.escobilla,"casa",4,"lly");
+        db.insertar_foto("ll","llo","directa","grillo","poner frase aqui",R.drawable.grillo,"animales",2,"lly");
+        db.insertar_foto("ll","lla","directa","medalla","poner frase aqui",R.drawable.medalla,"otros",3,"lly");
+        db.insertar_foto("ll","lla","directa","natilla","poner frase aqui",R.drawable.natillas,"comida",3,"lly");
+        db.insertar_foto("ll","llo","directa","ovillo","poner frase aqui",R.drawable.ovillos,"ropa",3,"lly");
+        db.insertar_foto("ll","lla","directa","papilla","poner frase aqui",R.drawable.papilla,"comida",3,"lly");
+        db.insertar_foto("ll","lla","directa","rodilla","poner frase aqui",R.drawable.rodilla,"otros",3,"lly");
+        db.insertar_foto("ll","lla","directa","toalla","poner frase aqui",R.drawable.toallas,"casa",3,"lly");
 
         db.insertar_foto("m","ma","directa","mano","Mi * es pequeña",R.drawable.mano,"otro",2,"m");
         db.insertar_foto("m","ma","directa","mapa","poner frase aqui",R.drawable.mapa,"otro",2,"m");
@@ -189,7 +201,7 @@ public class InsertData {
         db.insertar_foto("p","pla","trabada","platano","poner frase aqui",R.drawable.platano,"comida",3,"pl");
         db.insertar_foto("p","pla","trabada","playa","Me gusta estar en la *",R.drawable.playa,"playa",2,"pl");
         db.insertar_foto("p","pa","directa","patata","Me comi una *",R.drawable.patata,"comida",3,"p");
-      //  db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"p");
+        db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"mono");
         db.insertar_foto("p","pi","directa","pimiento","El * es rojo",R.drawable.pimiento,"comida",3,"p");
         db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
         db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
@@ -242,7 +254,7 @@ public class InsertData {
         db.insertar_foto("t","ti","directa","timon","poner frase aqui",R.drawable.timon,"otro",2,"t");
         db.insertar_foto("t","to","directa","tomate","Me gusta el * en la ensalada",R.drawable.tomate,"comida",3,"t");
         db.insertar_foto("t","to","directa","toro","poner frase aqui",R.drawable.toro,"animales",2,"t");
-        db.insertar_foto("t","tren","trabada","tren","El * está en la estación ",R.drawable.tren,"vehiculos",1,"tr");
+        db.insertar_foto("t","tren","trabada","tren","El * está en la estación ",R.drawable.tren,"vehiculos",1,"mono");
         db.insertar_foto("t","tri","trabada","triangulo","poner frase aqui",R.drawable.triangulo,"otro",4,"tr");
         db.insertar_foto("t","tru","trabada","trufas","poner frase aqui",R.drawable.trufas,"comida",2,"tr");
 
