@@ -14,8 +14,8 @@ public class sidirectas_w_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sidirectas_w_screen);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
-        titulo = (TextView) findViewById(R.id.textView2);
-        titulo.setTypeface(face);
+        //titulo = (TextView) findViewById(R.id.textView2);
+        //titulo.setTypeface(face);
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(sidirectas_w_screen.this, menu_write_screen.class);

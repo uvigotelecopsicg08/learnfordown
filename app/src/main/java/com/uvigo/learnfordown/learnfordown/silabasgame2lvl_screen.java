@@ -34,7 +34,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     Button ButtonActual;
     TextView titulo,letracorrecta;
     RatingBar ratingbar1;
-    String Correcta;
+    String Correcta,palabracom, tmpDownSlash= " ";
     ImageButton BackArrow,Home;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
@@ -84,6 +84,13 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
@@ -200,6 +207,16 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+
+        palabra.setImageResource(fp.get(i).getFoto());
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+        System.out.println(fp.get(i).getPalabra() + " xd " + Correcta);
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

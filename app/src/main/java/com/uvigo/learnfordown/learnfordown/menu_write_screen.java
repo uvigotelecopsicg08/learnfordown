@@ -22,7 +22,7 @@ public class menu_write_screen extends AppCompatActivity {
     Spinner spinner;
     TextView titulo;
     ImageButton BackArrow;
-    private Spinner nameValueSpinner;
+    //private Spinner nameValueSpinner;
     private Spinner nameValueSpinner1;
     private Spinner nameValueSpinner2;
     private Spinner nameValueSpinner3;
@@ -31,13 +31,13 @@ public class menu_write_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_menu_screen);
+        setContentView(R.layout.activity_menu_write_screen);
 
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         BackArrow = (ImageButton) findViewById(R.id.button3);
         titulo.setTypeface(face);
-        nameValueSpinner = (Spinner) findViewById(R.id.spinner);
+        //nameValueSpinner = (Spinner) findViewById(R.id.spinner);
         nameValueSpinner1 = (Spinner) findViewById(R.id.spinner1);
         nameValueSpinner2 = (Spinner) findViewById(R.id.spinner2);
         nameValueSpinner3 = (Spinner) findViewById(R.id.spinner3);
@@ -47,18 +47,23 @@ public class menu_write_screen extends AppCompatActivity {
 
     }
 
+    public void letras (View v){
+        System.out.println("!!ASDASDASD!");
+        Intent intent1 = new Intent(menu_write_screen.this, lettergame1lvl_w_screen.class);
+        startActivity(intent1);
+    }
+
     private void setupSpinner() {
-        // Setup data
-        List<SpinnerModel> nameLettersValues = createLettersValues();
+      //  List<SpinnerModel> nameLettersValues = createLettersValues();
         List<SpinnerModel> nameSilabasValues = createSilabasValues();
         List<SpinnerModel> namePalabrasValues = createPalabrasValues();
         List<SpinnerModel> nameFrasesValues = createFrasesValues();
-        SpinnerAdapter nameValueSpinnerAdapter = new SpinnerAdapter(this, R.layout.spinner_rows, nameLettersValues,"LETRA");
+       // SpinnerAdapter nameValueSpinnerAdapter = new SpinnerAdapter(this, R.layout.spinner_rows, nameLettersValues,"LETRA");
         SpinnerAdapter nameValueSpinnerAdapter1 = new SpinnerAdapter(this, R.layout.spinner_rows, nameSilabasValues,"SILABA");
         SpinnerAdapter nameValueSpinnerAdapter2 = new SpinnerAdapter(this, R.layout.spinner_rows, namePalabrasValues,"PALABRA");
         SpinnerAdapter nameValueSpinnerAdapter3 = new SpinnerAdapter(this, R.layout.spinner_rows, nameFrasesValues,"FRASE");
-        nameValueSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
+     //   nameValueSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+           /* @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
                 switch (position){
@@ -97,35 +102,30 @@ public class menu_write_screen extends AppCompatActivity {
                 nameValueSpinner.setVisibility(View.GONE);
 
             }
-        });
+        });*/
 
         nameValueSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                SpinnerModel selection = (SpinnerModel) nameValueSpinner1.getItemAtPosition(position);
                 switch (position){
                     case 0:
                         break;
 
                     case 1:
-                        Intent intent1 = new Intent(menu_write_screen.this, sidirectas_w_screen.class);
+                        Intent intent1 = new Intent(menu_write_screen.this, silabasgame1lvl_w_screen.class);
                         startActivity(intent1);
                         break;
 
                     case 2:
-                        Intent intent2 = new Intent(menu_write_screen.this, siinversas_w_screen.class);
+                        Intent intent2 = new Intent(menu_write_screen.this, silabasgame1lvl_w_screen.class);
                         startActivity(intent2);
                         break;
 
                     case 3:
-                        Intent intent3 = new Intent(menu_write_screen.this, sitrabadas_w_screen.class);
+                        Intent intent3 = new Intent(menu_write_screen.this, silabasgame1lvl_w_screen.class);
                         startActivity(intent3);
                         break;
-
-
-
-
-
                 }
             }
 
@@ -138,7 +138,7 @@ public class menu_write_screen extends AppCompatActivity {
         nameValueSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                SpinnerModel selection = (SpinnerModel) nameValueSpinner2.getItemAtPosition(position);
                 switch (position){
                     case 0:
                         break;
@@ -157,11 +157,6 @@ public class menu_write_screen extends AppCompatActivity {
                         Intent intent3 = new Intent(menu_write_screen.this, palabrastra_w_screen.class);
                         startActivity(intent3);
                         break;
-
-
-
-
-
                 }
 
             }
@@ -175,7 +170,7 @@ public class menu_write_screen extends AppCompatActivity {
         nameValueSpinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                SpinnerModel selection = (SpinnerModel) nameValueSpinner.getItemAtPosition(position);
+                SpinnerModel selection = (SpinnerModel) nameValueSpinner3.getItemAtPosition(position);
                 switch (position){
                     case 0:
                         break;
@@ -194,12 +189,7 @@ public class menu_write_screen extends AppCompatActivity {
                         Intent intent3 = new Intent(menu_write_screen.this, frasetra_w_screen.class);
                         startActivity(intent3);
                         break;
-
-
-
-
-
-                }
+               }
             }
 
             @Override
@@ -209,7 +199,7 @@ public class menu_write_screen extends AppCompatActivity {
             }
         });
 
-        nameValueSpinner.setAdapter(nameValueSpinnerAdapter);
+       // nameValueSpinner.setAdapter(nameValueSpinnerAdapter);
         nameValueSpinner1.setAdapter(nameValueSpinnerAdapter1);
         nameValueSpinner2.setAdapter(nameValueSpinnerAdapter2);
         nameValueSpinner3.setAdapter(nameValueSpinnerAdapter3);
@@ -253,10 +243,10 @@ public class menu_write_screen extends AppCompatActivity {
 
         return nameValues;
     }
-    void SpinnerLetterUp(View v){
-        nameValueSpinner.setVisibility(View.VISIBLE);
-        nameValueSpinner.performClick();
-    }
+   //void SpinnerLetterUp(View v){
+   //     nameValueSpinner.setVisibility(View.VISIBLE);
+   //     nameValueSpinner.performClick();
+   //}
     void SpinnerSilabaUp(View v){
         nameValueSpinner1.setVisibility(View.VISIBLE);
         nameValueSpinner1.performClick();

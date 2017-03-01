@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <LinearLayout
@@ -77,20 +78,22 @@
                 android:paddingTop="0sp"
                 android:text="BU"
                 android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
                 android:background="@color/VerdeClarito"
                 android:id="@+id/textView4"
                 android:fontFamily="sans-serif"
-                android:textSize="150sp"
+                android:textSize="100sp"
                 android:textColor="@color/Negro"
                 android:textAlignment="center"
                 android:layout_weight="0.25"
-                android:layout_height="200dp"
-                android:layout_width="250dp"
-                android:layout_marginEnd="58dp"
-                android:layout_centerVertical="true"
+                android:layout_height="150dp"
+                android:layout_width="750dp"
+                android:layout_marginEnd="72dp"
+                android:layout_marginRight="72dp"
+                android:layout_alignParentBottom="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="58dp" />
+                android:layout_alignParentEnd="true" />
 
             <ImageView
                 android:layout_width="250dp"
@@ -98,11 +101,11 @@
                 android:src="@drawable/bufanda"
                 android:id="@+id/imageView2"
                 android:layout_weight="0.19"
-                android:layout_alignTop="@+id/textView4"
-                android:layout_toLeftOf="@+id/textView4"
-                android:layout_toStartOf="@+id/textView4"
-                android:layout_marginRight="37dp"
-                android:layout_marginEnd="37dp" />
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="84dp"
+                android:layout_marginStart="84dp" />
 
 
         </RelativeLayout>
