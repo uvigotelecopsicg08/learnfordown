@@ -63,9 +63,9 @@
     </LinearLayout>
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="250dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="220dp"
         android:layout_marginLeft="-1150dp"
         android:onClick="pulsar"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
@@ -84,10 +84,10 @@
         android:textSize="34sp" />
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="395dp"
-        android:layout_marginLeft="-870dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="390dp"
+        android:layout_marginLeft="-885dp"
         android:onClick="pulsar"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton2"
@@ -105,10 +105,10 @@
         android:textSize="34sp" />
 
     <ImageButton
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="550dp"
-        android:layout_marginLeft="-870dp"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_marginTop="555dp"
+        android:layout_marginLeft="-885dp"
         app:srcCompat="?android:attr/activatedBackgroundIndicator"
         android:id="@+id/imageButton3"
         android:onClick="pulsar"
