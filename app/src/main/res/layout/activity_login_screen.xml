@@ -128,7 +128,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button7"
-                android:onClick="siguiente"
+                android:onClick="registrar"
                 android:layout_marginLeft="550sp"
                 android:layout_marginTop="50sp"
                 android:padding="30px"

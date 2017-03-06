@@ -49,12 +49,14 @@ public class GestionNiveles {
     }
 
     public void avanzaNivel() {
-        aciertos = fallos = 0;
+
         //escritura en la BD  los resultados del nivel
         db.updateResults(id_user,id_nivel,true,aciertos,fallos);
+        aciertos = fallos = 0;
         id_nivel++;
         //lectura parametros del nivel
         getParameterNivel();
+        db.mostrarTablas();
 
     }
 
@@ -68,11 +70,22 @@ public class GestionNiveles {
     public void setNivel(String tipo,int dificultad){
         this.tipo=tipo;
         this.dificultad=dificultad;
+        aciertos=fallos=0;
        Cursor cursor= db.getNivel(tipo,dificultad,id_user);
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
                 id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
-                subnivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
+                subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
+            }
+
+            //Codigo pendiente de posibles modificaciones en la implementacion
+            else {
+                cursor = db.resetNivel(tipo, dificultad, id_user);
+                if (cursor.moveToFirst()) {
+                    id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                    subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
+                }
+
             }
         }
     }
@@ -126,7 +139,7 @@ public class GestionNiveles {
                 subnivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
             }
         }
-        System.out.println("tipo: "+tipo+"dificultad: "+ dificultad+"subnivel:  "+ subnivel);
+        System.out.println("id "+ id_nivel+" tipo: "+tipo+"dificultad: "+ dificultad+"subnivel:  "+ subnivel);
     }
 
     public void rellenarConletras(String letraElegida,ArrayList<String> horizontalList) {

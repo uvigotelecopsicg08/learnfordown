@@ -143,6 +143,8 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
                         if(gn.getDificultad()!=3 ||!(gn.getTipo().equals(tipoNivel))){
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
+                            Intent intent = new Intent(silabasgame3lvl_screen.this, silabasgame4lvl_screen.class);
+                            startActivity(intent);
                         }
                         else {
                             fp= gn.getFotos();

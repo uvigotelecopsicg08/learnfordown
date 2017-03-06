@@ -157,6 +157,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                             if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
+                                Intent intent = new Intent(lettergame4lvl_screen.this, silabasgame1lvl_screen.class);
+                                startActivity(intent);
                             } else {
                                 fp = gn.getFotos();
                                 i = 0;

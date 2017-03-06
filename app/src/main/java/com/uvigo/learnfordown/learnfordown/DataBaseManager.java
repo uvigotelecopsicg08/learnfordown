@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Juani on 03/02/2017.
@@ -129,7 +130,7 @@ public class DataBaseManager {
         DbHelper helper=new DbHelper(context);
         db= helper.getWritableDatabase();
     }
-    public void insertar_user (String nombre,int edad){
+    public void insertar_user (String nombre,int edad,  HashMap<String,Boolean> gustos){
         ContentValues valores =new ContentValues();
         valores.put(CN_NAME_USER,nombre);
         valores.put(CN_AGE_USER,edad);
@@ -141,25 +142,36 @@ public class DataBaseManager {
             if (cursor.moveToLast()) {
                int  id_user = cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER));
                 insertar_Systemlog(id_user, 0);
-                insertarAfinidad(id_user);
+                insertarAfinidad(id_user,gustos);
                 insertarNivelUser(id_user);
             }
         }
 
     }
 
-    public void insertarAfinidad(int id_user) {
+    public void insertarAfinidad(int id_user, HashMap<String,Boolean> gustos) {
         Cursor cursor = db.query(TABLE_WORD,null,null,null,null,null,null,null);
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
                 do {
 
                     int id_word = cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_WORD));
+                    String tema= cursor.getString(cursor.getColumnIndexOrThrow(CN_TOPIC));
                     ContentValues valores = new ContentValues();
                     valores.put(CN_ID_WORD_AFINIFTY, id_word);
                     valores.put(CN_ID_USER_AFINITY, id_user);
                     //Cambiar por los valores de usuario
-                    valores.put(CN_AFINITY_RATE, 0.5);
+                    if(gustos.containsKey(tema)){
+                        if(gustos.get(tema)){
+                            valores.put(CN_AFINITY_RATE, 0.75);
+                        }
+                        else{
+                            valores.put(CN_AFINITY_RATE, 0.25);
+                        }
+                    }
+                    else {
+                        valores.put(CN_AFINITY_RATE, 0.5);
+                    }
                     valores.put(CN_DIFFICULTY_RATE, 0.5);
                     db.insert(TABLE_AFFINITY, null, valores);
                 }while(cursor.moveToNext());
@@ -276,7 +288,7 @@ public class DataBaseManager {
         valores.put(CN_COMPLETED,completado);
         valores.put(CN_RIGTHS,aciertos);
         valores.put(CN_WRONGS,fallos);
-        String whereClause =CN_ID_USER+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
+        String whereClause =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
         String[] whereArgs = new String[]{String.valueOf(id_user),String.valueOf(id_nivel) };
         db.update(TABLE_LEVEL_USER, valores,whereClause, whereArgs);
         //Insertar referencia a log
@@ -301,7 +313,7 @@ public class DataBaseManager {
             whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo};
         }
 
-        String orderBy= CN_AFINITY_RATE +" ASC";
+        String orderBy= CN_AFINITY_RATE +" DESC";
         Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
         if(cursor==null){
             System.out.println("El cursor es nulo");
@@ -385,5 +397,55 @@ public class DataBaseManager {
             resultado[i]=arrayListAux.get(i);
         }
     return  resultado;
+    }
+    public void mostrarTablas(){
+        Cursor cursor= db.query(TABLE_LEVEL_USER,null,null,null,null,null,null,null);
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    System.out.print("id: "+ cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL)));
+                    System.out.print("aciertos: "+cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_RIGTHS)));
+                    System.out.print("fallos: "+cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_WRONGS)));
+                    System.out.print("completado: "+cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_COMPLETED)));
+                    System.out.println("");
+                }while(cursor.moveToNext());
+            }
+        }
+
+    }
+
+    public Cursor resetNivel(String tipo, int dificultad, int id_user) {
+        Cursor cursor;
+        String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
+        String columnas[] = new String[]{TABLE_LEVEL_USER+"."+CN_ID_LEVEL,CN_STEP};
+
+        if(dificultad==-1){
+            String whereClause = CN_TYPE+" = ? AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+                    " AND "+CN_ID_USER_LEVEL+" = ?";
+            String[] whereArgs = new String[] {tipo,String.valueOf(id_user)};
+            cursor= db.query(TABLE_LEVEL,columnas,whereClause,whereArgs,null,null,null,null);
+        }
+        else {
+            String whereClause = CN_TYPE + " = ? AND " + CN_DIFFICULTY + " = ? AND " + TABLE_LEVEL_USER + "." + CN_ID_LEVEL_LEVEL + " = " + TABLE_LEVEL + "." + CN_ID_LEVEL +
+                    " AND " + CN_ID_USER_LEVEL + " = ?";
+            String[] whereArgs = new String[]{tipo, String.valueOf(dificultad), String.valueOf(id_user)};
+            cursor = db.query(tablas, columnas, whereClause, whereArgs, null, null, null, null);
+        }
+
+            if(cursor!=null) {
+                if (cursor.moveToFirst()) {
+                    do {
+                        ContentValues valores = new ContentValues();
+                        valores.put(CN_COMPLETED,0);
+                        valores.put(CN_RIGTHS,0);
+                        valores.put(CN_WRONGS,0);
+                      String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
+                      String[]   whereArgs2 = new String[]{String.valueOf(id_user),String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL))) };
+                        db.update(TABLE_LEVEL_USER, valores,whereClause2, whereArgs2);
+                    }while(cursor.moveToNext());
+                }
+            }
+        return cursor;
+
     }
 }
