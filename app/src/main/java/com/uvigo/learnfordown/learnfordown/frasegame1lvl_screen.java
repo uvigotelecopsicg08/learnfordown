@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RatingBar;
@@ -30,6 +33,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     RatingBar ratingbar1 = null;
     String figure = "plato";
     Button button1,button2,button3;
+    Button Actual;
     int contador;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
@@ -112,49 +116,73 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     public void pulsar(View v) {
 
        Button bAxu = (Button) findViewById(v.getId());
-
-        if(bAxu.getText().equals(fp.get(i).getPalabra().toUpperCase())){
-            Log.i("pulsar()", "CORRECTO!");
-            Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
-            contador++;
-            float rating = 0;
-            for (int i : new TreeSet<>(thresholds.keySet())) {
-                if(contador < i) {
-                    break;
+        Actual =bAxu;
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(2000);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
+                    Actual.setBackgroundColor(Color.GREEN);
+                    Log.i("pulsar()", "CORRECTO!");
+                    Toast.makeText(getApplicationContext(), "CORRECTO!", Toast.LENGTH_LONG).show();
+                    contador++;
+                    float rating = 0;
+                    for (int i : new TreeSet<>(thresholds.keySet())) {
+                        if(contador < i) {
+                            break;
+                        }
+                        rating = thresholds.get(i);
+                    }
+                    if (rating != ratingbar1.getRating()) {
+                        ratingbar1.setRating(rating);
+                        Toast toast = Toast.makeText(getApplicationContext(), "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
+                        toast.show();
+                    }
+                    gn.acierto();
                 }
-                rating = thresholds.get(i);
             }
-            if (rating != ratingbar1.getRating()) {
-                ratingbar1.setRating(rating);
-                Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                toast.show();
-            }
-            gn.acierto();
-            if(!gn.isnivelCompletado()) {
-                i++;
-                cambiarFoto();
-            }
-            else{
-                System.out.print("el nivel esta finalizado");
-                gn.avanzaNivel();
-                if(!(gn.getTipo().equals(tipoNivel))){
-                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                    //Código para abrir otra pantalla
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
+                    Actual.setBackgroundColor(Color.WHITE);
+
+                    if (!gn.isnivelCompletado()) {
+                        i++;
+                        cambiarFoto();
+                    } else {
+                        System.out.print("el nivel esta finalizado");
+                        gn.avanzaNivel();
+                        if (!(gn.getTipo().equals(tipoNivel))) {
+                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                            //Código para abrir otra pantalla
+                        } else {
+                            fp = gn.getFotos();
+                            i = 0;
+                            cambiarFoto();
+                            System.out.println("Se debe avanzar el nivel");
+                        }
+
+                    }
+
+                } else {
+                    gn.fallo();
+
                 }
-                else {
-                    fp= gn.getFotos();
-                    i=0;
-                    cambiarFoto();
-                    System.out.println("Se debe avanzar el nivel");
-                }
-
-                gn.fallo();
             }
 
-        }else{
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-        }
+            }
+        });
+        bAxu.startAnimation(animation);
+
+
 /*
         switch (v.getId()) {
             case R.id.button1:
