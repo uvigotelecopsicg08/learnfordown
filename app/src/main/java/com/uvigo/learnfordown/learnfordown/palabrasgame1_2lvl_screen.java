@@ -225,6 +225,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         if (!gn.isnivelCompletado()) {
                             i += 3;
                             cambiarFoto();
+                            cambiado=true;
                         } else {
                             System.out.print("el nivel esta finalizado");
                             gn.avanzaNivel();
@@ -232,6 +233,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                             if (!(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
+
                             } else {
                                 fp = gn.getFotos();
                                 i = 0;

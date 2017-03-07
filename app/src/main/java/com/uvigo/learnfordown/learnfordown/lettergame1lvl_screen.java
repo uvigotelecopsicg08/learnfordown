@@ -137,6 +137,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     }
 
     public void ButtonCheck(View v) {
+        /*
         Button b = (Button) v;
         ButtonActual = b;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
@@ -168,6 +169,8 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                         if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
+                            Intent intent = new Intent(lettergame1lvl_screen.this, lettergame2lvl_screen.class);
+                            startActivity(intent);
                         }
                         else {
                             fp= gn.getFotos();
@@ -194,6 +197,42 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             }
         });
         b.startAnimation(animation);
+        */
+        Button b = (Button) v;
+        ButtonActual = b;
+        if (Correcta.equals(ButtonActual.getText().toString())){
+            System.out.println(gn.getDificultad());
+            gn.acierto();
+            if(!gn.isnivelCompletado()) {
+                i++;
+                cambiarFoto();
+            }
+            else{
+                System.out.print("el nivel esta finalizado");
+                gn.avanzaNivel();
+                if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
+                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                    //Código para abrir otra pantalla
+                    Intent intent = new Intent(lettergame1lvl_screen.this, lettergame2lvl_screen.class);
+                    startActivity(intent);
+                }
+                else {
+                    fp= gn.getFotos();
+                    i=0;
+                    cambiarFoto();
+                    System.out.println("Se debe avanzar el nivel");
+                }
+
+
+            }
+//Codigo de Animacion Acierto
+        } else{
+            //Codigo de Animacion Fallo
+            gn.fallo();
+            System.out.println("Se ha anotado un fallo");
+
+
+        }
 
     }
 

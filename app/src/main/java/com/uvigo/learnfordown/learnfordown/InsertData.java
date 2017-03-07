@@ -2,6 +2,8 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 
+import java.util.HashMap;
+
 /**
  * Created by Juani on 13/02/2017.
  */
@@ -18,9 +20,10 @@ public class InsertData {
 
 
     }
-    public void insertar() {
+    public void insertar(String nombre, int edad, HashMap<String,Boolean>gustos) {
         insertarNiveles();
         insertarFotos();
+        db.insertar_user(nombre,edad,gustos);
         db.close();
     }
 
@@ -43,8 +46,8 @@ public class InsertData {
         db.insertar_foto("b","bre","trabada","brecol","Mi comida favorita es el *",R.drawable.brecol,"comida",2,"bvr");
         db.insertar_foto("b","bri","trabada","bricolaje","poner frase aqui",R.drawable.bricolaje,"otro",4,"bvr");
         db.insertar_foto("b","bro","trabada","brote","Aquí hay un * de hortensias",R.drawable.brote,"otro",2,"bvr");
-        db.insertar_foto("b","bol","directa","bol","",R.drawable.bol,"otros",1,"mono");
-        db.insertar_foto("b","buey","directa","buey","",R.drawable.buey,"animales",1,"mono");
+        db.insertar_foto("b","bol","directa","bol","Pon agua en es *",R.drawable.bol,"otros",1,"mono");
+        db.insertar_foto("b","buey","directa","buey","Qué bonito es ese *",R.drawable.buey,"animales",1,"mono");
 
         db.insertar_foto("c","co","directa","coche","El * de mi madre es gris ",R.drawable.coche,"vehiculos",2,"kcq");
         db.insertar_foto("c","ca","directa","caballo","Ayer monté a * ",R.drawable.caballo,"animales",3,"kcq");
@@ -84,14 +87,14 @@ public class InsertData {
         db.insertar_foto("d","di","directa","dibujar","Me encanta * y pintar",R.drawable.dibujar,"otros",3,"d");
         db.insertar_foto("d","di","directa","dinero","Mis abuelos a veces me dan *",R.drawable.dinero,"otros",3,"d");
         db.insertar_foto("d","di","directa","diploma","De mayor quiero tener un *",R.drawable.diploma,"otros",3,"d");
-        db.insertar_foto("d","do","directa","domino","La semana pasada le gané a mi primo al *",R.drawable.domino,"otros",3,"d");
+        db.insertar_foto("d","do","directa","domino","Uno más uno es  *",R.drawable.domino,"otros",3,"d");
         db.insertar_foto("d","du","directa","ducha","Deberían poner más * en las playas",R.drawable.ducha,"casa",2,"d");
         db.insertar_foto("d","da","directa","datiles","*",R.drawable.datiles,"comida",3,"d");
         db.insertar_foto("d","de","directa","dedal","*",R.drawable.dedal,"casa",2,"d");
         db.insertar_foto("d","de","directa","dedo"," * ",R.drawable.dedo,"otros",2,"d");
         db.insertar_foto("d","di","directa","dinosaurio"," * ",R.drawable.dinosaurio,"animales",4,"d");
         db.insertar_foto("d","do","directa","doce"," * ",R.drawable.doce,"otros",2,"d");
-        db.insertar_foto("d","dos","directa","dos"," * ",R.drawable.dos,"otros",1,"mono");
+        db.insertar_foto("d","dos","directa","dos","Uno mas uno es * ",R.drawable.dos,"otros",1,"mono");
 
         db.insertar_foto("e","e","directa","elefante","En en zoo hay *",R.drawable.elefante,"animales",4,"vocales");
 
@@ -245,7 +248,7 @@ public class InsertData {
         db.insertar_foto("s","sal","directa","sal","",R.drawable.sal,"comida",1,"mono");
         db.insertar_foto("s","seis","directa","seis","",R.drawable.seis,"otros",1,"mono");
         db.insertar_foto("s","sol","directa","sol","",R.drawable.sol,"otros",1,"mono");
-        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+    //    db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("a","as","inversa","ascensor","Para ir a la última planta de edificio subimos en *",R.drawable.ascensor,"otro",3,"s");
         db.insertar_foto("a","as","inversa","aspiradora","Mi padre está pasando la * en el salón",R.drawable.aspiradora,"otro",4,"s");
         db.insertar_foto("e","es","inversa","espagueti","poner frase aqui",R.drawable.espagueti,"comida",4,"s");

@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -17,6 +18,7 @@ import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
+import java.io.File;
 import java.util.ArrayList;
 
 public class home_screen extends AppCompatActivity {
@@ -24,6 +26,7 @@ public class home_screen extends AppCompatActivity {
     private GoogleApiClient client;
     private   GestionNiveles gn;
     TextView titulo;
+    boolean registrado=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,15 +40,18 @@ public class home_screen extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //Prueba bd
-
+/*
         Context context =this.getApplicationContext();
         context.deleteDatabase("learn.sqlite");
         DataBaseManager db = new DataBaseManager(context);
 
         InsertData iD = new InsertData(context);
         iD.insertar();
-        db.insertar_user("pepe",5);
-
+        //db.insertar_user("pepe",5);
+*/
+        Context context =this.getApplicationContext();
+        File dbFile = context.getDatabasePath("learn.sqlite");
+        registrado = dbFile.exists();
 
 
     }
@@ -55,14 +61,27 @@ public class home_screen extends AppCompatActivity {
      */
     public void sendMessage(View view) {
         // Do something in response to button
-        Intent intent = new Intent(home_screen.this, menu_screen.class);
-        startActivity(intent);
+        if(registrado) {
+            Intent intent = new Intent(home_screen.this, menu_screen.class);
+            startActivity(intent);
+        }
+        else{
+            lanzaAlerta();
+        }
     }
+
+
 
     public void sendMessage2(View view) {
         // Do something in response to button
-        Intent intent = new Intent(home_screen.this, menu_write_screen.class);
-        startActivity(intent);
+        if(registrado) {
+            Intent intent = new Intent(home_screen.this, menu_write_screen.class);
+            startActivity(intent);
+        }
+
+        else{
+            lanzaAlerta();
+        }
     }
     public void ajustes (View view){
         Intent intent1 = new Intent(home_screen.this, login_screen.class);
@@ -76,6 +95,14 @@ public class home_screen extends AppCompatActivity {
         intent.addCategory(Intent.CATEGORY_HOME);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    private void lanzaAlerta() {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle("Registre un usuario en el boton de ajustes");
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+
     }
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
