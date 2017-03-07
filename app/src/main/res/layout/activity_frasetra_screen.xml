@@ -9,8 +9,6 @@
     android:background="@mipmap/ic_launcher1"
     android:weightSum="1">
 
-
-
     <LinearLayout
 
         android:orientation="horizontal"
@@ -68,16 +66,6 @@
 
 
     </LinearLayout>
-
-
-    <!--LinearLayout
-        android:layout_weight="0.1"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGame"-->
-
-
     <TextView
         android:layout_weight="0.15"
         android:text="FRASES CON SÍLABAS TRABADAS"
@@ -91,10 +79,6 @@
         android:textAlignment="center"
         android:textColor="@android:color/white"
         android:background="@color/colorGame"/>
-
-    <!--/LinearLayout-->
-
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="0.7"
@@ -159,6 +143,4 @@
             android:layout_weight="0.25"
             android:textColor="@color/Morado" />
     </LinearLayout>
-
-
 </LinearLayout>

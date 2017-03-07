@@ -4,21 +4,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:weightSum="1"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
     android:background="@mipmap/ic_launcher1"
-    android:layout_width="match_parent">
-
+    android:weightSum="1">
 
 
     <LinearLayout
+
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="125dp"
-        android:background="@color/colorGame">
+        android:layout_height="wrap_content"
+        android:background="@color/colorGame"
+        android:layout_weight="0.1"
+        android:weightSum="1">
 
         <ImageButton
-            android:layout_width="187dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button4"
             android:src="@mipmap/icon_backarrow"
@@ -27,42 +29,214 @@
             android:cropToPadding="true"
             android:visibility="visible"
             android:onClick="BackArrow"
-            android:scaleType="fitCenter" />
+            android:scaleType="fitCenter"
+            android:layout_weight="0.01" />
 
         <TextView
             android:text="¡VAMOS A UNIR!"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="1"
+            android:layout_weight="0.7"
+            android:gravity="center"
+            android:textSize="40sp"
             android:textStyle="bold"
-            android:textSize="60sp"
+            android:maxLines="1"
             android:textAlignment="center"
-            android:textColor="@android:color/white"
-            android:paddingTop="25dp" />
+            android:textColor="@android:color/white" />
+
+
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="102dp"
-            android:layout_height="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button5"
             android:onClick="goHome"
-            android:layout_weight="0.03"
+            android:layout_weight="0.15"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
         <ImageButton
             android:src="@mipmap/icon_help"
-            android:layout_width="102dp"
-            android:layout_height="130dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/button6"
-            android:layout_weight="0.03"
+            android:layout_weight="0.15"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
 
     </LinearLayout>
+    <LinearLayout
 
-    <ImageButton
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Blanco"
+        android:layout_weight="0.15"
+        android:weightSum="1">
+
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:numStars="6"
+            android:stepSize="1.0"
+            android:rating="0"
+            android:isIndicator="true"
+            android:gravity="center"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:layout_weight="0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.7"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.15"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:visibility="invisible"
+                android:id="@+id/editText1" />
+
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_weight="0.15"
+        android:layout_height="match_parent"
+        android:weightSum="1">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton1"
+            android:onClick="pulsar"
+            android:layout_weight="0.3"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:gravity="center"
+            android:background="@color/Blanco"
+            android:textSize="36sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.55"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:text="PLATO"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton2"
+            android:onClick="pulsar"
+            android:layout_weight="0.3"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:background="@color/Blanco"
+            android:textSize="36sp" />
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.05"
+            android:visibility="invisible"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/imageButton3"
+            android:onClick="pulsar"
+            android:layout_weight="0.3"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:background="@color/Blanco"
+            android:textSize="36sp" />
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.35"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:visibility="invisible"
+                android:id="@+id/editText" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.15"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:text="PLANO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:onClick="pulsar"
+                android:layout_weight="0.3"
+                android:gravity="center"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp"
+                android:textAllCaps="false" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.55"
+                android:visibility="invisible"/>
+
+            <Button
+                android:text="PLATO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button1"
+                android:onClick="pulsar"
+                android:layout_weight="0.3"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.05"
+                android:visibility="invisible"/>
+
+            <Button
+                android:text="PLÁTANO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button2"
+                android:onClick="pulsar"
+                android:layout_weight="0.3"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp" />
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+    <!--ImageButton
         android:layout_width="170dp"
         android:layout_height="170dp"
         android:layout_marginTop="220dp"
@@ -140,6 +314,6 @@
         android:backgroundTint="@color/amarillo"
         android:progressTint="#FFFDED1B"
         android:maxHeight="@dimen/activity_horizontal_margin"
-        android:minWidth="@dimen/activity_horizontal_margin" />
+        android:minWidth="@dimen/activity_horizontal_margin" /-->
 </LinearLayout>
 

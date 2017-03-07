@@ -32,7 +32,7 @@
             android:layout_weight="0.01" />
 
         <TextView
-            android:text="¿POR QUÉ LETRA EMPIEZA"
+            android:text="¿POR QUÉ LETRA EMPIEZA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
