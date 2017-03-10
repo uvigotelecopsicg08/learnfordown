@@ -126,7 +126,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         String buttonText = b.getText().toString();
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                 -50.0f, 0.0f);
-        animation.setDuration(2000);
+        animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -145,7 +145,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
 
                     //Codigo de Animacion Acierto
-                    if (aciertos == 2) {
+
                         gn.acierto();
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
@@ -168,7 +168,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
                         }
                         aciertos = 0;
-                    }
+
                 } else {
                     gn.fallo();
                 }

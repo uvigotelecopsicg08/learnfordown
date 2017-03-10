@@ -161,7 +161,6 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-                    if (aciertos == 2) {
                         gn.acierto();
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
@@ -184,7 +183,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
 
                         }
                         aciertos = 0;
-                    }
+
                 } else {
                     gn.fallo();
                     //Codigo de Animacion Fallo

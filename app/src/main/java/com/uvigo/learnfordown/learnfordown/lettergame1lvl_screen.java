@@ -137,7 +137,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     }
 
     public void ButtonCheck(View v) {
-        /*
+
         Button b = (Button) v;
         ButtonActual = b;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
@@ -197,7 +197,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             }
         });
         b.startAnimation(animation);
-        */
+
+
+
+        /// Sin animacion
+        /*
         Button b = (Button) v;
         ButtonActual = b;
         if (Correcta.equals(ButtonActual.getText().toString())){
@@ -233,6 +237,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
 
         }
+        */
 
     }
 

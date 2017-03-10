@@ -18,6 +18,7 @@ public class GestionNiveles {
     private int id_user;
     private String tipo;
     private String subnivel;
+    private int numeroFotos;
     DataBaseManager db;
 
 
@@ -29,16 +30,16 @@ public class GestionNiveles {
     }
 
     public boolean isnivelCompletado() {
-        if (dificultad == 1 && aciertos >= 3) {
+        if ((dificultad == 1 && aciertos >= 3)||(numeroFotos==aciertos)) {
             return true;
         } else {
-            if (dificultad == 2 && aciertos >= 5) {
+            if ((dificultad == 2 && aciertos >= 5)||(numeroFotos==aciertos)) {
                 return true;
             } else {
-                if (dificultad == 3 && aciertos >= 8) {
+                if ((dificultad == 3 && aciertos >= 8)||(numeroFotos==aciertos)) {
                     return true;
                 } else {
-                    if (dificultad == 4 && aciertos >= 10) {
+                    if ((dificultad == 4 && aciertos >= 10)||(numeroFotos==aciertos)) {
                         return true;
                     } else {
                         return false;
@@ -126,6 +127,7 @@ public class GestionNiveles {
                 }while(cursor.moveToNext());
             }
         }
+        numeroFotos=fotos.size();
         return  fotos;
     }
 
@@ -142,21 +144,21 @@ public class GestionNiveles {
         System.out.println("id "+ id_nivel+" tipo: "+tipo+"dificultad: "+ dificultad+"subnivel:  "+ subnivel);
     }
 
-    public void rellenarConletras(String letraElegida,ArrayList<String> horizontalList) {
-       // String relleno[]={"A","B","C","D","E","F","G","H","I","J","K","L","M","Ñ","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+    public void rellenarConletras(String elegida,ArrayList<String> horizontalList) {
+
         String relleno[]=null;
-        if(tipo.contains("inversas")||tipo.contains("trabadas")){
-            relleno= generaRelleno();
+        if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu"))){
+            relleno= generaRelleno(elegida);
             System.out.println("Genero el relleno de manera artificial");
         }else {
             relleno = db.getRelleno(tipo, subnivel);
         }
         int posicionArray;
         int posicionesUsadas[]= {-1,-1,-1,-1};
-        horizontalList.add(letraElegida);
+        horizontalList.add(elegida);
         for(int i=0;i<4;i++){
             posicionArray=  (int)Math.random()*relleno.length;
-            while((relleno[posicionArray].toUpperCase()).equals(letraElegida)||posicionArray==posicionesUsadas[0]||posicionArray==posicionesUsadas[1]||posicionArray==posicionesUsadas[2]||posicionArray==posicionesUsadas[3]){
+            while((relleno[posicionArray].toUpperCase()).equals(elegida)||posicionArray==posicionesUsadas[0]||posicionArray==posicionesUsadas[1]||posicionArray==posicionesUsadas[2]||posicionArray==posicionesUsadas[3]){
                 posicionArray=  (int)(Math.random()*relleno.length);
             }
             horizontalList.add(relleno[posicionArray]);
@@ -164,19 +166,32 @@ public class GestionNiveles {
         }
     }
 
-    private String[] generaRelleno() {
+    private String[] generaRelleno(String elegida) {
         String vocales[]= new String[]{"a","e","i","o","u"};
         String resultado[]=new String[5];
-        if(tipo.contains("inversa")){
-            for(int i=0;i<vocales.length;i++){
-                resultado[i]=vocales[i]+subnivel;
+        String consonantes[]={"B","C","D","F","G","H","J","K","L","M","N","Ñ","P","Q","R","S","T","V","W","X","Y","Z"};
+        String digrafos[] ={"ch","ll",};
+        if(tipo.equals("silabasdirectas")){
+            for(int j=0;j<consonantes.length;j++) {
+                if(elegida.toUpperCase().contains(consonantes[j])) {
+                    for (int i = 0; i < vocales.length; i++) {
+                        resultado[i] = consonantes[j] + vocales[i];
+                    }
+                }
             }
         }
-        else{
-            for(int i=0;i<vocales.length;i++){
-                resultado[i]=subnivel+vocales[i];
+        else {
+            if (tipo.contains("inversa")) {
+                for (int i = 0; i < vocales.length; i++) {
+                    resultado[i] = vocales[i] + subnivel;
+                }
+            } else {
+                for (int i = 0; i < vocales.length; i++) {
+                    resultado[i] = subnivel + vocales[i];
+                }
             }
         }
+
         return  resultado;
     }
 
