@@ -66,7 +66,7 @@ public class login_screen extends AppCompatActivity {
 
     }
 */
-    void registrar(View v) {
+    public void registrar(View v) {
         SpannableStringBuilder nombreSpanable = (SpannableStringBuilder) textoNombre.getText();
         SpannableStringBuilder edadStringSpanable =  (SpannableStringBuilder) textoEdad.getText();
        String nombre= nombreSpanable.toString();

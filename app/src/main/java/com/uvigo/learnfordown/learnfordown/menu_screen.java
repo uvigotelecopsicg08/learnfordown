@@ -257,19 +257,19 @@ public class menu_screen extends AppCompatActivity {
 
         return nameValues;
     }
-    void SpinnerLetterUp(View v){
+  public   void SpinnerLetterUp(View v){
         nameValueSpinner.setVisibility(View.VISIBLE);
         nameValueSpinner.performClick();
     }
-    void SpinnerSilabaUp(View v){
+ public    void SpinnerSilabaUp(View v){
         nameValueSpinner1.setVisibility(View.VISIBLE);
         nameValueSpinner1.performClick();
     }
-    void SpinnerPalabraUp(View v){
+ public    void SpinnerPalabraUp(View v){
         nameValueSpinner2.setVisibility(View.VISIBLE);
         nameValueSpinner2.performClick();
     }
-    void SpinnerFraseUp(View v){
+ public    void SpinnerFraseUp(View v){
         nameValueSpinner3.setVisibility(View.VISIBLE);
         nameValueSpinner3.performClick();
     }

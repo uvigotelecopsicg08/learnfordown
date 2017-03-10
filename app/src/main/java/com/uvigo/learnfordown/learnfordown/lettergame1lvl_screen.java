@@ -37,9 +37,11 @@ import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 
 public class lettergame1lvl_screen extends AppCompatActivity {
+
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+
     String Correcta;
     Button ButtonActual;
     TextView titulo,letracorrecta;
@@ -47,7 +49,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="leerletras";
-    boolean siguientepalabra=true;
+
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int contador=0;
@@ -62,8 +64,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lettergame1lvl_screen);
+
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
