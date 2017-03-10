@@ -126,8 +126,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-                    Log.i("pulsar()", "CORRECTO!");
-                    Toast.makeText(getApplicationContext(), "CORRECTO!", Toast.LENGTH_LONG).show();
                     contador++;
                     float rating = 0;
                     for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -181,71 +179,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             }
         });
         bAxu.startAnimation(animation);
-
-
-/*
-        switch (v.getId()) {
-            case R.id.button1:
-                if (figure.equals(button1)) {
-                    Log.i("pulsar()", "CORRECTO!");
-                    Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
-                    contador++;
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if(contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                        toast.show();
-                    }
-                }
-                break;
-            case R.id.button2:
-                if (figure.equals(button2)) {
-                    Log.i("pulsar()", "CORRECTO!");
-                    Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
-                    contador++;
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if(contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                        toast.show();
-                    }
-                }
-                break;
-            case R.id.button3:
-                if (figure.equals(button3)) {
-                    Log.i("pulsar()", "CORRECTO!");
-                    Toast.makeText(this, "CORRECTO!", Toast.LENGTH_LONG).show();
-                    contador++;
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if(contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                        toast.show();
-                    }
-                }
-                break;
-        }*/
     }
 
     private void cambiarFoto() {

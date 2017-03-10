@@ -224,8 +224,8 @@ public class InsertData {
         db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"mono");
         db.insertar_foto("p","pi","directa","pimiento","El * es rojo",R.drawable.pimiento,"comida",3,"p");
         db.insertar_foto("p","pez","directa","pez","",R.drawable.pez,"animales",1,"mono");
-        db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
-        db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
+        //db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
+        //db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
         db.insertar_foto("p","pla","trabada","plato","Me compre un *",R.drawable.plato,"comida",2,"pl");
         db.insertar_foto("p","plu","trabada","pluma","A la gallina se le cayó una *",R.drawable.pluma,"otro",2,"pl");
 

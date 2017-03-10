@@ -1,141 +1,189 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_lettergame1lvl_screen"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uvigo.learnfordown.learnfordown.lettergame1lvl_screen"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/ic_launcher1"
     android:weightSum="1">
 
-
     <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:weightSum="1"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:background="@color/colorGame"
+        android:layout_weight="0.15"
+        android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:background="@color/colorGame">
-
-            <ImageButton
-                android:layout_width="187dp"
-                android:layout_height="match_parent"
-                android:id="@+id/button3"
-                android:src="@mipmap/icon_backarrow"
-                android:background="@color/colorGame"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:visibility="visible"
-                android:onClick="BackArrow"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                android:text="¿POR QUÉ LETRA EMPIEZA?"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textSize="60sp"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:paddingTop="25dp" />
-            <ImageButton
-                android:src="@mipmap/ic_home"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
-                android:id="@+id/button5"
-                android:onClick="goHome"
-                android:layout_weight="0.03"
-                android:scaleType="fitCenter"
-                android:background="@color/colorGame" />
-
-            <ImageButton
-                android:src="@mipmap/icon_help"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
-                android:id="@+id/button4"
-                android:layout_weight="0.03"
-                android:scaleType="fitCenter"
-                android:background="@color/colorGame" />
-
-
-        </LinearLayout>
-
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
+        <ImageButton
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/Blanco"
-            android:weightSum="1">
+            android:id="@+id/button3"
+            android:src="@mipmap/icon_backarrow"
+            android:background="@color/colorGame"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:visibility="visible"
+            android:onClick="BackArrow"
+            android:scaleType="fitCenter"
+            android:layout_weight="0.01" />
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/horizontal_recycler_view"
-                android:orientation="horizontal"
-                android:background="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="228dp"
-                android:layout_marginTop="107dp"
-                android:layout_below="@+id/textView4"
-                android:layout_alignParentEnd="true" />
+        <TextView
+            android:text="¿POR QUÉ LETRA EMPIEZA?"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:layout_weight="0.59"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
 
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="150dp"
-                android:numStars="6"
-                android:stepSize="1.0"
-                android:scaleX="2"
-                android:scaleY="2"
-                android:rating="0"
-                android:isIndicator="true"
-                android:backgroundTint="@color/amarillo"
-                android:progressTint="#FFFDED1B"
-                android:state_pressed="true"
-                android:maxHeight="@dimen/activity_horizontal_margin"
-                android:minWidth="@dimen/activity_horizontal_margin" />
 
-            <ImageView
-                android:layout_width="339dp"
-                app:srcCompat="@drawable/casa"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_height="200dp"
-                android:layout_marginTop="51dp"
-                android:layout_marginLeft="257dp"
-                android:layout_marginStart="257dp"
-                android:layout_below="@+id/ratingBar"
-                android:layout_alignLeft="@+id/ratingBar"
-                android:layout_alignStart="@+id/ratingBar" />
+        <ImageButton
+            android:src="@mipmap/ic_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button5"
+            android:onClick="goHome"
+            android:layout_weight="0.2"
+            android:scaleType="fitCenter"
+            android:background="@color/colorGame" />
+        <ImageButton
+            android:src="@mipmap/icon_help"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button4"
+            android:layout_weight="0.2"
+            android:scaleType="fitCenter"
+            android:background="@color/colorGame" />
 
-            <TextView
-                android:gravity="center"
-                android:paddingTop="0sp"
-                android:text="C"
-                android:background="@color/NaranjaClarito"
-                android:id="@+id/textView4"
-                android:layout_weight="0.25"
-                android:layout_width="250dp"
-                android:layout_marginEnd="61dp"
-                android:layout_height="200dp"
-                android:textSize="150sp"
-                android:textColor="@color/Negro"
-                android:layout_marginRight="61dp"
-                android:layout_alignTop="@+id/imageView2"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
-
-        </RelativeLayout>
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Blanco"
+        android:layout_weight="0.1"
+        android:weightSum="1">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:numStars="6"
+            android:stepSize="1.0"
+            android:rating="0"
+            android:isIndicator="true"
+            android:gravity="center"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:layout_weight="0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                app:srcCompat="@drawable/casa"
+                android:id="@+id/imageView2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="normal|bold"
+                android:text="C"
+                android:background="@color/NaranjaClarito"
+                android:id="@+id/textView4"
+                android:textSize="45sp"
+                android:maxLines="1"
+                android:textAlignment="center"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.2"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.35"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+</LinearLayout>
 

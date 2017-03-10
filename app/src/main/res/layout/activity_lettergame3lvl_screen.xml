@@ -1,124 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_lettergame3lvl_screen"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.uvigo.learnfordown.learnfordown.lettergame3lvl_screen"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@mipmap/ic_launcher1"
     android:weightSum="1">
 
-
     <LinearLayout
+
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">
+        android:layout_height="wrap_content"
+        android:background="@color/Rojo"
+        android:layout_weight="0.15"
+        android:weightSum="1">
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:background="@color/Rojo">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button3"
+            android:src="@mipmap/icon_backarrow"
+            android:background="@color/Rojo"
+            android:adjustViewBounds="true"
+            android:cropToPadding="true"
+            android:visibility="visible"
+            android:onClick="BackArrow"
+            android:scaleType="fitCenter"
+            android:layout_weight="0.01" />
 
-            <ImageButton
-                android:layout_width="187dp"
-                android:layout_height="match_parent"
-                android:onClick="BackArrow"
-                android:id="@+id/button3"
-                android:src="@mipmap/icon_backarrow"
-                android:background="@color/Rojo"
-                android:adjustViewBounds="true"
-                android:cropToPadding="true"
-                android:visibility="visible"
-                android:scaleType="fitCenter" />
-
-            <TextView
-                android:text="¿POR QUÉ LETRA EMPIEZA?"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:id="@+id/textView2"
-                android:layout_weight="1"
-                android:textStyle="bold"
-                android:textSize="60sp"
-                android:textAlignment="center"
-                android:textColor="@android:color/white"
-                android:paddingTop="25dp" />
-            <ImageButton
-                android:src="@mipmap/ic_home"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
-                android:id="@+id/button5"
-                android:onClick="goHome"
-                android:layout_weight="0.03"
-                android:scaleType="fitCenter"
-                android:background="@color/Rojo" />
-            <ImageButton
-                android:src="@mipmap/icon_help"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
-                android:id="@+id/button4"
-                android:layout_weight="0.03"
-                android:scaleType="fitCenter"
-                android:background="@color/Rojo" />
+        <TextView
+            android:text="¿POR QUÉ LETRA EMPIEZA?"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:layout_weight="0.59"
+            android:gravity="center"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
 
 
-        </LinearLayout>
-
-        <RelativeLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="125dp"
-            android:background="@color/Blanco"
-            android:layout_weight="0.34"
-            android:weightSum="1"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentStart="true">
-
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/horizontal_recycler_view"
-                android:orientation="horizontal"
-                android:background="#fff"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.62"
-                android:layout_below="@+id/imageView2"
-                android:layout_alignParentStart="true"
-                android:layout_marginTop="56dp" />
-
-            <RatingBar
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/ratingBar"
-                android:layout_marginTop="30dp"
-                android:layout_marginLeft="150dp"
-                android:numStars="6"
-                android:stepSize="1.0"
-                android:scaleX="2"
-                android:scaleY="2"
-                android:rating="0"
-                android:isIndicator="true"
-                android:backgroundTint="@color/amarillo"
-                android:progressTint="#FFFDED1B"
-                android:maxHeight="@dimen/activity_horizontal_margin"
-                android:minWidth="@dimen/activity_horizontal_margin" />
-
-            <ImageView
-                android:layout_width="439dp"
-                android:layout_height="300dp"
-                android:src="@drawable/oso"
-                android:id="@+id/imageView2"
-                android:layout_weight="0.19"
-                android:layout_marginEnd="103dp"
-                android:layout_alignTop="@+id/ratingBar"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="103dp" />
-        </RelativeLayout>
+        <ImageButton
+            android:src="@mipmap/ic_home"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button5"
+            android:onClick="goHome"
+            android:layout_weight="0.2"
+            android:scaleType="fitCenter"
+            android:background="@color/Rojo" />
+        <ImageButton
+            android:src="@mipmap/icon_help"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/button4"
+            android:layout_weight="0.2"
+            android:scaleType="fitCenter"
+            android:background="@color/Rojo" />
 
 
     </LinearLayout>
 
-</RelativeLayout>
+    <LinearLayout
+
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Blanco"
+        android:layout_weight="0.1"
+        android:weightSum="1">
+        <RatingBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/ratingBar"
+            android:numStars="6"
+            android:stepSize="1.0"
+            android:rating="0"
+            android:isIndicator="true"
+            android:gravity="center"
+            android:backgroundTint="@color/amarillo"
+            android:progressTint="#FFFDED1B"
+            android:layout_weight="0"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.1"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.8"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                app:srcCompat="@drawable/oso"
+                android:id="@+id/imageView2" />
+        </LinearLayout>
+
+
+
+
+
+
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.45"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.15"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
+
+
+
+
 
