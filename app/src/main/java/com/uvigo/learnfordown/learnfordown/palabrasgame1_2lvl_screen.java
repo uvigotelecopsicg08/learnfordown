@@ -34,6 +34,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     ImageButton imageButton1,imageButton2,imageButton3;
     Button button1,button2,button3;
     int aciertos=0;
+    int nivel;
     boolean cambiado=false;
 
 
@@ -57,12 +58,13 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             tipoNivel = extras.getString("tipoSilaba");
+            nivel = extras.getInt("nivel");
             System.out.println(tipoNivel);
         }
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,1);
+        gn.setNivel(tipoNivel,nivel);
         fp=gn.getFotos();
         cambiarFoto();
 
@@ -77,7 +79,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasgame1_1lvl_screen.class);
+        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, menu_screen.class);
         startActivity(intent1);
     }
     public void goHome (View v){
@@ -327,9 +329,9 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         arrayText.add(fp.get(1+i).getPalabra());
         arrayText.add(fp.get(2+i).getPalabra());
         Collections.shuffle(arrayText);
-        button1.setText(arrayText.get(0));
-        button2.setText(arrayText.get(1));
-        button3.setText(arrayText.get(2));
+        button1.setText(arrayText.get(0).toUpperCase());
+        button2.setText(arrayText.get(1).toUpperCase());
+        button3.setText(arrayText.get(2).toUpperCase());
 
 
         if(fp.get(0+i).getPalabra()==arrayText.get(0)){

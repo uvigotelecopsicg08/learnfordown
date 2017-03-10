@@ -71,7 +71,6 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
-        System.out.println("Se usa el codigo");
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);

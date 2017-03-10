@@ -43,6 +43,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     int i=0;
     int aciertos=0;
     TextView textView;
+    int nivel;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -65,12 +66,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             tipoNivel = extras.getString("tipoSilaba");
-            System.out.println(tipoNivel);
+            nivel = extras.getInt("nivel");
         }
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel, 1);
+        gn.setNivel(tipoNivel, nivel);
         fp = gn.getFotos();
         figure=fp.get(i).getPalabra().toUpperCase();
         palabra.setImageResource(fp.get(i).getFoto());
