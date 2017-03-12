@@ -154,9 +154,9 @@ public class InsertData {
         db.insertar_foto("a","al","inversa","almeja","poner frase aqui",R.drawable.almeja,"comida",3,"l");
         db.insertar_foto("a","al","inversa","almendras","De los frutos secos lo que más me gusta son las *",R.drawable.almendras,"comida",3,"l");
         db.insertar_foto("a","al","inversa","alcachofa","Esta ensalada lleva *",R.drawable.alcachofa,"comida",4,"l");
-        db.insertar_foto("a","al","inversa","albanil","Mi padre trabaja de *",R.drawable.albanil,"otro",3,"l");
+        db.insertar_foto("a","al","inversa","albañil","Mi padre trabaja de *",R.drawable.albanil,"otro",3,"l");
         db.insertar_foto("a","al","inversa","almohada","Mi * es muy blandita",R.drawable.almohada,"casa",4,"l");
-        db.insertar_foto("u","ul","inversa","baul","En mi casa hay un * para guardar los juguetes",R.drawable.baul,"casa",2,"l"); //La vocal y el sonido de esto...
+        db.insertar_foto("u","ul","inversa","baúl","En mi casa hay un * para guardar los juguetes",R.drawable.baul,"casa",2,"l"); //La vocal y el sonido de esto...
 
         db.insertar_foto("ll","lla","directa","llama","poner frase aqui",R.drawable.llama,"animales",2,"lly");
         db.insertar_foto("ll","lla","directa","llave","No puedo perder la * de casa",R.drawable.llave,"otro",2,"lly");
@@ -224,8 +224,8 @@ public class InsertData {
         db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"mono");
         db.insertar_foto("p","pi","directa","pimiento","El * es rojo",R.drawable.pimiento,"comida",3,"p");
         db.insertar_foto("p","pez","directa","pez","",R.drawable.pez,"animales",1,"mono");
-        //db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
-        //db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
+        db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
+        db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
         db.insertar_foto("p","pla","trabada","plato","Me compre un *",R.drawable.plato,"comida",2,"pl");
         db.insertar_foto("p","plu","trabada","pluma","A la gallina se le cayó una *",R.drawable.pluma,"otro",2,"pl");
 
@@ -254,7 +254,7 @@ public class InsertData {
         db.insertar_foto("s","sal","directa","sal","",R.drawable.sal,"comida",1,"mono");
         db.insertar_foto("s","seis","directa","seis","",R.drawable.seis,"otros",1,"mono");
         db.insertar_foto("s","sol","directa","sol","",R.drawable.sol,"otros",1,"mono");
-    //    db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("a","as","inversa","ascensor","Para ir a la última planta de edificio subimos en *",R.drawable.ascensor,"otro",3,"s");
         db.insertar_foto("a","as","inversa","aspiradora","Mi padre está pasando la * en el salón",R.drawable.aspiradora,"otro",4,"s");
         db.insertar_foto("e","es","inversa","espagueti","poner frase aqui",R.drawable.espagueti,"comida",4,"s");

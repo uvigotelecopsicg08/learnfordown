@@ -1,12 +1,5 @@
 package  com.uvigo.learnfordown.learnfordown;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-
-import org.paukov.combinatorics.Factory;
-import org.paukov.combinatorics.Generator;
-import org.paukov.combinatorics.ICombinatoricsVector;
-
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -15,22 +8,29 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup.LayoutParams;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-import com.uvigo.learnfordown.learnfordown.Patrones;
-import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
+
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
-import  com.uvigo.learnfordown.learnfordown.strokes.app.C;
-import  com.uvigo.learnfordown.learnfordown.strokes.app.U;
-import  com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
-import  com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
-import  com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
-import  com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
-import android.view.View;
+import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
+import com.uvigo.learnfordown.learnfordown.strokes.app.C;
+import com.uvigo.learnfordown.learnfordown.strokes.app.U;
+import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
+import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
+import com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
+import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
+
+import org.paukov.combinatorics.Factory;
+import org.paukov.combinatorics.Generator;
+import org.paukov.combinatorics.ICombinatoricsVector;
+
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class StrokesTrainingActivity extends Activity {
 

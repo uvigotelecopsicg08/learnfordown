@@ -12,6 +12,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+
 import com.uvigo.learnfordown.learnfordown.strokes.app.C;
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
 import com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
@@ -42,9 +43,6 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
-
-
-
     }
 
 
