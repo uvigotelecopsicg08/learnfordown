@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
 
     ImageButton Borrar;
     LinearLayout Lienzo;
+    ImageView plantilla,foto;
     CanvasView canvas;
     GestionNiveles  gn;
     String tipoNivel="leerletras";
@@ -42,7 +44,8 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);                    // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
         setContentView(R.layout.activity_lettergame1lvl_w_screen);   // Establece como layout la pantalla indicada
-
+         plantilla =(ImageView) findViewById(R.id.imageView3);
+        foto= (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
@@ -51,8 +54,9 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
-
-
+        int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
+        plantilla.setImageResource(resId);
+        foto.setImageResource(fp.get(0).getFoto());
     }
 
 
@@ -62,6 +66,9 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
+        int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
+        plantilla.setImageResource(resId);
+        foto.setImageResource(fp.get(0).getFoto());
 
     }
 
