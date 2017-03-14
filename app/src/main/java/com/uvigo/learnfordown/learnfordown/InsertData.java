@@ -14,6 +14,8 @@ public class InsertData {
     private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
     private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr","bvr"};
+    private String[] subnivelesEscribirVocales = new String[] {"a","e","i","o","u"};
+    private String[] subnivelesEscribirConsonantes=new String[]{"b","c","d","f","g","h","j","k","l","m","n","ñ","p","q","r","s","t","v","w","x","y","z"};
     public InsertData(Context context) {
         this.context =context;
         db = new DataBaseManager(context);
@@ -112,7 +114,7 @@ public class InsertData {
         db.insertar_foto("f","fax","directa","fax","poner frase aqui",R.drawable.fax,"otros",1,"mono");
         db.insertar_foto("f","flor","trabada","flor","poner frase aqui",R.drawable.flor,"otros",1,"mono");
 
-        db.insertar_foto("g","ga","directa","gato","poner frase aqui",R.drawable.gato,"animales",1,"gu");
+        db.insertar_foto("g","ga","directa","gato","Me arañó el *",R.drawable.gato,"animales",1,"gu");
         db.insertar_foto("g","gui","directa","guitarra","Quiero aprender a tocar la *",R.drawable.guitarra,"otro",3,"gu");
         db.insertar_foto("g","ga","directa","gallina","poner frase aqui",R.drawable.gallina,"animales",3,"gu");
         db.insertar_foto("g","ga","directa","gallo","Me desperté con el canto del *",R.drawable.gallo,"animales",2,"gu");
@@ -223,7 +225,7 @@ public class InsertData {
         db.insertar_foto("p","pa","directa","patata","Me comi una *",R.drawable.patata,"comida",3,"p");
         db.insertar_foto("p","pan","directa","pan","Me comi un *",R.drawable.pan,"comida",1,"mono");
         db.insertar_foto("p","pi","directa","pimiento","El * es rojo",R.drawable.pimiento,"comida",3,"p");
-        db.insertar_foto("p","pez","directa","pez","",R.drawable.pez,"animales",1,"mono");
+        db.insertar_foto("p","pez","directa","pez","El * vive en el agua",R.drawable.pez,"animales",1,"mono");
         //db.insertar_foto("p","po","directa","policia","El * esta fuerte",R.drawable.policia,"otro",3,"p");
         //db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
         db.insertar_foto("p","pla","trabada","plato","Me compre un *",R.drawable.plato,"comida",2,"pl");
@@ -361,6 +363,12 @@ public class InsertData {
            //     db.insertar_nivel("frasessilabastrabadas",j,subnivelesTrabadas[i]);
             //   }
             db.insertar_nivel("frasessilabastrabadas",j,"subnivelunico");
+        }
+        for(int i=0;i<subnivelesEscribirVocales.length;i++) {
+            db.insertar_nivel("escribirletras", 1,subnivelesEscribirVocales[i]);
+        }
+        for(int i=0;i<subnivelesEscribirConsonantes.length;i++) {
+            db.insertar_nivel("escribirletras", 1,subnivelesEscribirConsonantes[i]);
         }
     }
 }

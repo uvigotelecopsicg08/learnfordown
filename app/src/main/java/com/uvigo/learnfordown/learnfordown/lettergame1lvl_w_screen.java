@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
@@ -30,6 +31,10 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
     ImageButton Borrar;
     LinearLayout Lienzo;
     CanvasView canvas;
+    GestionNiveles  gn;
+    String tipoNivel="leerletras";
+
+    ArrayList<FotoPalabra> fp;
 
 
     @Override
@@ -42,7 +47,10 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
-
+        Context context = this.getApplicationContext();
+        gn = new GestionNiveles(context);
+        gn.setNivel(tipoNivel,1);
+        fp=gn.getFotos();
 
 
     }
