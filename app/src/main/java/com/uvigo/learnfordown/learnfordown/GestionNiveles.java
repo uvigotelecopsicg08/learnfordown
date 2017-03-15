@@ -94,6 +94,7 @@ public class GestionNiveles {
     public ArrayList<FotoPalabra> getFotos(){
         String tiposilaba="";
         int numeroSilabas=0;
+        Cursor cursor=null;
         if(tipo.contains("trabada")){
             tiposilaba="trabada";
         }
@@ -112,7 +113,12 @@ public class GestionNiveles {
         else{
             numeroSilabas=-1;
         }
-       Cursor cursor=  db.buscarFotos(tiposilaba,id_user,subnivel,numeroSilabas);
+        if(!tipo.contains("escribir")) {
+            cursor = db.buscarFotos(tiposilaba, id_user, subnivel, numeroSilabas);
+        }
+        else{
+            cursor = db.buscarFotosbyLetra(id_user, subnivel);
+        }
         ArrayList<FotoPalabra> fotos=new ArrayList<FotoPalabra>();
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
