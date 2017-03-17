@@ -74,15 +74,6 @@
             android:name=".sitrabadas_screen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".sidirectas_w_screen"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".siinversas_w_screen"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".sitrabadas_w_screen"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".palabrasdi_screen"
             android:screenOrientation="landscape" />
         <activity
@@ -120,14 +111,8 @@
             android:screenOrientation="landscape" ></activity>
         <activity android:name=".silabasgame1lvl_w_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame2lvl_w_screen"
-            android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame3lvl_w_screen"
-            android:screenOrientation="landscape" />
         <activity android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame4lvl_w_screen"
-            android:screenOrientation="landscape" ></activity>
     </application>
 
 </manifest>

@@ -296,7 +296,7 @@ public class DataBaseManager {
     public Cursor buscarFotos(String tipo,int id_user,String subnivel,int numeroSilabas){
 
         String tablas=TABLE_AFFINITY+","+TABLE_WORD;
-      String  whereClause =null;
+        String  whereClause =null;
         String[] whereArgs=null;
         if(numeroSilabas>0){
           /*  whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
@@ -447,5 +447,23 @@ public class DataBaseManager {
             }
         return cursor;
 
+    }
+
+    public Cursor buscarFotosbyLetra(int id_user, String subnivel) {
+        String tablas=TABLE_AFFINITY+","+TABLE_WORD;
+        String  whereClause =null;
+        String[] whereArgs=null;
+
+        whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
+                    CN_LETTER+" = ?  ";
+        whereArgs = new String[] {String.valueOf(id_user),subnivel};
+
+
+        String orderBy= CN_AFINITY_RATE +" DESC";
+        Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
+        if(cursor==null){
+            System.out.println("El cursor es nulo");
+        }
+        return cursor;
     }
 }

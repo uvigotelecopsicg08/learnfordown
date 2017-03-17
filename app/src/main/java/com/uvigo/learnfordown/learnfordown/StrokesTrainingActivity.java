@@ -58,13 +58,17 @@ public class StrokesTrainingActivity extends Activity {
 	 * See https://g.co/AppIndexing/AndroidStudio for more information.
 	 */
 	private GoogleApiClient client;
+	String fichero;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_strokes_training);   // Establece como layout la pantalla indicada
-
+		Bundle extras = getIntent().getExtras();
+		if(extras != null) {
+			fichero = extras.getString("fichero");
+		}
 		Lienzo = (LinearLayout) findViewById(R.id.lienzoPatron);
 		canvasView = new TrainingCanvasView(this, DRAW_AREA_X_RELATIVE_POS[samplesCollected], DRAW_AREA_Y_RELATIVE_POS[samplesCollected],
 				DRAW_AREA_RELATIVE_SIZE[samplesCollected]);
@@ -141,7 +145,7 @@ public class StrokesTrainingActivity extends Activity {
 		// Prueba: Generación de un fichero que guarde los datos anteriores en un objeto de tipo Patrón
 		// Este fichero podrá ser único para todos los patrones añadiendole un atributo que identifique la letra
 		// Importante, ahora estoy trabajando solamente con un objeto, luego tendré que cambiarlo por un ArrayList o mapa
-		U.saveObjectToFile(new Patrones("C", normStrokePoints, strokeRadialAngles, strokeCounts, maxNormPointDTWDistance, maxAngularDTWDistance), getApplicationContext(), "C");
+		U.saveObjectToFile(new Patrones(fichero, normStrokePoints, strokeRadialAngles, strokeCounts, maxNormPointDTWDistance, maxAngularDTWDistance), getApplicationContext(), fichero);
 
 		finish();
 	}
