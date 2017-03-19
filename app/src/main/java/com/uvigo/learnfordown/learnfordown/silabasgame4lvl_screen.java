@@ -155,6 +155,24 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                             if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
+                                Intent intent = new Intent(silabasgame4lvl_screen.this, frasegame1lvl_screen.class);
+                                String strName= null;
+                                if(gn.getTipo().contains("directas")){
+                                    strName = "frasessilabasdirectas";
+                                }
+                                else{
+                                    if(gn.getTipo().contains("inversas")){
+                                        strName = "frasessilabasinversas";
+                                    }
+                                    else{
+                                        strName ="frasessilabastrabadas";
+                                    }
+                                }
+
+                                intent.putExtra("tipoSilaba", strName);
+                                intent.putExtra("nivel",1);
+                                startActivity(intent);
+
                             } else {
                                 fp = gn.getFotos();
                                 i = 0;
