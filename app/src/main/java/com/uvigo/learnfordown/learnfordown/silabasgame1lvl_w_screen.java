@@ -74,10 +74,9 @@ public class silabasgame1lvl_w_screen extends AppCompatActivity {
     public void validateStrokes(View v) {
 
 
-        Patrones patronLetra1 = (Patrones) U.loadObjectFromFile(getApplicationContext(), "C");
-        Patrones patronLetra2 = (Patrones) U.loadObjectFromFile(getApplicationContext(), "A");
+        Patrones patronLetra1 = (Patrones) U.loadObjectFromFile(getApplicationContext(), "a");
+        Patrones patronLetra2 = (Patrones) U.loadObjectFromFile(getApplicationContext(), "a");
 
-        // Obtenemos patrón Letra1
 
         ArrayList<LinkedList<Point2D>> loadedNormPointsSamples1 = patronLetra1.getPuntosNormalizados();
         ArrayList<LinkedList<Float>> loadedAnglesSamples1 = patronLetra1.getAngulosRadiales();
@@ -85,13 +84,12 @@ public class silabasgame1lvl_w_screen extends AppCompatActivity {
         Double normPointValidationThreshold1 = patronLetra1.getUmbralNormalizacion();
         Double angularValidationThreshold1 = patronLetra1.getUmbralAngular();
 
-        // Obtenemos patrón Letra2
-
         ArrayList<LinkedList<Point2D>> loadedNormPointsSamples2 = patronLetra2.getPuntosNormalizados();
         ArrayList<LinkedList<Float>> loadedAnglesSamples2 = patronLetra2.getAngulosRadiales();
         ArrayList<Integer> numTrazos_patron2 = patronLetra2.getNumeroTrazos();
         Double normPointValidationThreshold2 = patronLetra2.getUmbralNormalizacion();
         Double angularValidationThreshold2 = patronLetra2.getUmbralAngular();
+
 
 
         // Comprobación patrones correctos
@@ -178,6 +176,7 @@ public class silabasgame1lvl_w_screen extends AppCompatActivity {
 
             // ¿Correcto el patrón 2?
 
+
             try {
                 for (LinkedList<Point2D> normPointsSample : loadedNormPointsSamples2) {
                     sampleCount2++;
@@ -190,7 +189,7 @@ public class silabasgame1lvl_w_screen extends AppCompatActivity {
                 }
 
 
-                avgNormPointDTWDistance2 = avgNormPointDTWDistance2 / sampleCount2;
+                avgNormPointDTWDistance2 = avgNormPointDTWDistance2 / sampleCount1;
 
                 sampleCount2 = 0;
 
@@ -225,7 +224,12 @@ public class silabasgame1lvl_w_screen extends AppCompatActivity {
 
 
 
+                // ** AÑADIDA LA ÚLTIMA FRASE **
+                //Toast.makeText(this, "Normalized points validation = " + normPointValidationStatus + "\n" + "Angular validation = " + angularValidationStatus + "\n" + "Validacion de trazos = " + estadoValidacionTrazos,
+                //Toast.LENGTH_SHORT).show();
+
             }catch (Exception e){ /* Caso de que le de a aceptar pero no escriba nada */ }
+
 
             if (validacionLetra1 == true && validacionLetra2 == true) Toast.makeText(getApplicationContext(), "¡GENIAL!", Toast.LENGTH_LONG).show();
             else{

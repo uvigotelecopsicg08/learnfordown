@@ -40,8 +40,8 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {        // Inicializa la actividad
 
-        super.onCreate(savedInstanceState);                    // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
-        setContentView(R.layout.activity_lettergame1lvl_w_screen);   // Establece como layout la pantalla indicada
+        super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
+        setContentView(R.layout.activity_lettergame1lvl_w_screen);    // Establece como layout la pantalla indicada
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);

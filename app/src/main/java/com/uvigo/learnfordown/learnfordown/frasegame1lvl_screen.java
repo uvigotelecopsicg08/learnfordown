@@ -156,7 +156,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     } else {
                         System.out.print("el nivel esta finalizado");
                         gn.avanzaNivel();
-                        if (!(gn.getTipo().equals(tipoNivel))) {
+                        if (!(gn.getTipo().contains("frases"))) {
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
                         } else {
