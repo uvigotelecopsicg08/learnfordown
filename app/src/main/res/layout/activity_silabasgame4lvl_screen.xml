@@ -29,14 +29,14 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.01" />
+            android:layout_weight="0.1" />
 
         <TextView
             android:text="¿POR QUÉ SÍLABA EMPIEZA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.79"
+            android:layout_weight="0.7"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -99,7 +99,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="0.35"
             android:layout_height="match_parent"
             android:weightSum="1">
         </LinearLayout>

@@ -38,7 +38,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     ImageView palabra;
     GestionNiveles  gn;
     TextView letracorrecta;
-    String tipoNivel="leerletras";
+    String tipoNivel="leerletras",palabracom, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
@@ -80,6 +80,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
         Correcta= fp.get(i).getLetra().toUpperCase();
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
@@ -197,6 +204,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
         Correcta= fp.get(i).getLetra().toUpperCase();
+        palabra.setImageResource(fp.get(i).getFoto());
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
         horizontalAdapter = new HorizontalAdapter(horizontalList);
         horizontalAdapter2 = new HorizontalAdapter(horizontalList2);
 

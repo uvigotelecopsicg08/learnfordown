@@ -209,13 +209,10 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         Correcta= fp.get(i).getSilaba().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
-
-        palabra.setImageResource(fp.get(i).getFoto());
         tmpDownSlash = "";
         for (int i=0;i<Correcta.length();i++){
             tmpDownSlash += " _";
         }
-        System.out.println(fp.get(i).getPalabra() + " xd " + Correcta);
         palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 

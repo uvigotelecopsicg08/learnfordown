@@ -29,16 +29,16 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.01" />
+            android:layout_weight="0.1" />
 
         <TextView
             android:text="¿TE GUSTA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.79"
+            android:layout_weight="0.7"
             android:gravity="center"
-            android:textSize="35sp"
+            android:textSize="45sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:textAlignment="center"
@@ -162,7 +162,9 @@
             android:layout_height="match_parent"
             android:id="@+id/buttonNo"
             android:layout_weight="0.15"
-            android:background="@color/Rojo" />
+            android:background="@color/Rojo"
+            android:textSize="55sp"
+            android:textColor="@android:color/white"/>
 
         <EditText
             android:layout_width="wrap_content"
@@ -178,7 +180,9 @@
             android:layout_weight="0.15"
             android:textColorHint="@color/Verde"
             android:textCursorDrawable="@color/Verde"
-            android:background="@color/Verde" />
+            android:background="@color/Verde"
+            android:textSize="55sp"
+            android:textColor="@android:color/white"/>
 
 
         <EditText

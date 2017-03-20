@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class InsertData {
     DataBaseManager db;
     private Context context;
-    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","f","j","lly","gu","ch","r"};
+    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
     private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr","bvr"};
     private String[] subnivelesVocales = new String[] {"a","e","i","o","u"};
@@ -129,6 +129,11 @@ public class InsertData {
         db.insertar_foto("g","golf","directa","golf","",R.drawable.golf,"otro",1,"mono");
         db.insertar_foto("g","gol","directa","gol","",R.drawable.gol,"otro",1,"mono");
         db.insertar_foto("g","gris","trabada","gris","",R.drawable.gris,"otro",1,"mono");
+
+        db.insertar_foto("h","ho","directa","hotel","poner frase aqui",R.drawable.hotel,"casa",2,"h");
+        db.insertar_foto("h","ho","directa","horario","poner frase aqui",R.drawable.horario,"casa",3,"h");
+        db.insertar_foto("h","ho","directa","horóscopo","poner frase aqui",R.drawable.horoscopo,"casa",4,"h");
+
 
         db.insertar_foto("i","i","directa","iglu","poner frase aqui",R.drawable.iglu,"casa",2,"vocales");
         db.insertar_foto("i","i","directa","imán","poner frase aqui",R.drawable.iman,"otro",2,"vocales");
@@ -256,7 +261,7 @@ public class InsertData {
         db.insertar_foto("s","sal","directa","sal","",R.drawable.sal,"comida",1,"mono");
         db.insertar_foto("s","seis","directa","seis","",R.drawable.seis,"otros",1,"mono");
         db.insertar_foto("s","sol","directa","sol","",R.drawable.sol,"otros",1,"mono");
-    //    db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("a","as","inversa","ascensor","Para ir a la última planta de edificio subimos en *",R.drawable.ascensor,"otro",3,"s");
         db.insertar_foto("a","as","inversa","aspiradora","Mi padre está pasando la * en el salón",R.drawable.aspiradora,"otro",4,"s");
         db.insertar_foto("e","es","inversa","espagueti","poner frase aqui",R.drawable.espagueti,"comida",4,"s");

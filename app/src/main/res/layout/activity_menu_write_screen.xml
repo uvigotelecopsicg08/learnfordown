@@ -36,14 +36,14 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.01" />
+            android:layout_weight="0.1" />
 
         <TextView
             android:text="@string/qu_quieres_practicar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.59"
+            android:layout_weight="0.7"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -58,7 +58,7 @@
             android:layout_height="match_parent"
             android:id="@+id/button7"
             android:onClick="goHome"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/colorPrimary" />
 
@@ -67,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button4"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/colorPrimary" />
 
