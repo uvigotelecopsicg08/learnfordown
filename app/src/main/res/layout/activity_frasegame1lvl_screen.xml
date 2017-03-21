@@ -29,7 +29,7 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.01" />
+            android:layout_weight="0.001" />
 
         <TextView
             android:text="@string/qu_quieres_practicar1"
@@ -73,7 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Blanco"
-        android:layout_weight="0.2"
+        android:layout_weight="0.1"
         android:weightSum="1">
     <RatingBar
         android:layout_width="wrap_content"
@@ -81,6 +81,7 @@
         android:id="@+id/ratingBar"
         android:numStars="6"
         android:stepSize="1.0"
+        android:layout_gravity="center_vertical"
         android:rating="0"
         android:isIndicator="true"
         android:scaleType="fitCenter"
@@ -189,6 +190,11 @@
 
 
     </LinearLayout>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.1"
+        android:visibility="invisible"/>
 
     <!--numStars: indica que consta de esas estrellas
     stepSize:  determina  la cantidad de aumento o disminución de tasa

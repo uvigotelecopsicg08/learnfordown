@@ -163,6 +163,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
                     contador++;
+
+                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    letracorrecta.setText(palabracom);
+
                     pulsar();
                 }
             }

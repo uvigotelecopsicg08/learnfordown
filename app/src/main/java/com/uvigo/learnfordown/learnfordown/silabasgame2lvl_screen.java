@@ -154,6 +154,8 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                     ButtonActual.setEnabled(false);
                     aciertos++;
                     contador++;
+                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    letracorrecta.setText(palabracom);
                     pulsar();
                 }
             }

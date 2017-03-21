@@ -143,7 +143,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-                    if (aciertos == 2) {
+                    if (aciertos == 1) {
                         gn.acierto();
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {

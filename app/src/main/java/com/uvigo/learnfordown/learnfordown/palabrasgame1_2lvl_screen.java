@@ -248,7 +248,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                                     intent.putExtra("tipoSilaba", strName);
                                 }
                                 else{
-                                    intent = new Intent(this, frasegame1lvl_screen.class);
+                                    intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
                                     strName = "frasessilabasdirectas";
                                     intent.putExtra("tipoSilaba", strName);
                                     intent.putExtra("nivel",1);

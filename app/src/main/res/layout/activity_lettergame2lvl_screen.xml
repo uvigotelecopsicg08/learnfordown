@@ -29,7 +29,7 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.01" />
 
 
 
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.7"
+            android:layout_weight="0.79"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -89,6 +89,7 @@
             android:id="@+id/ratingBar"
             android:numStars="6"
             android:stepSize="1.0"
+            android:layout_gravity="center_vertical"
             android:rating="0"
             android:isIndicator="true"
             android:gravity="center"

@@ -29,14 +29,14 @@
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.01" />
 
         <TextView
             android:text="¿TE GUSTA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.7"
+            android:layout_weight="0.79"
             android:gravity="center"
             android:textSize="45sp"
             android:textStyle="bold"
