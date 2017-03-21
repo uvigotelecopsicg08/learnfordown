@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.59"
+            android:layout_weight="0.79"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -51,7 +51,7 @@
             android:layout_height="match_parent"
             android:id="@+id/button5"
             android:onClick="goHome"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/Rojo" />
         <ImageButton
@@ -59,7 +59,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button4"
-            android:layout_weight="0.2"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/Rojo" />
 
@@ -80,6 +80,7 @@
             android:id="@+id/ratingBar"
             android:numStars="6"
             android:stepSize="1.0"
+            android:layout_gravity="center_vertical"
             android:rating="0"
             android:isIndicator="true"
             android:gravity="center"
@@ -98,7 +99,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_weight="0.8"
+            android:layout_weight="0.3"
             android:layout_height="match_parent"
             android:weightSum="1">
         </LinearLayout>

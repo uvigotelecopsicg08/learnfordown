@@ -44,6 +44,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     int aciertos=0;
     TextView textView;
     int nivel;
+    String tmpDownSlash;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -88,7 +89,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
 
 
-        String tmpDownSlash = "";
+        tmpDownSlash = "";
         for (int i = 0; i < figure.length(); i++) {
             tmpDownSlash += " _";
         }
@@ -130,6 +131,11 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
                     contador++;
+
+                    System.out.println(figure);
+                    String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
+                    textView.setText(stringAux);
+
                     float rating = 0;
                     for (int i : new TreeSet<>(thresholds.keySet())) {
                         if(contador < i) {
@@ -158,7 +164,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     } else {
                         System.out.print("el nivel esta finalizado");
                         gn.avanzaNivel();
-                        if (!(gn.getTipo().equals(tipoNivel))) {
+                        if (!(gn.getTipo().contains("frases"))) {
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
                         } else {
@@ -167,7 +173,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                             cambiarFoto();
                             System.out.println("Se debe avanzar el nivel");
                         }
-
                     }
 
                 } else {
@@ -202,13 +207,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         }
         String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);
         textView.setText(stringAux);
-
     }
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("frasegame1lvl_screen Page") // TODO: Define a title for the content shown.
@@ -224,9 +224,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
     }
@@ -234,9 +231,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }

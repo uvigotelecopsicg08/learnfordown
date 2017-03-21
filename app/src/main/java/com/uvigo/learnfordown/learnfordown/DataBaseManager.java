@@ -344,6 +344,13 @@ public class DataBaseManager {
         }
         orderBy= columnas[0] +" ASC";
 
+
+        if(subnivel!=null){
+            if(subnivel.equals("a")||subnivel.equals("e")||subnivel.equals("i")||subnivel.equals("o")||subnivel.equals("u")){
+                subnivel="vocales";
+            }
+        }
+
         if(subnivel!=null &&!(tipo.equals("leerletras")&&!subnivel.equals("vocales"))) {
             if(tipo.contains("silaba")){
                 if(tipo.equals("silabasdirectas")){
@@ -365,6 +372,8 @@ public class DataBaseManager {
             }
 
         }
+
+
 
         Cursor cursor= db.query(true,tablas,columnas,whereClause,whereArgs,null,null,orderBy ,null);
         ArrayList<String> arrayListAux= new ArrayList<>();

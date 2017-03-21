@@ -39,7 +39,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
-    String tipoNivel="silabasdirectas";
+    String tipoNivel="silabasdirectas",palabracom, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
     int contador;
@@ -90,6 +90,14 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
+
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
@@ -144,6 +152,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
                     contador++;
+                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    letracorrecta.setText(palabracom);
                     pulsar();
                 }
             }
@@ -203,6 +213,13 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         System.out.println("+++++++++++++++++"+fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
+
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

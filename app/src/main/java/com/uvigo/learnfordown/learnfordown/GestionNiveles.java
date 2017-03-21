@@ -30,16 +30,16 @@ public class GestionNiveles {
     }
 
     public boolean isnivelCompletado() {
-        if ((dificultad == 1 && aciertos >= 3)||(numeroFotos==aciertos)) {
+        if ((dificultad == 1 && aciertos >= 3)||(numeroFotos<=aciertos)) {
             return true;
         } else {
-            if ((dificultad == 2 && aciertos >= 5)||(numeroFotos==aciertos)) {
+            if ((dificultad == 2 && aciertos >= 5)) {
                 return true;
             } else {
-                if ((dificultad == 3 && aciertos >= 8)||(numeroFotos==aciertos)) {
+                if ((dificultad == 3 && aciertos >= 8)) {
                     return true;
                 } else {
-                    if ((dificultad == 4 && aciertos >= 10)||(numeroFotos==aciertos)) {
+                    if ((dificultad == 4 && aciertos >= 10)) {
                         return true;
                     } else {
                         return false;
@@ -95,6 +95,7 @@ public class GestionNiveles {
         String tiposilaba="";
         int numeroSilabas=0;
         Cursor cursor=null;
+        boolean vocales=false;
         if(tipo.contains("trabada")){
             tiposilaba="trabada";
         }
@@ -113,11 +114,16 @@ public class GestionNiveles {
         else{
             numeroSilabas=-1;
         }
-        if(!tipo.contains("escribir")) {
-            cursor = db.buscarFotos(tiposilaba, id_user, subnivel, numeroSilabas);
+        if(subnivel!=null) {
+            if (subnivel.equals("a") || subnivel.equals("e") || subnivel.equals("i") || subnivel.equals("o") || subnivel.equals("u")) {
+                vocales = true;
+            }
+        }
+        if(tipo.contains("escribir")||vocales) {
+            cursor = db.buscarFotosbyLetra(id_user, subnivel);
         }
         else{
-            cursor = db.buscarFotosbyLetra(id_user, subnivel);
+            cursor = db.buscarFotos(tiposilaba, id_user, subnivel, numeroSilabas);
         }
         ArrayList<FotoPalabra> fotos=new ArrayList<FotoPalabra>();
         if(cursor!=null) {

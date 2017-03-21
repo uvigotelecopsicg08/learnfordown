@@ -16,7 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGame"
-        android:layout_weight="0.1"
+        android:layout_weight="0.15"
         android:weightSum="1">
 
         <ImageButton
@@ -37,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.7"
+            android:layout_weight="0.79"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -52,7 +52,7 @@
             android:layout_height="match_parent"
             android:id="@+id/button5"
             android:onClick="goHome"
-            android:layout_weight="0.15"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
@@ -61,19 +61,21 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/button6"
-            android:layout_weight="0.15"
+            android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
 
     </LinearLayout>
+
     <LinearLayout
 
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Blanco"
-        android:layout_weight="0.15"
+        android:gravity="center_vertical"
+        android:layout_weight="0.1"
         android:weightSum="1">
 
         <RatingBar
@@ -82,6 +84,7 @@
             android:id="@+id/ratingBar"
             android:numStars="6"
             android:stepSize="1.0"
+            android:layout_gravity="center_vertical"
             android:rating="0"
             android:isIndicator="true"
             android:gravity="center"
@@ -93,7 +96,200 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_weight="0.7"
+        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton1"
+                android:onClick="pulsar"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:gravity="center"
+                android:background="@color/Blanco"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton2"
+                android:onClick="pulsar"
+                android:gravity="center"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:background="@color/Blanco" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/imageButton3"
+                android:onClick="pulsar"
+                android:gravity="center"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:background="@color/Blanco"></ImageButton>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.3"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:text="PLANO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:onClick="pulsar"
+                android:gravity="center"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp"
+                android:textAllCaps="false" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:text="PLATO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button1"
+                android:onClick="pulsar"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.05"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <Button
+                android:text="PLÁTANO"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/button2"
+                android:onClick="pulsar"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.05"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+    </LinearLayout>
+
+    <!--LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.75"
         android:layout_height="wrap_content"
         android:weightSum="1">
         <LinearLayout
@@ -113,7 +309,7 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_weight="0.15"
+        android:layout_weight="0.25"
         android:layout_height="match_parent"
         android:weightSum="1">
 
@@ -122,7 +318,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageButton1"
             android:onClick="pulsar"
-            android:layout_weight="0.3"
+            android:layout_weight="0.33"
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:gravity="center"
             android:background="@color/Blanco"
@@ -131,7 +327,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.55"
+            android:layout_weight="0.005"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -140,7 +336,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageButton2"
             android:onClick="pulsar"
-            android:layout_weight="0.3"
+            android:layout_weight="0.33"
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:background="@color/Blanco"
             android:textSize="36sp" />
@@ -148,7 +344,7 @@
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="0.05"
+            android:layout_weight="0.005"
             android:visibility="invisible"/>
 
         <ImageButton
@@ -156,7 +352,7 @@
             android:layout_height="match_parent"
             android:id="@+id/imageButton3"
             android:onClick="pulsar"
-            android:layout_weight="0.3"
+            android:layout_weight="0.33"
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:background="@color/Blanco"
             android:textSize="36sp" />
@@ -167,7 +363,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_weight="0.35"
+            android:layout_weight="0.20"
             android:layout_height="match_parent"
             android:weightSum="1">
 
@@ -181,7 +377,7 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_weight="0.15"
+            android:layout_weight="0.40"
             android:layout_height="match_parent"
             android:weightSum="1">
 
@@ -231,89 +427,11 @@
 
 
         </LinearLayout>
-    </LinearLayout>
+    </LinearLayout-->
 
 
 
 
-    <!--ImageButton
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="220dp"
-        android:layout_marginLeft="-1150dp"
-        android:onClick="pulsar"
-        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-        android:id="@+id/imageButton1"
-        android:background="@color/Blanco" />
 
-    <Button
-        android:text="PLATO"
-        android:layout_width="314dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="250dp"
-        android:layout_marginLeft="400dp"
-        android:id="@+id/button3"
-        android:onClick="pulsar"
-        android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="34sp" />
-
-    <ImageButton
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="390dp"
-        android:layout_marginLeft="-885dp"
-        android:onClick="pulsar"
-        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-        android:id="@+id/imageButton2"
-        android:background="@color/Blanco" />
-
-    <Button
-        android:text="PLAYA"
-        android:layout_width="314dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="410dp"
-        android:layout_marginLeft="400dp"
-        android:id="@+id/button1"
-        android:onClick="pulsar"
-        android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="34sp" />
-
-    <ImageButton
-        android:layout_width="170dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="555dp"
-        android:layout_marginLeft="-885dp"
-        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-        android:id="@+id/imageButton3"
-        android:onClick="pulsar"
-        android:background="@color/Blanco" />
-
-    <Button
-        android:text="PLANETA"
-        android:layout_width="314dp"
-        android:layout_height="82dp"
-        android:layout_marginTop="580dp"
-        android:layout_marginLeft="405dp"
-        android:id="@+id/button2"
-        android:onClick="pulsar"
-        android:background="@color/common_google_signin_btn_text_dark_pressed"
-        android:textSize="34sp" />
-
-    <RatingBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ratingBar"
-        android:layout_marginTop="155dp"
-        android:layout_marginLeft="-800dp"
-        android:numStars="6"
-        android:stepSize="1.0"
-        android:scaleX="2"
-        android:scaleY="2"
-        android:rating="0"
-        android:isIndicator="true"
-        android:backgroundTint="@color/amarillo"
-        android:progressTint="#FFFDED1B"
-        android:maxHeight="@dimen/activity_horizontal_margin"
-        android:minWidth="@dimen/activity_horizontal_margin" /-->
 </LinearLayout>
 

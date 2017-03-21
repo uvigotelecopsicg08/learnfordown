@@ -48,7 +48,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
-    String tipoNivel="leerletras";
+    String tipoNivel="leerletras",palabracom, tmpDownSlash= " ";
 
     ArrayList<FotoPalabra> fp;
     int i = 0;
@@ -77,6 +77,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
 
+
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -99,6 +100,13 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
         Correcta= fp.get(i).getLetra().toUpperCase();
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
@@ -155,6 +163,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
                     contador++;
+
+                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    letracorrecta.setText(palabracom);
+
                     pulsar();
                 }
             }
@@ -254,6 +266,13 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getLetra().toUpperCase());
         Correcta= fp.get(i).getLetra().toUpperCase();
         horizontalAdapter = new HorizontalAdapter(horizontalList);
+        palabra.setImageResource(fp.get(i).getFoto());
+        tmpDownSlash = "";
+        for (int i=0;i<Correcta.length();i++){
+            tmpDownSlash += " _";
+        }
+        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

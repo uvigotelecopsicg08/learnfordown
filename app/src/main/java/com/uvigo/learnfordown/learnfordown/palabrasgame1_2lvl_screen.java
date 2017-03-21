@@ -235,6 +235,25 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                             if (!(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
+                                Intent intent=null;
+                                String strName=null;
+                                if(!gn.getTipo().contains("palabra")) {
+                                    intent = new Intent(palabrasgame1_2lvl_screen.this, silabasgame1lvl_screen.class);
+                                    if(gn.getTipo().contains("inversas")) {
+                                        strName = "silabasinversas";
+                                    }
+                                    else{
+                                        strName = "trabadas";
+                                    }
+                                    intent.putExtra("tipoSilaba", strName);
+                                }
+                                else{
+                                    intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
+                                    strName = "frasessilabasdirectas";
+                                    intent.putExtra("tipoSilaba", strName);
+                                    intent.putExtra("nivel",1);
+                                }
+                                startActivity(intent);
 
                             } else {
                                 fp = gn.getFotos();
