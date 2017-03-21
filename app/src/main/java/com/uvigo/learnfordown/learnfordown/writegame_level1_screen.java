@@ -21,7 +21,7 @@ import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
 import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
 import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
 
-public class lettergame1lvl_w_screen extends AppCompatActivity {
+public class writegame_level1_screen extends AppCompatActivity {
 
     public static final float VALIDATION_THRESHOLD_MULTIPLIER = 1.8f;
 
@@ -41,7 +41,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {        // Inicializa la actividad
 
         super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
-        setContentView(R.layout.activity_lettergame1lvl_w_screen);    // Establece como layout la pantalla indicada
+        setContentView(R.layout.activity_writegame_level1_screen);    // Establece como layout la pantalla indicada
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
@@ -53,7 +53,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
 
-        //** Rompe aquí ** //
+
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
@@ -62,7 +62,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
 
     public void resetCanvas(View v) {
 
-        setContentView(R.layout.activity_lettergame1lvl_w_screen);
+        setContentView(R.layout.activity_writegame_level1_screen);
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -152,7 +152,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
                     gn.avanzaNivel();
 
                     /* No creo que sea necesario rehacer esto ¿? Si hay que rehacerlo, meter en función*/
-                    setContentView(R.layout.activity_lettergame1lvl_w_screen);
+                    setContentView(R.layout.activity_writegame_level1_screen);
                     plantilla =(ImageView) findViewById(R.id.imageView3);
                     foto= (ImageView) findViewById(R.id.imageView2);
                     Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -191,13 +191,13 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
     //Funciones que habrá que descomentar cuando se integre en la APP LearnForDown
 
     public void BackArrow (View v){
-        Intent intent1 = new Intent(lettergame1lvl_w_screen.this, menu_write_screen.class);
+        Intent intent1 = new Intent(writegame_level1_screen.this, menu_write_screen.class);
         startActivity(intent1);
         //Toast.makeText(this, "ATRÁS", Toast.LENGTH_SHORT).show();
     }
 
     public void goHome (View v){
-        Intent intent1 = new Intent(lettergame1lvl_w_screen.this, home_screen.class);
+        Intent intent1 = new Intent(writegame_level1_screen.this, home_screen.class);
         startActivity(intent1);
         //Toast.makeText(this, "MENÚ PRINCIPAL", Toast.LENGTH_SHORT).show();
     }

@@ -372,5 +372,10 @@ public class InsertData {
         for(int i=0;i<subnivelesEscribirConsonantes.length;i++) {
             db.insertar_nivel("escribirletras", 1,subnivelesEscribirConsonantes[i]);
         }
+
+        db.insertar_nivel("escribirconsombreado",1,"subniveunico");
+        db.insertar_nivel("escribirsinsombreado",1,"subniveunico");
+        db.insertar_nivel("escribirtecladopalabra",1,"subniveunico");
+
     }
 }

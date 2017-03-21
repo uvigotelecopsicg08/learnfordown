@@ -28,9 +28,11 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
 public class silabasgame1lvl_screen extends AppCompatActivity {
+
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
+
     Button ButtonActual;
     String Correcta;
     TextView titulo,letracorrecta;
@@ -48,12 +50,16 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_silabasgame1lvl_screen);
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             tipoNivel = extras.getString("tipoSilaba");
             System.out.println(tipoNivel);
+
         }
+
         horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         BackArrow = (ImageButton) findViewById(R.id.button3);
@@ -69,6 +75,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();

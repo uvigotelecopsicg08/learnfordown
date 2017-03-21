@@ -136,6 +136,25 @@ public class GestionNiveles {
         numeroFotos=fotos.size();
         return  fotos;
     }
+    public ArrayList<FotoPalabra> getFotosAleatorias(){
+        Cursor   cursor = db.buscarFotosAleatorias(id_user);
+        ArrayList<FotoPalabra> fotos=new ArrayList<FotoPalabra>();
+         if(cursor!=null) {
+             if (cursor.moveToFirst()) {
+                 do {
+                     String letra = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_LETTER));
+                     String silaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SYLLABLE));
+                     String palabra = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_WORD));
+                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
+                     int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
+                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
+                     String tiposilaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE_SYLLABE));
+                     fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                 }while(cursor.moveToNext());
+            }
+        }
+        return fotos;
+    }
 
 
     public void getParameterNivel(){

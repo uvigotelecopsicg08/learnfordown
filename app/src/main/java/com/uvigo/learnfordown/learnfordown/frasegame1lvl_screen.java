@@ -59,7 +59,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         palabra = (ImageView) findViewById(R.id.foto);
-         textView = (TextView)findViewById(R.id.button4);
+        textView = (TextView)findViewById(R.id.button4);
+
         button1 = (Button) findViewById(R.id.button1);
         button2 = (Button) findViewById(R.id.button2);
         button3 = (Button) findViewById(R.id.button3);
@@ -68,6 +69,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             tipoNivel = extras.getString("tipoSilaba");
             nivel = extras.getInt("nivel");
         }
+
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
