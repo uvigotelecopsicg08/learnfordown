@@ -1,5 +1,10 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.net.Uri;
+import android.support.v4.content.ContextCompat;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
@@ -16,6 +21,12 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.google.android.gms.appindexing.Action;
+import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.appindexing.Thing;
+import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -25,21 +36,24 @@ public class writegame_level2_screen extends AppCompatActivity {
     private RecyclerView PanelHorizontal;
     private HorizontalAdapter HorizontalAdapter;
     private ArrayList<String> ListaHorizontal;
-    private char [] LetrasPalabra;
+    private char[] LetrasPalabra;
 
-    private GestionNiveles  gn;
-    private ArrayList <FotoPalabra> fp;
+    private GestionNiveles gn;
+    private ArrayList<FotoPalabra> fp;
 
     private TextView Titulo, Frase;
     private ImageView Foto;
-    private String TipoNivel,Correcta;
+    private String TipoNivel, Correcta;
     private int i = 0;
     private int j = 0;
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
-
-
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    private GoogleApiClient client;
 
 
     @Override
@@ -51,25 +65,24 @@ public class writegame_level2_screen extends AppCompatActivity {
         PanelHorizontal = (RecyclerView) findViewById(R.id.PanelHorizontal);
 
         Titulo = (TextView) findViewById(R.id.textView2);
-        Typeface face = Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         Titulo.setTypeface(face);
 
-        Foto = (ImageView)findViewById(R.id.imageView2);
-        Frase =(TextView)findViewById(R.id.textView4);
+        Foto = (ImageView) findViewById(R.id.imageView2);
+        Frase = (TextView) findViewById(R.id.textView4);
 
         //** Base de datos **
 
         TipoNivel = "palabrassilabasdirectas"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(TipoNivel,1);
+        gn.setNivel(TipoNivel, 1);
         fp = gn.getFotosAleatorias();
 
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
         Correcta = fp.get(i).getPalabra().toUpperCase();
         Foto.setImageResource(fp.get(i).getFoto());
-        Rellenar();
-
+        Rellenar(true);
 
 
         CompletaLista();
@@ -80,24 +93,25 @@ public class writegame_level2_screen extends AppCompatActivity {
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 
-
-
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
 
-    public void BackArrow (View v){
+    public void BackArrow(View v) {
         Intent intent1 = new Intent(writegame_level2_screen.this, menu_screen.class);
         startActivity(intent1);
     }
 
-    public void goHome (View v){
+    public void goHome(View v) {
         Intent intent1 = new Intent(writegame_level2_screen.this, home_screen.class);
         startActivity(intent1);
     }
 
-     public void ButtonCheck (View v){
+    public void ButtonCheck(View v) {
 
-        Button b = (Button)v;
+        Button b = (Button) v;
         ButtonActual = b;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 0.0f);
         animation.setDuration(500);
@@ -109,7 +123,7 @@ public class writegame_level2_screen extends AppCompatActivity {
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     if (num_iteracion == Correcta.length()) gn.acierto();
-                    SustituirLinea();
+                    Rellenar(false);
 
                     // contador++; ** ESTRELLITAS ** AÑADIR MÁS ADELANTE
                     // pulsar();
@@ -117,13 +131,13 @@ public class writegame_level2_screen extends AppCompatActivity {
             }
 
             @Override
-           public void onAnimationEnd(Animation animation) {
+            public void onAnimationEnd(Animation animation) {
 
-               if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())){
+                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
 
-                   num_iteracion++;
+                    num_iteracion++;
 
-                    if(num_iteracion == Correcta.length()) {
+                    if (num_iteracion == Correcta.length()) {
 
 
                         if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
@@ -145,11 +159,13 @@ public class writegame_level2_screen extends AppCompatActivity {
                         }
                     }
 
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
+                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                    gn.fallo();
             }
 
             @Override
-            public void onAnimationRepeat(Animation animation) {}
+            public void onAnimationRepeat(Animation animation) {
+            }
 
         });
 
@@ -163,43 +179,93 @@ public class writegame_level2_screen extends AppCompatActivity {
         Correcta = fp.get(i).getPalabra().toUpperCase();
         Foto.setImageResource(fp.get(i).getFoto());
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
-        Rellenar();
+        Rellenar(false);
         CompletaLista();
 
     }
 
-    public void Rellenar (){
+    public void Rellenar(boolean inicio) {
+
+        String parte1,parte2;
+        String[] cadena;
+        cadena = RellenoFrase.split("\\*");
+        SpannableStringBuilder builder = new SpannableStringBuilder();
 
 
-        if (RellenoFrase.contains("*"))RellenoFrase = RellenoFrase.replace("*",Correcta);
-        Frase.setText(RellenoFrase);
-    }
-
-    public void CompletaLista(){
-
-        ListaHorizontal = new ArrayList <String> ();
-        LetrasPalabra = new char[Correcta.length()];
-        Correcta.getChars(0,Correcta.length(),LetrasPalabra,0);
-        for(int n=0; n < (LetrasPalabra.length);n++){
-            ListaHorizontal.add(String.valueOf(LetrasPalabra[n]));
-            Collections.shuffle(ListaHorizontal);
+       if (inicio == true) {
+            parte1 = cadena[0];
+            parte2 = Correcta;
+        }else{
+            parte1 = cadena[0]+Correcta.substring(0,num_iteracion+1);
+            parte2 = Correcta.substring(num_iteracion+1);
         }
 
 
+        SpannableString FirstSpannable = new SpannableString(parte1);
+        FirstSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte1.length(), 0);
+        builder.append(FirstSpannable);
+
+        SpannableString ShadowSpannable = new SpannableString(parte2);
+        ShadowSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Sombreado)), 0, parte2.length(), 0);
+        builder.append(ShadowSpannable);
+
+
+        SpannableString ThirdSpannable = new SpannableString(cadena[1]);
+        ThirdSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, cadena[1].length(), 0);
+        builder.append(ThirdSpannable);
+
+
+        Frase.setText(builder, TextView.BufferType.SPANNABLE);
+
+    }
+
+    public void CompletaLista() {
+
+        ListaHorizontal = new ArrayList<String>();
+        LetrasPalabra = new char[Correcta.length()];
+        Correcta.getChars(0, Correcta.length(), LetrasPalabra, 0);
+        for (int n = 0; n < (LetrasPalabra.length); n++) {
+            ListaHorizontal.add(String.valueOf(LetrasPalabra[n]));
+            Collections.shuffle(ListaHorizontal);
+        }
     }
 
 
-    public void SustituirLinea(){
 
-
-        if (j == 0) RellenoFrase = RellenoFrase.replaceFirst("_",String.valueOf(LetrasPalabra[num_iteracion]));
-        else RellenoFrase = RellenoFrase.replaceFirst(" _",String.valueOf(LetrasPalabra[num_iteracion]));
-        Frase.setText(RellenoFrase);
-        j++;
-
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
+    public Action getIndexApiAction() {
+        Thing object = new Thing.Builder()
+                .setName("writegame_level2_screen Page") // TODO: Define a title for the content shown.
+                // TODO: Make sure this auto-generated URL is correct.
+                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
+                .build();
+        return new Action.Builder(Action.TYPE_VIEW)
+                .setObject(object)
+                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
+                .build();
     }
 
+    @Override
+    public void onStart() {
+        super.onStart();
 
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        client.connect();
+        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
+        AppIndex.AppIndexApi.end(client, getIndexApiAction());
+        client.disconnect();
+    }
 }
 

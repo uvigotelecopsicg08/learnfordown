@@ -197,7 +197,6 @@ public class writegame_level3_screen extends AppCompatActivity {
 
     public void SustituirLinea(){
 
-
         if (j == 0) RellenoFrase = RellenoFrase.replaceFirst("_",String.valueOf(LetrasPalabra[num_iteracion]));
         else RellenoFrase = RellenoFrase.replaceFirst(" _",String.valueOf(LetrasPalabra[num_iteracion]));
         Frase.setText(RellenoFrase);
