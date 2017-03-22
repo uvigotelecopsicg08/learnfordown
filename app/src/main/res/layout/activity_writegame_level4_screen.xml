@@ -104,13 +104,6 @@
             android:layout_weight="0.1"
             android:layout_height="match_parent"
             android:weightSum="1">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_weight="0.1"
-                android:layout_height="match_parent"
-                android:weightSum="1"></LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -120,6 +113,13 @@
             android:layout_height="match_parent"
             android:weightSum="1">
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                app:srcCompat="@drawable/casa"
+                android:id="@+id/imageView2" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,12 +129,6 @@
             android:layout_height="match_parent"
             android:weightSum="1">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="239dp"
-                android:gravity="center"
-                app:srcCompat="@drawable/casa"
-                android:id="@+id/imageView2" />
         </LinearLayout>
 
         <LinearLayout
@@ -144,10 +138,23 @@
             android:layout_height="match_parent"
             android:weightSum="1">
 
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="normal|bold"
+                android:text=""
+                android:background="@color/NaranjaClarito"
+                android:id="@+id/textView4"
+                android:textSize="45sp"
+                android:maxLines="1"
+                android:textAlignment="center"/>
+
 
 
         </LinearLayout>
-
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="wrap_content"
@@ -161,11 +168,22 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="189dp"
-        android:weightSum="1"
-        android:layout_weight="0.61">
+        android:layout_weight="0.57"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
+
+        <EditText
+            android:id="@+id/teclado"
+            android:hint="Texto de entrada"
+            android:inputType="textPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+        />
 
     </LinearLayout>
 
 </LinearLayout>
+
