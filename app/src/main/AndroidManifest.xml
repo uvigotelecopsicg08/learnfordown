@@ -16,7 +16,6 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
         <activity
             android:name=".home_screen"
             android:screenOrientation="landscape">
@@ -28,9 +27,7 @@
         </activity>
         <activity
             android:name=".menu_screen"
-            android:screenOrientation="landscape">
-
-        </activity>
+            android:screenOrientation="landscape" />
         <activity
             android:name=".login_screen"
             android:screenOrientation="landscape" />
@@ -49,7 +46,6 @@
         <activity
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".lettergame1lvl_w_screen"
             android:screenOrientation="landscape" />
@@ -91,28 +87,37 @@
         <activity
             android:name=".menu_write_screen"
             android:screenOrientation="landscape" />
-
         <activity
             android:name=".frasetra_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".palabrasgame1_1lvl_screen"
+        <activity
+            android:name=".palabrasgame1_1lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".palabrasgame1_2lvl_screen"
+        <activity
+            android:name=".palabrasgame1_2lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".frasegame1lvl_screen"
+        <activity
+            android:name=".frasegame1lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame1lvl_screen"
+        <activity
+            android:name=".silabasgame1lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame2lvl_screen"
+        <activity
+            android:name=".silabasgame2lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame3lvl_screen"
+        <activity
+            android:name=".silabasgame3lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".silabasgame4lvl_screen"
-            android:screenOrientation="landscape" ></activity>
-        <activity android:name=".silabasgame1lvl_w_screen"
+        <activity
+            android:name=".silabasgame4lvl_screen"
             android:screenOrientation="landscape" />
-        <activity android:name=".StrokesTrainingActivity"
+        <activity
+            android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
+        <activity android:name=".writegame_level1_screen" />
+        <activity android:name=".writegame_level3_screen" />
+        <activity android:name=".writegame_level4_screen" />
+        <activity android:name=".writegame_level2_screen"></activity>
     </application>
 
 </manifest>
