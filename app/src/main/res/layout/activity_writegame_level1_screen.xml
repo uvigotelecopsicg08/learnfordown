@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout
 
-    android:id="@+id/activity_lettergame1lvl_w_screen"
+    android:id="@+id/activity_writegame_level1_screen"
     android:weightSum="1"
-    tools:context="com.uvigo.learnfordown.learnfordown.lettergame1lvl_screen"
+    tools:context="com.uvigo.learnfordown.learnfordown.writegame_level1_screen"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
