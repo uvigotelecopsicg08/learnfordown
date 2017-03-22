@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_puzzle4piezas"
+    android:background="@color/Blanco"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.uvigo.learnfordown.learnfordown.Puzzle4piezas">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:background="@color/colorGame">
+
+            <ImageButton
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:src="@mipmap/icon_backarrow"
+                android:background="@color/colorGame"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:visibility="visible"
+                android:onClick="BackArrow"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:text="ROMPECABEZAS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="60sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="25dp" />
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button5"
+                android:onClick="goHome"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+            <ImageButton
+                android:src="@mipmap/icon_help"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button4"
+                android:layout_weight="0.03"
+                android:onClick="HelpButton"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Blanco"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/modelo4_piezas"
+                android:id="@+id/imageView10"
+                android:layout_marginEnd="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/modelo_part1"
+                android:id="@+id/imageView6"
+                android:layout_marginEnd="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/modelo_part2"
+                android:id="@+id/imageView5"
+                android:layout_marginEnd="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/modelo_part3"
+                android:id="@+id/imageView3"
+                android:layout_marginEnd="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/modelo_part4"
+                android:id="@+id/imageView"
+                android:layout_marginEnd="43dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="477dp"
+                android:layout_height="250dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/linearLayout3"
+                android:layout_marginStart="30dp">
+
+                <ImageView
+                    android:layout_width="238.5dp"
+                    android:layout_height="250dp"
+                    app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                    android:id="@+id/imageView7"
+                    android:onClick="ButtonCheckPiezas"
+                    android:layout_weight="0.02"
+                    android:layout_below="@+id/linearLayout2"
+                    android:layout_alignStart="@+id/linearLayout2" />
+
+                <ImageView
+                    android:layout_width="238.5dp"
+                    android:layout_height="250dp"
+                    app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                    android:id="@+id/imageView15"
+                    android:onClick="ButtonCheckPiezas"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignStart="@+id/imageView6"
+                    android:layout_weight="0.02" />
+            </LinearLayout>
+
+            <Button
+
+                android:layout_width="238.5dp"
+                android:layout_height="250dp"
+                android:id="@+id/button2"
+                android:onClick="ButtonCheckModelo"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/imageView10" />
+
+            <Button
+
+                android:layout_width="238.5dp"
+                android:layout_height="250dp"
+                android:id="@+id/button7"
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_alignParentTop="true"
+                android:layout_toEndOf="@+id/button2" />
+
+            <Button
+
+                android:layout_width="238.5dp"
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_height="250dp"
+                android:id="@+id/button"
+                android:layout_below="@+id/button2"
+                android:layout_alignStart="@+id/imageView10" />
+
+            <Button
+                android:layout_width="238.5dp"
+                android:layout_height="250dp"
+                android:onClick="ButtonCheckModelo"
+
+                android:id="@+id/button6"
+                android:layout_alignBottom="@+id/imageView10"
+                android:layout_toEndOf="@+id/button" />
+
+            <TextView
+                android:text="¡ENHORABUENA LO HAS CONSEGUIDO!"
+                android:layout_width="477dp"
+                android:layout_height="200dp"
+                android:id="@+id/textView"
+                android:textColor="@color/Blanco"
+                android:background="@color/Rojo"
+                android:textSize="50dp"
+                android:layout_weight="0.05"
+                android:textStyle="normal|bold"
+                android:layout_marginStart="38dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignStart="@+id/linearLayout"
+                android:layout_marginTop="70dp"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="center" />
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:layout_width="477dp"
+        android:layout_height="500dp"
+        android:layout_marginTop="388dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="34dp">
+
+        <ImageView
+            android:layout_width="238.5dp"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/modelo_4_piezas_0_0"
+            android:id="@+id/imageView8"
+            android:onClick="ButtonCheckPiezas"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imageView6"
+            android:layout_weight="0.05" />
+
+        <ImageView
+            android:layout_width="228dp"
+            android:layout_height="250dp"
+            app:srcCompat="@drawable/modelo_4_piezas_0_0"
+            android:id="@+id/imageView4"
+            android:onClick="ButtonCheckPiezas"
+            android:layout_alignParentTop="true"
+            android:layout_alignStart="@+id/imageView6" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>
