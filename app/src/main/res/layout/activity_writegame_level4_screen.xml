@@ -166,19 +166,6 @@
         android:layout_weight="0.61">
 
 
-        <TextView
-
-            android:layout_width="928dp"
-            android:layout_height="143dp"
-            android:gravity="center"
-            android:textStyle="normal|bold"
-            android:text=""
-            android:background="@color/NaranjaClarito"
-            android:id="@+id/textView4"
-            android:textSize="45sp"
-            android:maxLines="1"
-            android:textAlignment="center" />
-
     </LinearLayout>
 
 </LinearLayout>

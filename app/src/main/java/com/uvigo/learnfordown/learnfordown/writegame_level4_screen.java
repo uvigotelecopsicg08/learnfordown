@@ -10,6 +10,7 @@ public class writegame_level4_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_writegame_level4_screen);
+
     }
 
     public void ObtieneEscritura(){

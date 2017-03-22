@@ -5,6 +5,8 @@ import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.view.Gravity;
+import android.widget.RatingBar;
 import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +31,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.TreeSet;
 
 
 public class writegame_level2_screen extends AppCompatActivity {
@@ -49,6 +53,10 @@ public class writegame_level2_screen extends AppCompatActivity {
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
+    int contador;
+    RatingBar ratingbar1;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -70,6 +78,19 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         Foto = (ImageView) findViewById(R.id.imageView2);
         Frase = (TextView) findViewById(R.id.textView4);
+
+        // ** Estrellitas **
+
+        contador = 0;
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 
         //** Base de datos **
 
@@ -100,7 +121,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
 
     public void BackArrow(View v) {
-        Intent intent1 = new Intent(writegame_level2_screen.this, menu_screen.class);
+        Intent intent1 = new Intent(writegame_level2_screen.this, menu_write_screen.class);
         startActivity(intent1);
     }
 
@@ -108,7 +129,21 @@ public class writegame_level2_screen extends AppCompatActivity {
         Intent intent1 = new Intent(writegame_level2_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (contador < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
+            toast.show();
+        }
+    }
     public void ButtonCheck(View v) {
 
         Button b = (Button) v;
@@ -125,8 +160,9 @@ public class writegame_level2_screen extends AppCompatActivity {
                     if (num_iteracion == Correcta.length()) gn.acierto();
                     Rellenar(false);
 
-                    // contador++; ** ESTRELLITAS ** AÑADIR MÁS ADELANTE
-                    // pulsar();
+
+
+
                 }
             }
 
@@ -145,6 +181,8 @@ public class writegame_level2_screen extends AppCompatActivity {
                             cambiarFoto();
                         } else {
 
+                            contador++;
+                            pulsar();
                             gn.avanzaNivel();
                             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
