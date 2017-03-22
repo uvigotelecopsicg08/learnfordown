@@ -84,11 +84,13 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
         tmpDownSlash = "";
-        for (int i=0;i<Correcta.length();i++){
+        for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
         }
 
-        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        System.out.println("getPalabra "+ fp.get(i).getPalabra());
+        palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
 
@@ -118,11 +120,11 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 
     public void pulsar() {
         float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
+        for (int j : new TreeSet<>(thresholds.keySet())) {
+            if (contador < j) {
                 break;
             }
-            rating = thresholds.get(i);
+            rating = thresholds.get(j);
         }
         if (rating != ratingbar1.getRating()) {
             ratingbar1.setRating(rating);
@@ -208,7 +210,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         horizontalAdapter = new HorizontalAdapter(horizontalList);
 
         tmpDownSlash = "";
-        for (int i=0;i<Correcta.length();i++){
+        for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
         }
         palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
