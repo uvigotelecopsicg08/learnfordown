@@ -311,7 +311,7 @@ public class InsertData {
         db.insertar_foto("y","ye","directa","yegua","La * ha tenido un potro",R.drawable.yegua,"animales",2,"lly");
         db.insertar_foto("y","yo","directa","yogurt","Siempre ceno un * de postre",R.drawable.yogurt,"comida",2,"lly");
 
-        db.insertar_foto("z","za","directa","zanahoria","Me gustan las * crudas",R.drawable.zanahoria,"comida",4,"zc");
+        db.insertar_foto("z","za","directa","zanahoria","Comí una * cruda",R.drawable.zanahoria,"comida",4,"zc");
         db.insertar_foto("z","za","directa","zapato","Tengo unos * rojos",R.drawable.zapato,"comida",3,"zc");
         db.insertar_foto("z","zo","directa","zorro","El * es astuto",R.drawable.zorro,"animales",2,"zc");
         db.insertar_foto("z","zu","directa","zumo","Que rico ese *",R.drawable.zumo,"animales",2,"zc");
