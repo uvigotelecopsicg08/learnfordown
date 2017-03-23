@@ -13,7 +13,7 @@ public class InsertData {
     private Context context;
     private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
-    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr","bvr"};
+    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
     private String[] subnivelesVocales = new String[] {"a","e","i","o","u"};
     private String[] subnivelesEscribirConsonantes=new String[]{"b","c","d","f","g","h","j","k","l","m","n","ñ","p","q","r","s","t","v","w","x","y","z"};
     public InsertData(Context context) {
@@ -42,13 +42,12 @@ public class InsertData {
         db.insertar_foto("b","bi","directa","bicicleta","Fui al parque en *",R.drawable.bicicleta,"otros",4,"bv");
         db.insertar_foto("b","bu","directa","búho","El * es un animal nocturno",R.drawable.buho,"animales",2,"bv");
         db.insertar_foto("b","bu","directa","burro","Cuando era pequeño monté en * ",R.drawable.burro,"animales",2,"bv");
-        db.insertar_foto("b","bru","trabada","brújula","Al monte llevamos una *",R.drawable.brujula,"otro",3,"bvr");
-        db.insertar_foto("b","blu","trabada","blusa","Mi madre tiene una * amarilla",R.drawable.blusa,"ropa",2,"bvr");
-        db.insertar_foto("b","bra","trabada","brazo","Me duele el *",R.drawable.brazo,"otro",2,"bvr");
-        db.insertar_foto("b","bre","trabada","brécol","Mi comida favorita es el *",R.drawable.brecol,"comida",2,"bvr");
-        db.insertar_foto("b","bri","trabada","bricolaje","Se me da muy bien el *",R.drawable.bricolaje,"otro",4,"bvr");
-        db.insertar_foto("b","bri","trabada","bricolaje","Hoy toca clase de *",R.drawable.bricolaje,"otro",4,"bvr");
-        db.insertar_foto("b","bro","trabada","brote","Aquí hay un * de hortensias",R.drawable.brote,"otro",2,"bvr");
+        db.insertar_foto("b","bru","trabada","brújula","Al monte llevamos una *",R.drawable.brujula,"otro",3,"br");
+        db.insertar_foto("b","blu","trabada","blusa","Mi madre tiene una * amarilla",R.drawable.blusa,"ropa",2,"bl");
+        db.insertar_foto("b","bra","trabada","brazo","Me duele el *",R.drawable.brazo,"otro",2,"br");
+        db.insertar_foto("b","bre","trabada","brécol","Mi comida favorita es el *",R.drawable.brecol,"comida",2,"br");
+        db.insertar_foto("b","bri","trabada","bricolaje","Se me da muy bien el *",R.drawable.bricolaje,"otro",4,"br");
+        db.insertar_foto("b","bro","trabada","brote","Aquí hay un * de hortensias",R.drawable.brote,"otro",2,"br");
         db.insertar_foto("b","bol","directa","bol","Me como la ensalada en un *",R.drawable.bol,"otros",1,"mono");
         db.insertar_foto("b","bol","directa","bol","Pon agua en el *",R.drawable.bol,"otros",1,"mono");
         db.insertar_foto("b","buey","directa","buey","Qué bonito es ese *",R.drawable.buey,"animales",1,"mono");
@@ -237,6 +236,11 @@ public class InsertData {
         db.insertar_foto("p","pu","directa","puma","El * es negro",R.drawable.puma,"animales",2,"p");
         db.insertar_foto("p","pla","trabada","plato","Me compre un *",R.drawable.plato,"comida",2,"pl");
         db.insertar_foto("p","plu","trabada","pluma","A la gallina se le cayó una *",R.drawable.pluma,"otro",2,"pl");
+        db.insertar_foto("p","pra","trabada","prado","Me encanta estar tirado y rodar por el *",R.drawable.prado,"otro",2,"pr");
+        db.insertar_foto("p","pre","trabada","precios","En el alcampo tienen unos * fantásticos",R.drawable.precios,"otro",2,"pr");
+        db.insertar_foto("p","pre","trabada","premio","A mi hermana le dieron un *",R.drawable.premio,"otro",2,"pr");
+        db.insertar_foto("p","pro","trabada","problemas","Hoy toca clase de *",R.drawable.problemas,"otro",3,"pr");
+        db.insertar_foto("p","pro","trabada","profesor","El * me dijo que el ejercicios estaba mal",R.drawable.profesor,"otro",3,"pr");
 
         db.insertar_foto("q","que","directa","queso","Me gusta mucho el *",R.drawable.queso,"comida",2,"kcq");
 

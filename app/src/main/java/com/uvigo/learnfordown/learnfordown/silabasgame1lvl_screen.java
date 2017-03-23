@@ -39,7 +39,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
-    String tipoNivel="silabasdirectas",palabracom, tmpDownSlash= " ";
+    String tipoNivel="silabasdirectas",palabracom,palabraini, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
     int contador;
@@ -79,6 +79,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
+
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
@@ -154,7 +155,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     gn.acierto();
                     contador++;
-                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    palabracom=fp.get(i).getPalabra().toUpperCase();
+                    //palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
                     pulsar();
                 }
