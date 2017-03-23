@@ -5,14 +5,18 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.TreeSet;
 
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
 import com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
@@ -21,7 +25,7 @@ import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
 import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
 import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
 
-public class lettergame1lvl_w_screen extends AppCompatActivity {
+public class writegame_level1_screen extends AppCompatActivity {
 
     public static final float VALIDATION_THRESHOLD_MULTIPLIER = 1.8f;
 
@@ -36,12 +40,16 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
 
     ArrayList<FotoPalabra> fp;
 
+    int contador;
+    RatingBar ratingbar1;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {        // Inicializa la actividad
 
         super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
-        setContentView(R.layout.activity_lettergame1lvl_w_screen);    // Establece como layout la pantalla indicada
+        setContentView(R.layout.activity_writegame_level1_screen);    // Establece como layout la pantalla indicada
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
@@ -53,16 +61,45 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
 
-        //** Rompe aquí ** //
+
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
+
+        // ** Estrellitas **
+
+        contador = 0;
+        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+
+        thresholds.clear();
+        thresholds.put(1, 1f); // 1 acierto, 1 estrella
+        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
+        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
+        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
+        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+    }
+
+    public void pulsar() {
+        float rating = 0;
+        for (int i : new TreeSet<>(thresholds.keySet())) {
+            if (contador < i) {
+                break;
+            }
+            rating = thresholds.get(i);
+        }
+        if (rating != ratingbar1.getRating()) {
+            ratingbar1.setRating(rating);
+            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
+            toast.show();
+        }
     }
 
 
     public void resetCanvas(View v) {
 
-        setContentView(R.layout.activity_lettergame1lvl_w_screen);
+        setContentView(R.layout.activity_writegame_level1_screen);
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -148,11 +185,14 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
 
                 if (normPointValidationStatus == "passed" && angularValidationStatus == "passed" && estadoValidacionTrazos == "passed") {
 
+
+                    contador++;
+                    pulsar();
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
                     gn.avanzaNivel();
 
                     /* No creo que sea necesario rehacer esto ¿? Si hay que rehacerlo, meter en función*/
-                    setContentView(R.layout.activity_lettergame1lvl_w_screen);
+                    setContentView(R.layout.activity_writegame_level1_screen);
                     plantilla =(ImageView) findViewById(R.id.imageView3);
                     foto= (ImageView) findViewById(R.id.imageView2);
                     Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -169,6 +209,7 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
                     Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
                     Borrar.callOnClick();
                 }
+
 
 
                 // ** AÑADIDA LA ÚLTIMA FRASE **
@@ -191,13 +232,13 @@ public class lettergame1lvl_w_screen extends AppCompatActivity {
     //Funciones que habrá que descomentar cuando se integre en la APP LearnForDown
 
     public void BackArrow (View v){
-        Intent intent1 = new Intent(lettergame1lvl_w_screen.this, menu_write_screen.class);
+        Intent intent1 = new Intent(writegame_level1_screen.this, menu_write_screen.class);
         startActivity(intent1);
         //Toast.makeText(this, "ATRÁS", Toast.LENGTH_SHORT).show();
     }
 
     public void goHome (View v){
-        Intent intent1 = new Intent(lettergame1lvl_w_screen.this, home_screen.class);
+        Intent intent1 = new Intent(writegame_level1_screen.this, home_screen.class);
         startActivity(intent1);
         //Toast.makeText(this, "MENÚ PRINCIPAL", Toast.LENGTH_SHORT).show();
     }

@@ -475,6 +475,22 @@ public class DataBaseManager {
         }
         return cursor;
     }
+    public Cursor buscarFotosAleatorias(int id_user){
+        String tablas=TABLE_AFFINITY+","+TABLE_WORD;
+        String  whereClause =null;
+        String[] whereArgs=null;
+
+        whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD ;
+        whereArgs = new String[] {String.valueOf(id_user)};
+
+
+        String orderBy= CN_AFINITY_RATE +" DESC";
+        Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy ,null);
+        if(cursor==null){
+            System.out.println("El cursor es nulo");
+        }
+        return cursor;
+    }
     public Nivel getPrimerNivel(){
         int id_user=  getIdUser();
         String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
