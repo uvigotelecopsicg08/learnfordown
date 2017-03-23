@@ -45,6 +45,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     TextView textView;
     int nivel;
     String tmpDownSlash;
+    boolean activiftiFinalizado =false;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -167,11 +168,16 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                         if (!(gn.getTipo().contains("frases"))) {
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                             //Código para abrir otra pantalla
+                            activiftiFinalizado =true;
+                            Intent intent = new Intent(frasegame1lvl_screen.this, home_screen.class);
+                            startActivity(intent);
                         } else {
-                            fp = gn.getFotos();
-                            i = 0;
-                            cambiarFoto();
-                            System.out.println("Se debe avanzar el nivel");
+                            if(!activiftiFinalizado) {
+                                fp = gn.getFotos();
+                                i = 0;
+                                cambiarFoto();
+                                System.out.println("Se debe avanzar el nivel");
+                            }
                         }
                     }
 

@@ -29,7 +29,7 @@ TextView titulo;
     public void nivel1(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
-        String strName = "palabrassilabastrabadas";
+        String strName = "frasessilabastrabadas";
         intent.putExtra("tipoSilaba", strName);
         intent.putExtra("nivel",1);
         startActivity(intent);
@@ -38,7 +38,7 @@ TextView titulo;
     public void nivel2(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
-        String strName = "palabrassilabastrabadas";
+        String strName = "frasessilabastrabadas";
         intent.putExtra("tipoSilaba", strName);
         intent.putExtra("nivel",2);
         startActivity(intent);
@@ -46,7 +46,7 @@ TextView titulo;
     public void nivel3(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
-        String strName = "palabrassilabastrabadas";
+        String strName = "frasessilabastrabadas";
         intent.putExtra("tipoSilaba", strName);
         intent.putExtra("nivel",3);
         startActivity(intent);
@@ -54,7 +54,7 @@ TextView titulo;
     public void nivel4(View view) {
         // Do something in response to button
         Intent intent = new Intent(this, frasegame1lvl_screen.class);
-        String strName = "palabrassilabastrabadas";
+        String strName = "frasessilabastrabadas";
         intent.putExtra("tipoSilaba", strName);
         intent.putExtra("nivel",4);
         startActivity(intent);

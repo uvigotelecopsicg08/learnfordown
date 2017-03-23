@@ -30,19 +30,28 @@ public class GestionNiveles {
     }
 
     public boolean isnivelCompletado() {
-        if ((dificultad == 1 && aciertos >= 3)||(numeroFotos<=aciertos)) {
-            return true;
-        } else {
-            if ((dificultad == 2 && aciertos >= 5)) {
+        if(tipo.contains("frases")){
+            if (( aciertos >= 3) || (numeroFotos <= (aciertos+2))){
+                return true;
+            }
+            else
+                return false;
+        }
+        else {
+            if ((dificultad == 1 && aciertos >= 3) || (numeroFotos <= aciertos)) {
                 return true;
             } else {
-                if ((dificultad == 3 && aciertos >= 8)) {
+                if ((dificultad == 2 && aciertos >= 5)) {
                     return true;
                 } else {
-                    if ((dificultad == 4 && aciertos >= 10)) {
+                    if ((dificultad == 3 && aciertos >= 8)) {
                         return true;
                     } else {
-                        return false;
+                        if ((dificultad == 4 && aciertos >= 10)) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
                 }
             }
