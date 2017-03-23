@@ -13,7 +13,8 @@ public class InsertData {
     private Context context;
     private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
-    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
+   // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
+   private String[] subnivelesTrabadas = new String[]{"pl","cl","cr","fr","gr","tr"};
     private String[] subnivelesVocales = new String[] {"a","e","i","o","u"};
     private String[] subnivelesEscribirConsonantes=new String[]{"b","c","d","f","g","h","j","k","l","m","n","ñ","p","q","r","s","t","v","w","x","y","z"};
     public InsertData(Context context) {
@@ -130,7 +131,7 @@ public class InsertData {
         db.insertar_foto("g","gel","directa","gel","Uso un * que huele a vainilla",R.drawable.gel,"otro",1,"mono");
         db.insertar_foto("g","golf","directa","golf","En frente de mi casa hay un campo de *",R.drawable.golf,"otro",1,"mono");
         db.insertar_foto("g","gol","directa","gol","Ronaldo marcó un * durante el partido",R.drawable.gol,"otro",1,"mono");
-        db.insertar_foto("g","gris","trabada","gris","El cielo está muy *, lloverá en breves",R.drawable.gris,"otro",1,"mono");
+        db.insertar_foto("g","gris","trabada","gris","El cielo está muy *, lloverá en breves",R.drawable.gris,"otro",1,"gr");
 
         db.insertar_foto("h","ho","directa","hotel","Nos hospedamos en un * de 4 estrellas en las vacaciones",R.drawable.hotel,"casa",2,"h");
         db.insertar_foto("h","ho","directa","horario","Tengo que hacer el * de este nuevo curso",R.drawable.horario,"casa",3,"h");
@@ -267,7 +268,7 @@ public class InsertData {
         db.insertar_foto("s","sal","directa","sal","La comida tenía mucha *",R.drawable.sal,"comida",1,"mono");
         db.insertar_foto("s","seis","directa","seis","Mi primo tiene * años",R.drawable.seis,"otros",1,"mono");
         db.insertar_foto("s","sol","directa","sol","En verano me gusta tomar el *",R.drawable.sol,"otros",1,"mono");
-        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+     //   db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("a","as","inversa","ascensor","Para ir a la última planta de edificio subimos en *",R.drawable.ascensor,"otro",3,"s");
         db.insertar_foto("a","as","inversa","aspiradora","Mi padre está pasando la * en el salón",R.drawable.aspiradora,"otro",4,"s");
         db.insertar_foto("e","es","inversa","espagueti","Me encantan los * con tomamte y atún",R.drawable.espagueti,"comida",4,"s");

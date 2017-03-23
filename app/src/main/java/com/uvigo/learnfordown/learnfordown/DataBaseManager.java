@@ -491,4 +491,31 @@ public class DataBaseManager {
         }
         return cursor;
     }
+    public Nivel getPrimerNivel(){
+        int id_user=  getIdUser();
+        String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
+
+            String whereClause = CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+                    " AND "+CN_ID_USER_LEVEL+" = ?";
+            String[] whereArgs = new String[] {String.valueOf(id_user)};
+          Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,null,null);
+        if(cursor!=null){
+            if(cursor.moveToFirst()){
+                String tipoNivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE));
+                int id_nivel=cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                int dificultad=cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_DIFFICULTY));
+                Nivel nivel = new Nivel(id_nivel,dificultad,tipoNivel);
+                return  nivel;
+            }
+
+            else{
+                return  null;
+            }
+
+        }
+        else {
+            return null;
+        }
+
+    }
 }

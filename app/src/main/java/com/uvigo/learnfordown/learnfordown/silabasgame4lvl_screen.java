@@ -42,6 +42,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     int i=0;
     int aciertos=0;
     int contador;
+    boolean activiftiFinalizado =false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -155,6 +156,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                             if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
+                                activiftiFinalizado=true;
                                 Intent intent = new Intent(silabasgame4lvl_screen.this, frasegame1lvl_screen.class);
                                 String strName= null;
                                 if(gn.getTipo().contains("directas")){
@@ -174,10 +176,12 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                                 startActivity(intent);
 
                             } else {
-                                fp = gn.getFotos();
-                                i = 0;
-                                cambiarFoto();
-                                System.out.println("Se debe avanzar el nivel");
+                                if(!activiftiFinalizado) {
+                                    fp = gn.getFotos();
+                                    i = 0;
+                                    cambiarFoto();
+                                    System.out.println("Se debe avanzar el nivel");
+                                }
                             }
 
                         }
