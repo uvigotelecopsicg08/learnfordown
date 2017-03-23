@@ -36,6 +36,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     int aciertos=0;
     int nivel;
     boolean cambiado=false;
+    boolean nuevaActivity= false;
 
 
 
@@ -235,31 +236,34 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                             if (!(gn.getTipo().equals(tipoNivel))) {
                                 System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
                                 //Código para abrir otra pantalla
-                                Intent intent=null;
+                                nuevaActivity=true;
                                 String strName=null;
-                                if(!gn.getTipo().contains("palabra")) {
-                                    intent = new Intent(palabrasgame1_2lvl_screen.this, silabasgame1lvl_screen.class);
+                                if(gn.getTipo().equals("silabastrabadas")||gn.getTipo().equals("silabasinversas")) {
+                                Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, silabasgame1lvl_screen.class);
                                     if(gn.getTipo().contains("inversas")) {
                                         strName = "silabasinversas";
                                     }
                                     else{
-                                        strName = "trabadas";
+                                        strName = "silabastrabadas";
                                     }
                                     intent.putExtra("tipoSilaba", strName);
+                                    startActivity(intent);
                                 }
                                 else{
-                                    intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
+                                    Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
                                     strName = "frasessilabasdirectas";
                                     intent.putExtra("tipoSilaba", strName);
                                     intent.putExtra("nivel",1);
+                                    startActivity(intent);
                                 }
-                                startActivity(intent);
 
                             } else {
-                                fp = gn.getFotos();
-                                i = 0;
-                                cambiarFoto();
-                                System.out.println("Se debe avanzar el nivel");
+                                if(!nuevaActivity) {
+                                    fp = gn.getFotos();
+                                    i = 0;
+                                    cambiarFoto();
+                                    System.out.println("Se debe avanzar el nivel");
+                                }
 
 
                             }

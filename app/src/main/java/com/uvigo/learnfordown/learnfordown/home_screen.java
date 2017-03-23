@@ -2,10 +2,12 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,6 +54,27 @@ public class home_screen extends AppCompatActivity {
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
+        if(registrado){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setMessage("¿Desea recuperar el último nivel?  ")
+                    .setTitle("Recuperacion nivel");
+            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    DataBaseManager db = new DataBaseManager(getApplicationContext());
+                    lanzaIntent(db.getPrimerNivel());
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
 
 
     }
@@ -140,4 +163,61 @@ public class home_screen extends AppCompatActivity {
         client.disconnect();
 
     }
+    public void lanzaIntent(Nivel nivel){
+
+            if(nivel.tipoNivel.equals("leerletras")) {
+                if (nivel.dificultad == 1) {
+                    Intent intent = new Intent(this, lettergame1lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 2) {
+                    Intent intent = new Intent(this, lettergame2lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 3) {
+                    Intent intent = new Intent(this, lettergame3lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 4) {
+                    Intent intent = new Intent(this, lettergame4lvl_screen.class);
+                    startActivity(intent);
+                }
+            }
+            if(nivel.tipoNivel.equals("silabasdirectas")||nivel.tipoNivel.equals("silabasindirectas")||nivel.tipoNivel.equals("silabastrabadas")){
+                if(nivel.dificultad==1) {
+                    Intent intent = new Intent(this, silabasgame1lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==2) {
+                    Intent intent = new Intent(this, silabasgame2lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==3) {
+                    Intent intent = new Intent(this, silabasgame3lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==4) {
+                    Intent intent = new Intent(this, silabasgame4lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    startActivity(intent);
+                }
+
+              }
+         if(nivel.tipoNivel.contains("palabra")){
+            Intent intent = new Intent(this,palabrasgame1_2lvl_screen.class);
+            intent.putExtra("tipoSilaba", nivel.tipoNivel);
+            intent.putExtra("nivel", nivel.id_nivel);
+            startActivity(intent);
+        }
+        if(nivel.tipoNivel.contains("frase")){
+            Intent intent = new Intent(this,frasegame1lvl_screen.class);
+            intent.putExtra("tipoSilaba", nivel.tipoNivel);
+            intent.putExtra("nivel", nivel.id_nivel);
+            startActivity(intent);
+        }
+    }
+
 }
