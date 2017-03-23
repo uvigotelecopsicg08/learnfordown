@@ -84,13 +84,14 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
 
-
         horizontalList=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
+
+
         tmpDownSlash = "";
         for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
@@ -98,23 +99,15 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 
         System.out.println("getPalabra "+ fp.get(i).getPalabra());
         palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
-
 
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
-
-
-
-
-
         horizontal_recycler_view.setAdapter(horizontalAdapter);
-
-
-
 
     }
     public void BackArrow (View v){
@@ -222,7 +215,9 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
         }
-        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);

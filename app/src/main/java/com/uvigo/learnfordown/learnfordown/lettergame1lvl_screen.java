@@ -105,7 +105,9 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             tmpDownSlash += " _";
         }
 
-        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
         horizontalAdapter = new HorizontalAdapter(horizontalList);
@@ -165,6 +167,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                     contador++;
 
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+
                     letracorrecta.setText(palabracom);
 
                     pulsar();
@@ -271,7 +274,9 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         for (int i=0;i<Correcta.length();i++){
             tmpDownSlash += " _";
         }
-        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);

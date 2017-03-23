@@ -14,7 +14,7 @@ public class InsertData {
     private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
    // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
-   private String[] subnivelesTrabadas = new String[]{"pl","cl","cr","fr","gr","tr"};
+   private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
     private String[] subnivelesVocales = new String[] {"a","e","i","o","u"};
     private String[] subnivelesEscribirConsonantes=new String[]{"b","c","d","f","g","h","j","k","l","m","n","ñ","p","q","r","s","t","v","w","x","y","z"};
     public InsertData(Context context) {
@@ -131,7 +131,10 @@ public class InsertData {
         db.insertar_foto("g","gel","directa","gel","Uso un * que huele a vainilla",R.drawable.gel,"otro",1,"mono");
         db.insertar_foto("g","golf","directa","golf","En frente de mi casa hay un campo de *",R.drawable.golf,"otro",1,"mono");
         db.insertar_foto("g","gol","directa","gol","Ronaldo marcó un * durante el partido",R.drawable.gol,"otro",1,"mono");
-        db.insertar_foto("g","gris","trabada","gris","El cielo está muy *, lloverá en breves",R.drawable.gris,"otro",1,"gr");
+        db.insertar_foto("g","gris","trabada","gris","El cielo está muy *, lloverá en breves",R.drawable.gris,"otro",1,"mono");
+        db.insertar_foto("g","glo","trabada","globo","Me regalaron un * azul",R.drawable.globo,"otro",2,"gl");
+        db.insertar_foto("g","gre","trabada","grelos","Hoy para comer hay lacón con *",R.drawable.grelos,"comida",2,"gr");
+
 
         db.insertar_foto("h","ho","directa","hotel","Nos hospedamos en un * de 4 estrellas en las vacaciones",R.drawable.hotel,"casa",2,"h");
         db.insertar_foto("h","ho","directa","horario","Tengo que hacer el * de este nuevo curso",R.drawable.horario,"casa",3,"h");
@@ -227,7 +230,7 @@ public class InsertData {
 
         db.insertar_foto("p","pla","trabada","planeta","Me gustaría ir una vez a otro *",R.drawable.planeta,"otro",3,"pl");
         db.insertar_foto("p","pe","directa","perro","El * es marrón",R.drawable.perro,"animales",2,"p");
-        db.insertar_foto("p","pla","trabada","platano","Le hechamos * a la macedonia",R.drawable.platano,"comida",3,"pl");
+        db.insertar_foto("p","pla","trabada","plátano","Le hechamos * a la macedonia",R.drawable.platano,"comida",3,"pl");
         db.insertar_foto("p","pla","trabada","playa","Me gusta estar en la *",R.drawable.playa,"playa",2,"pl");
         db.insertar_foto("p","pa","directa","patata","Me comí una *",R.drawable.patata,"comida",3,"p");
         db.insertar_foto("p","pan","directa","pan","Me comí un trozo de *",R.drawable.pan,"comida",1,"mono");
