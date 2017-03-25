@@ -39,7 +39,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
-    String tipoNivel="silabasdirectas",palabracom, tmpDownSlash= " ";
+    String tipoNivel="silabasdirectas",palabracom,palabraini, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
     Estrellas es;
@@ -83,6 +83,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
+
         gn = new GestionNiveles(context);
         es= new Estrellas(this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
@@ -102,6 +103,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 
         System.out.println("getPalabra "+ fp.get(i).getPalabra());
         palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
@@ -227,7 +229,9 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
         }
-        palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+        palabracom = fp.get(i).getPalabra().toUpperCase();
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
+        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
