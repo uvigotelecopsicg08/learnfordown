@@ -123,11 +123,7 @@ public class GestionNiveles {
 
             //Codigo pendiente de posibles modificaciones en la implementacion
             else {
-                cursor = db.resetNivel(tipo, dificultad, id_user);
-                if (cursor.moveToFirst()) {
-                    id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
-                    subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
-                }
+                resetNivel();
 
             }
         }
@@ -135,7 +131,16 @@ public class GestionNiveles {
         return  getEstrellas();
 
     }
+    public void resetNivel(){
+        aciertos=fallos=0;
+        Cursor cursor= db.resetNivel(tipo, dificultad, id_user);
+        if (cursor.moveToFirst()) {
+            id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+            subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
+        }
+        db.actulizaTimeStamp(true,id_nivel,id_user);
 
+    }
     public ArrayList<FotoPalabra> getFotos(){
         String tiposilaba="";
         int numeroSilabas=0;

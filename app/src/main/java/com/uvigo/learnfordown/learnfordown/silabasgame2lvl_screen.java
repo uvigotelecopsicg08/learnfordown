@@ -240,6 +240,12 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
+    public void reset(View v){
+        i=0;
+        gn.resetNivel();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
 
 
 }
