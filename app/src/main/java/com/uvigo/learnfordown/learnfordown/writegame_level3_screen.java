@@ -42,8 +42,9 @@ public class writegame_level3_screen extends AppCompatActivity {
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
-    int contador;
-    RatingBar ratingbar1;
+    //int contador;
+    //RatingBar ratingbar1;
+    Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
 
@@ -66,7 +67,7 @@ public class writegame_level3_screen extends AppCompatActivity {
         Foto = (ImageView)findViewById(R.id.imageView2);
         Frase =(TextView)findViewById(R.id.textView4);
 
-        // ** Estrellitas **
+       /* // ** Estrellitas **
 
         contador = 0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -77,7 +78,7 @@ public class writegame_level3_screen extends AppCompatActivity {
         thresholds.put(25, 3f); //25 aciertos, 3 estrellas
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        thresholds.put(80, 6f); //80 aciertos, 6 estrellas */
 
         //** Base de datos **
 
@@ -86,6 +87,7 @@ public class writegame_level3_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel,1);
         fp = gn.getFotosAleatorias();
+        es= new Estrellas (this,gn,gn.setNivel(TipoNivel,3));
 
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
         Correcta = fp.get(i).getPalabra().toUpperCase();
@@ -117,7 +119,7 @@ public class writegame_level3_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
-    public void pulsar() {
+    /* public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
             if (contador < i) {
@@ -131,7 +133,7 @@ public class writegame_level3_screen extends AppCompatActivity {
             toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
             toast.show();
         }
-    }
+    } */
 
     public void ButtonCheck (View v){
 
@@ -168,8 +170,10 @@ public class writegame_level3_screen extends AppCompatActivity {
                             i++;
                             cambiarFoto();
                         } else {
-                            contador++;
-                            pulsar();
+                            es.acierto();
+                            es.pulsar(true);
+                           // contador++;
+                           // pulsar();
                             gn.avanzaNivel();
 
                             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {

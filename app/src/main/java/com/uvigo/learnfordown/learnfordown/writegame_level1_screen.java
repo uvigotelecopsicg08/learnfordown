@@ -40,8 +40,9 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     ArrayList<FotoPalabra> fp;
 
-    int contador;
-    RatingBar ratingbar1;
+    //int contador;
+    //RatingBar ratingbar1;
+    Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
 
@@ -60,41 +61,16 @@ public class writegame_level1_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
+        es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
 
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
 
-        // ** Estrellitas **
 
-        contador = 0;
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
     }
 
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
 
 
     public void resetCanvas(View v) {
@@ -186,12 +162,12 @@ public class writegame_level1_screen extends AppCompatActivity {
                 if (normPointValidationStatus == "passed" && angularValidationStatus == "passed" && estadoValidacionTrazos == "passed") {
 
 
-                    contador++;
-                    pulsar();
+                    es.acierto();
+                    es.pulsar(true);
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
                     gn.avanzaNivel();
 
-                    /* No creo que sea necesario rehacer esto ¿? Si hay que rehacerlo, meter en función*/
+
                     setContentView(R.layout.activity_writegame_level1_screen);
                     plantilla =(ImageView) findViewById(R.id.imageView3);
                     foto= (ImageView) findViewById(R.id.imageView2);
