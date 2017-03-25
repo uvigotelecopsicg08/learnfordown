@@ -30,6 +30,38 @@ public class GestionNiveles {
     }
 
     public boolean isnivelCompletado() {
+        if(tipo.contains("escribir")){
+            return  iscompletadoEscritura();
+        }
+        else{
+        return iscompletadoLectura();
+        }
+        
+    }
+
+    private boolean iscompletadoEscritura() {
+       switch (tipo){
+           case "escribirconsombreado":
+               if(aciertos>=10){
+                   return true;
+               }
+               else return false;
+           case "escribirsinsombreado":
+               if(aciertos>=15){
+                   return true;
+               }
+               else return false;
+           case "escribirtecladopalabra":
+               if(aciertos>=15){
+                   return true;
+               }
+               else return false;
+           default:
+               return false;
+       }
+    }
+
+    private boolean iscompletadoLectura() {
         if(tipo.contains("frases")){
             if (( aciertos >= 3) || (numeroFotos <= (aciertos+2))){
                 return true;
@@ -67,6 +99,7 @@ public class GestionNiveles {
         //lectura parametros del nivel
         getParameterNivel();
         db.mostrarTablas();
+        db.actulizaTimeStamp(true,id_nivel,id_user);
 
     }
 
@@ -98,6 +131,7 @@ public class GestionNiveles {
 
             }
         }
+        db.actulizaTimeStamp(true,id_nivel,id_user);
         return  getEstrellas();
 
     }
@@ -140,13 +174,16 @@ public class GestionNiveles {
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
                 do {
+
                     String letra = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_LETTER));
                     String silaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SYLLABLE));
                     String palabra = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_WORD));
                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
                     int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
-                    fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas"))||palabra.startsWith(silaba)||dificultad<3) {
+                        fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                    }
                 }while(cursor.moveToNext());
             }
         }

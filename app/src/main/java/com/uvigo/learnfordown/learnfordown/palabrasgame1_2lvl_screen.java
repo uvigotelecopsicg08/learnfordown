@@ -130,6 +130,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 
                     if (aciertos == 3) {
+
                         aciertos = 0;
                         if (!gn.isnivelCompletado()) {
                             i += 3;
@@ -137,6 +138,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                             cambiado=true;
                         } else {
                             System.out.print("el nivel esta finalizado");
+                            avanzaNivel();
 
                         }
                     }
