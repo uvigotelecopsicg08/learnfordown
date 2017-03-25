@@ -108,7 +108,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(palabracom);
 
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -223,7 +223,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         System.out.println("+++++++++++++++++"+fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
 
         tmpDownSlash = "";
         for (int j=0;j<Correcta.length();j++){

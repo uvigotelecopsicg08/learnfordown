@@ -93,7 +93,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList);
+        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -102,7 +102,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -223,8 +223,8 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
-        horizontalAdapter = new HorizontalAdapter(horizontalList);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

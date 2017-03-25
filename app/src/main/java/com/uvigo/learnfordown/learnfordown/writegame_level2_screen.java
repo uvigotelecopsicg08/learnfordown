@@ -99,7 +99,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level2_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 
@@ -199,7 +199,7 @@ public class writegame_level2_screen extends AppCompatActivity {
         CompletaLista();
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level2_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 

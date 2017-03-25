@@ -84,7 +84,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         Correcta= fp.get(i).getLetra().toUpperCase();
 
 
-        horizontalAdapter = new HorizontalAdapter(horizontalList);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -92,7 +92,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -203,8 +203,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

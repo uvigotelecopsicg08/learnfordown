@@ -100,7 +100,7 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 

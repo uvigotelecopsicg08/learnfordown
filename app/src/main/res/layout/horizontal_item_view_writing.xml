@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="130dp"
+    android:layout_height="130dp"
+    android:weightSum="1">
+
+
+    <Button
+
+        android:textSize="50sp"
+        android:text="A"
+        android:padding="12dp"
+        android:id="@+id/button4"
+        android:onClick="ButtonCheck"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:background="@drawable/shape_creditos"
+        android:layout_height="wrap_content" />
+</LinearLayout>
