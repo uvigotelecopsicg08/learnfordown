@@ -39,10 +39,13 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     String tipoNivel="leerletras";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
     int aciertos=0;
+    /*
     int contador;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-
+*/
+    Estrellas es;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
+        /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         contador=0;
 
@@ -64,12 +68,14 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         thresholds.put(90, 4f); //90 aciertos, 4 estrellas
         thresholds.put(120, 5f); //120 aciertos, 5 estrellas
         thresholds.put(158, 6f); //158 aciertos, 6 estrellas
+        */
         palabra= (ImageView)findViewById(R.id.imageView2);
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,4);
+        es =new Estrellas(this,gn,gn.setNivel(tipoNivel,4));
         fp=gn.getFotos();
+
 
         horizontalList=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
@@ -103,7 +109,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -119,6 +125,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
+    */
 
     public void ButtonCheck(View v) {
         Button b = (Button) v;
@@ -134,19 +141,17 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
-                    aciertos++;
-                    contador++;
-                    pulsar();
+
                 }
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-
+                        es.acierto();
+                        es.pulsar(true);
                     //Codigo de Animacion Acierto
 
-                        gn.acierto();
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
                             i++;

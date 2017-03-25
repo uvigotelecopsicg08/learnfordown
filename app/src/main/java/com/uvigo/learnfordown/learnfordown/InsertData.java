@@ -48,16 +48,16 @@ public class InsertData {
         db.insertar_foto("b","bra","trabada","brazo","Me duele el *",R.drawable.brazo,"otro",2,"bvr");
         db.insertar_foto("b","bre","trabada","brécol","Mi comida favorita es el *",R.drawable.brecol,"comida",2,"bvr");
         db.insertar_foto("b","bri","trabada","bricolaje","Se me da muy bien el *",R.drawable.bricolaje,"otro",4,"bvr");
-        db.insertar_foto("b","bri","trabada","bricolaje","Hoy toca clase de *",R.drawable.bricolaje,"otro",4,"bvr");
+       // db.insertar_foto("b","bri","trabada","bricolaje","Hoy toca clase de *",R.drawable.bricolaje,"otro",4,"bvr");
         db.insertar_foto("b","bro","trabada","brote","Aquí hay un * de hortensias",R.drawable.brote,"otro",2,"bvr");
         db.insertar_foto("b","bol","directa","bol","Me como la ensalada en un *",R.drawable.bol,"otros",1,"mono");
-        db.insertar_foto("b","bol","directa","bol","Pon agua en el *",R.drawable.bol,"otros",1,"mono");
+       // db.insertar_foto("b","bol","directa","bol","Pon agua en el *",R.drawable.bol,"otros",1,"mono");
         db.insertar_foto("b","buey","directa","buey","Qué bonito es ese *",R.drawable.buey,"animales",1,"mono");
 
         db.insertar_foto("c","co","directa","coche","El * de mi madre es gris ",R.drawable.coche,"vehiculos",2,"kcq");
         db.insertar_foto("c","ca","directa","caballo","Ayer monté a * ",R.drawable.caballo,"animales",3,"kcq");
         db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene muchas *",R.drawable.cabra,"animales",2,"kcq");
-        db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene una *",R.drawable.cabra,"animales",2,"kcq");
+    //    db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene una *",R.drawable.cabra,"animales",2,"kcq");
         db.insertar_foto("c","ca","directa","casa","La * es blanca",R.drawable.casa,"casa",2,"kcq");
         db.insertar_foto("c","ca","directa","camello","Nunca he montado en un * ",R.drawable.camello,"animales",3,"kcq");
         db.insertar_foto("c","co","directa","cocina","La parte de la casa donde se hace la comida es la *",R.drawable.cocina,"casa",3,"kcq");
@@ -389,6 +389,9 @@ public class InsertData {
         db.insertar_nivel("escribirconsombreado",1,"subniveunico");
         db.insertar_nivel("escribirsinsombreado",1,"subniveunico");
         db.insertar_nivel("escribirtecladopalabra",1,"subniveunico");
+
+
+        db.inicializarEstrellas();
 
     }
 }

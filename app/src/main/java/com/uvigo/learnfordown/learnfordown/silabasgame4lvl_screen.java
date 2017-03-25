@@ -32,7 +32,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view2;
     private ArrayList<String> horizontalList2;
     private HorizontalAdapter horizontalAdapter2;
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
+//    final HashMap<Integer, Float> thresholds = new HashMap<>();
     RatingBar ratingbar1;
     Button ButtonActual;
     ImageView palabra;
@@ -41,8 +41,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
-    int contador;
+  //  int contador;
     boolean activiftiFinalizado =false;
+    Estrellas es;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         palabra= (ImageView)findViewById(R.id.imageView2);
         titulo.setTypeface(face);
+        /*
         contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
@@ -70,10 +72,10 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
-
+*/
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,4);
+        es= new Estrellas(this,gn,gn.setNivel(tipoNivel,4));
         fp=gn.getFotos();
 
         horizontalList=new ArrayList<String>();
@@ -106,7 +108,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(silabasgame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -122,6 +124,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
+    */
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -136,8 +139,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
-                    contador++;
-                    pulsar();
+
                 }
             }
 
@@ -145,7 +147,8 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     if (aciertos == 1) {
-                        gn.acierto();
+                        es.acierto();
+                        es.pulsar(true);
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
                             i++;

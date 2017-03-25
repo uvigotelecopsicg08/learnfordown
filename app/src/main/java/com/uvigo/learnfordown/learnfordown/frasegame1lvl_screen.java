@@ -30,22 +30,23 @@ import java.util.TreeSet;
 
 public class frasegame1lvl_screen extends AppCompatActivity {
     TextView titulo;
-    RatingBar ratingbar1 = null;
+   // RatingBar ratingbar1 = null;
     String figure = "plato";
     Button button1,button2,button3;
     Button Actual;
-    int contador;
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
+   // int contador;
+    //final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="frasessilabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
-    int aciertos=0;
+   // int aciertos=0;
     TextView textView;
     int nivel;
     String tmpDownSlash;
     boolean activiftiFinalizado =false;
+    Estrellas es;
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -75,7 +76,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel, nivel);
+       es = new Estrellas(this,gn, gn.setNivel(tipoNivel, nivel));
         fp = gn.getFotos();
         figure=fp.get(i).getPalabra().toUpperCase();
         palabra.setImageResource(fp.get(i).getFoto());
@@ -98,6 +99,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         textView.setText(stringAux);
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         contador = 0;
         thresholds.clear();
@@ -107,6 +109,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        */
     }
 
     public void BackArrow(View v) {
@@ -131,12 +134,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-                    contador++;
+                  //  contador++;
 
                     System.out.println(figure);
                     String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
                     textView.setText(stringAux);
-
+/*
                     float rating = 0;
                     for (int i : new TreeSet<>(thresholds.keySet())) {
                         if(contador < i) {
@@ -150,7 +153,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                         toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
                         toast.show();
                     }
-                    gn.acierto();
+                    */
+
                 }
             }
 
@@ -158,27 +162,14 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.WHITE);
-
+                    es.acierto();
+                    es.pulsar(true);
                     if (!gn.isnivelCompletado()) {
                         i++;
                         cambiarFoto();
                     } else {
                         System.out.print("el nivel esta finalizado");
-                        gn.avanzaNivel();
-                        if (!(gn.getTipo().contains("frases"))) {
-                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                            //Código para abrir otra pantalla
-                            activiftiFinalizado =true;
-                            Intent intent = new Intent(frasegame1lvl_screen.this, home_screen.class);
-                            startActivity(intent);
-                        } else {
-                            if(!activiftiFinalizado) {
-                                fp = gn.getFotos();
-                                i = 0;
-                                cambiarFoto();
-                                System.out.println("Se debe avanzar el nivel");
-                            }
-                        }
+                        avanzaNivel();
                     }
 
                 } else {
@@ -196,23 +187,28 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     }
 
     private void cambiarFoto() {
+    try {
+    figure = fp.get(i).getPalabra().toUpperCase();
+    palabra.setImageResource(fp.get(i).getFoto());
+    ArrayList<String> arrayAux = new ArrayList<>();
+    arrayAux.add(fp.get(i).getPalabra().toUpperCase());
+    arrayAux.add(fp.get(i + 1).getPalabra().toUpperCase());
+    arrayAux.add(fp.get(i + 2).getPalabra().toUpperCase());
+    Collections.shuffle(arrayAux);
+    button1.setText(arrayAux.get(0));
+    button2.setText(arrayAux.get(1));
+    button3.setText(arrayAux.get(2));
 
-        figure=fp.get(i).getPalabra().toUpperCase();
-        palabra.setImageResource(fp.get(i).getFoto());
-        ArrayList<String> arrayAux = new ArrayList<>();
-        arrayAux.add(fp.get(i).getPalabra().toUpperCase());
-        arrayAux.add(fp.get(i+1).getPalabra().toUpperCase());
-        arrayAux.add(fp.get(i+2).getPalabra().toUpperCase());
-        Collections.shuffle(arrayAux);
-        button1.setText(arrayAux.get(0));
-        button2.setText(arrayAux.get(1));
-        button3.setText(arrayAux.get(2));
         String tmpDownSlash = "";
         for (int i = 0; i < figure.length(); i++) {
             tmpDownSlash += " _";
         }
         String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",tmpDownSlash);
         textView.setText(stringAux);
+    }catch (java.lang.IndexOutOfBoundsException e){
+        e.printStackTrace();
+        avanzaNivel();
+    }
     }
 
     public Action getIndexApiAction() {
@@ -227,6 +223,26 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                 .build();
     }
 
+   public void avanzaNivel(){
+       gn.avanzaNivel();
+       if (!(gn.getTipo().contains("frases"))) {
+           System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+           //Código para abrir otra pantalla
+           activiftiFinalizado =true;
+           Intent intent = new Intent(frasegame1lvl_screen.this, home_screen.class);
+           startActivity(intent);
+       } else {
+           if (!activiftiFinalizado) {
+               if (gn.getTipo().equals(tipoNivel)) {
+                   es.resetPanelEstrellas();
+               }
+               fp = gn.getFotos();
+               i = 0;
+               cambiarFoto();
+           }
+       }
+
+    }
     @Override
     public void onStart() {
         super.onStart();

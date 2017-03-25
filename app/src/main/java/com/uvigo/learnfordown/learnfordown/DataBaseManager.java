@@ -68,6 +68,11 @@ public class DataBaseManager {
     public static final String CN_DIFFICULTY="dificultad";
     public static final String CN_STEP ="subnivel";
 
+    // Tabla estrelllas
+    public static final String TABLE_STARS= "ESTRELLAS";
+    public static final String CN_STARS_TYPE ="tipo_nivel";
+    public static final String CN_NUMBER_STARS ="numero_estrellas";
+    public static final String CN_STARS_DIFICULTAD ="dificultad_estrellas";
 
     public static final String CREATE_TABLE_USER ="create table "+TABLE_USER+" ("+CN_ID_USER+
             " integer primary key autoincrement,"
@@ -123,7 +128,10 @@ public class DataBaseManager {
             + CN_DIFFICULTY+ " integer NOT NULL,"
             + CN_STEP +" VARCHAR(50)  NOT NULL );";
 
-
+    public static final String CREATE_TABLE_STARS="create table "+TABLE_STARS+" ("+CN_STARS_TYPE+
+            " VARCHAR(50)  NOT NULL, "+
+          CN_STARS_DIFICULTAD + " integer NOT NULL, "+
+            CN_NUMBER_STARS+" integer NOT NULL );";
 
 
     public DataBaseManager(Context context) {
@@ -515,6 +523,53 @@ public class DataBaseManager {
         }
         else {
             return null;
+        }
+
+    }
+
+    public void inicializarEstrellas() {
+        String tablas = TABLE_LEVEL;
+        String columnas[] = new String[]{CN_TYPE, CN_DIFFICULTY};
+        Cursor cursor = db.query(true, tablas, columnas, null, null, null, null, null, null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    ContentValues valores = new ContentValues();
+                    String tipo =cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE));
+                    int dificultad= cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_DIFFICULTY));
+                    if((!tipo.contains("palabras")&&!tipo.contains("frases"))||dificultad==1) {
+                        valores.put(CN_STARS_TYPE, tipo);
+                        valores.put(CN_NUMBER_STARS, 0);
+                        valores.put(CN_STARS_DIFICULTAD, dificultad);
+                        db.insert(TABLE_STARS, null, valores);
+                    }
+                } while (cursor.moveToNext());
+            }
+        }
+    }
+    public void actualizarEstrellas(String tipo,int dificultad,int aciertos){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_NUMBER_STARS,aciertos);
+
+        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =?";
+        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad)};
+        db.update(TABLE_STARS, valores,whereClause, whereArgs);
+
+    }
+    public int getEstrellas(String tipo,int dificultad){
+        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =?";
+        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad)};
+        Cursor cursor= db.query(TABLE_STARS,null,whereClause,whereArgs,null,null,null ,null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                return cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_NUMBER_STARS));
+            }
+            else{
+                return 0;
+            }
+        }
+        else{
+            return 0;
         }
 
     }

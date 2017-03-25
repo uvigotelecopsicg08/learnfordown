@@ -29,16 +29,17 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
+   // final HashMap<Integer, Float> thresholds = new HashMap<>();
 
-    RatingBar ratingbar1;
+  //  RatingBar ratingbar1;
     Button ButtonActual;
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
-    int contador;
+    //int contador;
+    Estrellas es;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +54,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-        contador=0;
+ /*       contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
@@ -63,11 +64,12 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        */
         palabra= (ImageView)findViewById(R.id.imageView2);
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,3);
+       es =new Estrellas(this,gn,gn.setNivel(tipoNivel,3));
         fp=gn.getFotos();
         horizontalList=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
@@ -95,7 +97,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(silabasgame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -111,6 +113,8 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
+    */
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual = b;
@@ -123,9 +127,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    gn.acierto();
-                    contador++;
-                    pulsar();
+
                 }
             }
 
@@ -133,6 +135,8 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())){
                     System.out.println(gn.getDificultad());
+                    es.acierto();
+                    es.pulsar(true);
                     if(!gn.isnivelCompletado()) {
                         i++;
                         cambiarFoto();

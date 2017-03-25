@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.common.GooglePlayServicesRepairableException;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Collections;
@@ -42,9 +44,13 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     GestionNiveles  gn;
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
+
     int i=0;
+    /*
     int contador;
     int aciertos=0;
+    */
+    Estrellas es;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +68,8 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         Home = (ImageButton) findViewById(R.id.button5);
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
-        contador=0;
         titulo.setTypeface(face);
+        /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
         thresholds.clear();
@@ -73,10 +79,11 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
+        */
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,2);
+       es =new Estrellas(this,gn, gn.setNivel(tipoNivel,2));
         fp=gn.getFotos();
         horizontalList=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
@@ -122,7 +129,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(silabasgame2lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -138,7 +145,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
-
+*/
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -152,19 +159,17 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
-                    aciertos++;
-                    contador++;
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
-                    pulsar();
                 }
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-                        gn.acierto();
                         System.out.println("Se ha anotado un acierto");
+                        es.acierto();
+                        es.pulsar(true);
                         if (!gn.isnivelCompletado()) {
                             i++;
                             cambiarFoto();
@@ -184,7 +189,6 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                             }
 
                         }
-                        aciertos = 0;
 
                 } else {
                     gn.fallo();
