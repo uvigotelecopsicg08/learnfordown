@@ -55,7 +55,6 @@ public class InsertData {
 
         db.insertar_foto("c","co","directa","coche","El * de mi madre es gris ",R.drawable.coche,"vehiculos",2,"kcq");
         db.insertar_foto("c","ca","directa","caballo","Ayer monté a * ",R.drawable.caballo,"animales",3,"kcq");
-        db.insertar_foto("c","ca","directa","cabras","Mi abuela tiene muchas *",R.drawable.cabra,"animales",2,"kcq");
         db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene una *",R.drawable.cabra,"animales",2,"kcq");
         db.insertar_foto("c","ca","directa","casa","La * es blanca",R.drawable.casa,"casa",2,"kcq");
         db.insertar_foto("c","ca","directa","camello","Nunca he montado en un * ",R.drawable.camello,"animales",3,"kcq");
@@ -175,7 +174,7 @@ public class InsertData {
         db.insertar_foto("ll","lla","directa","llavero","Tengo un * con la llave de casa",R.drawable.llavero,"otro",3,"lly");
         db.insertar_foto("ll","llu","directa","lluvia","Me mojaré con la * si no llevo paraguas",R.drawable.lluvia,"otro",2,"lly");
         db.insertar_foto("ll","llo","directa","cepillo","Los dientes se lavan con un *",R.drawable.cepillo,"casa",3,"lly");
-        db.insertar_foto("ll","lla","directa","cerillas","Con las * se hace fuego",R.drawable.cerilla,"casa",3,"lly");
+        db.insertar_foto("ll","lla","directa","cerilla","Con la * se hace fuego",R.drawable.cerilla,"casa",3,"lly");
         db.insertar_foto("ll","llo","directa","criollo","El * en el churrasco me encanta",R.drawable.criollo,"comida",2,"lly");
         db.insertar_foto("ll","lla","directa","escobilla","Nustra * del baño es azul",R.drawable.escobilla,"casa",4,"lly");
         db.insertar_foto("ll","llo","directa","grillo","En el jardín hay un * cantando",R.drawable.grillo,"animales",2,"lly");
@@ -189,7 +188,7 @@ public class InsertData {
         db.insertar_foto("m","ma","directa","mano","Mi * es pequeña",R.drawable.mano,"otro",2,"m");
         db.insertar_foto("m","ma","directa","mapa","Me regalaron un * para aprender todos los países",R.drawable.mapa,"otro",2,"m");
         db.insertar_foto("m","ma","directa","mariposa","La * tiene las alas de colores",R.drawable.mariposa,"animales",4,"m");
-        db.insertar_foto("m","ma","directa","mariquitas","Las * son rojas y negras",R.drawable.mariquita,"animales",4,"m");
+        db.insertar_foto("m","ma","directa","mariquita","La * es roja y negra",R.drawable.mariquita,"animales",4,"m");
         db.insertar_foto("m","me","directa","melón","Mi madre tomó de postre un trozo de *",R.drawable.melon,"comida",2,"m");
         db.insertar_foto("m","me","directa","mesa","Tengo una * de estudio en mi habitación",R.drawable.mesa,"otro",2,"m");
         db.insertar_foto("m","mi","directa","micrófono","El cantante usó el *",R.drawable.microfono,"otro",4,"m");
