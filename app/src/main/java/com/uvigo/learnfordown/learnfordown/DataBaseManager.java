@@ -60,6 +60,8 @@ public class DataBaseManager {
     public static final String CN_RIGTHS = "aciertos";
     public static final String CN_WRONGS = "errores";
     public static final String CN_COMPLETED = "completado";
+    public static final String CN_TIME_START ="tiempo_inicio";
+    public static final String CN_TIME_END ="tiempo_fin";
 
     //Tabla nivel
     public static final String TABLE_LEVEL= "NIVEL";
@@ -67,6 +69,8 @@ public class DataBaseManager {
     public static final String CN_TYPE ="tipo";
     public static final String CN_DIFFICULTY="dificultad";
     public static final String CN_STEP ="subnivel";
+   ;
+
 
     // Tabla estrelllas
     public static final String TABLE_STARS= "ESTRELLAS";
@@ -118,6 +122,8 @@ public class DataBaseManager {
             +CN_RIGTHS+" integet NOT NULL,"+
             CN_WRONGS+" integer NOT NULL ,"+
             CN_COMPLETED+ " boolean NOT NULL,"+
+             CN_TIME_START +" timeStamp, "+
+            CN_TIME_END+ " timeStamp, "+
             " FOREIGN KEY ("+CN_ID_LEVEL_LEVEL+") REFERENCES "+TABLE_LEVEL+"("+CN_ID_LEVEL+") ON DELETE CASCADE,"+
             " FOREIGN KEY ("+CN_ID_USER_LEVEL+") REFERENCES "+TABLE_USER+"("+CN_ID_USER+") ON DELETE CASCADE);";
 
@@ -456,7 +462,7 @@ public class DataBaseManager {
                         valores.put(CN_COMPLETED,0);
                         valores.put(CN_RIGTHS,0);
                         valores.put(CN_WRONGS,0);
-                      String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
+                      String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_USER_LEVEL+ " =?";
                       String[]   whereArgs2 = new String[]{String.valueOf(id_user),String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL))) };
                         db.update(TABLE_LEVEL_USER, valores,whereClause2, whereArgs2);
                     }while(cursor.moveToNext());
@@ -503,15 +509,19 @@ public class DataBaseManager {
         int id_user=  getIdUser();
         String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
 
-            String whereClause = CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
-                    " AND "+CN_ID_USER_LEVEL+" = ?";
+         //   String whereClause = CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+           //         " AND "+CN_ID_USER_LEVEL+" = ?";
+        String whereClause = TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+                        " AND "+CN_ID_USER_LEVEL+" = ?";
             String[] whereArgs = new String[] {String.valueOf(id_user)};
-          Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,null,null);
+        String orderBy= CN_TIME_START +" DESC";
+          Cursor cursor= db.query(tablas,null,whereClause,whereArgs,null,null,orderBy,null);
         if(cursor!=null){
             if(cursor.moveToFirst()){
                 String tipoNivel=cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE));
                 int id_nivel=cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
                 int dificultad=cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_DIFFICULTY));
+                System.out.println(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TIME_START)));
                 Nivel nivel = new Nivel(id_nivel,dificultad,tipoNivel);
                 return  nivel;
             }
@@ -572,5 +582,17 @@ public class DataBaseManager {
             return 0;
         }
 
+    }
+    public void actulizaTimeStamp(boolean inicio,int id_nivel,int id_user){
+        ContentValues valores = new ContentValues();
+        if(inicio) {
+            valores.put(CN_TIME_START,System.currentTimeMillis());
+        }
+        else{
+            valores.put(CN_TIME_END,System.currentTimeMillis());
+        }
+        String  whereClause =CN_ID_LEVEL_LEVEL+" = ? AND "+CN_ID_USER_LEVEL+ " =?";
+        String[]   whereArgs = new String[]{String.valueOf(id_nivel),String.valueOf(id_user)};
+        db.update(TABLE_LEVEL_USER, valores,whereClause, whereArgs);
     }
 }

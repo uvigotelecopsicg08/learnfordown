@@ -94,7 +94,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         //** Base de datos **
 
-        TipoNivel = "palabrassilabasdirectas"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
+        TipoNivel = "escribirconsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
@@ -213,12 +213,18 @@ public class writegame_level2_screen extends AppCompatActivity {
 
 
     private void cambiarFoto() {
-
+        num_iteracion=0;
         Correcta = fp.get(i).getPalabra().toUpperCase();
         Foto.setImageResource(fp.get(i).getFoto());
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
+        ListaHorizontal.clear();
         Rellenar(false);
         CompletaLista();
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level2_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        PanelHorizontal.setLayoutManager(horizontalLayoutManager);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal);
+        PanelHorizontal.setAdapter(HorizontalAdapter);
+
 
     }
 
@@ -260,6 +266,7 @@ public class writegame_level2_screen extends AppCompatActivity {
     public void CompletaLista() {
 
         ListaHorizontal = new ArrayList<String>();
+
         LetrasPalabra = new char[Correcta.length()];
         Correcta.getChars(0, Correcta.length(), LetrasPalabra, 0);
         for (int n = 0; n < (LetrasPalabra.length); n++) {

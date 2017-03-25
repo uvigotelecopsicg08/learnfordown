@@ -256,5 +256,11 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+    public void reset(View v){
+        i=0;
+        gn.resetNivel();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
 }
 

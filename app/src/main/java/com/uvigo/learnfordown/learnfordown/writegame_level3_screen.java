@@ -81,7 +81,7 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         //** Base de datos **
 
-        TipoNivel = "palabrassilabasdirectas"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
+        TipoNivel = "escribirsinsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel,1);

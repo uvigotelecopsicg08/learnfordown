@@ -235,5 +235,11 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         horizontal_recycler_view.setAdapter(horizontalAdapter);
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
+    public void reset(View v){
+        i=0;
+        gn.resetNivel();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
 
 }
