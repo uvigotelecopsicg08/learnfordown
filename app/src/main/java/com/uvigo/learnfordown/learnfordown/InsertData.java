@@ -165,7 +165,7 @@ public class InsertData {
         db.insertar_foto("a","al","inversa","almejas","Este domingo comimos * a la marinera",R.drawable.almeja,"comida",3,"l");
         db.insertar_foto("a","al","inversa","almendras","De los frutos secos lo que más me gustan son las *",R.drawable.almendras,"comida",3,"l");
         db.insertar_foto("a","al","inversa","alcachofa","Esta ensalada lleva *",R.drawable.alcachofa,"comida",4,"l");
-        db.insertar_foto("a","al","inversa","albanil","Mi padre trabaja de *",R.drawable.albanil,"otro",3,"l");
+        db.insertar_foto("a","al","inversa","albañil","Mi padre trabaja de *",R.drawable.albanil,"otro",3,"l");
         db.insertar_foto("a","al","inversa","almohada","Mi * es muy blandita",R.drawable.almohada,"casa",4,"l");
         db.insertar_foto("u","ul","inversa","baúl","En mi casa hay un * para guardar los juguetes",R.drawable.baul,"casa",2,"l"); //La vocal y el sonido de esto...
 
