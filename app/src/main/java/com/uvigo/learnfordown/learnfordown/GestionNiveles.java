@@ -77,7 +77,7 @@ public class GestionNiveles {
     public void fallo(){
         fallos++;
     }
-    public void setNivel(String tipo,int dificultad){
+    public int setNivel(String tipo,int dificultad){
         this.tipo=tipo;
         this.dificultad=dificultad;
         aciertos=fallos=0;
@@ -98,6 +98,8 @@ public class GestionNiveles {
 
             }
         }
+        return  getEstrellas();
+
     }
 
     public ArrayList<FotoPalabra> getFotos(){
@@ -233,6 +235,23 @@ public class GestionNiveles {
         }
 
         return  resultado;
+    }
+    public void actualizarEstrellas(int aciertos){
+        if(tipo.contains("palabras")||tipo.contains("frases")){
+            db.actualizarEstrellas(tipo,1,aciertos);
+        }
+        else{
+            db.actualizarEstrellas(tipo,dificultad,aciertos);
+        }
+    }
+    public int getEstrellas(){
+        if( tipo.contains("palabras")||tipo.contains("frases")) {
+             return db.getEstrellas(tipo, 1);
+     }
+        else{
+             return db.getEstrellas(tipo, dificultad);
+    }
+
     }
 
     public int getId_nivel() {

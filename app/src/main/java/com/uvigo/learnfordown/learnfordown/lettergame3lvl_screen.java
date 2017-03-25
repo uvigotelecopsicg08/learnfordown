@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EmptyStackException;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -36,10 +37,11 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int aciertos=0;
-    int contador;
+    /*  int contador;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-
+*/
+    Estrellas es;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,13 +52,15 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
         palabra = (ImageView) findViewById(R.id.imageView2);
         titulo.setTypeface(face);
-        contador=0;
+
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel, 3);
+       es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
         fp = gn.getFotos();
+        /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        pulsar();
 
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -65,7 +69,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         thresholds.put(60, 4f); //60 aciertos, 4 estrellas
         thresholds.put(90, 5f); //90 aciertos, 5 estrellas
         thresholds.put(120, 6f); //120 aciertos, 6 estrellas
-
+*/
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
         Collections.shuffle(horizontalList);
@@ -86,7 +90,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -102,6 +106,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
+    */
 
     public void ButtonCheck (View v){
         Button b = (Button)v;
@@ -117,22 +122,23 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                         ButtonActual.setBackgroundColor(Color.GREEN);
                        //
                         // gn.acierto();
-                        contador++;
-                        pulsar();
+
                     }
                 }
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
+                        es.acierto();
+                        es.pulsar(true);
 
 
-                    gn.acierto();
                     if (!gn.isnivelCompletado()) {
                         i++;
                         cambiarFoto();
                     } else {
                         System.out.print("el nivel esta finalizado");
+                        //gn.actualizarEstrellas(contador);
                         gn.avanzaNivel();
                         if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
                             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");

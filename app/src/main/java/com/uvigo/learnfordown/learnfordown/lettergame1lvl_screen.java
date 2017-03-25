@@ -52,10 +52,11 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
     ArrayList<FotoPalabra> fp;
     int i = 0;
-    int contador=0;
-    RatingBar ratingbar1 = null;
+   // int contador=0;
+   // RatingBar ratingbar1 = null;
+    Estrellas  es;
 
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
+  //  final HashMap<Integer, Float> thresholds = new HashMap<>();
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -77,7 +78,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
 
-
+/*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         thresholds.clear();
         thresholds.put(1, 1f); // 1 acierto, 1 estrella
@@ -86,13 +87,16 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         thresholds.put(30, 4f); //30 aciertos, 4 estrellas
         thresholds.put(40, 5f); //40 aciertos, 5 estrellas
         thresholds.put(50, 6f); //50 aciertos, 6 estrellas
+*/
 
 
-        contador = 0;
+
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,1);
+
+       es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
+        //pulsar();
 
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
@@ -133,7 +137,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-
+/*
     public void pulsar() {
         float rating = 0;
         for (int i : new TreeSet<>(thresholds.keySet())) {
@@ -147,8 +151,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
             toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
             toast.show();
+            gn.actualizarEstrellas(contador);
         }
     }
+    */
 
     public void ButtonCheck(View v) {
 
@@ -163,14 +169,14 @@ public class lettergame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    gn.acierto();
-                    contador++;
+
+
 
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
 
                     letracorrecta.setText(palabracom);
-
-                    pulsar();
+                    es.acierto();
+                    es.pulsar(true);
                 }
             }
 
@@ -219,44 +225,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
 
 
-        /// Sin animacion
-        /*
-        Button b = (Button) v;
-        ButtonActual = b;
-        if (Correcta.equals(ButtonActual.getText().toString())){
-            System.out.println(gn.getDificultad());
-            gn.acierto();
-            if(!gn.isnivelCompletado()) {
-                i++;
-                cambiarFoto();
-            }
-            else{
-                System.out.print("el nivel esta finalizado");
-                gn.avanzaNivel();
-                if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
-                    System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                    //Código para abrir otra pantalla
-                    Intent intent = new Intent(lettergame1lvl_screen.this, lettergame2lvl_screen.class);
-                    startActivity(intent);
-                }
-                else {
-                    fp= gn.getFotos();
-                    i=0;
-                    cambiarFoto();
-                    System.out.println("Se debe avanzar el nivel");
-                }
 
-
-            }
-//Codigo de Animacion Acierto
-        } else{
-            //Codigo de Animacion Fallo
-            gn.fallo();
-            System.out.println("Se ha anotado un fallo");
-
-
-        }
-        */
 
     }
 

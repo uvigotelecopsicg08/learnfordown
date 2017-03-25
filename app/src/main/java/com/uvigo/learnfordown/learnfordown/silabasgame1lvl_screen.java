@@ -42,9 +42,12 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     String tipoNivel="silabasdirectas",palabracom,palabraini, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    Estrellas es;
+    /*
     int contador;
     RatingBar ratingbar1;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
+        /*
         contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
@@ -75,14 +79,16 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         thresholds.put(45, 4f); //45 aciertos, 4 estrellas
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
-
+*/
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
 
         gn = new GestionNiveles(context);
-        gn.setNivel(tipoNivel,1);
+        es= new Estrellas(this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
+
+
 
         horizontalList=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
@@ -90,8 +96,6 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-
-
         tmpDownSlash = "";
         for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";
@@ -103,11 +107,20 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
 
+
         horizontalAdapter=new HorizontalAdapter(horizontalList);
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+
+
+
+
         horizontal_recycler_view.setAdapter(horizontalAdapter);
+
+
+
 
     }
     public void BackArrow (View v){
@@ -119,6 +132,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
+    /*
     public void pulsar() {
         float rating = 0;
         for (int j : new TreeSet<>(thresholds.keySet())) {
@@ -134,6 +148,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             toast.show();
         }
     }
+    */
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual = b;
@@ -146,12 +161,9 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    gn.acierto();
-                    contador++;
-                    palabracom=fp.get(i).getPalabra().toUpperCase();
-                    //palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
+                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
-                    pulsar();
+
                 }
             }
 
@@ -159,6 +171,8 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())){
                     System.out.println(gn.getDificultad());
+                    es.acierto();
+                    es.pulsar(true);
                     if(!gn.isnivelCompletado()) {
                         i++;
                         cambiarFoto();
