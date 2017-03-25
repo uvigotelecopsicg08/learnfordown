@@ -24,19 +24,16 @@
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/colorPrimary"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.005" />
+            android:layout_weight="0.1" />
 
         <TextView
             android:text="@string/qu_quieres_practicar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.795"
+            android:layout_weight="0.7"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"

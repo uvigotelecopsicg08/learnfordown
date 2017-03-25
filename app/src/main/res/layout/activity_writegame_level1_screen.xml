@@ -10,6 +10,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
+
     <LinearLayout
 
         android:weightSum="1"
@@ -33,9 +34,6 @@
                 android:background="@color/colorGame"
                 android:scaleType="fitCenter"
                 android:onClick="BackArrow"
-                android:visibility="visible"
-                android:cropToPadding="true"
-                android:adjustViewBounds="true"
                 android:src="@mipmap/icon_backarrow"/>
 
             <TextView android:id="@+id/textView2"
@@ -162,6 +160,7 @@
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
+
 
 
 

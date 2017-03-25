@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGame"
-        android:layout_weight="0.15"
+        android:layout_weight="0.1"
         android:weightSum="1">
 
         <ImageButton
@@ -24,19 +24,28 @@
             android:id="@+id/button5"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/colorGame"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
             android:visibility="visible"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.001" />
+            android:layout_weight="0.1" />
+
+
+        <ImageButton
+            android:src="@drawable/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/reset"
+            android:onClick="reset"
+            android:layout_weight="0.1"
+            android:scaleType="fitCenter"
+            android:background="@color/colorGame" />
 
         <TextView
             android:text="@string/qu_quieres_practicar1"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.79"
+            android:layout_weight="0.62"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
