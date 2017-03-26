@@ -47,8 +47,18 @@
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".lettergame1lvl_w_screen"
+            android:name=".writegame_level1_screen"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level2_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level3_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level4_screen"
+            android:screenOrientation="landscape" />
+
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
         <!--
@@ -114,10 +124,7 @@
         <activity
             android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
-        <activity android:name=".writegame_level1_screen" />
-        <activity android:name=".writegame_level3_screen" />
-        <activity android:name=".writegame_level4_screen" />
-        <activity android:name=".writegame_level2_screen"></activity>
+
     </application>
 
 </manifest>

@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,6 +39,7 @@ public class writegame_level1_screen extends AppCompatActivity {
     CanvasView canvas;
     GestionNiveles  gn;
     String tipoNivel="escribirletras";
+    TextView Titulo;
 
     ArrayList<FotoPalabra> fp;
 
@@ -51,12 +54,21 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
         setContentView(R.layout.activity_writegame_level1_screen);    // Establece como layout la pantalla indicada
+
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
+
+        // Canvas
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
+
+
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
