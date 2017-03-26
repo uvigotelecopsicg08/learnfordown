@@ -81,9 +81,24 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
         */
     }
-    public void BackArrow (View v){
-        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, menu_screen.class);
+    public void BackArrow (View v) {
+
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()) {
+            case "PalabrasDirectas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasdi_screen.class);
+                break;
+            case "PalabrasInversas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasin_screen.class);
+                break;
+            case "PalabrasTrabadas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrastra_screen.class);
+                break;
+        }
+
         startActivity(intent1);
+
     }
     public void goHome (View v){
         Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, home_screen.class);

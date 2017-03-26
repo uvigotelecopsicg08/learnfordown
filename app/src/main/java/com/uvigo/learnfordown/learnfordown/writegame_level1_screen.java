@@ -72,7 +72,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
-        fp=gn.getFotos();
+        fp=gn.getFotosAleatorias();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
 
@@ -187,7 +187,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                     canvas = new CanvasView(this);
                     Lienzo.addView(canvas);
 
-                    fp=gn.getFotos();
+                    fp=gn.getFotosAleatorias();
                     int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
                     plantilla.setImageResource(resId);
                     foto.setImageResource(fp.get(0).getFoto());

@@ -122,10 +122,26 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
 
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
+
     public void BackArrow (View v){
-        Intent intent1 = new Intent(silabasgame2lvl_screen.this, menu_screen.class);
+
+            menu_screen pantalla_anterior = new menu_screen();
+            Intent intent1 = new Intent();
+            switch (pantalla_anterior.getNivelAnterior()){
+                case "SilabasDirectas":
+                    intent1 = new Intent(silabasgame2lvl_screen.this, sidirectas_screen.class);
+                    break;
+                case "SilabasInversas":
+                    intent1 = new Intent(silabasgame2lvl_screen.this, siinversas_screen.class);
+                    break;
+                case "SilabasTrabadas":
+                    intent1 = new Intent(silabasgame2lvl_screen.this, sitrabadas_screen.class);
+                    break;
+            }
         startActivity(intent1);
+
     }
+
     public void goHome (View v){
         Intent intent1 = new Intent(silabasgame2lvl_screen.this, home_screen.class);
         startActivity(intent1);

@@ -43,11 +43,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     Estrellas es;
-    /*
-    int contador;
-    RatingBar ratingbar1;
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
-    */
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,18 +64,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         BackArrow = (ImageButton) findViewById(R.id.button3);
         Home = (ImageButton) findViewById(R.id.button5);
         titulo.setTypeface(face);
-        /*
-        contador=0;
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
-*/
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
@@ -124,31 +109,30 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(silabasgame1lvl_screen.this, menu_screen.class);
+
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()){
+            case "SilabasDirectas":
+                intent1 = new Intent(silabasgame1lvl_screen.this, sidirectas_screen.class);
+                break;
+            case "SilabasInversas":
+                intent1 = new Intent(silabasgame1lvl_screen.this, siinversas_screen.class);
+                break;
+            case "SilabasTrabadas":
+                intent1 = new Intent(silabasgame1lvl_screen.this, sitrabadas_screen.class);
+                break;
+        }
+
         startActivity(intent1);
+
     }
     public void goHome (View v){
         Intent intent1 = new Intent(silabasgame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
 
-    /*
-    public void pulsar() {
-        float rating = 0;
-        for (int j : new TreeSet<>(thresholds.keySet())) {
-            if (contador < j) {
-                break;
-            }
-            rating = thresholds.get(j);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
-    */
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual = b;

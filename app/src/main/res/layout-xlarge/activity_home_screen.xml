@@ -78,22 +78,22 @@
                 android:gravity="center"
                 android:weightSum="1">
 
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="230dp"
+                    app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                    android:id="@+id/imageButton3"
+                    android:onClick="sendMessage"
+
+                    android:layout_weight="0.21"
+                    android:background="@mipmap/quieroleer" />
+
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.05"
                     android:visibility="invisible"/>
 
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                    android:id="@+id/imageButton3"
-                    android:onClick="sendMessage"
-                    android:gravity="center"
-                    android:layout_weight="0.15"
-                    android:background="@mipmap/quieroleer" />
 
                 <EditText
                     android:layout_width="wrap_content"
@@ -103,13 +103,12 @@
 
 
                 <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="341dp"
+                    android:layout_height="225dp"
                     app:srcCompat="?android:attr/activatedBackgroundIndicator"
                     android:id="@+id/imageButton10"
                     android:onClick="sendMessage2"
                     android:gravity="center"
-                    android:layout_weight="0.15"
                     android:background="@mipmap/quieroescribir" />
 
             </LinearLayout>
