@@ -209,6 +209,11 @@ public class writegame_level3_screen extends AppCompatActivity {
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
         Rellenar();
         CompletaLista();
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        PanelHorizontal.setLayoutManager(horizontalLayoutManager);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        PanelHorizontal.setAdapter(HorizontalAdapter);
+        num_iteracion=0;
 
     }
 
