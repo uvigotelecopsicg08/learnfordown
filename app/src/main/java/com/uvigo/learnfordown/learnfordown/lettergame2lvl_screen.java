@@ -170,17 +170,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                             cambiarFoto();
                         } else {
                             System.out.print("el nivel esta finalizado");
-                            gn.avanzaNivel();
-                            if (gn.getDificultad() != 2 || !(gn.getTipo().equals(tipoNivel))) {
-                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                                Intent intent = new Intent(lettergame2lvl_screen.this, lettergame3lvl_screen.class);
-                                startActivity(intent);
-                            } else {
-                                fp = gn.getFotos();
-                                i = 0;
-                                cambiarFoto();
-                                System.out.println("Se debe avanzar el nivel");
-                            }
+
 
                         }
                         aciertos = 0;

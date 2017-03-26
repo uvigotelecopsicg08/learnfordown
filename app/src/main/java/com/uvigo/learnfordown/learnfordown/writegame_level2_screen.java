@@ -50,7 +50,7 @@ public class writegame_level2_screen extends AppCompatActivity {
     private String TipoNivel, Correcta;
     private int i = 0;
     private int j = 0;
-    private Button ButtonActual;
+    private Button ButtonActual,botonReferencia;
     private String RellenoFrase;
     private int num_iteracion = 0;
     //int contador;
@@ -133,11 +133,10 @@ public class writegame_level2_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
+                PanelHorizontal.setEnabled(false);
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    if (num_iteracion == Correcta.length()) gn.acierto();
-                    Rellenar(false);
-
+                    botonReferencia =ButtonActual;
 
                 }
             }
@@ -145,8 +144,8 @@ public class writegame_level2_screen extends AppCompatActivity {
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
-
+                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(botonReferencia.getText().toString())) {
+                    Rellenar(false);
                     num_iteracion++;
 
                     if (num_iteracion == Correcta.length()) {
@@ -176,6 +175,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
                 } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
                     gn.fallo();
+                PanelHorizontal.setEnabled(true);
             }
 
             @Override

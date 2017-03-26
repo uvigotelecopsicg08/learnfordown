@@ -21,6 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeSet;
 
 
@@ -46,6 +47,7 @@ public class writegame_level3_screen extends AppCompatActivity {
     //RatingBar ratingbar1;
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+    private Button bottonRefencia;
 
 
 
@@ -146,20 +148,23 @@ public class writegame_level3_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
+              //  PanelHorizontal.setEnabled(false);
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    if (num_iteracion == Correcta.length()) gn.acierto();
-                    SustituirLinea();
-
+                    bottonRefencia=ButtonActual;
+                  //  if (num_iteracion == Correcta.length());
 
                 }
+
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
 
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())){
 
+                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(bottonRefencia.getText().toString())){
+                    //gn.acierto();
+                    SustituirLinea();
                     num_iteracion++;
 
 
@@ -190,7 +195,10 @@ public class writegame_level3_screen extends AppCompatActivity {
                     }
 
                 } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
+
+                PanelHorizontal.setEnabled(true);
             }
+
 
             @Override
             public void onAnimationRepeat(Animation animation) {}
