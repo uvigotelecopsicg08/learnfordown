@@ -95,7 +95,8 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
+
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -224,12 +225,18 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
+
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
-
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
 
 }
 

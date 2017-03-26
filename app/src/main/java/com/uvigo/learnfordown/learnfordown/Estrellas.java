@@ -56,7 +56,10 @@ public class Estrellas {
     }
 
     public void resetPanelEstrellas(){
-       contador= gn.getEstrellas();
+       contador= 0;
+        gn.actualizarEstrellas(contador);
         pulsar(false);
+        gn.resetNivel();
+
     }
 }

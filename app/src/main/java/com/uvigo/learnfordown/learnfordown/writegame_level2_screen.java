@@ -132,21 +132,10 @@ public class writegame_level2_screen extends AppCompatActivity {
         Intent intent1 = new Intent(writegame_level2_screen.this, home_screen.class);
         startActivity(intent1);
     }
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
+
+
+
+
     public void ButtonCheck(View v) {
 
         Button b = (Button) v;
@@ -158,55 +147,53 @@ public class writegame_level2_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
-                    ButtonActual.setBackgroundColor(Color.GREEN);
-                    if (num_iteracion == Correcta.length()) gn.acierto();
-                    Rellenar(false);
+               // PanelHorizontal.setEnabled(false);
 
+                    // ***********
 
+                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+                        Rellenar(false);
+                        num_iteracion++;
 
+                        if (num_iteracion == Correcta.length()) {
 
-                }
-            }
+                            es.acierto();
+                            es.pulsar(true);
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
-
-                    num_iteracion++;
-
-                    if (num_iteracion == Correcta.length()) {
-
-
-                        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-                            i++;
-                            cambiarFoto();
-                        } else {
-
-                            contador++;
-                            pulsar();
-                            gn.avanzaNivel();
-                            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
-
-                                //Código para abrir otra pantalla
-                                Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
-                                startActivity(intent);
-                            } else {
-                                fp = gn.getFotos();
-                                i = 0;
+                            if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+                                i++;
                                 cambiarFoto();
+                            } else {
+
+
+
+                                gn.avanzaNivel();
+                                if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+
+                                    //Código para abrir otra pantalla
+                                    Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+                                    startActivity(intent);
+                                } else {
+                                    fp = gn.getFotosAleatorias();
+                                    i = 0;
+                                    cambiarFoto();
+                                }
                             }
                         }
-                    }
 
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
-                    gn.fallo();
+                    } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                        gn.fallo();
+
+                    PanelHorizontal.setEnabled(true);
             }
+
+
 
             @Override
-            public void onAnimationRepeat(Animation animation) {
-            }
+            public void onAnimationEnd(Animation animation) {}
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {}
 
         });
 
@@ -216,45 +203,95 @@ public class writegame_level2_screen extends AppCompatActivity {
 
 
     private void cambiarFoto() {
-
+        num_iteracion=0;
         Correcta = fp.get(i).getPalabra().toUpperCase();
         Foto.setImageResource(fp.get(i).getFoto());
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
-        Rellenar(false);
+        ListaHorizontal.clear();
+        Rellenar(true);
         CompletaLista();
+        LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level2_screen.this, LinearLayoutManager.HORIZONTAL, false);
+        PanelHorizontal.setLayoutManager(horizontalLayoutManager);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        PanelHorizontal.setAdapter(HorizontalAdapter);
+
 
     }
 
     public void Rellenar(boolean inicio) {
 
+
+        String[] cadena = null;
         String parte1,parte2;
-        String[] cadena;
-        cadena = RellenoFrase.split("\\*");
         SpannableStringBuilder builder = new SpannableStringBuilder();
 
+        // Caso de que * NO esté al principio
+        if (!RellenoFrase.substring(0,1).equals("*")){
+            cadena = RellenoFrase.split("\\*");
 
-       if (inicio == true) {
-            parte1 = cadena[0];
-            parte2 = Correcta;
-        }else{
-            parte1 = cadena[0]+Correcta.substring(0,num_iteracion+1);
-            parte2 = Correcta.substring(num_iteracion+1);
+            if (inicio == true) {
+                parte1 = cadena[0];
+                parte2 = Correcta;
+            } else {
+                parte1 = cadena[0] + Correcta.substring(0, num_iteracion + 1);
+                parte2 = Correcta.substring(num_iteracion + 1);
+            }
+
+            SpannableString FirstSpannable = new SpannableString(parte1);
+            FirstSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte1.length(), 0);
+            builder.append(FirstSpannable);
+
+            SpannableString ShadowSpannable = new SpannableString(parte2);
+            ShadowSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Sombreado)), 0, parte2.length(), 0);
+            builder.append(ShadowSpannable);
+
+            if (cadena.length > 1) {
+                SpannableString ThirdSpannable = new SpannableString(cadena[1]);
+                ThirdSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, cadena[1].length(), 0);
+                builder.append(ThirdSpannable);
+            }
+
+
         }
 
+        // Caso de que * SI esté al principio
+        else{
+            if (inicio == true) {
+                parte1 = Correcta;
+                parte2 = RellenoFrase.substring(1);
 
-        SpannableString FirstSpannable = new SpannableString(parte1);
-        FirstSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte1.length(), 0);
-        builder.append(FirstSpannable);
+                SpannableString FirstSpannable = new SpannableString(parte1);
+                FirstSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Sombreado)), 0, parte1.length(), 0);
+                builder.append(FirstSpannable);
 
-        SpannableString ShadowSpannable = new SpannableString(parte2);
-        ShadowSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Sombreado)), 0, parte2.length(), 0);
-        builder.append(ShadowSpannable);
+                SpannableString ShadowSpannable = new SpannableString(parte2);
+                ShadowSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte2.length(), 0);
+                builder.append(ShadowSpannable);
+
+            } else {
+                parte1 = Correcta.substring(0, num_iteracion + 1);
+                parte2 = Correcta.substring(num_iteracion+1);
+                String parte3 = RellenoFrase.substring(1);
+
+                SpannableString FirstSpannable = new SpannableString(parte1);
+                FirstSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte1.length(), 0);
+                builder.append(FirstSpannable);
+
+                SpannableString ShadowSpannable = new SpannableString(parte2);
+                ShadowSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Sombreado)), 0, parte2.length(), 0);
+                builder.append(ShadowSpannable);
+
+                SpannableString ThirdSpannable = new SpannableString(parte3);
+                ThirdSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, parte3.length(), 0);
+                builder.append(ThirdSpannable);
+            }
 
 
-        SpannableString ThirdSpannable = new SpannableString(cadena[1]);
-        ThirdSpannable.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.Negro)), 0, cadena[1].length(), 0);
-        builder.append(ThirdSpannable);
 
+
+
+
+        }
 
         Frase.setText(builder, TextView.BufferType.SPANNABLE);
 
@@ -263,6 +300,7 @@ public class writegame_level2_screen extends AppCompatActivity {
     public void CompletaLista() {
 
         ListaHorizontal = new ArrayList<String>();
+
         LetrasPalabra = new char[Correcta.length()];
         Correcta.getChars(0, Correcta.length(), LetrasPalabra, 0);
         for (int n = 0; n < (LetrasPalabra.length); n++) {

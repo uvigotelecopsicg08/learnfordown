@@ -196,7 +196,12 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
 
         horizontal_recycler_view.setAdapter(horizontalAdapter);
     }
-
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
 
 }
 

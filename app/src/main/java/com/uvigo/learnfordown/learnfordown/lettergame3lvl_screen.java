@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -189,6 +188,12 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 
 
         horizontal_recycler_view.setAdapter(horizontalAdapter);
+    }
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
     }
 
 }

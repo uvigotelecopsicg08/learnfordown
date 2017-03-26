@@ -18,18 +18,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class menu_screen extends AppCompatActivity {
-    private Spinner  spinner2;
-    Spinner spinner;
+
+
     TextView titulo;
     ImageButton BackArrow;
     private Spinner nameValueSpinner;
     private Spinner nameValueSpinner1;
     private Spinner nameValueSpinner2;
     private Spinner nameValueSpinner3;
+    private static String NivelAnterior;
 
+
+    public menu_screen() {}
+
+    public menu_screen(String nivelAnterior) {
+        NivelAnterior = nivelAnterior;
+    }
+
+    public String getNivelAnterior() {
+        return NivelAnterior;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_screen);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
@@ -41,10 +53,7 @@ public class menu_screen extends AppCompatActivity {
         nameValueSpinner2 = (Spinner) findViewById(R.id.spinner2);
         nameValueSpinner3 = (Spinner) findViewById(R.id.spinner3);
 
-   /*     nameValueSpinner.setVisibility(View.GONE);
-        nameValueSpinner1.setVisibility(View.GONE);
-        nameValueSpinner2.setVisibility(View.GONE);
-        nameValueSpinner3.setVisibility(View.GONE);*/
+
 
         setupSpinner();
 
@@ -111,16 +120,19 @@ public class menu_screen extends AppCompatActivity {
                         break;
 
                     case 1:
+                        NivelAnterior = "SilabasDirectas";
                         Intent intent1 = new Intent(menu_screen.this, sidirectas_screen.class);
                         startActivity(intent1);
                         break;
 
                     case 2:
+                        NivelAnterior = "SilabasInversas";
                         Intent intent2 = new Intent(menu_screen.this, siinversas_screen.class);
                         startActivity(intent2);
                         break;
 
                     case 3:
+                        NivelAnterior = "SilabasTrabadas";
                         Intent intent3 = new Intent(menu_screen.this, sitrabadas_screen.class);
                         startActivity(intent3);
                         break;
@@ -147,16 +159,19 @@ public class menu_screen extends AppCompatActivity {
                         break;
 
                     case 1:
+                        NivelAnterior = "PalabrasDirectas";
                         Intent intent1 = new Intent(menu_screen.this, palabrasdi_screen.class);
                         startActivity(intent1);
                         break;
 
                     case 2:
+                        NivelAnterior = "PalabrasInversas";
                         Intent intent2 = new Intent(menu_screen.this, palabrasin_screen.class);
                         startActivity(intent2);
                         break;
 
                     case 3:
+                        NivelAnterior = "PalabrasTrabadas";
                         Intent intent3 = new Intent(menu_screen.this, palabrastra_screen.class);
                         startActivity(intent3);
                         break;
@@ -184,17 +199,20 @@ public class menu_screen extends AppCompatActivity {
                         break;
 
                     case 1:
+                        NivelAnterior = "FrasesDirectas";
                         Intent intent1 = new Intent(menu_screen.this, frasedi_screen.class);
                         System.out.println("este es el menu 1");
                         startActivity(intent1);
                         break;
 
                     case 2:
+                        NivelAnterior = "FrasesInversas";
                         Intent intent2 = new Intent(menu_screen.this, frasein_screen.class);
                         startActivity(intent2);
                         break;
 
                     case 3:
+                        NivelAnterior = "FrasesTrabadas";
                         Intent intent3 = new Intent(menu_screen.this, frasetra_screen.class);
                         startActivity(intent3);
                         break;

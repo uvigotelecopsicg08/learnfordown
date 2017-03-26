@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -37,11 +39,13 @@ public class writegame_level1_screen extends AppCompatActivity {
     CanvasView canvas;
     GestionNiveles  gn;
     String tipoNivel="escribirletras";
+    TextView Titulo;
 
     ArrayList<FotoPalabra> fp;
 
-    int contador;
-    RatingBar ratingbar1;
+    //int contador;
+    //RatingBar ratingbar1;
+    Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
 
@@ -50,51 +54,35 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
         setContentView(R.layout.activity_writegame_level1_screen);    // Establece como layout la pantalla indicada
+
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
+
+        // Canvas
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
+
+
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
-        fp=gn.getFotos();
+        fp=gn.getFotosAleatorias();
+        es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
 
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
 
-        // ** Estrellitas **
 
-        contador = 0;
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
     }
 
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
 
 
     public void resetCanvas(View v) {
@@ -186,12 +174,12 @@ public class writegame_level1_screen extends AppCompatActivity {
                 if (normPointValidationStatus == "passed" && angularValidationStatus == "passed" && estadoValidacionTrazos == "passed") {
 
 
-                    contador++;
-                    pulsar();
+                    es.acierto();
+                    es.pulsar(true);
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
                     gn.avanzaNivel();
 
-                    /* No creo que sea necesario rehacer esto ¿? Si hay que rehacerlo, meter en función*/
+
                     setContentView(R.layout.activity_writegame_level1_screen);
                     plantilla =(ImageView) findViewById(R.id.imageView3);
                     foto= (ImageView) findViewById(R.id.imageView2);
@@ -199,7 +187,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                     canvas = new CanvasView(this);
                     Lienzo.addView(canvas);
 
-                    fp=gn.getFotos();
+                    fp=gn.getFotosAleatorias();
                     int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
                     plantilla.setImageResource(resId);
                     foto.setImageResource(fp.get(0).getFoto());

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
+import android.os.Build;
 import android.provider.ContactsContract;
 import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -58,9 +59,13 @@ public class home_screen extends AppCompatActivity {
         if(registrado){
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-
-            builder.setMessage("¿Desea recuperar el último nivel?  ")
-                    .setTitle("Recuperacion nivel");
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setView(R.layout.dialog_recuperar_nivel);
+            }
+            else {
+                builder.setMessage("¿Desea recuperar el último nivel?  ")
+                         .setTitle("Recuperacion nivel");
+            }
             builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
                     DataBaseManager db = new DataBaseManager(getApplicationContext());
@@ -74,7 +79,7 @@ public class home_screen extends AppCompatActivity {
             });
 
             AlertDialog dialog = builder.create();
-            dialog.show();
+           dialog.show();
         }
 
 
@@ -184,7 +189,7 @@ public class home_screen extends AppCompatActivity {
                     startActivity(intent);
                 }
             }
-            if(nivel.tipoNivel.equals("silabasdirectas")||nivel.tipoNivel.equals("silabasindirectas")||nivel.tipoNivel.equals("silabastrabadas")){
+            if(nivel.tipoNivel.equals("silabasdirectas")||nivel.tipoNivel.equals("silabasinversas")||nivel.tipoNivel.equals("silabastrabadas")){
                 if(nivel.dificultad==1) {
                     Intent intent = new Intent(this, silabasgame1lvl_screen.class);
                     intent.putExtra("tipoSilaba", nivel.tipoNivel);
@@ -207,17 +212,36 @@ public class home_screen extends AppCompatActivity {
                 }
 
               }
-         if(nivel.tipoNivel.contains("palabra")){
+         if(nivel.tipoNivel.contains("palabras")){
             Intent intent = new Intent(this,palabrasgame1_2lvl_screen.class);
             intent.putExtra("tipoSilaba", nivel.tipoNivel);
-            intent.putExtra("nivel", nivel.id_nivel);
+            intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
         }
         if(nivel.tipoNivel.contains("frase")){
             Intent intent = new Intent(this,frasegame1lvl_screen.class);
             intent.putExtra("tipoSilaba", nivel.tipoNivel);
-            intent.putExtra("nivel", nivel.id_nivel);
+            intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
+        }
+        if(nivel.tipoNivel.equals("escribirletras")){
+            Intent intent = new Intent(this,writegame_level1_screen.class);
+            startActivity(intent);
+        }
+        if(nivel.tipoNivel.equals("escribirconsombreado")){
+            Intent intent = new Intent(this,writegame_level2_screen.class);
+            startActivity(intent);
+
+        }
+        if(nivel.tipoNivel.equals("escribirsinsombreado")){
+            Intent intent = new Intent(this,writegame_level3_screen.class);
+            startActivity(intent);
+
+        }
+        if(nivel.tipoNivel.equals("escribirtecladopalabra")){
+            Intent intent = new Intent(this,writegame_level4_screen.class);
+            startActivity(intent);
+
         }
     }
 

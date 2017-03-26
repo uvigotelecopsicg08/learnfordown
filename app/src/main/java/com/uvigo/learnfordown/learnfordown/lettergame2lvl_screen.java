@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -103,7 +102,8 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+
+        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -236,6 +236,12 @@ public class lettergame2lvl_screen extends AppCompatActivity {
 
         horizontal_recycler_view.setAdapter(horizontalAdapter);
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+    }
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
     }
 
 }
