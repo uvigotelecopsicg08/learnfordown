@@ -124,7 +124,7 @@
         <activity
             android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
-
+par
     </application>
 
 </manifest>
