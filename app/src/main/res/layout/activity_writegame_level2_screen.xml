@@ -162,21 +162,23 @@ android:weightSum="1">
     android:layout_height="wrap_content"
     android:weightSum="1">
 </LinearLayout>
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_weight="0.35"
-    android:layout_height="wrap_content"
-    android:weightSum="1">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/PanelHorizontal"
+    <LinearLayout
         android:orientation="horizontal"
-        android:background="#fff"
-        android:gravity="center"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_weight="0.35"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
 
-</LinearLayout>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/PanelHorizontal"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
 
 </LinearLayout>
