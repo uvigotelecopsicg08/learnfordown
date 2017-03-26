@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -110,7 +111,9 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level2_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal);
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 
