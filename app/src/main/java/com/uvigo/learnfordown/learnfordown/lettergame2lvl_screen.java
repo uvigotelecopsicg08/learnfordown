@@ -227,7 +227,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     }
     public void reset(View v){
         i=0;
-        gn.resetNivel();
+        es.resetPanelEstrellas();
         fp=gn.getFotos();
         cambiarFoto();
     }

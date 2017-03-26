@@ -138,6 +138,17 @@ public class GestionNiveles {
             id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
             subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
         }
+        if((tipo.contains("palabra")||tipo.contains("frase"))&&dificultad>1){
+            for(int i=dificultad;i>=1;i--){
+                cursor= db.resetNivel(tipo, i, id_user);
+                if (cursor.moveToFirst()&&i==1) {
+                    id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                    subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
+                    dificultad=i;
+                }
+
+            }
+        }
         db.actulizaTimeStamp(true,id_nivel,id_user);
 
     }

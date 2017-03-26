@@ -116,7 +116,7 @@ public class InsertData {
         db.insertar_foto("f","fax","directa","fax","Enviaron un * esta mañana",R.drawable.fax,"otros",1,"mono");
         db.insertar_foto("f","flor","trabada","flor","Esta * es de color lila",R.drawable.flor,"otros",1,"mono");
 
-        db.insertar_foto("g","ga","directa","gato","Me arañó el *",R.drawable.gato,"animales",1,"gu");
+        db.insertar_foto("g","ga","directa","gato","Me arañó el *",R.drawable.gato,"animales",2,"gu");
         db.insertar_foto("g","gui","directa","guitarra","Quiero aprender a tocar la *",R.drawable.guitarra,"otro",3,"gu");
         db.insertar_foto("g","ga","directa","gallina","La * pone huevos",R.drawable.gallina,"animales",3,"gu");
         db.insertar_foto("g","ga","directa","gallo","Me desperté con el canto del *",R.drawable.gallo,"animales",2,"gu");
