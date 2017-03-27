@@ -53,15 +53,12 @@ public class writegame_level1_screen extends AppCompatActivity {
     GestionNiveles  gn;
     String tipoNivel = "escribirletras";
     TextView Titulo;
-    SoundPool soundPool;
-    int idDisparo,idacierto;
+
 
     ArrayList<FotoPalabra> fp;
 
     Estrellas  es;
-    public Estrellas getEs() {
-        return es;
-    }
+
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
 
@@ -86,10 +83,7 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
         Context context = this.getApplicationContext();
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        Estrellas es = new Estrellas(context);
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
-        idacierto = soundPool.load(context, R.raw.disparo, 0);
+
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
@@ -199,7 +193,6 @@ public class writegame_level1_screen extends AppCompatActivity {
                     es.acierto();
                     es.pulsar(true);
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
-                    soundPool.play(idacierto, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
 
                     gn.avanzaNivel();
 
@@ -219,7 +212,6 @@ public class writegame_level1_screen extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
-                    soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
 
                     Borrar.callOnClick();
                 }

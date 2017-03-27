@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class InsertData {
     DataBaseManager db;
     private Context context;
-    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
+    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","ñ","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
    // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
@@ -219,6 +219,11 @@ public class InsertData {
         db.insertar_foto("e","en","inversa","enfermera","La * me puso las vacunas",R.drawable.enfermera,"otro",4,"n");
         db.insertar_foto("i","in","inversa","incendio","En el * de la fábrica no hubo heridos",R.drawable.incendio,"otro",3,"n");
         db.insertar_foto("i","in","inversa","interruptor","Dale al * para encender la luz",R.drawable.interruptor,"casa",4,"n");
+
+        db.insertar_foto("ñ","ña","directa","leña","Recogimos * en el bosque",R.drawable.lena,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","niña","Esa * tiene 6 años",R.drawable.nina,"otro",2,"ñ");
+        db.insertar_foto("ñ","ño","directa","niño","Ese * es muy bueno",R.drawable.nino,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","piña","Me gusta mucho la *",R.drawable.pina,"comida",2,"ñ");
 
         db.insertar_foto("o","o","directa","ojos","Ana tiene los * de color azul",R.drawable.ojo,"otro",2,"vocales");
         db.insertar_foto("o","o","directa","olla","Mi padre utiliza una * para cocinar",R.drawable.olla,"otro",2,"vocales");

@@ -36,11 +36,8 @@ public class writegame_level4_screen extends AppCompatActivity {
     private GestionNiveles gn;
     private ArrayList<FotoPalabra> fp;
     private int i = 0;
-    SoundPool soundPool;
-    int idDisparo,idacierto;
-    public Estrellas getEs() {
-        return es;
-    }
+
+
 
 
     @Override
@@ -59,10 +56,7 @@ public class writegame_level4_screen extends AppCompatActivity {
 
         TipoNivel = "escribirtecladopalabra"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        Estrellas es = new Estrellas(context);
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
-        idacierto = soundPool.load(context, R.raw.disparo, 0);
+
 
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
@@ -102,7 +96,6 @@ public class writegame_level4_screen extends AppCompatActivity {
     public void CompruebaEntrada(View v) {
 
         if (Texto.getText().toString().equals(Correcta)) {
-            soundPool.play(idacierto, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
 
             if (RellenoFrase.contains("*")) {
                 Frase.setText(RellenoFrase.replace("*", Correcta));
@@ -120,8 +113,7 @@ public class writegame_level4_screen extends AppCompatActivity {
 
 
             } else {
-                gn.fallo();
-                soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
+                es.fallo();
 
             }
 

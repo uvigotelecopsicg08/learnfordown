@@ -56,13 +56,10 @@ public class writegame_level2_screen extends AppCompatActivity {
     private Button ButtonActual,botonReferencia;
     private String RellenoFrase;
     private int num_iteracion = 0;
-    SoundPool soundPool;
-    int idDisparo,idacierto;
+
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-    public Estrellas getEs() {
-        return es;
-    }
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -90,10 +87,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         TipoNivel = "escribirconsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        Estrellas es = new Estrellas(context);
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
-        idacierto = soundPool.load(context, R.raw.disparo, 0);
+
 
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
@@ -154,7 +148,6 @@ public class writegame_level2_screen extends AppCompatActivity {
                     if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
 
                         ButtonActual.setBackgroundColor(Color.GREEN);
-                        soundPool.play(idacierto, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
 
 
 
@@ -179,9 +172,8 @@ public class writegame_level2_screen extends AppCompatActivity {
 
                 } else {
                         if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
-                            gn.fallo();
-                        soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
-                    }
+                            es.fallo();
+                      }
 
                 PanelHorizontal.setEnabled(true);
             }
