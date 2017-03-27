@@ -92,51 +92,60 @@ public class writegame_level4_screen extends AppCompatActivity {
         if (Texto.getText().toString().equals(Correcta)) {
             if (RellenoFrase.contains("*")) {
                 Frase.setText(RellenoFrase.replace("*", Correcta));
-            }
 
-            // Estrellitas
-            es.acierto();
-            es.pulsar(true);
-
-
-            // Otra pantalla
-            if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-                i++;
-                cambiarFoto();
-                Texto.setText("");
-            } else {
+                // Esperamos
+                final android.os.Handler handler = new android.os.Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        RespuestaCorrecta();
+                       // finish();
+                        //Do something after 100ms
+                    }
+                }, 1000 );
 
 
-                gn.avanzaNivel();
-                if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+            } else gn.fallo();
 
-                    //Código para abrir otra pantalla
-                    //Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
-                    //startActivity(intent);
-                } else {
-                    fp = gn.getFotosAleatorias();
-                    i = 0;
-                    cambiarFoto();
-                    Texto.setText("");
-                }
-
-            }
-
-        } else  gn.fallo();
-
+        }
     }
 
-    private void cambiarFoto() {
+    public void cambiarFoto() {
 
         Correcta = fp.get(i).getPalabra().toUpperCase();
         Foto.setImageResource(fp.get(i).getFoto());
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
         Rellenar();
 
-
     }
 
 
+    public void RespuestaCorrecta(){
+
+        // Estrellitas
+        es.acierto();
+        es.pulsar(true);
+
+        // Otra pantalla
+        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+            i++;
+            cambiarFoto();
+            Texto.setText("");
+        } else {
 
 
+            gn.avanzaNivel();
+            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+
+                //Código para abrir otra pantalla
+                //Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+                //startActivity(intent);
+            } else {
+                fp = gn.getFotosAleatorias();
+                i = 0;
+                cambiarFoto();
+                Texto.setText("");
+            }
+        }
+    }
 }

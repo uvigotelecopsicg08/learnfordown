@@ -3,9 +3,11 @@ package com.uvigo.learnfordown.learnfordown;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.location.Address;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageButton;
@@ -15,6 +17,13 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -26,6 +35,8 @@ import com.uvigo.learnfordown.learnfordown.strokes.app.U;
 import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
 import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
 import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
+
+import static com.uvigo.learnfordown.learnfordown.R.drawable.f;
 
 public class writegame_level1_screen extends AppCompatActivity {
 
@@ -72,7 +83,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
-        fp=gn.getFotosAleatorias();
+        fp=gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
 
@@ -103,15 +114,18 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void validateStrokes(View v) {
 
+        InputStream fraw = getResources().openRawResource(R.raw.a);
 
-        Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(), fp.get(0).getLetra());
+        // ** Carga de ficheros ** //
+        Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(),  fp.get(0).getLetra(),fraw );
+        //Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(), fp.get(0).getLetra(),fraw);
+
 
         ArrayList<LinkedList<Point2D>> loadedNormPointsSamples = patronLetra.getPuntosNormalizados();
         ArrayList<LinkedList<Float>> loadedAnglesSamples = patronLetra.getAngulosRadiales();
         ArrayList<Integer> numTrazos_patron = patronLetra.getNumeroTrazos();
         Double normPointValidationThreshold = patronLetra.getUmbralNormalizacion();
         Double angularValidationThreshold = patronLetra.getUmbralAngular();
-
 
         if (loadedAnglesSamples.equals(null) || loadedNormPointsSamples.equals(null) || numTrazos_patron.equals(null) ) // Si no se han captado puntos de validación
             Toast.makeText(getApplicationContext(), "Error cargando ficheros", Toast.LENGTH_LONG).show(); // Salta una ventana con dicho mensaje
@@ -187,7 +201,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                     canvas = new CanvasView(this);
                     Lienzo.addView(canvas);
 
-                    fp=gn.getFotosAleatorias();
+                    fp=gn.getFotos();
                     int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
                     plantilla.setImageResource(resId);
                     foto.setImageResource(fp.get(0).getFoto());

@@ -126,27 +126,18 @@ public class writegame_level3_screen extends AppCompatActivity {
 
 
                     if(num_iteracion == Correcta.length()) {
-                        es.acierto();
-                        es.pulsar(true);
 
-                        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-                            i++;
-                            cambiarFoto();
-                        } else {
-
-                            gn.avanzaNivel();
-
-                            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
-
-                                //Código para abrir otra pantalla
-                                Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
-                                startActivity(intent);
-                            } else {
-                                fp = gn.getFotosAleatorias();
-                                i = 0;
-                                cambiarFoto();
+                        // Esperamos
+                        final android.os.Handler handler = new android.os.Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RespuestaCorrecta();
+                                // finish();
+                                //Do something after 100ms
                             }
-                        }
+                        }, 1000 );
+
                     }
 
                 } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
@@ -157,7 +148,6 @@ public class writegame_level3_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
 
 
             }
@@ -225,6 +215,36 @@ public class writegame_level3_screen extends AppCompatActivity {
     }
 
 
+    public void RespuestaCorrecta(){
+
+
+        es.acierto();
+        es.pulsar(true);
+
+        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+            i++;
+            cambiarFoto();
+
+
+
+        } else {
+
+            gn.avanzaNivel();
+
+            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+
+                //Código para abrir otra pantalla
+                Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
+                startActivity(intent);
+            } else {
+                fp = gn.getFotosAleatorias();
+                i = 0;
+                cambiarFoto();
+
+            }
+        }
+
+    }
 
 }
 

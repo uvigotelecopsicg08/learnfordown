@@ -137,33 +137,27 @@ public class writegame_level2_screen extends AppCompatActivity {
                     // ***********
 
                     if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+
+                        ButtonActual.setBackgroundColor(Color.GREEN);
+
+
                         Rellenar(false);
                         num_iteracion++;
 
                         if (num_iteracion == Correcta.length()) {
 
-                            es.acierto();
-                            es.pulsar(true);
-
-                            if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-                                i++;
-                                cambiarFoto();
-                            } else {
-
-
-
-                                gn.avanzaNivel();
-                                if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
-
-                                    //Código para abrir otra pantalla
-                                    Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
-                                    startActivity(intent);
-                                } else {
-                                    fp = gn.getFotosAleatorias();
-                                    i = 0;
-                                    cambiarFoto();
+                            // Esperamos
+                            final android.os.Handler handler = new android.os.Handler();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    RespuestaCorrecta();
+                                    // finish();
+                                    //Do something after 100ms
                                 }
-                            }
+                            }, 1000 );
+
+
                         }
 
                     } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
@@ -331,5 +325,37 @@ public class writegame_level2_screen extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
     }
+
+
+    public void RespuestaCorrecta(){
+
+        es.acierto();
+        es.pulsar(true);
+
+        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+            i++;
+            cambiarFoto();
+
+        } else {
+
+
+
+            gn.avanzaNivel();
+            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+
+                //Código para abrir otra pantalla
+                Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+                startActivity(intent);
+            } else {
+                fp = gn.getFotosAleatorias();
+                i = 0;
+                cambiarFoto();
+
+
+            }
+        }
+
+    }
+
 }
 

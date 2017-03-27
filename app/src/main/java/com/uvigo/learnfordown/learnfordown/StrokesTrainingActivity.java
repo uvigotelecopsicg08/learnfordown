@@ -29,6 +29,8 @@ import org.paukov.combinatorics.Factory;
 import org.paukov.combinatorics.Generator;
 import org.paukov.combinatorics.ICombinatoricsVector;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -119,6 +121,10 @@ public class StrokesTrainingActivity extends Activity {
 		touchEventCounts.add(canvasView.getTouchEventCount());      // Número de veces que el usuario toca la pantalla
 
 
+
+		// ***************
+
+		// ****************
 
 		U.saveObjectToFile(strokeRadialAngles, getApplicationContext(), C.ANGLES_SAMPLES_FILENAME);
 		U.saveObjectToFile(normStrokePoints, getApplicationContext(), C.NORM_POINTS_SAMPLES_FILENAME);
