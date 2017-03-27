@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -83,8 +84,9 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
 
-
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -92,7 +94,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -203,8 +205,10 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

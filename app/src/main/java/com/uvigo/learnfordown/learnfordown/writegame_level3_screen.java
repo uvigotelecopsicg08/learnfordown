@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -86,7 +87,9 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 
@@ -119,9 +122,9 @@ public class writegame_level3_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
 
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+                    SustituirLinea();
                     ButtonActual.setBackgroundColor(Color.GREEN);
 
-                    SustituirLinea();
                     num_iteracion++;
 
 
@@ -172,7 +175,10 @@ public class writegame_level3_screen extends AppCompatActivity {
         CompletaLista();
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
+
         PanelHorizontal.setAdapter(HorizontalAdapter);
         num_iteracion=0;
 

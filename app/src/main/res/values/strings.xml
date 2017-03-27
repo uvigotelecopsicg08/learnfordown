@@ -9,4 +9,10 @@
     <string name="nivel_4">Nivel 4</string>
     <string name="qu_quieres_practicar1">¿QUÉ QUIERES PRACTICAR?</string>
     <string name="title_activity_writegame_level2_screen">writegame_level2_screen</string>
+    <string name="title_activity_prueb">PRUEBA</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -84,8 +85,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -93,31 +95,16 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
     }
-    public void BackArrow (View v) {
-
-        menu_screen pantalla_anterior = new menu_screen();
-        Intent intent1 = new Intent();
-        switch (pantalla_anterior.getNivelAnterior()) {
-            case "SilabasDirectas":
-                intent1 = new Intent(silabasgame4lvl_screen.this, sidirectas_screen.class);
-                break;
-            case "SilabasInversas":
-                intent1 = new Intent(silabasgame4lvl_screen.this, siinversas_screen.class);
-                break;
-            case "SilabasTrabadas":
-                intent1 = new Intent(silabasgame4lvl_screen.this, sitrabadas_screen.class);
-                break;
-        }
-
+    public void BackArrow (View v){
+        Intent intent1 = new Intent(silabasgame4lvl_screen.this, menu_screen.class);
         startActivity(intent1);
-
     }
     public void goHome (View v){
         Intent intent1 = new Intent(silabasgame4lvl_screen.this, home_screen.class);
@@ -227,8 +214,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -237,7 +225,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
