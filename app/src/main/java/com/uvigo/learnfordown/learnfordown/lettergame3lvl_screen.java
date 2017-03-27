@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -37,11 +40,15 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int aciertos=0;
+
+    Estrellas es;
+
+
     /*  int contador;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 */
-    Estrellas es;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +63,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-       es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
+        es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
         fp = gn.getFotos();
         /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -70,14 +77,19 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         thresholds.put(90, 5f); //90 aciertos, 5 estrellas
         thresholds.put(120, 6f); //120 aciertos, 6 estrellas
 */
+
+
+
+        palabra= (ImageView)findViewById(R.id.imageView2);
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta = fp.get(i).getLetra().toUpperCase();
 
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -119,11 +131,15 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
+
                         ButtonActual.setBackgroundColor(Color.GREEN);
                        //
                         // gn.acierto();
 
                     }
+
+
+
                 }
 
                 @Override
@@ -156,7 +172,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                     }
                 } else {
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 
@@ -179,8 +195,9 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -189,6 +206,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     }
     public void reset(View v){
         i=0;
+
         es.resetPanelEstrellas();
         fp=gn.getFotos();
         cambiarFoto();

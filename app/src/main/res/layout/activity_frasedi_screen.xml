@@ -35,7 +35,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.7"
+            android:layout_weight="0.79"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -50,15 +50,6 @@
             android:layout_height="match_parent"
             android:id="@+id/button7"
             android:onClick="goHome"
-            android:layout_weight="0.1"
-            android:scaleType="fitCenter"
-            android:background="@color/colorPrimary" />
-
-        <ImageButton
-            android:src="@mipmap/icon_help"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button6"
             android:layout_weight="0.1"
             android:scaleType="fitCenter"
             android:background="@color/colorPrimary" />
@@ -101,7 +92,7 @@
         android:background="@color/Blanco">
 
         <Button
-            android:text="@string/nivel_1"
+            android:text="MONOSÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -115,7 +106,7 @@
             android:textColor="@color/colorGame" />
 
         <Button
-            android:text="@string/nivel_2"
+            android:text="BISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -129,7 +120,7 @@
             android:textColor="@color/Verde" />
 
         <Button
-            android:text="@string/nivel_3"
+            android:text="TRISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -143,7 +134,7 @@
             android:textColor="@color/Rojo" />
 
         <Button
-            android:text="@string/nivel_4"
+            android:text="POLISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

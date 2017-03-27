@@ -37,6 +37,7 @@ public class home_screen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView);
+
         titulo.setTypeface(face);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.

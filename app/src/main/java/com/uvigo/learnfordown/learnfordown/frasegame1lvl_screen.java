@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String figure = "plato";
     Button button1,button2,button3;
     Button Actual;
+
    // int contador;
     //final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
@@ -47,6 +50,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String tmpDownSlash;
     boolean activiftiFinalizado =false;
     Estrellas es;
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -75,6 +79,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
+
         gn = new GestionNiveles(context);
        es = new Estrellas(this,gn, gn.setNivel(tipoNivel, nivel));
         fp = gn.getFotos();
@@ -112,10 +117,27 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         */
     }
 
-    public void BackArrow(View v) {
-        Intent intent1 = new Intent(frasegame1lvl_screen.this, menu_screen.class);
+    public void BackArrow (View v) {
+
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()) {
+            case "FrasesDirectas":
+                intent1 = new Intent(frasegame1lvl_screen.this, frasedi_screen.class);
+                break;
+            case "FrasesInversas":
+                intent1 = new Intent(frasegame1lvl_screen.this, frasein_screen.class);
+                break;
+            case "FrasesTrabadas":
+                intent1 = new Intent(frasegame1lvl_screen.this, frasetra_screen.class);
+                break;
+        }
+
         startActivity(intent1);
+
     }
+
+
     public void goHome (View v){
         Intent intent1 = new Intent(frasegame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
@@ -134,7 +156,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-                  //  contador++;
+
+                    //  contador++;
 
                     System.out.println(figure);
                     String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
@@ -156,6 +179,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     */
 
                 }
+
+
             }
 
             @Override
@@ -173,7 +198,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     }
 
                 } else {
-                    gn.fallo();
+                    es.fallo();
 
                 }
             }

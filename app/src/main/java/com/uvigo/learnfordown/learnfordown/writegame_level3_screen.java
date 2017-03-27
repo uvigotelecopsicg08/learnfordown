@@ -1,5 +1,8 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -43,11 +46,12 @@ public class writegame_level3_screen extends AppCompatActivity {
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
-    //int contador;
-    //RatingBar ratingbar1;
+
     Estrellas  es;
+
+
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-    private Button bottonRefencia;
+    private Button botonReferencia;
 
 
 
@@ -69,23 +73,11 @@ public class writegame_level3_screen extends AppCompatActivity {
         Foto = (ImageView)findViewById(R.id.imageView2);
         Frase =(TextView)findViewById(R.id.textView4);
 
-       /* // ** Estrellitas **
-
-        contador = 0;
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas */
-
-        //** Base de datos **
 
         TipoNivel = "escribirsinsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
+
+
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel,1);
         fp = gn.getFotosAleatorias();
@@ -102,7 +94,9 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
 
@@ -121,21 +115,6 @@ public class writegame_level3_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
-    /* public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    } */
 
     public void ButtonCheck (View v){
 
@@ -148,13 +127,34 @@ public class writegame_level3_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationStart(Animation animation) {
-              //  PanelHorizontal.setEnabled(false);
+
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+                    SustituirLinea();
                     ButtonActual.setBackgroundColor(Color.GREEN);
-                    bottonRefencia=ButtonActual;
-                  //  if (num_iteracion == Correcta.length());
+                    num_iteracion++;
+
+                    if(num_iteracion == Correcta.length()) {
+
+                        // Esperamos
+                        final android.os.Handler handler = new android.os.Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                RespuestaCorrecta();
+                                // finish();
+                                //Do something after 100ms
+                            }
+                        }, 1000 );
+
+                    }
+
+                } else {
+                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                        es.fallo();
 
                 }
+
+                PanelHorizontal.setEnabled(true);
 
             }
 
@@ -162,41 +162,6 @@ public class writegame_level3_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
 
 
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(bottonRefencia.getText().toString())){
-                    //gn.acierto();
-                    SustituirLinea();
-                    num_iteracion++;
-
-
-                    if(num_iteracion == Correcta.length()) {
-
-                        es.acierto();
-                        es.pulsar(true);
-                        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-                            i++;
-                            cambiarFoto();
-                        } else {
-
-                           // contador++;
-                           // pulsar();
-                            gn.avanzaNivel();
-
-                            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
-
-                                //Código para abrir otra pantalla
-                                Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
-                                startActivity(intent);
-                            } else {
-                                fp = gn.getFotos();
-                                i = 0;
-                                cambiarFoto();
-                            }
-                        }
-                    }
-
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
-
-                PanelHorizontal.setEnabled(true);
             }
 
 
@@ -209,7 +174,6 @@ public class writegame_level3_screen extends AppCompatActivity {
 
     }
 
-
     private void cambiarFoto() {
 
         Correcta = fp.get(i).getPalabra().toUpperCase();
@@ -219,7 +183,10 @@ public class writegame_level3_screen extends AppCompatActivity {
         CompletaLista();
         LinearLayoutManager horizontalLayoutManager = new LinearLayoutManager(writegame_level3_screen.this, LinearLayoutManager.HORIZONTAL, false);
         PanelHorizontal.setLayoutManager(horizontalLayoutManager);
-        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,"escritura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
+
         PanelHorizontal.setAdapter(HorizontalAdapter);
         num_iteracion=0;
 
@@ -234,7 +201,7 @@ public class writegame_level3_screen extends AppCompatActivity {
             Longitud ++; // Debido a que concatenamos un espacio + _
         }
 
-        if (RellenoFrase.contains("*"))RellenoFrase = RellenoFrase.replace("*",Relleno);
+        if (RellenoFrase.contains("*"))RellenoFrase = RellenoFrase.replace("*"," "+Relleno);
         Frase.setText(RellenoFrase);
     }
 
@@ -262,6 +229,31 @@ public class writegame_level3_screen extends AppCompatActivity {
     }
 
 
+    public void RespuestaCorrecta(){
+        es.acierto();
+        es.pulsar(true);
+
+        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+            i++;
+            cambiarFoto();
+
+        } else {
+
+            gn.avanzaNivel();
+            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+
+                //Código para abrir otra pantalla
+                Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
+                startActivity(intent);
+            } else {
+                fp = gn.getFotosAleatorias();
+                i = 0;
+                cambiarFoto();
+
+            }
+        }
+
+    }
 
 }
 

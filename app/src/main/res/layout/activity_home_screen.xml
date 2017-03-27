@@ -1,117 +1,122 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="1"
-    android:background="@mipmap/ic_launcher1"
-    android:layout_width="match_parent">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.8"
-        android:background="@color/colorPrimary"
-        android:weightSum="1">
-
-        <TextView
-            android:text="@string/qu_quieres_hacer_hoy"
-            android:layout_height="match_parent"
-            android:layout_width="wrap_content"
-            android:id="@+id/textView"
-            android:layout_weight="0.76"
-            android:gravity="center"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:textAlignment="center"
-            tools:context=".MainActivity"
-            android:textColor="@android:color/white"/>
-
-        <ImageButton
-            android:src="@mipmap/icon_exit"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imagebutton7"
-            android:onClick="salir"
-            android:layout_weight="0.2"
-            android:scaleType="fitCenter"
-            android:background="@color/colorPrimary" />
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imagebutton6"
-            android:scaleType="fitCenter"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator"
-            android:onClick="ajustes"
-            android:background="@mipmap/ajustes"
-            android:layout_weight="0.05" />
-    </LinearLayout>
-
-    <RelativeLayout
-        android:orientation="horizontal"
-        android:layout_weight="0.2"
-        android:layout_width="wrap_content"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_height="match_parent"
-        android:foregroundGravity="fill_horizontal"
-        android:background="@drawable/fondoinicio"
-        android:weightSum="1">
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:background="@mipmap/ic_launcher1"
+        android:layout_width="match_parent">
 
         <LinearLayout
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:gravity="center"
             android:layout_height="fill_parent"
+            android:layout_weight="0.8"
+            android:background="@color/colorPrimary"
+            android:weightSum="1">
+
+            <TextView
+                android:text="@string/qu_quieres_hacer_hoy"
+                android:layout_height="match_parent"
+                android:layout_width="wrap_content"
+                android:id="@+id/textView"
+                android:layout_weight="0.76"
+                android:gravity="center"
+                android:textSize="40sp"
+                android:textStyle="bold"
+                android:maxLines="1"
+                android:textAlignment="center"
+                tools:context=".MainActivity"
+                android:textColor="@android:color/white"/>
+
+            <ImageButton
+                android:src="@mipmap/icon_exit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imagebutton7"
+                android:onClick="salir"
+                android:layout_weight="0.2"
+                android:scaleType="fitCenter"
+                android:background="@color/colorPrimary" />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imagebutton6"
+                android:scaleType="fitCenter"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:onClick="ajustes"
+                android:background="@mipmap/ajustes"
+                android:layout_weight="0.05" />
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_weight="0.2"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:foregroundGravity="fill_horizontal"
+            android:background="@drawable/fondoinicio"
             android:weightSum="1">
 
             <LinearLayout
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
                 android:gravity="center"
+                android:layout_height="fill_parent"
                 android:weightSum="1">
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.05"
-                    android:visibility="invisible"/>
-
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                    android:id="@+id/imageButton3"
-                    android:onClick="sendMessage"
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
                     android:gravity="center"
-                    android:layout_weight="0.15"
-                    android:background="@mipmap/quieroleer" />
+                    android:weightSum="1">
 
-                <EditText
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0.3"
-                    android:visibility="invisible"/>
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.05"
+                        android:visibility="invisible"/>
 
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                    android:id="@+id/imageButton10"
-                    android:onClick="sendMessage2"
-                    android:gravity="center"
-                    android:layout_weight="0.15"
-                    android:background="@mipmap/quieroescribir" />
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                        android:id="@+id/imageButton3"
+                        android:onClick="sendMessage"
+                        android:gravity="center"
+                        android:layout_weight="0.15"
+                        android:background="@mipmap/quieroleer" />
 
+                    <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.3"
+                        android:visibility="invisible"/>
+
+
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                        android:id="@+id/imageButton10"
+                        android:onClick="sendMessage2"
+                        android:gravity="center"
+                        android:layout_weight="0.15"
+                        android:background="@mipmap/quieroescribir" />
+
+                </LinearLayout>
             </LinearLayout>
-        </LinearLayout>
 
-    </RelativeLayout>
-</LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+
+
 

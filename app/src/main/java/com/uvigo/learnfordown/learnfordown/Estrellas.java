@@ -1,5 +1,9 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Context;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.RatingBar;
@@ -13,12 +17,29 @@ import java.util.TreeSet;
  */
 
 public class Estrellas {
-    int contador;
+
+    private Context c;
+    int contador,idestrellitas;
     RatingBar ratingbar1;
     GestionNiveles gn;
     AppCompatActivity app;
+    SoundPool soundPool;
+    MediaPlayer estrellitas,acierto,fallo;
+
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-   public  Estrellas(AppCompatActivity app, GestionNiveles gn,int contador){
+
+    public Estrellas(){}
+    public Estrellas(Context c) {
+        this.c = c;
+    }
+
+    public  Estrellas(AppCompatActivity app, GestionNiveles gn, int contador){
+
+        estrellitas = MediaPlayer.create(app.getApplicationContext(),R.raw.estrellitas);
+        acierto = MediaPlayer.create(app.getApplicationContext(),R.raw.acierto);
+        fallo = MediaPlayer.create(app.getApplicationContext(),R.raw.disparo);
+
+       //idestrellitas = soundPool.load(c, R.raw.estrellitas, 0);
        this.app =app;
        this.gn =gn;
        this.contador = contador;
@@ -32,8 +53,14 @@ public class Estrellas {
        thresholds.put(50, 6f); //50 aciertos, 6 estrellas
        pulsar(false);
     }
+
+    public void setC(Context c) {
+        this.c = c;
+    }
+
     public void pulsar(boolean to) {
         float rating = 0;
+
         for (int i : new TreeSet<>(thresholds.keySet())) {
             if (contador < i) {
                 break;
@@ -43,6 +70,7 @@ public class Estrellas {
         if (rating != ratingbar1.getRating()) {
             ratingbar1.setRating(rating);
             if (to){
+                estrellitas.start();
                 Toast toast = Toast.makeText(app, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
                  toast.show();
@@ -51,8 +79,10 @@ public class Estrellas {
         }
     }
     public void acierto(){
+        acierto.start();
         contador++;
         gn.acierto();
+
     }
 
     public void resetPanelEstrellas(){
@@ -62,4 +92,12 @@ public class Estrellas {
         gn.resetNivel();
 
     }
+    public void fallo(){
+        fallo.start();
+        gn.fallo();
+
+    }
+
+
+
 }

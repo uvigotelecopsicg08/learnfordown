@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class InsertData {
     DataBaseManager db;
     private Context context;
-    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
+    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","ñ","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
    // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
@@ -58,7 +58,7 @@ public class InsertData {
         db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene una *",R.drawable.cabra,"animales",2,"kcq");
         db.insertar_foto("c","ca","directa","casa","La * es blanca",R.drawable.casa,"casa",2,"kcq");
         db.insertar_foto("c","ca","directa","camello","Nunca he montado en un * ",R.drawable.camello,"animales",3,"kcq");
-        db.insertar_foto("c","co","directa","cocina","La parte de la casa donde se hace la comida es la *",R.drawable.cocina,"casa",3,"kcq");
+        db.insertar_foto("c","co","directa","cocina","Hacemos la comida en la *",R.drawable.cocina,"casa",3,"kcq");
         db.insertar_foto("c","co","directa","cocodrilo","El * tiene la boca muy grande",R.drawable.cocodrilo,"animales",4,"kcq");
         db.insertar_foto("c","co","directa","conejo","En el bosque encontramos un *",R.drawable.conejo,"animales",3,"kcq");
         db.insertar_foto("c","cu","directa","cubo","En el pozo cogemos agua con un *",R.drawable.cubo,"otros",2,"kcq");
@@ -135,8 +135,8 @@ public class InsertData {
         db.insertar_foto("g","gre","trabada","grelos","Hoy para comer hay lacón con *",R.drawable.grelos,"comida",2,"gr");
 
 
-        db.insertar_foto("h","ho","directa","hotel","Nos hospedamos en un * de 4 estrellas en las vacaciones",R.drawable.hotel,"casa",2,"h");
-        db.insertar_foto("h","ho","directa","horario","Tengo que hacer el * de este nuevo curso",R.drawable.horario,"casa",3,"h");
+        db.insertar_foto("h","ho","directa","hotel","En mis  vacaciones dormí en un *",R.drawable.hotel,"casa",2,"h");
+        db.insertar_foto("h","ho","directa","horario","Miré a que hora tengo clase en el *",R.drawable.horario,"casa",3,"h");
         db.insertar_foto("h","ho","directa","horóscopo","Leo cada semana el *",R.drawable.horoscopo,"otro",4,"h");
 
         db.insertar_foto("i","i","directa","iglú","Los esquimales viven en un *",R.drawable.iglu,"casa",2,"vocales");
@@ -220,6 +220,11 @@ public class InsertData {
         db.insertar_foto("i","in","inversa","incendio","En el * de la fábrica no hubo heridos",R.drawable.incendio,"otro",3,"n");
         db.insertar_foto("i","in","inversa","interruptor","Dale al * para encender la luz",R.drawable.interruptor,"casa",4,"n");
 
+        db.insertar_foto("ñ","ña","directa","leña","Recogimos * en el bosque",R.drawable.lena,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","niña","Esa * tiene 6 años",R.drawable.nina,"otro",2,"ñ");
+        db.insertar_foto("ñ","ño","directa","niño","Ese * es muy bueno",R.drawable.nino,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","piña","Me gusta mucho la *",R.drawable.pina,"comida",2,"ñ");
+
         db.insertar_foto("o","o","directa","ojos","Ana tiene los * de color azul",R.drawable.ojo,"otro",2,"vocales");
         db.insertar_foto("o","o","directa","olla","Mi padre utiliza una * para cocinar",R.drawable.olla,"otro",2,"vocales");
         db.insertar_foto("o","o","directa","orejas","Mi hermana tiene pendientes en las *",R.drawable.oreja,"otro",3,"vocales");
@@ -270,7 +275,7 @@ public class InsertData {
         db.insertar_foto("s","sal","directa","sal","La comida tenía mucha *",R.drawable.sal,"comida",1,"mono");
         db.insertar_foto("s","seis","directa","seis","Mi primo tiene * años",R.drawable.seis,"otros",1,"mono");
         db.insertar_foto("s","sol","directa","sol","En verano me gusta tomar el *",R.drawable.sol,"otros",1,"mono");
-     //   db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("a","as","inversa","ascensor","Para ir a la última planta de edificio subimos en *",R.drawable.ascensor,"otro",3,"s");
         db.insertar_foto("a","as","inversa","aspiradora","Mi padre está pasando la * en el salón",R.drawable.aspiradora,"otro",4,"s");
         db.insertar_foto("e","es","inversa","espaguetti","Me encantan los * con tomamte y atún",R.drawable.espagueti,"comida",4,"s");

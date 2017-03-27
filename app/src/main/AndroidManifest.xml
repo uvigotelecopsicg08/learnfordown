@@ -12,7 +12,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo3"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -47,16 +47,7 @@
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".writegame_level1_screen"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".writegame_level2_screen"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".writegame_level3_screen"
-            android:screenOrientation="landscape" />
-        <activity
-            android:name=".writegame_level4_screen"
+            android:name=".lettergame1lvl_w_screen"
             android:screenOrientation="landscape" />
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
@@ -128,6 +119,24 @@
             android:name=".loading_screen"
             android:label="@string/title_activity_loading_screen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+        <activity
+            android:name=".writegame_level1_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level3_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level4_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".writegame_level2_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".PRUEBA"
+            android:label="@string/title_activity_prueb"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>

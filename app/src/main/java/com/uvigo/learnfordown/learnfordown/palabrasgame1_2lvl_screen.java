@@ -3,6 +3,8 @@ package com.uvigo.learnfordown.learnfordown;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     String tipoNivel="palabrassilabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
   //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
     Button button1,button2,button3;
@@ -67,6 +70,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
 
+
        es= new Estrellas(this,gn, gn.setNivel(tipoNivel,nivel));
         fp=gn.getFotos();
         cambiarFoto();
@@ -81,9 +85,24 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
         */
     }
-    public void BackArrow (View v){
-        Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, menu_screen.class);
+    public void BackArrow (View v) {
+
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()) {
+            case "PalabrasDirectas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasdi_screen.class);
+                break;
+            case "PalabrasInversas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasin_screen.class);
+                break;
+            case "PalabrasTrabadas":
+                intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrastra_screen.class);
+                break;
+        }
+
         startActivity(intent1);
+
     }
     public void goHome (View v){
         Intent intent1 = new Intent(palabrasgame1_2lvl_screen.this, home_screen.class);
@@ -96,12 +115,14 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
             if (v.getId()!=(ultimoPulsado)){
                 if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
+
                     if (findViewById(v.getId()) instanceof Button) {
                         Button b1 = (Button) findViewById(v.getId());
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                         b2.setEnabled(false);
                     } else {
+
                         Button b1 = (Button) findViewById(ultimoPulsado);
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(v.getId());
@@ -143,7 +164,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         }
                     }
                 } else {
-                    gn.fallo();
+                    es.fallo();
+
                 }
             }
         }

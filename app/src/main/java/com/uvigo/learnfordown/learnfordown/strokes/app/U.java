@@ -5,6 +5,7 @@ import java.io.Closeable;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.security.cert.CertificateException;
@@ -18,6 +19,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
+
+import com.uvigo.learnfordown.learnfordown.Patrones;
 
 /**
  * A class for shared utility methods
@@ -35,17 +38,22 @@ public class U {
 		}
 	}
 
-	public static Object loadObjectFromFile(Context appContext, String filename) {
+	public static Object loadObjectFromFile(Context appContext, String filename,InputStream f) {
 
 		Object data = null;
-
+		//Patrones data = new Patrones();
 		FileInputStream fis = null;
 		ObjectInputStream is = null;
 
 		try {
-			fis = appContext.openFileInput(filename);
-			is = new ObjectInputStream(fis);
+
+
+			//fis = appContext.openFileInput(filename);
+			//is = new ObjectInputStream(fis);
+			is = new ObjectInputStream(f);
 			data = is.readObject();
+
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (ClassNotFoundException e) {

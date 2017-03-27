@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -41,9 +44,11 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+
   //  int contador;
     boolean activiftiFinalizado =false;
     Estrellas es;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,7 +78,10 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 */
+
         Context context = this.getApplicationContext();
+
+
         gn = new GestionNiveles(context);
         es= new Estrellas(this,gn,gn.setNivel(tipoNivel,4));
         fp=gn.getFotos();
@@ -84,8 +92,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -93,7 +102,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -136,11 +145,13 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
 
                 }
+
             }
 
             @Override
@@ -191,7 +202,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                         aciertos = 0;
                     }
                 } else {
-                    gn.fallo();
+                   es.fallo();
                     //Codigo de Animacion Fallo
 
                 }
@@ -212,8 +223,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -222,7 +234,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);

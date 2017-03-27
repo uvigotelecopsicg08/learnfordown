@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -37,6 +40,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
     GestionNiveles  gn;
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
+
     int i=0;
     //int contador;
     Estrellas es;
@@ -78,8 +82,10 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Correcta= fp.get(i).getSilaba().toUpperCase();
 
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
 
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -126,9 +132,12 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
 
                 }
+
+
             }
 
             @Override
@@ -162,7 +171,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 
@@ -185,8 +194,9 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Collections.shuffle(horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 

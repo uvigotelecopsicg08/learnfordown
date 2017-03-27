@@ -4,9 +4,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -42,7 +45,10 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     String tipoNivel="silabasdirectas",palabracom,palabraini, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
+
     Estrellas es;
+
     /*
     int contador;
     RatingBar ratingbar1;
@@ -84,6 +90,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
 
+
         gn = new GestionNiveles(context);
         es= new Estrellas(this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
@@ -108,8 +115,9 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(palabracom);
 
 
-        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
@@ -160,11 +168,14 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
 
                 }
+
+
             }
 
             @Override
@@ -198,7 +209,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 
@@ -223,8 +234,9 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
         System.out.println("+++++++++++++++++"+fp.get(i).getSilaba().toUpperCase());
         Correcta= fp.get(i).getSilaba().toUpperCase();
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         tmpDownSlash = "";
         for (int j=0;j<Correcta.length();j++){
             tmpDownSlash += " _";

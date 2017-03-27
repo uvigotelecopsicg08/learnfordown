@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -42,11 +45,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+
    /* int contador=0;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 */
     Estrellas es;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +82,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,2));
         fp=gn.getFotos();
 
+
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
@@ -88,12 +94,15 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             tmpDownSlash += " _";
         }
 
+
+
         palabracom = fp.get(i).getPalabra().toUpperCase();
         palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
-
-        horizontalAdapter=new HorizontalAdapter(horizontalList,"lectura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
@@ -102,7 +111,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
@@ -146,6 +155,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
@@ -154,6 +164,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                     letracorrecta.setText(palabracom);
 
                 }
+
             }
 
             @Override
@@ -170,13 +181,23 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                             cambiarFoto();
                         } else {
                             System.out.print("el nivel esta finalizado");
-
+                            gn.avanzaNivel();
+                            if (gn.getDificultad() != 2 || !(gn.getTipo().equals(tipoNivel))) {
+                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+                                Intent intent = new Intent(lettergame2lvl_screen.this, lettergame3lvl_screen.class);
+                                startActivity(intent);
+                            } else {
+                                fp = gn.getFotos();
+                                i = 0;
+                                cambiarFoto();
+                                System.out.println("Se debe avanzar el nivel");
+                            }
 
                         }
                         aciertos = 0;
                     }
                 } else {
-                    gn.fallo();
+                    es.fallo();
                     //Codigo de Animacion Fallo
 
                 }
@@ -212,9 +233,10 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
         letracorrecta.setText(palabracom);
-
-        horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
+        DisplayMetrics metrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
