@@ -75,7 +75,7 @@
         android:weightSum="1"
         android:background="@color/Blanco">
 
-        <Button
+        <!--Button
             android:text="@string/nivel_1"
             android:textStyle="bold"
             android:layout_width="match_parent"
@@ -87,10 +87,10 @@
             android:onClick="nivel1"
             android:layout_weight="0.25"
             android:textAlignment="center"
-            android:textColor="@color/colorGame" />
+            android:textColor="@color/colorGame" /-->
 
         <Button
-            android:text="@string/nivel_2"
+            android:text="BISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,12 +99,12 @@
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
             android:onClick="nivel2"
-            android:layout_weight="0.25"
+            android:layout_weight="0.33"
             android:textAlignment="center"
             android:textColor="@color/Verde" />
 
         <Button
-            android:text="@string/nivel_3"
+            android:text="TRISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -113,12 +113,12 @@
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
             android:onClick="nivel3"
-            android:layout_weight="0.25"
+            android:layout_weight="0.33"
             android:textAlignment="center"
             android:textColor="@color/Rojo" />
 
         <Button
-            android:text="@string/nivel_4"
+            android:text="POLISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             android:textSize="45sp"
             android:onClick="nivel4"
             android:textAlignment="center"
-            android:layout_weight="0.25"
+            android:layout_weight="0.34"
             android:textColor="@color/Morado" />
     </LinearLayout>
 </LinearLayout>

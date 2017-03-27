@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -50,6 +53,9 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     ImageView palabra;
     GestionNiveles  gn;
     String tipoNivel="leerletras",palabracom, tmpDownSlash= " ";
+
+    SoundPool soundPool;
+    int idDisparo;
 
     ArrayList<FotoPalabra> fp;
     int i = 0;
@@ -109,6 +115,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         for (int i=0;i<Correcta.length();i++){
             tmpDownSlash += " _";
         }
+
+
+        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
+        idDisparo = soundPool.load(context, R.raw.disparo, 0);
 
         palabracom = fp.get(i).getPalabra().toUpperCase();
         palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
@@ -180,6 +190,8 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                     es.acierto();
                     es.pulsar(true);
                 }
+                else //mpDisparo.start();
+                    soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
             }
 
             @Override
@@ -211,6 +223,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo
+
                     gn.fallo();
                     System.out.println("Se ha anotado un fallo");
 
@@ -241,7 +254,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         Correcta= fp.get(i).getLetra().toUpperCase();
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,4,metrics,"lectura");
+        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
         palabra.setImageResource(fp.get(i).getFoto());
         tmpDownSlash = "";
         for (int i=0;i<Correcta.length();i++){

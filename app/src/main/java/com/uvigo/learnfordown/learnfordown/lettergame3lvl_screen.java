@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,8 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int aciertos=0;
+    SoundPool soundPool;
+    int idDisparo,idacierto,idestrellitas;
     /*  int contador;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -57,7 +61,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
-       es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
+        es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
         fp = gn.getFotos();
         /*
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -71,6 +75,13 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         thresholds.put(90, 5f); //90 aciertos, 5 estrellas
         thresholds.put(120, 6f); //120 aciertos, 6 estrellas
 */
+
+        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
+        idDisparo = soundPool.load(context, R.raw.disparo, 0);
+        idacierto = soundPool.load(context, R.raw.acierto, 0);
+        idestrellitas = soundPool.load(context, R.raw.estrellitas, 0);
+
+        palabra= (ImageView)findViewById(R.id.imageView2);
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
         Collections.shuffle(horizontalList);
@@ -121,11 +132,16 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
+                        soundPool.play(idacierto, 1, 1, 1, 0, 2);
                         ButtonActual.setBackgroundColor(Color.GREEN);
                        //
                         // gn.acierto();
 
                     }
+                    else //mpDisparo.start();
+                        soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
+
+
                 }
 
                 @Override
@@ -192,6 +208,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     }
     public void reset(View v){
         i=0;
+
         es.resetPanelEstrellas();
         fp=gn.getFotos();
         cambiarFoto();

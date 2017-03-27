@@ -76,7 +76,7 @@
         android:background="@color/Blanco">
 
         <Button
-            android:text="@string/nivel_1"
+            android:text="MONOSÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:textColor="@color/colorGame" />
 
         <Button
-            android:text="@string/nivel_2"
+            android:text="BISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -104,7 +104,7 @@
             android:textColor="@color/Verde" />
 
         <Button
-            android:text="@string/nivel_3"
+            android:text="TRISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -118,7 +118,7 @@
             android:textColor="@color/Rojo" />
 
         <Button
-            android:text="@string/nivel_4"
+            android:text="POLISÍLABAS"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
