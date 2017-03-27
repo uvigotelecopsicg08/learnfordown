@@ -55,31 +55,6 @@ public class home_screen extends AppCompatActivity {
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
-        if(registrado){
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                builder.setView(R.layout.dialog_recuperar_nivel);
-            }
-            else {
-                builder.setMessage("¿Desea recuperar el último nivel?  ")
-                         .setTitle("Recuperacion nivel");
-            }
-            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    DataBaseManager db = new DataBaseManager(getApplicationContext());
-                    lanzaIntent(db.getPrimerNivel());
-                }
-            });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-           dialog.show();
-        }
 
 
     }
@@ -156,9 +131,10 @@ public class home_screen extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
+
     }
 
-    @Override
+
     public void onStop() {
         super.onStop();
 
@@ -167,6 +143,11 @@ public class home_screen extends AppCompatActivity {
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
 
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        lanzaMensaje();
     }
     public void lanzaIntent(Nivel nivel){
 
@@ -243,5 +224,34 @@ public class home_screen extends AppCompatActivity {
 
         }
     }
+    public void lanzaMensaje(){
+
+        if(registrado){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setView(R.layout.dialog_recuperar_nivel);
+            }
+            else {
+                builder.setMessage("¿Desea recuperar el último nivel?  ")
+                        .setTitle("Recuperacion nivel");
+            }
+            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    DataBaseManager db = new DataBaseManager(getApplicationContext());
+                    lanzaIntent(db.getPrimerNivel());
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+
 
 }

@@ -170,13 +170,13 @@ public class writegame_level3_screen extends AppCompatActivity {
 
                     if(num_iteracion == Correcta.length()) {
 
-
+                        es.acierto();
+                        es.pulsar(true);
                         if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
                             i++;
                             cambiarFoto();
                         } else {
-                            es.acierto();
-                            es.pulsar(true);
+
                            // contador++;
                            // pulsar();
                             gn.avanzaNivel();

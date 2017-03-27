@@ -58,7 +58,6 @@
         <activity
             android:name=".writegame_level4_screen"
             android:screenOrientation="landscape" />
-
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
         <!--
@@ -124,7 +123,11 @@
         <activity
             android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
-par
+        par
+        <activity
+            android:name=".loading_screen"
+            android:label="@string/title_activity_loading_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
     </application>
 
 </manifest>

@@ -197,7 +197,7 @@ public class GestionNiveles {
                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
                     int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
-                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas"))||palabra.startsWith(silaba)||dificultad<3) {
+                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras"))||palabra.startsWith(silaba)||dificultad<3) {
                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
                     }
                 }while(cursor.moveToNext());

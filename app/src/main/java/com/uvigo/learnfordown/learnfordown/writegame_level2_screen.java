@@ -150,6 +150,8 @@ public class writegame_level2_screen extends AppCompatActivity {
 
                     if (num_iteracion == Correcta.length()) {
 
+                        es.acierto();
+                        es.pulsar(true);
 
                         if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
                             i++;
@@ -157,8 +159,7 @@ public class writegame_level2_screen extends AppCompatActivity {
                         } else {
 
 
-                            es.acierto();
-                            es.pulsar(true);
+
                             gn.avanzaNivel();
                             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
