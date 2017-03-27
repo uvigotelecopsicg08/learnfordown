@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <LinearLayout
+
+        android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorGame"
+    android:layout_weight="0.35"
+        android:id="@+id/linear1"
+    android:weightSum="1"
+       android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/button3"
+        android:src="@mipmap/icon_backarrow"
+        android:background="@color/colorGame"
+        android:adjustViewBounds="true"
+        android:cropToPadding="true"
+        android:visibility="visible"
+        android:onClick="BackArrow"
+        android:scaleType="fitCenter"
+        android:layout_weight="0.1" />
+
+        <TextView
+            android:text="¡EMPAREJA LAS FOTOS!"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/textView2"
+            android:layout_weight="0.69"
+            android:gravity="center"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
+
+        <ImageButton
+        android:src="@mipmap/ic_home"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/button5"
+        android:onClick="goHome"
+        android:layout_weight="0.1"
+        android:scaleType="fitCenter"
+        android:background="@color/colorGame" />
+
+    <ImageButton
+        android:src="@mipmap/icon_help"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/button4"
+        android:layout_weight="0.1"
+        android:scaleType="fitCenter"
+        android:background="@color/colorGame" />
+
+
+   </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.65"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true">
+
+
+        <GridLayout
+            android:id="@+id/activity_main_2x3"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="50dp"
+            android:layout_gravity="center"
+            tools:context="com.lfd.parejas.ParejasFacil"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:orientation="horizontal">
+
+        </GridLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+
+
+
+
