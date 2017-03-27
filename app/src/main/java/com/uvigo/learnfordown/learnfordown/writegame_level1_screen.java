@@ -51,15 +51,13 @@ public class writegame_level1_screen extends AppCompatActivity {
     ImageView plantilla,foto;
     CanvasView canvas;
     GestionNiveles  gn;
-    String tipoNivel="escribirletras";
+    String tipoNivel = "escribirletras";
     TextView Titulo;
     SoundPool soundPool;
     int idDisparo,idacierto;
 
     ArrayList<FotoPalabra> fp;
 
-    //int contador;
-    //RatingBar ratingbar1;
     Estrellas  es;
     public Estrellas getEs() {
         return es;
@@ -97,7 +95,6 @@ public class writegame_level1_screen extends AppCompatActivity {
         fp=gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
-
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
@@ -125,12 +122,12 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void validateStrokes(View v) {
 
-        InputStream fraw = getResources().openRawResource(R.raw.a);
+        int resIdRaw=this.getResources().getIdentifier(fp.get(0).getLetra(), "raw", this.getPackageName());
+       InputStream fraw =  getResources().openRawResource(resIdRaw);
 
         // ** Carga de ficheros ** //
-        Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(),  fp.get(0).getLetra(),fraw );
-        //Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(), fp.get(0).getLetra(),fraw);
-
+        Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(),  fp.get(0).getLetra(),fraw);
+        //Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(), fp.get(0).getLetra());
 
         ArrayList<LinkedList<Point2D>> loadedNormPointsSamples = patronLetra.getPuntosNormalizados();
         ArrayList<LinkedList<Float>> loadedAnglesSamples = patronLetra.getAngulosRadiales();

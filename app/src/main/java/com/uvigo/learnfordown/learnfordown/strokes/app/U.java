@@ -20,6 +20,8 @@ import android.content.pm.PackageManager;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.Signature;
 
+import com.uvigo.learnfordown.learnfordown.Patrones;
+
 /**
  * A class for shared utility methods
  */
@@ -39,6 +41,7 @@ public class U {
 	public static Object loadObjectFromFile(Context appContext, String filename,InputStream f) {
 
 		Object data = null;
+		//Patrones data = new Patrones();
 		FileInputStream fis = null;
 		ObjectInputStream is = null;
 
