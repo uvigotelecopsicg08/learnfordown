@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -52,6 +54,9 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
     int aciertos=0;
     */
     Estrellas es;
+    public Estrellas getEs() {
+        return es;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +101,8 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         for (int i=0;i<Correcta.length();i++){
             tmpDownSlash += " _";
         }
+
+
         palabracom = fp.get(i).getPalabra().toUpperCase();
         palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
         palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
@@ -160,11 +167,13 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
                 }
+
             }
 
             @Override
@@ -194,7 +203,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                         }
 
                 } else {
-                    gn.fallo();
+                    es.fallo();
                     //Codigo de Animacion Fallo
 
                 }

@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,6 +40,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
     GestionNiveles  gn;
     String tipoNivel="silabasdirectas";
     ArrayList<FotoPalabra> fp;
+
     int i=0;
     //int contador;
     Estrellas es;
@@ -77,6 +80,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         Collections.shuffle( horizontalList);
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getSilaba().toUpperCase();
+
 
 
         DisplayMetrics metrics = new DisplayMetrics();
@@ -128,9 +132,12 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
 
                 }
+
+
             }
 
             @Override
@@ -164,7 +171,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 

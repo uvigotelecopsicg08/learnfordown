@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import android.media.AudioManager;
-import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -42,26 +40,17 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     String tipoNivel="leerletras";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
     int aciertos=0;
-    SoundPool soundPool;
-    int idDisparo;
-    Context context;
-    Estrellas es;
-
-    public Estrellas getEs() {
-        return es;
-    }
-
     /*
-        int contador;
-        final HashMap<Integer, Float> thresholds = new HashMap<>();
-    */
-
+    int contador;
+    final HashMap<Integer, Float> thresholds = new HashMap<>();
+*/
+    Estrellas es;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lettergame4lvl_screen);
-
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
@@ -81,13 +70,9 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         thresholds.put(120, 5f); //120 aciertos, 5 estrellas
         thresholds.put(158, 6f); //158 aciertos, 6 estrellas
         */
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        context = this.getApplicationContext();
-        Estrellas es = new Estrellas(context);
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
         palabra= (ImageView)findViewById(R.id.imageView2);
 
-
+        Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
         es =new Estrellas(this,gn,gn.setNivel(tipoNivel,4));
         fp=gn.getFotos();
@@ -99,6 +84,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
 
+
+        //horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
@@ -109,8 +96,10 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontalList2=new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
-
+       // horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+        DisplayMetrics metrics2 = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics2);
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList,5,metrics2,"lectura");
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -160,16 +149,11 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                     ButtonActual.setEnabled(false);
 
                 }
-                else //mpDisparo.start();
-                    soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
-
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
-
-
                         es.acierto();
                         es.pulsar(true);
                     //Codigo de Animacion Acierto
@@ -197,7 +181,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                         aciertos = 0;
 
                 } else {
-                    gn.fallo();
+                    es.fallo();
                 }
             }
 
@@ -225,10 +209,14 @@ public class lettergame4lvl_screen extends AppCompatActivity {
 
         palabra.setImageResource(fp.get(i).getFoto());
         Correcta= fp.get(i).getLetra().toUpperCase();
+        //horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
         horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+       // horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
+        DisplayMetrics metrics2 = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(metrics2);
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList,5,metrics2,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
