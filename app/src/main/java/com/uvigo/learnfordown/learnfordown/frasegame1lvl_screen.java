@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String figure = "plato";
     Button button1,button2,button3;
     Button Actual;
+
    // int contador;
     //final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
@@ -47,6 +50,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String tmpDownSlash;
     boolean activiftiFinalizado =false;
     Estrellas es;
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -75,6 +79,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
+
         gn = new GestionNiveles(context);
        es = new Estrellas(this,gn, gn.setNivel(tipoNivel, nivel));
         fp = gn.getFotos();
@@ -151,7 +156,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-                  //  contador++;
+
+                    //  contador++;
 
                     System.out.println(figure);
                     String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
@@ -173,6 +179,8 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     */
 
                 }
+
+
             }
 
             @Override
@@ -190,7 +198,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     }
 
                 } else {
-                    gn.fallo();
+                    es.fallo();
 
                 }
             }

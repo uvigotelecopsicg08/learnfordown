@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,7 +45,10 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
     String tipoNivel="silabasdirectas",palabracom,palabraini, tmpDownSlash= " ";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
+
     Estrellas es;
+
     /*
     int contador;
     RatingBar ratingbar1;
@@ -84,6 +89,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         palabra= (ImageView)findViewById(R.id.imageView2);
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
+
 
         gn = new GestionNiveles(context);
         es= new Estrellas(this,gn,gn.setNivel(tipoNivel,1));
@@ -162,11 +168,14 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
                     letracorrecta.setText(palabracom);
 
                 }
+
+
             }
 
             @Override
@@ -200,7 +209,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 

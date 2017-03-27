@@ -1,5 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
@@ -44,7 +46,13 @@ public class writegame_level3_screen extends AppCompatActivity {
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
+    SoundPool soundPool;
+    int idDisparo,idacierto;
     Estrellas  es;
+    public Estrellas getEs() {
+        return es;
+    }
+
     final HashMap<Integer, Float> thresholds = new HashMap<>();
     private Button botonReferencia;
 
@@ -71,6 +79,11 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         TipoNivel = "escribirsinsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
+        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
+        Estrellas es = new Estrellas(context);
+        idDisparo = soundPool.load(context, R.raw.disparo, 0);
+        idacierto = soundPool.load(context, R.raw.disparo, 0);
+
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel,1);
         fp = gn.getFotosAleatorias();
@@ -124,6 +137,8 @@ public class writegame_level3_screen extends AppCompatActivity {
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
                     SustituirLinea();
                     ButtonActual.setBackgroundColor(Color.GREEN);
+                    soundPool.play(idacierto, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
+
 
                     num_iteracion++;
 
@@ -143,7 +158,13 @@ public class writegame_level3_screen extends AppCompatActivity {
 
                     }
 
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
+                } else {
+                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                        gn.fallo();
+                    soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
+
+
+                }
 
                 PanelHorizontal.setEnabled(true);
 

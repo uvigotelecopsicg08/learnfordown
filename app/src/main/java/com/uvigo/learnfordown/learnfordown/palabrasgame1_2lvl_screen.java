@@ -3,6 +3,8 @@ package com.uvigo.learnfordown.learnfordown;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +32,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     String tipoNivel="palabrassilabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+
   //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
     Button button1,button2,button3;
@@ -66,6 +69,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
+
 
        es= new Estrellas(this,gn, gn.setNivel(tipoNivel,nivel));
         fp=gn.getFotos();
@@ -111,12 +115,14 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
             if (v.getId()!=(ultimoPulsado)){
                 if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
+
                     if (findViewById(v.getId()) instanceof Button) {
                         Button b1 = (Button) findViewById(v.getId());
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                         b2.setEnabled(false);
                     } else {
+
                         Button b1 = (Button) findViewById(ultimoPulsado);
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(v.getId());
@@ -158,7 +164,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         }
                     }
                 } else {
-                    gn.fallo();
+                    es.fallo();
+
                 }
             }
         }
