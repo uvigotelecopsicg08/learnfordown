@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -103,7 +104,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList2);
         Collections.shuffle( horizontalList2);
 
-        horizontalAdapter2=new HorizontalAdapter(horizontalList2);
+        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
 
         LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame2lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
