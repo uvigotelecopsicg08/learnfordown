@@ -9,91 +9,31 @@
     android:background="@mipmap/ic_launcher1"
     android:weightSum="1">
 
-    <!--LinearLayout
-
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Verde"
-        android:layout_weight="0.15"
-        android:weightSum="1">
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button3"
-            android:src="@mipmap/icon_backarrow"
-            android:background="@color/Verde"
-            android:adjustViewBounds="true"
-            android:cropToPadding="true"
-            android:visibility="visible"
-            android:onClick="BackArrow"
-            android:scaleType="fitCenter"
-            android:layout_weight="0.01" />
-
-
-
-        <TextView
-            android:text="¿POR QUÉ SÍLABA EMPIEZA?"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/textView2"
-            android:layout_weight="0.59"
-            android:gravity="center"
-            android:textSize="35sp"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:textAlignment="center"
-            android:textColor="@android:color/white" />
-
-
-
-        <ImageButton
-            android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button5"
-            android:onClick="goHome"
-            android:layout_weight="0.2"
-            android:scaleType="fitCenter"
-            android:background="@color/Verde" />
-
-        <ImageButton
-            android:src="@mipmap/icon_help"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button4"
-            android:layout_weight="0.2"
-            android:scaleType="fitCenter"
-            android:background="@color/Verde" />
-
-    </LinearLayout>-->
     <LinearLayout
 
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/Verde"
-        android:layout_weight="0.15"
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/button4"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/Verde"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.01" />
 
         <ImageButton
-            android:src="@drawable/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:src="@mipmap/reset"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/reset"
             android:onClick="reset"
-            android:layout_weight="0.1"
+            android:layout_weight="0.02"
             android:scaleType="fitCenter"
             android:background="@color/Verde" />
 
@@ -103,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.72"
+            android:layout_weight="0.91"
             android:gravity="center"
-            android:textSize="30sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:textAlignment="center"
@@ -114,8 +54,8 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:onClick="goHome"
             android:layout_weight="0.1"
@@ -124,28 +64,7 @@
 
 
     </LinearLayout>
-    <!--LinearLayout
 
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/Blanco"
-        android:layout_weight="0.15"
-        android:weightSum="1">
-
-        <RatingBar
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/ratingBar"
-            android:numStars="6"
-            android:stepSize="1.0"
-            android:rating="0"
-            android:isIndicator="true"
-            android:gravity="center"
-            android:backgroundTint="@color/amarillo"
-            android:progressTint="#FFFDED1B"
-            android:layout_weight="0"/>
-    </LinearLayout>-->
     <LinearLayout
 
         android:orientation="horizontal"

@@ -18,6 +18,15 @@
         android:background="@color/colorPrimary"
         android:weightSum="1">
 
+        <ImageButton
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:id="@+id/home"
+            android:scaleType="fitCenter"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:onClick="home"
+            android:background="@mipmap/ic_home" />
+
         <TextView
             android:text="HAS COMPLETADO TODOS LOS NIVELES"
             android:layout_height="match_parent"
@@ -31,16 +40,6 @@
             android:textAlignment="center"
             tools:context=".MainActivity"
             android:textColor="@android:color/white"/>
-
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/home"
-            android:scaleType="fitCenter"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator"
-            android:onClick="home"
-            android:background="@mipmap/ic_home"
-            android:layout_weight="0.15" />
 
 
     </LinearLayout>

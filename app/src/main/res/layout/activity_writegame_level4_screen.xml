@@ -18,37 +18,38 @@
 
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGame"
-        android:layout_weight="0.15"
-        android:weightSum="1">
+        android:layout_height="113dp"
+        android:background="@color/Morado"
+        android:weightSum="1"
+        android:layout_weight="0.04">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
-            android:background="@color/colorGame"
+            android:background="@color/Morado"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.02" />
+
 
         <ImageButton
-            android:src="@drawable/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:src="@mipmap/reset"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/reset"
             android:onClick="reset"
-            android:layout_weight="0.1"
+            android:layout_weight="0.01"
             android:scaleType="fitCenter"
-            android:background="@color/colorGame" />
+            android:background="@color/Morado" />
 
         <TextView
             android:text="¡COMPLETA LA FRASE!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.69"
+            android:layout_weight="0.88"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -59,16 +60,17 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:onClick="goHome"
-            android:layout_weight="0.1"
+            android:layout_weight="0.15"
             android:scaleType="fitCenter"
-            android:background="@color/colorGame" />
+            android:background="@color/Morado" />
 
 
     </LinearLayout>
+
 
     <LinearLayout
 
@@ -206,8 +208,8 @@
 
         <ImageButton
             android:id="@+id/button7"
-            android:layout_height="match_parent"
-            android:layout_width="68dp"
+            android:layout_height="249dp"
+            android:layout_width="87dp"
             android:background="@color/Blanco"
             android:scaleType="fitCenter"
             android:onClick="CompruebaEntrada"
@@ -217,8 +219,7 @@
             android:src="@mipmap/icon_validate"
             android:layout_alignTop="@+id/imageView2"
             android:layout_alignLeft="@+id/button6"
-            android:layout_alignStart="@+id/button6"
-            android:layout_weight="0.04" />
+            android:layout_alignStart="@+id/button6" />
         >
 
 

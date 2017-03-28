@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -10,6 +11,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.ScaleAnimation;
+import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.RatingBar;
@@ -111,40 +115,56 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
+
+
+       /*
+
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(0);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+
+
+            }
+        });
+        */
+
+        Animation anim = new ScaleAnimation(
+                1f, 1f, // Start and end values for the X axis scaling
+                0f, 1.5f, // Start and end values for the Y axis scaling
+                Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
+                Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
+        anim.setFillAfter(true); // Needed to keep the result of the animation
+        anim.setDuration(500);
+        v.startAnimation(anim);
+
+
+
+
         if(ultimoPulsado != null) {
 
             if (v.getId()!=(ultimoPulsado)){
                 if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
-
+                   // anim.finalize();
                     if (findViewById(v.getId()) instanceof Button) {
                         Button b1 = (Button) findViewById(v.getId());
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                         b2.setEnabled(false);
+                     //   animacionButton(b1);
+
                     } else {
 
                         Button b1 = (Button) findViewById(ultimoPulsado);
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(v.getId());
                         b2.setEnabled(false);
+                   //     animacionButton(b1);
                     }
-                    /*
-                    contador++;
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if (contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -180, -50);
-                        toast.show();
-                    }
-                    gn.acierto();
-                    */
+
                     es.acierto();
                     es.pulsar(true);
                     aciertos++;
@@ -177,6 +197,42 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         else{
             ultimoPulsado=0;
             cambiado=false;
+        }
+
+    }
+
+    public void animacionButton(Button b){
+        TranslateAnimation animation=null;
+        int posicion = posicionImageButton(b);
+        if(posicion==1) {
+            animation = new TranslateAnimation(0.0f, 0.0f,
+                    -50.0f, 0.0f);
+        }
+        else{
+            if(posicion==2){
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+            }
+            else{
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -100.0f, 0.0f);
+            }
+        }
+        animation.setDuration(500);
+        animation.setFillAfter(true);
+        b.startAnimation(animation);
+    }
+    public int posicionImageButton(Button b){
+      if(map.get(b.getId()).equals(map.get(R.id.imageButton1))){
+              return 1;
+        }
+        else{
+            if(map.get(b.getId()).equals(map.get(R.id.imageButton2))){
+                return 2;
+            }
+          else{
+                return 3;
+            }
         }
 
     }

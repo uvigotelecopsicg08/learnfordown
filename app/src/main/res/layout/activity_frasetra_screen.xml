@@ -9,31 +9,33 @@
     android:background="@mipmap/ic_launcher1"
     android:weightSum="1">
 
+
+
     <LinearLayout
 
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:layout_weight="0.15"
+        android:layout_weight="0.01"
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/colorPrimary"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.03" />
 
         <TextView
             android:text="@string/qu_quieres_practicar"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.80"
+            android:layout_weight="0.91"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -44,8 +46,8 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button7"
             android:onClick="goHome"
             android:layout_weight="0.1"
@@ -55,9 +57,18 @@
 
     </LinearLayout>
 
+
+    <!--LinearLayout
+        android:layout_weight="0.1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorGame"-->
+
+
     <TextView
         android:layout_weight="0.15"
-        android:text="FRASES CON SÍLABAS TRABADAS"
+        android:text="¡FRASES CON SÍLABAS TRABADAS!"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/textView3"
@@ -67,7 +78,11 @@
         android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@android:color/white"
-        android:background="@color/colorGame"/>
+        android:background="@color/Rojo"/>
+
+    <!--/LinearLayout-->
+
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_weight="0.7"
@@ -132,4 +147,6 @@
             android:layout_weight="0.25"
             android:textColor="@color/Morado" />
     </LinearLayout>
+
+
 </LinearLayout>
