@@ -462,7 +462,7 @@ public class DataBaseManager {
                         valores.put(CN_COMPLETED,0);
                         valores.put(CN_RIGTHS,0);
                         valores.put(CN_WRONGS,0);
-                      String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_USER_LEVEL+ " =?";
+                      String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
                       String[]   whereArgs2 = new String[]{String.valueOf(id_user),String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL))) };
                         db.update(TABLE_LEVEL_USER, valores,whereClause2, whereArgs2);
                     }while(cursor.moveToNext());
