@@ -18,6 +18,15 @@
             android:background="@color/colorPrimary"
             android:weightSum="1">
 
+            <ImageButton
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:id="@+id/imagebutton6"
+                android:scaleType="fitCenter"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:onClick="ajustes"
+                android:background="@mipmap/ajustes" />
+
             <TextView
                 android:text="@string/qu_quieres_hacer_hoy"
                 android:layout_height="match_parent"
@@ -34,23 +43,13 @@
 
             <ImageButton
                 android:src="@mipmap/icon_exit"
-                android:layout_width="wrap_content"
+                android:layout_width="67dp"
                 android:layout_height="match_parent"
                 android:id="@+id/imagebutton7"
                 android:onClick="salir"
-                android:layout_weight="0.2"
                 android:scaleType="fitCenter"
                 android:background="@color/colorPrimary" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/imagebutton6"
-                android:scaleType="fitCenter"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:onClick="ajustes"
-                android:background="@mipmap/ajustes"
-                android:layout_weight="0.05" />
         </LinearLayout>
 
         <RelativeLayout

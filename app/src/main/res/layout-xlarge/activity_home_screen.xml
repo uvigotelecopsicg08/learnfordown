@@ -13,10 +13,18 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_weight="0.85"
+            android:layout_height="114dp"
             android:background="@color/colorPrimary"
             android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:id="@+id/imagebutton6"
+                android:scaleType="fitCenter"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:onClick="ajustes"
+                android:background="@mipmap/ajustes" />
 
             <TextView
 
@@ -24,36 +32,25 @@
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
                 android:id="@+id/textView"
-                android:layout_weight="0.74"
                 android:gravity="center"
                 android:textSize="48sp"
                 android:textStyle="bold"
                 android:maxLines="1"
                 android:textAlignment="center"
                 tools:context=".MainActivity"
-                android:textColor="@android:color/white"/>
-
+                android:textColor="@android:color/white"
+                android:layout_weight="1.00" />
 
 
             <ImageButton
                 android:src="@mipmap/icon_exit"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:id="@+id/imagebutton7"
                 android:onClick="salir"
-                android:layout_weight="0.17"
                 android:scaleType="fitCenter"
                 android:background="@color/colorPrimary" />
 
-            <ImageButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:id="@+id/imagebutton6"
-                android:scaleType="fitCenter"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:onClick="ajustes"
-                android:background="@mipmap/ajustes"
-                android:layout_weight="0.09" />
         </LinearLayout>
 
         <RelativeLayout

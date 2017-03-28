@@ -20,12 +20,12 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="135dp"
+            android:layout_height="121dp"
             android:background="@color/colorGame">
 
             <ImageButton
-                android:layout_width="187dp"
-                android:layout_height="match_parent"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:id="@+id/button3"
                 android:src="@mipmap/icon_backarrow"
                 android:background="@color/colorGame"
@@ -48,8 +48,8 @@
                 android:paddingTop="25dp" />
             <ImageButton
                 android:src="@mipmap/ic_home"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:id="@+id/button5"
                 android:onClick="goHome"
                 android:layout_weight="0.03"
@@ -58,8 +58,8 @@
 
             <ImageButton
                 android:src="@mipmap/icon_help"
-                android:layout_width="102dp"
-                android:layout_height="130dp"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:id="@+id/button4"
                 android:layout_weight="0.03"
                 android:onClick="HelpButton"

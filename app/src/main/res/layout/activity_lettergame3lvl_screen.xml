@@ -14,36 +14,36 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/Rojo"
-        android:layout_weight="0.15"
+        android:background="@color/colorGame"
+        android:layout_weight="0.02"
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
-            android:background="@color/Rojo"
+            android:background="@color/colorGame"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.03" />
 
         <ImageButton
-            android:src="@drawable/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:src="@mipmap/reset"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/reset"
             android:onClick="reset"
-            android:layout_weight="0.1"
+            android:layout_weight="0.03"
             android:scaleType="fitCenter"
-            android:background="@color/Rojo" />
+            android:background="@color/colorGame" />
 
         <TextView
-            android:text="¿POR QUÉ LETRA EMPIEZA?"
+            android:text="¡COMPLETA LA PALABRA!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.70"
+            android:layout_weight="0.87"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -54,17 +54,16 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:onClick="goHome"
             android:layout_weight="0.1"
             android:scaleType="fitCenter"
-            android:background="@color/Rojo" />
+            android:background="@color/colorGame" />
 
 
     </LinearLayout>
-
     <LinearLayout
 
         android:orientation="horizontal"

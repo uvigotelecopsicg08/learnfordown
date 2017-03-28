@@ -16,26 +16,26 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorGame"
-        android:layout_weight="0.15"
+        android:layout_weight="0.01"
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button4"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/colorGame"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.06" />
 
         <ImageButton
-            android:src="@drawable/reset"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:src="@mipmap/reset"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/reset"
             android:onClick="reset"
-            android:layout_weight="0.1"
+            android:layout_weight="0.00"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.6"
+            android:layout_weight="0.88"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -55,20 +55,20 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:onClick="goHome"
-            android:layout_weight="0.1"
+            android:layout_weight="0.02"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 
         <ImageButton
             android:src="@mipmap/icon_help"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button6"
-            android:layout_weight="0.1"
+            android:layout_weight="0.01"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 

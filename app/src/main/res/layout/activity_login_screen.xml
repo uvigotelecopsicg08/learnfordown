@@ -15,25 +15,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary"
-        android:layout_weight="0.15"
         android:weightSum="1">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
             android:background="@color/colorPrimary"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.03" />
 
         <TextView
             android:text="REGÍSTRATE"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.81"
+            android:layout_weight="0.90"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -44,8 +43,8 @@
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button9"
             android:onClick="goHome"
             android:layout_weight="0.1"
@@ -63,18 +62,19 @@
         android:background="@color/Blanco"
         android:layout_weight="0.1"
         android:weightSum="1">
+
         <TextView
             android:text="NOMBRE"
             android:textStyle="bold"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="74dp"
             android:id="@+id/button6"
             android:background="@android:color/white"
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
-            android:onClick="textNombreUp"
-            android:layout_weight="0.15" />
+            android:onClick="textNombreUp" />
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -84,8 +84,9 @@
         <EditText
             android:id="@+id/editTextNombre"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"> </EditText>
+            android:layout_height="78dp"> </EditText>
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -135,7 +136,7 @@
             <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="wrap_content"
-                android:layout_weight="0.4"
+                android:layout_weight="0.45"
                 android:layout_height="match_parent"
                 android:weightSum="1">
 
@@ -147,7 +148,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/button7"
                 android:onClick="registrar"
-                android:layout_weight="0.05"
+                android:layout_weight="0.09"
                 android:textSize="34sp" />
 
             <LinearLayout

@@ -62,7 +62,7 @@ public class writegame_level3_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_writegame_level2_screen);
+        setContentView(R.layout.activity_writegame_level3_screen);
 
         PanelHorizontal = (RecyclerView) findViewById(R.id.PanelHorizontal);
 

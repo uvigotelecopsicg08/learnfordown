@@ -10,7 +10,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-
     <LinearLayout
 
         android:weightSum="1"
@@ -29,20 +28,19 @@
             android:weightSum="1">
 
             <ImageButton android:id="@+id/button3"
-                android:layout_height="match_parent"
-                android:layout_width="123dp"
+                android:layout_height="115dp"
+                android:layout_width="115dp"
                 android:background="@color/colorGame"
                 android:scaleType="fitCenter"
                 android:onClick="BackArrow"
                 android:src="@mipmap/icon_backarrow"/>
 
             <ImageButton
-                android:src="@drawable/reset"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
+                android:src="@mipmap/reset"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:id="@+id/reset"
                 android:onClick="reset"
-                android:layout_weight="0.1"
                 android:scaleType="fitCenter"
                 android:background="@color/colorGame" />
 
@@ -51,7 +49,7 @@
                 android:text="¡VAMOS A ESCRIBIR UN POCO!"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.85"
+                android:layout_weight="0.95"
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:textAlignment="center"
@@ -62,8 +60,8 @@
 
             <ImageButton
                 android:id="@+id/button5"
-                android:layout_height="120dp"
-                android:layout_width="101dp"
+                android:layout_height="115dp"
+                android:layout_width="115dp"
                 android:background="@color/colorGame"
                 android:scaleType="fitCenter"
                 android:onClick="goHome"
@@ -72,8 +70,8 @@
 
             <ImageButton
                 android:id="@+id/button4"
-                android:layout_width="105dp"
-                android:layout_height="match_parent"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
                 android:background="@color/colorGame"
                 android:scaleType="fitCenter"
                 android:src="@mipmap/icon_help"
@@ -89,7 +87,7 @@
             android:background="@color/Blanco">
 
 
-            <ImageButton android:id="@+id/button6" android:layout_height="130dp" android:layout_width="102dp" android:background="@color/Blanco" android:scaleType="fitCenter" android:src="@mipmap/icon_papelera" android:layout_weight="0.03"
+            <ImageButton android:id="@+id/button6" android:layout_height="115dp" android:layout_width="115dp" android:background="@color/Blanco" android:scaleType="fitCenter" android:src="@mipmap/icon_papelera" android:layout_weight="0.03"
                 android:layout_marginRight="44dp"
                 android:layout_marginEnd="44dp"
                 android:onClick="resetCanvas"
@@ -115,7 +113,7 @@
             <ImageButton
                 android:id="@+id/button7"
                 android:layout_height="130dp"
-                android:layout_width="102dp"
+                android:layout_width="115dp"
                 android:background="@color/Blanco"
                 android:scaleType="fitCenter"
                 android:onClick="validateStrokes"
@@ -128,22 +126,22 @@
                 android:layout_alignLeft="@+id/button6"
                 android:layout_alignStart="@+id/button6" />
 
-            <ImageButton
-                android:id="@+id/button8"
-                android:layout_height="130dp"
-                android:layout_width="102dp"
-                android:background="@color/Blanco"
-                android:scaleType="fitCenter"
-                android:onClick="trainStrokes"
-                android:visibility="visible"
-                android:cropToPadding="true"
-                android:adjustViewBounds="true"
-                android:src="@mipmap/icon_settings"
-                android:layout_weight="0.03"
-                android:layout_below="@+id/button6"
-                android:layout_alignLeft="@+id/button6"
-                android:layout_alignStart="@+id/button6"
-                android:layout_marginTop="14dp" />
+            <!-- <ImageButton
+                 android:id="@+id/button8"
+                 android:layout_height="115dp"
+                 android:layout_width="115dp"
+                 android:background="@color/Blanco"
+                 android:scaleType="fitCenter"
+                 android:onClick="trainStrokes"
+                 android:visibility="visible"
+                 android:cropToPadding="true"
+                 android:adjustViewBounds="true"
+                 android:src="@mipmap/icon_settings"
+                 android:layout_weight="0.03"
+                 android:layout_below="@+id/button6"
+                 android:layout_alignLeft="@+id/button6"
+                 android:layout_alignStart="@+id/button6"
+                 android:layout_marginTop="14dp" /> -->
 
 
             <ImageView
