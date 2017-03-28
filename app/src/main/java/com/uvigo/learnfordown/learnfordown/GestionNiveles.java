@@ -42,17 +42,17 @@ public class GestionNiveles {
     private boolean iscompletadoEscritura() {
        switch (tipo){
            case "escribirconsombreado":
-               if(aciertos>=10){
+               if(aciertos>=30){
                    return true;
                }
                else return false;
            case "escribirsinsombreado":
-               if(aciertos>=15){
+               if(aciertos>=40){
                    return true;
                }
                else return false;
            case "escribirtecladopalabra":
-               if(aciertos>=15){
+               if(aciertos>=50){
                    return true;
                }
                else return false;
