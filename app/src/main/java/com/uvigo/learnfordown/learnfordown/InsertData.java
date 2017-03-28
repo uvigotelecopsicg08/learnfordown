@@ -320,6 +320,8 @@ public class InsertData {
         db.insertar_foto("v","ve","directa","vela","Esta es una * perfumada",R.drawable.vela,"otros",2,"bv");
         db.insertar_foto("v","vo","directa","volante","Mi padre cuando conduce mantiene las dos manos en el *",R.drawable.volante,"otros",3,"bv");
 
+        //db.insertar_foto("w","wa","directa","waterpolo","A Susi le gusta el * ",R.drawable.waterpolo,"otro",2,"gu");
+
         db.insertar_foto("y","ye","directa","yegua","La * ha tenido un potro",R.drawable.yegua,"animales",2,"lly");
         db.insertar_foto("y","yo","directa","yogurt","Siempre ceno un * de postre",R.drawable.yogurt,"comida",2,"lly");
 
