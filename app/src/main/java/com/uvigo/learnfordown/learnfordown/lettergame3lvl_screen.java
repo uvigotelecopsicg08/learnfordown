@@ -125,7 +125,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         ButtonActual =b;
             TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                     -50.0f, 0.0f);
-            animation.setDuration(400);
+            animation.setDuration(500);
             animation.setFillAfter(true);
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override

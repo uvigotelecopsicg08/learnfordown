@@ -149,34 +149,16 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         Actual =bAxu;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                 -50.0f, 0.0f);
-        animation.setDuration(2000);
+        animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-
-                    //  contador++;
-
                     System.out.println(figure);
                     String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
                     textView.setText(stringAux);
-/*
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if(contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(getApplicationContext(), "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                        toast.show();
-                    }
-                    */
 
                 }
 

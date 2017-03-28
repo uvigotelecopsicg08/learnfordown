@@ -56,11 +56,8 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
     ArrayList<FotoPalabra> fp;
     int i = 0;
-   // int contador=0;
-   // RatingBar ratingbar1 = null;
     Estrellas  es;
 
-  //  final HashMap<Integer, Float> thresholds = new HashMap<>();
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -82,25 +79,12 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         letracorrecta=(TextView)findViewById(R.id.textView4);
         titulo.setTypeface(face);
 
-/*
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(20, 3f); //20 aciertos, 3 estrellas
-        thresholds.put(30, 4f); //30 aciertos, 4 estrellas
-        thresholds.put(40, 5f); //40 aciertos, 5 estrellas
-        thresholds.put(50, 6f); //50 aciertos, 6 estrellas
-*/
-
-
-
         Context context = this.getApplicationContext();
         gn = new GestionNiveles(context);
 
-       es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
+        es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
-        //pulsar();
+
 
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
@@ -143,24 +127,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame1lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-            toast.show();
-            gn.actualizarEstrellas(contador);
-        }
-    }
-    */
+
 
     public void ButtonCheck(View v) {
 
@@ -168,7 +135,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         ButtonActual = b;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                 -50.0f, 0.0f);
-        animation.setDuration(2000);
+        animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override

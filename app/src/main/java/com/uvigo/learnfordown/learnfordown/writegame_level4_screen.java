@@ -158,4 +158,12 @@ public class writegame_level4_screen extends AppCompatActivity {
             }
         }
     }
+
+
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
+    }
 }
