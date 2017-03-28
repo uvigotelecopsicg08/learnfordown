@@ -33,4 +33,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-appindexing:8.4.0'
     compile 'com.android.support.constraint:constraint-layout:1.0.0-beta4'
     testCompile 'junit:junit:4.12'
+    compile files('libs/unity-classes2.jar')
+    compile files('libs/unity-classes.jar')
 }

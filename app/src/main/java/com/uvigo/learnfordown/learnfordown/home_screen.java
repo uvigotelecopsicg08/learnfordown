@@ -93,6 +93,12 @@ public class home_screen extends AppCompatActivity {
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
+            //Aqui esta el codigo para lanzar el juego de Unity. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas2
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }*/
         }
         else{
             lanzaAlerta();

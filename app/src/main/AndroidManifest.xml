@@ -25,6 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--<activity
+            android:name="com.unity3d.player.UnityPlayerActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>-->
+
         <activity
             android:name=".menu_screen"
             android:screenOrientation="landscape" />
@@ -46,9 +57,9 @@
         <activity
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
-        <activity
+        <!--<activity
             android:name=".lettergame1lvl_w_screen"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape" />-->
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
         <!--
@@ -126,11 +137,11 @@
         <activity
             android:name=".writegame_level2_screen"
             android:screenOrientation="landscape" />
-        <activity
+        <!--<activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".endScreem" />
+        <activity android:name=".endScreem" />-->
         <activity android:name=".endScreen"></activity>
     </application>
 
