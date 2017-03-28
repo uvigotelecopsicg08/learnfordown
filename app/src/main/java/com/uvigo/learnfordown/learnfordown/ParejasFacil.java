@@ -11,6 +11,7 @@ import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class ParejasFacil extends AppCompatActivity implements View.OnClickListener{
 
@@ -29,6 +30,8 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
 
     private boolean isBusy = false;
     private boolean isFinished = false;
+
+    private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -84,7 +87,7 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
             for(int c=0; c < numColumns; c++)
             {
                 MemoryButtonFacil tempButton = new MemoryButtonFacil(this, r, c, buttonGraphics[ buttonGraphicLocations[r * numColumns + c] ]);
-                tempButton.setId(View.generateViewId());
+                tempButton.setId(generarViewId());//Generar IDs unívocos para cada botón del grid
                 tempButton.setOnClickListener(this);
                 buttons[r * numColumns + c] = tempButton;
                 gridLayout.addView(tempButton);
@@ -265,4 +268,17 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
 
         }
     }
+
+    public static int generarViewId() {
+        for (;;) {
+            final int result = sNextGeneratedId.get();
+            // aapt-generated IDs have the high byte nonzero; clamp to the range under that.
+            int newValue = result + 1;
+            if (newValue > 0x00FFFFFF) newValue = 1; // Roll over to 1, not 0.
+            if (sNextGeneratedId.compareAndSet(result, newValue)) {
+                return result;
+            }
+        }
+    }
+
 }
