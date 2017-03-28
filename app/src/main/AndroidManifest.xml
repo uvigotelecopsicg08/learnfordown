@@ -130,8 +130,9 @@
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".endScreem" />
-        <activity android:name=".endScreen"></activity>
+
+        <activity android:name=".endScreen"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_weight="0.42"
+        android:layout_weight="0.43"
         android:background="@color/colorPrimary"
         android:weightSum="1">
 
@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="0.85"
+            android:layout_weight="0.8"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -40,7 +40,7 @@
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:onClick="home"
             android:background="@mipmap/ic_home"
-            android:layout_weight="0.15" />
+            android:layout_weight="0.2" />
 
 
     </LinearLayout>
