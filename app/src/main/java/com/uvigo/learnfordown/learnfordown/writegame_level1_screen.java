@@ -89,6 +89,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         fp=gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
+
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
@@ -116,8 +117,11 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void validateStrokes(View v) {
 
-        int resIdRaw=this.getResources().getIdentifier(fp.get(0).getLetra(), "raw", this.getPackageName());
-       InputStream fraw =  getResources().openRawResource(resIdRaw);
+        String l;
+        if (fp.get(0).getLetra().equals("ñ")) l = "nn";
+        else l = fp.get(0).getLetra();
+        int resIdRaw=this.getResources().getIdentifier(l, "raw", this.getPackageName());
+        InputStream fraw =  getResources().openRawResource(resIdRaw);
 
         // ** Carga de ficheros ** //
         Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(),  fp.get(0).getLetra(),fraw);
@@ -205,7 +209,10 @@ public class writegame_level1_screen extends AppCompatActivity {
                     Lienzo.addView(canvas);
 
                     fp=gn.getFotos();
-                    int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
+                    String f;
+                    if(fp.get(0).getLetra().equals("ñ")) f = "nn";
+                    else f = fp.get(0).getLetra();
+                    int resId=this.getResources().getIdentifier(f, "drawable", this.getPackageName());
                     plantilla.setImageResource(resId);
                     foto.setImageResource(fp.get(0).getFoto());
 
@@ -229,8 +236,11 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
     public void trainStrokes(View v) {
+        String l;
         Intent intent = new Intent(this, StrokesTrainingActivity.class);
-        intent.putExtra("fichero", fp.get(0).getLetra());
+        if (fp.get(0).getLetra().equals("ñ"))  l = "nn";
+        else l = fp.get(0).getLetra();
+        intent.putExtra("fichero", l);
         startActivity(intent);
     }
 
