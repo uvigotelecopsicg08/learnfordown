@@ -13,9 +13,11 @@
         android:src="@mipmap/ic_addgreen"
         android:layout_alignTop="@+id/nameTextView"
         android:layout_toEndOf="@+id/nameTextView"
+        android:layout_toRightOf="@id/nameTextView"
         android:adjustViewBounds="false"
         android:scaleType="matrix"
         android:cropToPadding="false" />
+
 
     <TextView
         android:id="@+id/nameTextView"
@@ -29,4 +31,7 @@
         android:layout_alignParentTop="true"
         android:layout_width="700sp"
         android:textAlignment="textStart" />
+
+
+
 </RelativeLayout>
