@@ -199,6 +199,11 @@ public class writegame_level1_screen extends AppCompatActivity {
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
 
                     gn.avanzaNivel();
+                    if(!(gn.getTipo().equals(tipoNivel))) {
+                        // Terminó el nivel
+                        Intent intent = new Intent(writegame_level1_screen.this, writegame_level2_screen.class);
+                        startActivity(intent);
+                    }
 
 
                     setContentView(R.layout.activity_writegame_level1_screen);
@@ -219,7 +224,7 @@ public class writegame_level1_screen extends AppCompatActivity {
 
                 }else{
                     Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
-
+                    es.fallo();
                     Borrar.callOnClick();
                 }
 

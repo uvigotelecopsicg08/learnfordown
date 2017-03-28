@@ -73,7 +73,7 @@ public class Estrellas {
                 estrellitas.start();
                 Toast toast = Toast.makeText(app, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                 toast.show();
+                toast.show();
              }
             gn.actualizarEstrellas(contador);
         }
