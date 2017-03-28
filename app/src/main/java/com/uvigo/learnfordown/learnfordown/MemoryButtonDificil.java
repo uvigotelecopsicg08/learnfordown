@@ -34,12 +34,9 @@ public class MemoryButtonDificil extends Button
         front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);
         back = AppCompatDrawableManager.get().getDrawable(context, R.drawable.back);
 
-        setBackground(back);
+        setBackgroundDrawable(back);//setBackground() para API > 16
 
         GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
-
-        //tempParams.width = (int) getResources().getDisplayMetrics().density * 50;
-        //tempParams.height = (int) getResources().getDisplayMetrics().density * 50;
 
         tempParams.width = (int) getResources().getDisplayMetrics().density * 160;
         tempParams.height = (int) getResources().getDisplayMetrics().density * 160;
@@ -68,12 +65,12 @@ public class MemoryButtonDificil extends Button
 
         if(isFlipped)
         {
-            setBackground(back);
+            setBackgroundDrawable(back);//setBackground() para API > 16
             isFlipped = false;
         }
         else
         {
-            setBackground(front);
+            setBackgroundDrawable(front);//setBackground() para API > 16
             isFlipped=true;
         }
     }

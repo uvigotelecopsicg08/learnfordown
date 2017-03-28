@@ -142,20 +142,29 @@ public class writegame_level4_screen extends AppCompatActivity {
             cambiarFoto();
             Texto.setText("");
         } else {
-
+            Intent intent = new Intent(writegame_level4_screen.this, endScreen.class);
+            startActivity(intent);
 
             gn.avanzaNivel();
             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
                 //Código para abrir otra pantalla
-                //Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+               // Intent intent = new Intent(writegame_level4_screen.this, endScreen.class);
                 //startActivity(intent);
-            } else {
+           } else {
                 fp = gn.getFotosAleatorias();
                 i = 0;
-                cambiarFoto();
-                Texto.setText("");
-            }
+               cambiarFoto();
+               Texto.setText("");
+           }
         }
+    }
+
+
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
     }
 }

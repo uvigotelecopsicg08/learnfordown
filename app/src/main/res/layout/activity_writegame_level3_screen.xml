@@ -31,12 +31,22 @@
             android:scaleType="fitCenter"
             android:layout_weight="0.1" />
 
+        <ImageButton
+            android:src="@drawable/reset"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/reset"
+            android:onClick="reset"
+            android:layout_weight="0.1"
+            android:scaleType="fitCenter"
+            android:background="@color/colorGame" />
+
         <TextView
             android:text="¡COMPLETA LA FRASE!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.81"
+            android:layout_weight="0.69"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"

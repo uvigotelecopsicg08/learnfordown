@@ -89,6 +89,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         fp=gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
 
+
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
@@ -116,8 +117,11 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void validateStrokes(View v) {
 
-        int resIdRaw=this.getResources().getIdentifier(fp.get(0).getLetra(), "raw", this.getPackageName());
-       InputStream fraw =  getResources().openRawResource(resIdRaw);
+        String l;
+        if (fp.get(0).getLetra().equals("ñ")) l = "nn";
+        else l = fp.get(0).getLetra();
+        int resIdRaw=this.getResources().getIdentifier(l, "raw", this.getPackageName());
+        InputStream fraw =  getResources().openRawResource(resIdRaw);
 
         // ** Carga de ficheros ** //
         Patrones patronLetra = (Patrones) U.loadObjectFromFile(getApplicationContext(),  fp.get(0).getLetra(),fraw);
@@ -195,24 +199,19 @@ public class writegame_level1_screen extends AppCompatActivity {
                     Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
 
                     gn.avanzaNivel();
+                    if(!(gn.getTipo().equals(tipoNivel))) {
+                        // Terminó el nivel
+                        Intent intent = new Intent(writegame_level1_screen.this, writegame_level2_screen.class);
+                        startActivity(intent);
+                    }
 
+                    cambiarFoto();
 
-                    setContentView(R.layout.activity_writegame_level1_screen);
-                    plantilla =(ImageView) findViewById(R.id.imageView3);
-                    foto= (ImageView) findViewById(R.id.imageView2);
-                    Lienzo = (LinearLayout) findViewById(R.id.lienzo);
-                    canvas = new CanvasView(this);
-                    Lienzo.addView(canvas);
-
-                    fp=gn.getFotos();
-                    int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
-                    plantilla.setImageResource(resId);
-                    foto.setImageResource(fp.get(0).getFoto());
 
 
                 }else{
                     Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
-
+                    es.fallo();
                     Borrar.callOnClick();
                 }
 
@@ -229,8 +228,11 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
     public void trainStrokes(View v) {
+        String l;
         Intent intent = new Intent(this, StrokesTrainingActivity.class);
-        intent.putExtra("fichero", fp.get(0).getLetra());
+        if (fp.get(0).getLetra().equals("ñ"))  l = "nn";
+        else l = fp.get(0).getLetra();
+        intent.putExtra("fichero", l);
         startActivity(intent);
     }
 
@@ -251,6 +253,30 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
 
+    public void reset(View v){
+
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
+
+    public void cambiarFoto(){
+
+        setContentView(R.layout.activity_writegame_level1_screen);
+        plantilla =(ImageView) findViewById(R.id.imageView3);
+        foto= (ImageView) findViewById(R.id.imageView2);
+        Lienzo = (LinearLayout) findViewById(R.id.lienzo);
+        canvas = new CanvasView(this);
+        Lienzo.addView(canvas);
+
+        fp=gn.getFotos();
+        String f;
+        if(fp.get(0).getLetra().equals("ñ")) f = "nn";
+        else f = fp.get(0).getLetra();
+        int resId=this.getResources().getIdentifier(f, "drawable", this.getPackageName());
+        plantilla.setImageResource(resId);
+        foto.setImageResource(fp.get(0).getFoto());
+    }
 
 
 }

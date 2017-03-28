@@ -92,7 +92,7 @@ public class writegame_level2_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
         fp = gn.getFotosAleatorias();
-        es= new Estrellas (this,gn,gn.setNivel(TipoNivel,2));
+        es = new Estrellas (this,gn,gn.setNivel(TipoNivel,2));
 
 
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
@@ -370,6 +370,14 @@ public class writegame_level2_screen extends AppCompatActivity {
         }
 
     }
+
+    public void reset(View v){
+        i = 0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
+    }
+
 
 }
 
