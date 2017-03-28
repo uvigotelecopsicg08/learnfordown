@@ -36,12 +36,22 @@
                 android:onClick="BackArrow"
                 android:src="@mipmap/icon_backarrow"/>
 
+            <ImageButton
+                android:src="@drawable/reset"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/reset"
+                android:onClick="reset"
+                android:layout_weight="0.1"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
             <TextView
                 android:id="@+id/textView2"
                 android:text="¡VAMOS A ESCRIBIR UN POCO!"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_weight="0.95"
+                android:layout_weight="0.85"
                 android:gravity="center"
                 android:textColor="@android:color/white"
                 android:textAlignment="center"

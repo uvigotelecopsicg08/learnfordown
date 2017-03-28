@@ -205,21 +205,8 @@ public class writegame_level1_screen extends AppCompatActivity {
                         startActivity(intent);
                     }
 
+                    cambiarFoto();
 
-                    setContentView(R.layout.activity_writegame_level1_screen);
-                    plantilla =(ImageView) findViewById(R.id.imageView3);
-                    foto= (ImageView) findViewById(R.id.imageView2);
-                    Lienzo = (LinearLayout) findViewById(R.id.lienzo);
-                    canvas = new CanvasView(this);
-                    Lienzo.addView(canvas);
-
-                    fp=gn.getFotos();
-                    String f;
-                    if(fp.get(0).getLetra().equals("ñ")) f = "nn";
-                    else f = fp.get(0).getLetra();
-                    int resId=this.getResources().getIdentifier(f, "drawable", this.getPackageName());
-                    plantilla.setImageResource(resId);
-                    foto.setImageResource(fp.get(0).getFoto());
 
 
                 }else{
@@ -266,6 +253,30 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
 
+    public void reset(View v){
+
+        es.resetPanelEstrellas();
+        fp=gn.getFotos();
+        cambiarFoto();
+    }
+
+    public void cambiarFoto(){
+
+        setContentView(R.layout.activity_writegame_level1_screen);
+        plantilla =(ImageView) findViewById(R.id.imageView3);
+        foto= (ImageView) findViewById(R.id.imageView2);
+        Lienzo = (LinearLayout) findViewById(R.id.lienzo);
+        canvas = new CanvasView(this);
+        Lienzo.addView(canvas);
+
+        fp=gn.getFotos();
+        String f;
+        if(fp.get(0).getLetra().equals("ñ")) f = "nn";
+        else f = fp.get(0).getLetra();
+        int resId=this.getResources().getIdentifier(f, "drawable", this.getPackageName());
+        plantilla.setImageResource(resId);
+        foto.setImageResource(fp.get(0).getFoto());
+    }
 
 
 }
