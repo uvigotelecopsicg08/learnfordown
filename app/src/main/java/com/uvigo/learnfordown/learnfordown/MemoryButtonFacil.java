@@ -34,7 +34,7 @@ public class MemoryButtonFacil extends Button
         front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);
         back = AppCompatDrawableManager.get().getDrawable(context, R.drawable.back);
 
-        setBackground(back);
+        setBackgroundDrawable(back);//setBackground() para API > 16
 
         GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
 
@@ -68,12 +68,12 @@ public class MemoryButtonFacil extends Button
 
         if(isFlipped)
         {
-            setBackground(back);
+            setBackgroundDrawable(back);//setBackground() para API > 16
             isFlipped = false;
         }
         else
         {
-            setBackground(front);
+            setBackgroundDrawable(front);//setBackground() para API > 16
             isFlipped=true;
         }
     }
