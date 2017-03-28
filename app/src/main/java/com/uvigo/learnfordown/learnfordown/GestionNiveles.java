@@ -93,14 +93,18 @@ public class GestionNiveles {
     public void avanzaNivel() {
 
         //escritura en la BD  los resultados del nivel
-        db.updateResults(id_user,id_nivel,true,aciertos,fallos);
-        aciertos = fallos = 0;
-        id_nivel++;
+       finNiveles();
         //lectura parametros del nivel
         getParameterNivel();
         db.mostrarTablas();
         db.actulizaTimeStamp(true,id_nivel,id_user);
 
+    }
+
+    private void finNiveles() {
+        db.updateResults(id_user,id_nivel,true,aciertos,fallos);
+        aciertos = fallos = 0;
+        id_nivel++;
     }
 
     public void acierto() {

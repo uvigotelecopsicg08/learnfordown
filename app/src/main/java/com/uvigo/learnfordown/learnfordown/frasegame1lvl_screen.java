@@ -258,9 +258,9 @@ public class frasegame1lvl_screen extends AppCompatActivity {
            startActivity(intent);
        } else {
            if (!activiftiFinalizado) {
-               if (gn.getTipo().equals(tipoNivel)) {
-                   es.resetPanelEstrellas();
-               }
+            //   if (gn.getTipo().equals(tipoNivel)) {
+               //    es.resetPanelEstrellas();
+            //   }
                fp = gn.getFotos();
                i = 0;
                cambiarFoto();
