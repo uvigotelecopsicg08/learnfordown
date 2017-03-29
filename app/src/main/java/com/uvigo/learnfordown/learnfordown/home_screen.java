@@ -323,7 +323,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
         }
         else if (id == R.id.parejas) {
-
+            Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
+            startActivity(intent1);
 
         }
 
