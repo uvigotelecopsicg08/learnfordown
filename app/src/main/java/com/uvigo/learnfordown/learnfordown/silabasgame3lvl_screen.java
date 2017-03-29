@@ -54,10 +54,11 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             tipoNivel = extras.getString("tipoSilaba");
             System.out.println(tipoNivel);
         }
-        horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
-        titulo = (TextView) findViewById(R.id.textView2);
-        titulo.setTypeface(face);
+        try {
+            horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+            Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+            titulo = (TextView) findViewById(R.id.textView2);
+            titulo.setTypeface(face);
  /*       contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
@@ -69,31 +70,32 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         thresholds.put(65, 5f); //65 aciertos, 5 estrellas
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
         */
-        palabra= (ImageView)findViewById(R.id.imageView2);
+            palabra = (ImageView) findViewById(R.id.imageView2);
 
-        Context context = this.getApplicationContext();
-        gn = new GestionNiveles(context);
-       es =new Estrellas(this,gn,gn.setNivel(tipoNivel,3));
-        fp=gn.getFotos();
-        horizontalList=new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
-        Collections.shuffle( horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta= fp.get(i).getSilaba().toUpperCase();
-
-
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+            Context context = this.getApplicationContext();
+            gn = new GestionNiveles(context);
+            es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 3));
+            fp = gn.getFotos();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getSilaba().toUpperCase();
 
 
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
-
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+        }
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(silabasgame3lvl_screen.this, menu_screen.class);
@@ -152,19 +154,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
                     }
                     else{
                         System.out.print("el nivel esta finalizado");
-                        gn.avanzaNivel();
-                        if(gn.getDificultad()!=3 ||!(gn.getTipo().equals(tipoNivel))){
-                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                            //Código para abrir otra pantalla
-                            Intent intent = new Intent(silabasgame3lvl_screen.this, silabasgame4lvl_screen.class);
-                            startActivity(intent);
-                        }
-                        else {
-                            fp= gn.getFotos();
-                            i=0;
-                            cambiarFoto();
-                            System.out.println("Se debe avanzar el nivel");
-                        }
+                        avanzaNivel();
 
 
                     }
@@ -187,21 +177,42 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
 
     }
 
+    private void avanzaNivel() {
+        gn.avanzaNivel();
+        if(gn.getDificultad()!=3 ||!(gn.getTipo().equals(tipoNivel))){
+            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+            //Código para abrir otra pantalla
+            Intent intent = new Intent(silabasgame3lvl_screen.this, silabasgame4lvl_screen.class);
+            startActivity(intent);
+        }
+        else {
+            fp= gn.getFotos();
+            i=0;
+            cambiarFoto();
+            System.out.println("Se debe avanzar el nivel");
+        }
+    }
+
     private void cambiarFoto() {
-        horizontalList.clear();
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
-        Collections.shuffle(horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta= fp.get(i).getSilaba().toUpperCase();
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+        try {
+            horizontalList.clear();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getSilaba().toUpperCase();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
-
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+        }
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void reset(View v){
         i=0;
