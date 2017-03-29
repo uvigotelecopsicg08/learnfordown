@@ -58,14 +58,15 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             tipoNivel = extras.getString("tipoSilaba");
             System.out.println(tipoNivel);
         }
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
-        titulo = (TextView) findViewById(R.id.textView2);
-        titulo.setTypeface(face);
-        horizontal_recycler_view= (RecyclerView) findViewById(R.id.horizontal_recycler_view);
-        horizontal_recycler_view2= (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
-        titulo = (TextView) findViewById(R.id.textView2);
-        palabra= (ImageView)findViewById(R.id.imageView2);
-        titulo.setTypeface(face);
+        try {
+            Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+            titulo = (TextView) findViewById(R.id.textView2);
+            titulo.setTypeface(face);
+            horizontal_recycler_view = (RecyclerView) findViewById(R.id.horizontal_recycler_view);
+            horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
+            titulo = (TextView) findViewById(R.id.textView2);
+            palabra = (ImageView) findViewById(R.id.imageView2);
+            titulo.setTypeface(face);
         /*
         contador=0;
         ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
@@ -79,35 +80,40 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         thresholds.put(80, 6f); //80 aciertos, 6 estrellas
 */
 
-        Context context = this.getApplicationContext();
+            Context context = this.getApplicationContext();
 
 
-        gn = new GestionNiveles(context);
-        es= new Estrellas(this,gn,gn.setNivel(tipoNivel,4));
-        fp=gn.getFotos();
+            gn = new GestionNiveles(context);
+            es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 4));
+            fp = gn.getFotos();
 
-        horizontalList=new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
-        Collections.shuffle( horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta= fp.get(i).getSilaba().toUpperCase();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getSilaba().toUpperCase();
 
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
-        horizontalList2=new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
-        Collections.shuffle( horizontalList2);
+            horizontalList2 = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList2);
+            Collections.shuffle(horizontalList2);
 
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+            horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics, "lectura");
 
-        LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
-        horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+            LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+        }
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(silabasgame4lvl_screen.this, menu_screen.class);
@@ -166,37 +172,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                             cambiarFoto();
                         } else {
                             System.out.print("el nivel esta finalizado");
-                            gn.avanzaNivel();
-                            if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
-                                System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                                //Código para abrir otra pantalla
-                                activiftiFinalizado=true;
-                                Intent intent = new Intent(silabasgame4lvl_screen.this, frasegame1lvl_screen.class);
-                                String strName= null;
-                                if(gn.getTipo().contains("directas")){
-                                    strName = "frasessilabasdirectas";
-                                }
-                                else{
-                                    if(gn.getTipo().contains("inversas")){
-                                        strName = "frasessilabasinversas";
-                                    }
-                                    else{
-                                        strName ="frasessilabastrabadas";
-                                    }
-                                }
-
-                                intent.putExtra("tipoSilaba", strName);
-                                intent.putExtra("nivel",1);
-                                startActivity(intent);
-
-                            } else {
-                                if(!activiftiFinalizado) {
-                                    fp = gn.getFotos();
-                                    i = 0;
-                                    cambiarFoto();
-                                    System.out.println("Se debe avanzar el nivel");
-                                }
-                            }
+                           avanzaNivel();
 
                         }
                         aciertos = 0;
@@ -216,29 +192,69 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         b.startAnimation(animation);
     }
 
+    private void avanzaNivel() {
+        gn.avanzaNivel();
+        if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
+            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+            //Código para abrir otra pantalla
+            activiftiFinalizado=true;
+            Intent intent = new Intent(silabasgame4lvl_screen.this, frasegame1lvl_screen.class);
+            String strName= null;
+            if(gn.getTipo().contains("directas")){
+                strName = "frasessilabasdirectas";
+            }
+            else{
+                if(gn.getTipo().contains("inversas")){
+                    strName = "frasessilabasinversas";
+                }
+                else{
+                    strName ="frasessilabastrabadas";
+                }
+            }
+
+            intent.putExtra("tipoSilaba", strName);
+            intent.putExtra("nivel",1);
+            startActivity(intent);
+
+        } else {
+            if(!activiftiFinalizado) {
+                fp = gn.getFotos();
+                i = 0;
+                cambiarFoto();
+                System.out.println("Se debe avanzar el nivel");
+            }
+        }
+    }
+
     private void cambiarFoto() {
-        horizontalList.clear();
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
-        Collections.shuffle(horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta= fp.get(i).getSilaba().toUpperCase();
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+        try {
+            horizontalList.clear();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getSilaba().toUpperCase();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
-        horizontalList2.clear();
-        horizontalList2=new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList2);
-        Collections.shuffle( horizontalList2);
-        horizontalAdapter2 = new HorizontalAdapter(horizontalList2,5,metrics,"lectura");
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontalList2.clear();
+            horizontalList2 = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList2);
+            Collections.shuffle(horizontalList2);
+            horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics, "lectura");
 
-        LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
-        horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+            LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(silabasgame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
+            horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+        }
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void reset(View v){
         i=0;
