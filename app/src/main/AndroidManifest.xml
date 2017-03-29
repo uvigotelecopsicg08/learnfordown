@@ -18,6 +18,8 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".home_screen"
+            android:label="home_screen"
+
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +27,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".Puzzle4piezas"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".poppuzzle"
+            android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".menu_screen"
             android:screenOrientation="landscape" />
@@ -46,9 +56,7 @@
         <activity
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
-        <activity
-            android:name=".lettergame1lvl_w_screen"
-            android:screenOrientation="landscape" />
+
         <activity android:name=".DisplayMessageActivity" />
         <activity android:name=".MenuLectura1" />
         <!--
