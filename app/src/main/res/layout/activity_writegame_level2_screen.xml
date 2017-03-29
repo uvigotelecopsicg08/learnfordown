@@ -16,29 +16,38 @@ android:weightSum="1">
 
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorGame"
-        android:layout_weight="0.21"
-        android:weightSum="1">
+        android:layout_height="113dp"
+        android:background="@color/Verde"
+        android:weightSum="1"
+        android:layout_weight="0.04">
 
         <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
-            android:background="@color/colorGame"
+            android:background="@color/Verde"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
-            android:layout_weight="0.1" />
+            android:layout_weight="0.02" />
 
 
+        <ImageButton
+            android:src="@mipmap/reset"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:id="@+id/reset"
+            android:onClick="reset"
+            android:layout_weight="0.01"
+            android:scaleType="fitCenter"
+            android:background="@color/Verde" />
 
         <TextView
             android:text="¡COMPLETA LA FRASE!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
-            android:layout_weight="0.78"
+            android:layout_weight="0.88"
             android:gravity="center"
             android:textSize="35sp"
             android:textStyle="bold"
@@ -49,13 +58,13 @@ android:weightSum="1">
 
         <ImageButton
             android:src="@mipmap/ic_home"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/button5"
             android:onClick="goHome"
             android:layout_weight="0.15"
             android:scaleType="fitCenter"
-            android:background="@color/colorGame" />
+            android:background="@color/Verde" />
 
 
     </LinearLayout>
@@ -82,80 +91,80 @@ android:weightSum="1">
         android:layout_weight="0"/>
 </LinearLayout>
 
-<LinearLayout
-    android:orientation="horizontal"
-    android:layout_width="match_parent"
-    android:layout_weight="0.2"
-    android:layout_height="wrap_content"
-    android:weightSum="1">
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.1"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
         android:layout_weight="0.2"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:weightSum="1">
-
-        <ImageView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.1"
             android:layout_height="match_parent"
+            android:weightSum="1">
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
             android:layout_weight="0.2"
-            android:gravity="center"
-            app:srcCompat="@drawable/casa"
-            android:id="@+id/imageView2" />
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.2"
+                android:gravity="center"
+                app:srcCompat="@drawable/casa"
+                android:id="@+id/imageView2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.2"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:textStyle="normal|bold"
+                android:text=""
+                android:background="@color/NaranjaClarito"
+                android:id="@+id/textView4"
+                android:textSize="45sp"
+                android:maxLines="1"
+                android:textAlignment="center"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.1"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.3"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.2"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
-        <TextView
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:layout_weight="1"
-            android:textStyle="normal|bold"
-            android:text=""
-            android:background="@color/NaranjaClarito"
-            android:id="@+id/textView4"
-            android:textSize="45sp"
-            android:maxLines="1"
-            android:textAlignment="center"/>
-
-
-
-    </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.1"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-
-    </LinearLayout>
-</LinearLayout>
-
-<LinearLayout
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_weight="0.2"

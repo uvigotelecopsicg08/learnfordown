@@ -11,7 +11,7 @@ import java.util.HashMap;
 public class InsertData {
     DataBaseManager db;
     private Context context;
-    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
+    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","ñ","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
    // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
@@ -64,7 +64,7 @@ public class InsertData {
         db.insertar_foto("c","cu","directa","cubo","En el pozo cogemos agua con un *",R.drawable.cubo,"otros",2,"kcq");
         db.insertar_foto("c","cu","directa","cuchillo","El filete se corta con un *",R.drawable.cuchillo,"casa",3,"kcq");
         db.insertar_foto("c","cu","directa","cuna","Mi prima pequeña aún duerme en la *",R.drawable.cuna,"casa",2,"kcq");
-        db.insertar_foto("c","cla","trabada","clarinete","Mi madre toca el *",R.drawable.clarinete,"musica",2,"cl");
+        db.insertar_foto("c","cla","trabada","clarinete","Mi madre toca el *",R.drawable.clarinete,"musica",4,"cl");
         db.insertar_foto("c","cla","trabada","clave","Estoy aprendiendo a dibujar una * de sol",R.drawable.clave,"musica",2,"cl");
         db.insertar_foto("c","cro","trabada","croquetas","A mi padre no le gustan las *",R.drawable.croquetas,"comida",2,"cr");
         db.insertar_foto("c","clip","trabada","clip","Este * es de color rojo",R.drawable.clip,"otros",1,"mono");
@@ -220,6 +220,11 @@ public class InsertData {
         db.insertar_foto("i","in","inversa","incendio","En el * de la fábrica no hubo heridos",R.drawable.incendio,"otro",3,"n");
         db.insertar_foto("i","in","inversa","interruptor","Dale al * para encender la luz",R.drawable.interruptor,"casa",4,"n");
 
+        db.insertar_foto("ñ","ña","directa","leña","Recogimos * en el bosque",R.drawable.lena,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","niña","Esa * tiene 6 años",R.drawable.nina,"otro",2,"ñ");
+        db.insertar_foto("ñ","ño","directa","niño","Ese * es muy bueno",R.drawable.nino,"otro",2,"ñ");
+        db.insertar_foto("ñ","ña","directa","piña","Me gusta mucho la *",R.drawable.pina,"comida",2,"ñ");
+
         db.insertar_foto("o","o","directa","ojos","Ana tiene los * de color azul",R.drawable.ojo,"otro",2,"vocales");
         db.insertar_foto("o","o","directa","olla","Mi padre utiliza una * para cocinar",R.drawable.olla,"otro",2,"vocales");
         db.insertar_foto("o","o","directa","orejas","Mi hermana tiene pendientes en las *",R.drawable.oreja,"otro",3,"vocales");
@@ -314,6 +319,12 @@ public class InsertData {
         db.insertar_foto("v","va","directa","vaso","Quiero un * de zumo",R.drawable.vaso,"otro",2,"bv");
         db.insertar_foto("v","ve","directa","vela","Esta es una * perfumada",R.drawable.vela,"otros",2,"bv");
         db.insertar_foto("v","vo","directa","volante","Mi padre cuando conduce mantiene las dos manos en el *",R.drawable.volante,"otros",3,"bv");
+
+
+        db.insertar_foto("w","wa","directa","waterpolo","El * se juega en el agua",R.drawable.waterpolo,"otro",4,"gu");
+        db.insertar_foto("x","xi","directa","xilófono","El * es un instrumento musical",R.drawable.xilofono,"otro",4,"x");
+        db.insertar_foto("w","wa","directa","waterpolo","Hemos jugado al * en la piscina de casa",R.drawable.waterpolo,"otro",4,"w");
+
 
         db.insertar_foto("y","ye","directa","yegua","La * ha tenido un potro",R.drawable.yegua,"animales",2,"lly");
         db.insertar_foto("y","yo","directa","yogurt","Siempre ceno un * de postre",R.drawable.yogurt,"comida",2,"lly");

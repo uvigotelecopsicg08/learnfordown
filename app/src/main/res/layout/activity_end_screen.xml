@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="1"
+    android:background="@mipmap/ic_launcher1"
+    android:layout_width="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.42"
+        android:background="@color/colorPrimary"
+        android:weightSum="1">
+
+        <TextView
+            android:text="HAS COMPLETADO TODOS LOS NIVELES"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/textView2"
+            android:layout_weight="0.8"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            tools:context=".MainActivity"
+            android:textColor="@android:color/white"/>
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/home"
+            android:scaleType="fitCenter"
+            app:srcCompat="?android:attr/activatedBackgroundIndicator"
+            android:onClick="home"
+            android:background="@mipmap/ic_home"
+            android:layout_weight="0.2" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="0.43"
+        android:background="@color/colorGame"
+        android:weightSum="1">
+
+        <TextView
+            android:text="¡ENHORABUENA!"
+            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:id="@+id/textView"
+            android:layout_weight="0.9"
+            android:gravity="center"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:maxLines="1"
+            android:textAlignment="center"
+            tools:context=".MainActivity"
+            android:textColor="@android:color/white"/>
+
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:orientation="horizontal"
+        android:layout_weight="0.15"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:foregroundGravity="fill_horizontal"
+        android:background="@drawable/fin"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="fill_parent"
+            android:gravity="center"
+            android:layout_height="fill_parent"
+            android:weightSum="1">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:gravity="center"
+                android:weightSum="1">
+
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.05"
+                    android:visibility="invisible"/>
+
+            </LinearLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+</LinearLayout>

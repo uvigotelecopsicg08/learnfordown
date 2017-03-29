@@ -1,5 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
@@ -44,7 +46,10 @@ public class writegame_level3_screen extends AppCompatActivity {
     private Button ButtonActual;
     private String RellenoFrase;
     private int num_iteracion = 0;
+
     Estrellas  es;
+
+
     final HashMap<Integer, Float> thresholds = new HashMap<>();
     private Button botonReferencia;
 
@@ -57,7 +62,7 @@ public class writegame_level3_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_writegame_level2_screen);
+        setContentView(R.layout.activity_writegame_level3_screen);
 
         PanelHorizontal = (RecyclerView) findViewById(R.id.PanelHorizontal);
 
@@ -71,6 +76,8 @@ public class writegame_level3_screen extends AppCompatActivity {
 
         TipoNivel = "escribirsinsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
+
+
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel,1);
         fp = gn.getFotosAleatorias();
@@ -124,9 +131,7 @@ public class writegame_level3_screen extends AppCompatActivity {
                 if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
                     SustituirLinea();
                     ButtonActual.setBackgroundColor(Color.GREEN);
-
                     num_iteracion++;
-
 
                     if(num_iteracion == Correcta.length()) {
 
@@ -143,7 +148,11 @@ public class writegame_level3_screen extends AppCompatActivity {
 
                     }
 
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) gn.fallo();
+                } else {
+                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                        es.fallo();
+
+                }
 
                 PanelHorizontal.setEnabled(true);
 
@@ -164,7 +173,6 @@ public class writegame_level3_screen extends AppCompatActivity {
         b.startAnimation(animation);
 
     }
-
 
     private void cambiarFoto() {
 
@@ -222,8 +230,6 @@ public class writegame_level3_screen extends AppCompatActivity {
 
 
     public void RespuestaCorrecta(){
-
-
         es.acierto();
         es.pulsar(true);
 
@@ -231,12 +237,9 @@ public class writegame_level3_screen extends AppCompatActivity {
             i++;
             cambiarFoto();
 
-
-
         } else {
 
             gn.avanzaNivel();
-
             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
                 //Código para abrir otra pantalla
@@ -250,6 +253,13 @@ public class writegame_level3_screen extends AppCompatActivity {
             }
         }
 
+    }
+
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
     }
 
 }

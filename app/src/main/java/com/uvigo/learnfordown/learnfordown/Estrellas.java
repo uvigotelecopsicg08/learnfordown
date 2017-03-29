@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -23,6 +24,7 @@ public class Estrellas {
     GestionNiveles gn;
     AppCompatActivity app;
     SoundPool soundPool;
+    MediaPlayer acierto,fallo;
 
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
@@ -33,8 +35,10 @@ public class Estrellas {
 
     public  Estrellas(AppCompatActivity app, GestionNiveles gn, int contador){
 
-       soundPool = new SoundPool(5,AudioManager.STREAM_MUSIC , 0);
-       //idestrellitas = soundPool.load(c, R.raw.estrellitas, 0);
+        acierto = MediaPlayer.create(app.getApplicationContext(),R.raw.acierto);
+        fallo = MediaPlayer.create(app.getApplicationContext(),R.raw.disparo);
+
+
        this.app =app;
        this.gn =gn;
        this.contador = contador;
@@ -65,17 +69,18 @@ public class Estrellas {
         if (rating != ratingbar1.getRating()) {
             ratingbar1.setRating(rating);
             if (to){
-                soundPool.play(idestrellitas, 1, 1, 1, 0, 1);
                 Toast toast = Toast.makeText(app, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
                 toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                 toast.show();
+                toast.show();
              }
             gn.actualizarEstrellas(contador);
         }
     }
     public void acierto(){
+        acierto.start();
         contador++;
         gn.acierto();
+
     }
 
     public void resetPanelEstrellas(){
@@ -83,6 +88,11 @@ public class Estrellas {
         gn.actualizarEstrellas(contador);
         pulsar(false);
         gn.resetNivel();
+
+    }
+    public void fallo(){
+        fallo.start();
+        gn.fallo();
 
     }
 

@@ -42,17 +42,17 @@ public class GestionNiveles {
     private boolean iscompletadoEscritura() {
        switch (tipo){
            case "escribirconsombreado":
-               if(aciertos>=10){
+               if(aciertos>=30){
                    return true;
                }
                else return false;
            case "escribirsinsombreado":
-               if(aciertos>=15){
+               if(aciertos>=40){
                    return true;
                }
                else return false;
            case "escribirtecladopalabra":
-               if(aciertos>=15){
+               if(aciertos>=50){
                    return true;
                }
                else return false;
@@ -93,14 +93,18 @@ public class GestionNiveles {
     public void avanzaNivel() {
 
         //escritura en la BD  los resultados del nivel
-        db.updateResults(id_user,id_nivel,true,aciertos,fallos);
-        aciertos = fallos = 0;
-        id_nivel++;
+       finNiveles();
         //lectura parametros del nivel
         getParameterNivel();
         db.mostrarTablas();
         db.actulizaTimeStamp(true,id_nivel,id_user);
 
+    }
+
+    private void finNiveles() {
+        db.updateResults(id_user,id_nivel,true,aciertos,fallos);
+        aciertos = fallos = 0;
+        id_nivel++;
     }
 
     public void acierto() {
@@ -197,7 +201,7 @@ public class GestionNiveles {
                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
                     int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
-                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas"))||palabra.startsWith(silaba)||dificultad<3) {
+                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras"))||palabra.startsWith(silaba)||dificultad<3) {
                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
                     }
                 }while(cursor.moveToNext());

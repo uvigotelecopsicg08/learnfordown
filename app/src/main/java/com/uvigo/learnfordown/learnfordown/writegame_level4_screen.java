@@ -3,6 +3,8 @@ package com.uvigo.learnfordown.learnfordown;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
@@ -36,6 +38,8 @@ public class writegame_level4_screen extends AppCompatActivity {
     private int i = 0;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +56,8 @@ public class writegame_level4_screen extends AppCompatActivity {
 
         TipoNivel = "escribirtecladopalabra"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
+
+
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
         fp = gn.getFotosAleatorias();
@@ -90,6 +96,7 @@ public class writegame_level4_screen extends AppCompatActivity {
     public void CompruebaEntrada(View v) {
 
         if (Texto.getText().toString().equals(Correcta)) {
+
             if (RellenoFrase.contains("*")) {
                 Frase.setText(RellenoFrase.replace("*", Correcta));
 
@@ -105,7 +112,10 @@ public class writegame_level4_screen extends AppCompatActivity {
                 }, 1000 );
 
 
-            } else gn.fallo();
+            } else {
+                es.fallo();
+
+            }
 
         }
     }
@@ -132,20 +142,29 @@ public class writegame_level4_screen extends AppCompatActivity {
             cambiarFoto();
             Texto.setText("");
         } else {
-
+            Intent intent = new Intent(writegame_level4_screen.this, endScreen.class);
+            startActivity(intent);
 
             gn.avanzaNivel();
             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
                 //Código para abrir otra pantalla
-                //Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+               // Intent intent = new Intent(writegame_level4_screen.this, endScreen.class);
                 //startActivity(intent);
-            } else {
+           } else {
                 fp = gn.getFotosAleatorias();
                 i = 0;
-                cambiarFoto();
-                Texto.setText("");
-            }
+               cambiarFoto();
+               Texto.setText("");
+           }
         }
+    }
+
+
+    public void reset(View v){
+        i=0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
     }
 }

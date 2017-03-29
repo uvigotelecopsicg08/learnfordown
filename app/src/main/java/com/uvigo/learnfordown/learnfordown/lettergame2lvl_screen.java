@@ -45,13 +45,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
-    SoundPool soundPool;
-    int idDisparo;
+
    /* int contador=0;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 */
     Estrellas es;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,2));
         fp=gn.getFotos();
 
+
         horizontalList = new ArrayList<String>();
         gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
         Collections.shuffle( horizontalList);
@@ -93,8 +94,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
             tmpDownSlash += " _";
         }
 
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
+
 
         palabracom = fp.get(i).getPalabra().toUpperCase();
         palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
@@ -149,12 +149,13 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         ButtonActual =b;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                     -50.0f, 0.0f);
-        animation.setDuration(400);
+        animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
+
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     ButtonActual.setEnabled(false);
                     aciertos++;
@@ -163,8 +164,6 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                     letracorrecta.setText(palabracom);
 
                 }
-                else //mpDisparo.start();
-                    soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
 
             }
 
@@ -198,7 +197,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                         aciertos = 0;
                     }
                 } else {
-                    gn.fallo();
+                    es.fallo();
                     //Codigo de Animacion Fallo
 
                 }

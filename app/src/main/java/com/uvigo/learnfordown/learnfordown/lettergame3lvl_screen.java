@@ -40,13 +40,15 @@ public class lettergame3lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i = 0;
     int aciertos=0;
-    SoundPool soundPool;
-    int idDisparo,idacierto,idestrellitas;
+
+    Estrellas es;
+
+
     /*  int contador;
     RatingBar ratingbar1 = null;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 */
-    Estrellas es;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,10 +78,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         thresholds.put(120, 6f); //120 aciertos, 6 estrellas
 */
 
-        soundPool = new SoundPool( 5, AudioManager.STREAM_MUSIC , 0); // El primero corresponde al máximo de reproducciones simultáneas. El segundo es el tipo de stream de audio (normalmente STREAM_MUSIC). El tercero es la calidad de reproducción, aunque actualmente no se implementa
-        idDisparo = soundPool.load(context, R.raw.disparo, 0);
-        idacierto = soundPool.load(context, R.raw.acierto, 0);
-        idestrellitas = soundPool.load(context, R.raw.estrellitas, 0);
+
 
         palabra= (ImageView)findViewById(R.id.imageView2);
         horizontalList = new ArrayList<String>();
@@ -126,20 +125,19 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         ButtonActual =b;
             TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                     -50.0f, 0.0f);
-            animation.setDuration(400);
+            animation.setDuration(500);
             animation.setFillAfter(true);
             animation.setAnimationListener(new Animation.AnimationListener() {
                 @Override
                 public void onAnimationStart(Animation animation) {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
-                        soundPool.play(idacierto, 1, 1, 1, 0, 2);
+
                         ButtonActual.setBackgroundColor(Color.GREEN);
                        //
                         // gn.acierto();
 
                     }
-                    else //mpDisparo.start();
-                        soundPool.play(idDisparo, 1, 1, 1, 0, 1); //el volumen para el canal izquierdo y derecho (0.0 a 1.0); La prioridad; El número de repeticiones (-1= siempre, 0=solo una vez, 1=repetir una vez, …  )  y el ratio de reproducción, con el que podremos modificar la velocidad o pitch (1.0 reproducción normal, rango: 0.5 a 2.0)
+
 
 
                 }
@@ -174,7 +172,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                     }
                 } else {
                     //Codigo de Animacion Fallo
-                    gn.fallo();
+                    es.fallo();
                     System.out.println("Se ha anotado un fallo");
 
 

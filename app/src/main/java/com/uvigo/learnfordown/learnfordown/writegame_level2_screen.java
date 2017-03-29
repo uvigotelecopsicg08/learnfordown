@@ -1,5 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
@@ -54,8 +56,10 @@ public class writegame_level2_screen extends AppCompatActivity {
     private Button ButtonActual,botonReferencia;
     private String RellenoFrase;
     private int num_iteracion = 0;
+
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -83,10 +87,12 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         TipoNivel = "escribirconsombreado"; // Esto tiene que cambiarse cada n iteraciones -> IMPORTANTE
         Context context = this.getApplicationContext();
+
+
         gn = new GestionNiveles(context);
         gn.setNivel(TipoNivel, 1);
         fp = gn.getFotosAleatorias();
-        es= new Estrellas (this,gn,gn.setNivel(TipoNivel,2));
+        es = new Estrellas (this,gn,gn.setNivel(TipoNivel,2));
 
 
         RellenoFrase = fp.get(i).getFrase().toUpperCase();
@@ -144,6 +150,7 @@ public class writegame_level2_screen extends AppCompatActivity {
                         ButtonActual.setBackgroundColor(Color.GREEN);
 
 
+
                         Rellenar(false);
                         num_iteracion++;
 
@@ -163,8 +170,10 @@ public class writegame_level2_screen extends AppCompatActivity {
 
                         }
 
-                } else if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
-                    gn.fallo();
+                } else {
+                        if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                            es.fallo();
+                      }
 
                 PanelHorizontal.setEnabled(true);
             }
@@ -361,6 +370,14 @@ public class writegame_level2_screen extends AppCompatActivity {
         }
 
     }
+
+    public void reset(View v){
+        i = 0;
+        es.resetPanelEstrellas();
+        fp=gn.getFotosAleatorias();
+        cambiarFoto();
+    }
+
 
 }
 

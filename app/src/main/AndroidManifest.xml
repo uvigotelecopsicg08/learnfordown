@@ -18,8 +18,6 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
         <activity
             android:name=".home_screen"
-            android:label="home_screen"
-
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,6 +25,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <!--<activity
+            android:name="com.unity3d.player.UnityPlayerActivity"
+            android:screenOrientation="landscape">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>-->
+
         <activity
             android:name=".Puzzle4piezas"
             android:screenOrientation="landscape">
@@ -58,7 +67,6 @@
             android:screenOrientation="landscape" />
 
         <activity android:name=".DisplayMessageActivity" />
-        <activity android:name=".MenuLectura1" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
      App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -99,9 +107,6 @@
             android:name=".frasetra_screen"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".palabrasgame1_1lvl_screen"
-            android:screenOrientation="landscape" />
-        <activity
             android:name=".palabrasgame1_2lvl_screen"
             android:screenOrientation="landscape" />
         <activity
@@ -122,6 +127,13 @@
         <activity
             android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
+        par
+        <activity
+            android:name=".loading_screen"
+            android:screenOrientation="landscape">
+            <!--android:label="@string/title_activity_loading_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+        </activity>
         <activity
             android:name=".writegame_level1_screen"
             android:screenOrientation="landscape" />
@@ -137,9 +149,10 @@
         <activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
 
-        </activity>
+        <activity android:name=".endScreen"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>

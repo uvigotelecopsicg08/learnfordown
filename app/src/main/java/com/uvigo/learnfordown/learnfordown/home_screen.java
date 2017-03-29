@@ -93,6 +93,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
     }
 
     /**
@@ -103,7 +104,12 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
-
+            //Aqui esta el codigo para lanzar el juego de Unity. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas2
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }*/
         }
         else{
             lanzaAlerta();
@@ -170,9 +176,10 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client.connect();
         AppIndex.AppIndexApi.start(client, getIndexApiAction());
+
     }
 
-    @Override
+
     public void onStop() {
         super.onStop();
 
@@ -181,6 +188,11 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
 
+    }
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        lanzaMensaje();
     }
     public void lanzaIntent(Nivel nivel){
 
@@ -319,5 +331,34 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void lanzaMensaje(){
+
+        if(registrado){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setView(R.layout.dialog_recuperar_nivel);
+            }
+            else {
+                builder.setMessage("¿Desea recuperar el último nivel?  ")
+                        .setTitle("Recuperacion nivel");
+            }
+            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    DataBaseManager db = new DataBaseManager(getApplicationContext());
+                    lanzaIntent(db.getPrimerNivel());
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+            dialog.show();
+        }
+    }
+
 
 }

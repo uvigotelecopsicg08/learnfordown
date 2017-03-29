@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String figure = "plato";
     Button button1,button2,button3;
     Button Actual;
+
    // int contador;
     //final HashMap<Integer, Float> thresholds = new HashMap<>();
     ImageView palabra;
@@ -47,6 +50,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String tmpDownSlash;
     boolean activiftiFinalizado =false;
     Estrellas es;
+
 
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -75,6 +79,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
+
         gn = new GestionNiveles(context);
        es = new Estrellas(this,gn, gn.setNivel(tipoNivel, nivel));
         fp = gn.getFotos();
@@ -144,35 +149,20 @@ public class frasegame1lvl_screen extends AppCompatActivity {
         Actual =bAxu;
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
                 -50.0f, 0.0f);
-        animation.setDuration(2000);
+        animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
             @Override
             public void onAnimationStart(Animation animation) {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.GREEN);
-                  //  contador++;
-
                     System.out.println(figure);
                     String stringAux = fp.get(i).getFrase().toUpperCase().replace("*",figure);
                     textView.setText(stringAux);
-/*
-                    float rating = 0;
-                    for (int i : new TreeSet<>(thresholds.keySet())) {
-                        if(contador < i) {
-                            break;
-                        }
-                        rating = thresholds.get(i);
-                    }
-                    if (rating != ratingbar1.getRating()) {
-                        ratingbar1.setRating(rating);
-                        Toast toast = Toast.makeText(getApplicationContext(), "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-                        toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-                        toast.show();
-                    }
-                    */
 
                 }
+
+
             }
 
             @Override
@@ -190,7 +180,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                     }
 
                 } else {
-                    gn.fallo();
+                    es.fallo();
 
                 }
             }
@@ -246,12 +236,12 @@ public class frasegame1lvl_screen extends AppCompatActivity {
            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
            //Código para abrir otra pantalla
            activiftiFinalizado =true;
-           Intent intent = new Intent(frasegame1lvl_screen.this, home_screen.class);
+           Intent intent = new Intent(frasegame1lvl_screen.this, endScreen.class);
            startActivity(intent);
        } else {
            if (!activiftiFinalizado) {
                if (gn.getTipo().equals(tipoNivel)) {
-                   es.resetPanelEstrellas();
+                 //  es.resetPanelEstrellas();
                }
                fp = gn.getFotos();
                i = 0;
