@@ -1,5 +1,8 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.PaintDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.text.SpannableString;
@@ -138,33 +141,42 @@ public class writegame_level2_screen extends AppCompatActivity {
 
                 // ***********
 
-                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+               // ButtonActual.setBackgroundDrawable(new PaintDrawable(Color.YELLOW));
+
+
+                // ¿El botón se ha pulsado ya?
+                    boolean pulsado;
+
+                    try {
+
+                        ColorDrawable buttonColor = (ColorDrawable)  ButtonActual.getBackground();
+                        buttonColor.getColor();
+                        if (buttonColor.getColor() == Color.GREEN) {
+                            pulsado = true;
+                        }
+                        else pulsado = false; // No esta pulsado
+
+                    } catch(Exception e){
+                        pulsado = false; // No esta pulsado
+                    }
+
+
+
+
+                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()) && pulsado == false) {
+
 
                         ButtonActual.setBackgroundColor(Color.GREEN);
-
-
-
                         Rellenar(false);
                         num_iteracion++;
 
-                    if (num_iteracion == Correcta.length()) {
-
-                            // Esperamos
-                            final android.os.Handler handler = new android.os.Handler();
-                            handler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    RespuestaCorrecta();
-                                    // finish();
-                                    //Do something after 100ms
-                                }
-                            }, 2000 );
+                    if (num_iteracion == Correcta.length()) { RespuestaCorrecta();
 
 
                         }
 
                 } else {
-                        if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                        if (!String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
                             es.fallo();
                       }
 
@@ -345,9 +357,6 @@ public class writegame_level2_screen extends AppCompatActivity {
 
             @Override
             public void onCompletion(MediaPlayer mp) {
-
-
-
 
 
         es.pulsar(true);

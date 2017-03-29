@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -79,15 +80,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         fp=gn.getFotos();
         cambiarFoto();
 
-/*
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
-        */
+
     }
     public void BackArrow (View v) {
 
@@ -117,20 +110,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
 
 
-       /*
 
-        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
-                -50.0f, 0.0f);
-        animation.setDuration(0);
-        animation.setFillAfter(true);
-        animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-
-
-            }
-        });
-        */
 
         Animation anim = new ScaleAnimation(
                 1f, 1f, // Start and end values for the X axis scaling
@@ -166,23 +146,33 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                     }
 
                     es.acierto();
-                    es.pulsar(true);
-                    aciertos++;
+
+                    MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            es.pulsar(true);
+                            aciertos++;
 
 
-                    if (aciertos == 3) {
+                            if (aciertos == 3) {
 
-                        aciertos = 0;
-                        if (!gn.isnivelCompletado()) {
-                            i += 3;
-                            cambiarFoto();
-                            cambiado=true;
-                        } else {
-                            System.out.print("el nivel esta finalizado");
-                            avanzaNivel();
+                                aciertos = 0;
+                                if (!gn.isnivelCompletado()) {
+                                    i += 3;
+                                    cambiarFoto();
+                                    cambiado = true;
+                                } else {
+                                    System.out.print("el nivel esta finalizado");
+                                    avanzaNivel();
+
+                                }
+                            }
 
                         }
-                    }
+
+                    });
                 } else {
                     es.fallo();
 

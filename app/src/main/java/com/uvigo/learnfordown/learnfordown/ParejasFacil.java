@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -27,6 +29,7 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
     private MemoryButtonFacil selectedButton2;
 
     private ImageButton ayuda;
+    private TextView Titulo;
 
     private boolean isBusy = false;
     private boolean isFinished = false;
@@ -37,6 +40,10 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.parejas_facil);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
 
         ayuda = (ImageButton)findViewById(R.id.button4);
         ayuda.setOnClickListener(this);

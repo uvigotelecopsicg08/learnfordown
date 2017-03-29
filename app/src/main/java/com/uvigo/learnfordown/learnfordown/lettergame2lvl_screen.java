@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -152,53 +153,76 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
-            @Override
-            public void onAnimationStart(Animation animation) {
-                if (Correcta.equals(ButtonActual.getText().toString())) {
+                                           @Override
+                                           public void onAnimationStart(Animation animation) {
+                                               if (Correcta.equals(ButtonActual.getText().toString())) {
 
-                    ButtonActual.setBackgroundColor(Color.GREEN);
-                    ButtonActual.setEnabled(false);
-                    aciertos++;
+                                                   ButtonActual.setBackgroundColor(Color.GREEN);
+                                                   ButtonActual.setEnabled(false);
+                                                   aciertos++;
 
-                    palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
-                    letracorrecta.setText(palabracom);
+                                                   palabracom = fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash, ButtonActual.getText().toString());
+                                                   letracorrecta.setText(palabracom);
 
-                }
+                                               }
 
-            }
+                                           }
 
-            @Override
-            public void onAnimationEnd(Animation animation) {
-                if (Correcta.equals(ButtonActual.getText().toString())) {
-                    if (aciertos == 1) {
+                                           @Override
+                                           public void onAnimationEnd(Animation animation) {
 
-                       // pulsar();
-                        es.acierto();
-                        es.pulsar(true);
-                        System.out.println("Se ha anotado un acierto");
-                        if (!gn.isnivelCompletado()) {
-                            i++;
-                            cambiarFoto();
-                        } else {
-                            System.out.print("el nivel esta finalizado");
-                           avanzaNivel();
-                        }
-                        aciertos = 0;
-                    }
-                } else {
-                    es.fallo();
-                    //Codigo de Animacion Fallo
 
-                }
-            }
+                                               if (Correcta.equals(ButtonActual.getText().toString())) {
 
-            @Override
-            public void onAnimationRepeat(Animation animation) {
+                                                   if (aciertos == 1) {
 
-            }
-        });
+
+
+                                                               // pulsar();
+                                                               es.acierto();
+                                                       MediaPlayer aciertoMedia = es.getAciertoMedia();
+                                                       aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                                           @Override
+                                                           public void onCompletion(MediaPlayer mp) {
+                                                               es.pulsar(true);
+                                                               System.out.println("Se ha anotado un acierto");
+                                                               if (!gn.isnivelCompletado()) {
+                                                                   i++;
+                                                                   cambiarFoto();
+                                                               } else {
+                                                                   System.out.print("el nivel esta finalizado");
+                                                                   avanzaNivel();
+                                                               }
+                                                               aciertos = 0;
+
+
+                                                           }
+
+                                                       });
+
+                                                   } else {
+                                                       es.fallo();
+                                                       //Codigo de Animacion Fallo
+
+                                                   }
+
+                                               }
+
+                                           }
+
+                                           @Override
+                                           public void onAnimationRepeat(Animation animation) {
+
+                                           }
+                                       });
+
+
+
             b.startAnimation(animation);
     }
+
+
 
     private void avanzaNivel() {
         gn.avanzaNivel();

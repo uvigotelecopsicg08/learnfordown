@@ -42,10 +42,8 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     int i=0;
 
     int aciertos=0;
-    /*
-    int contador;
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
-*/
+
+
     Estrellas es;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +56,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         horizontal_recycler_view2 = (RecyclerView) findViewById(R.id.horizontal_recycler_view2);
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
-        /*
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-        contador=0;
 
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(30, 2f); //30 aciertos, 2 estrellas
-        thresholds.put(60, 3f); //60 aciertos, 3 estrellas
-        thresholds.put(90, 4f); //90 aciertos, 4 estrellas
-        thresholds.put(120, 5f); //120 aciertos, 5 estrellas
-        thresholds.put(158, 6f); //158 aciertos, 6 estrellas
-        */
         palabra= (ImageView)findViewById(R.id.imageView2);
 try {
     Context context = this.getApplicationContext();
@@ -99,7 +86,7 @@ try {
     // horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
     DisplayMetrics metrics2 = new DisplayMetrics();
     getWindowManager().getDefaultDisplay().getMetrics(metrics2);
-    horizontalAdapter2 = new HorizontalAdapter(horizontalList, 5, metrics2, "lectura");
+    horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics2, "lectura");
     LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
     horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
     horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -120,23 +107,7 @@ catch (IndexOutOfBoundsException e){
         Intent intent1 = new Intent(lettergame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-            toast.show();
-        }
-    }
-    */
+
 
     public void ButtonCheck(View v) {
         Button b = (Button) v;
@@ -158,6 +129,8 @@ catch (IndexOutOfBoundsException e){
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
+
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                         es.acierto();
                         es.pulsar(true);
@@ -225,7 +198,7 @@ catch (IndexOutOfBoundsException e){
             // horizontalAdapter2 = new HorizontalAdapter(horizontalList2,"lectura");
             DisplayMetrics metrics2 = new DisplayMetrics();
             getWindowManager().getDefaultDisplay().getMetrics(metrics2);
-            horizontalAdapter2 = new HorizontalAdapter(horizontalList, 5, metrics2, "lectura");
+            horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics2, "lectura");
 
             LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
             horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);

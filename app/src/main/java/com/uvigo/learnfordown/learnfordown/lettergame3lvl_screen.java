@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -65,18 +66,6 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
         es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
         fp = gn.getFotos();
-        /*
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
-        pulsar();
-
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(15, 2f); //15 aciertos, 2 estrellas
-        thresholds.put(35, 3f); //35 aciertos, 3 estrellas
-        thresholds.put(60, 4f); //60 aciertos, 4 estrellas
-        thresholds.put(90, 5f); //90 aciertos, 5 estrellas
-        thresholds.put(120, 6f); //120 aciertos, 6 estrellas
-*/
 
 
 try {
@@ -107,23 +96,7 @@ try {
         Intent intent1 = new Intent(lettergame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-            toast.show();
-        }
-    }
-    */
+
 
     public void ButtonCheck (View v){
         Button b = (Button)v;
@@ -149,29 +122,41 @@ try {
 
                 @Override
                 public void onAnimationEnd(Animation animation) {
-                    if (Correcta.equals(ButtonActual.getText().toString())) {
-                        es.acierto();
-                        es.pulsar(true);
 
 
-                    if (!gn.isnivelCompletado()) {
-                        i++;
-                        cambiarFoto();
-                    } else {
-                        System.out.print("el nivel esta finalizado");
-                        //gn.actualizarEstrellas(contador);
-                       avanzaNivel();
+                            if (Correcta.equals(ButtonActual.getText().toString())) {
+                                es.acierto();
+                                MediaPlayer aciertoMedia = es.getAciertoMedia();
+                                aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-                    }
-                } else {
-                    //Codigo de Animacion Fallo
-                    es.fallo();
-                    System.out.println("Se ha anotado un fallo");
+                                    @Override
+                                    public void onCompletion(MediaPlayer mp) {
+
+                                        es.pulsar(true);
 
 
+                                        if (!gn.isnivelCompletado()) {
+                                            i++;
+                                            cambiarFoto();
+                                        } else {
+                                            System.out.print("el nivel esta finalizado");
+                                            //gn.actualizarEstrellas(contador);
+                                            avanzaNivel();
 
-                }
-            }
+                                        }
+
+                                    }
+
+                                });
+                            } else {
+                                //Codigo de Animacion Fallo
+                                es.fallo();
+                                System.out.println("Se ha anotado un fallo");
+
+
+                            }
+                                }
+
 
             @Override
             public void onAnimationRepeat(Animation animation) {

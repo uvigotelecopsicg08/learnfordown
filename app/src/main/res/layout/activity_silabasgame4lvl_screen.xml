@@ -39,7 +39,7 @@
 
 
         <TextView
-            android:text="¡COMPLETA LA PALABRA!"
+            android:text="¿POR QUÉ SÍLABA EMPIEZA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"

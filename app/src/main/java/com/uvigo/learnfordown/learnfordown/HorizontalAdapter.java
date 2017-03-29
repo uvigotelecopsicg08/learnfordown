@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.graphics.Color;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,6 +26,7 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
         public MyViewHolder(View view) {
             super(view);
             button = (Button) view.findViewById(R.id.button4);
+
 
         }
     }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 
@@ -103,7 +104,8 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
-
+        plantilla =(ImageView) findViewById(R.id.imageView3);
+        foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
@@ -195,8 +197,16 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
                     es.acierto();
+
+                    MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+
+
                     es.pulsar(true);
-                    Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
 
                     gn.avanzaNivel();
                     if(!(gn.getTipo().equals(tipoNivel))) {
@@ -206,11 +216,12 @@ public class writegame_level1_screen extends AppCompatActivity {
                     }
 
                     cambiarFoto();
+                        }
 
-
+                });
 
                 }else{
-                    Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(this, "VUELVE A INTENTARLO", Toast.LENGTH_SHORT).show();
                     es.fallo();
                     Borrar.callOnClick();
                 }
