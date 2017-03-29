@@ -88,7 +88,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         gn.setNivel(tipoNivel,1);
         fp=gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
-
+        es.setRatingbar1(R.id.ratingBar);
 
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
@@ -102,8 +102,8 @@ public class writegame_level1_screen extends AppCompatActivity {
     public void resetCanvas(View v) {
 
         setContentView(R.layout.activity_writegame_level1_screen);
-        plantilla =(ImageView) findViewById(R.id.imageView3);
-        foto= (ImageView) findViewById(R.id.imageView2);
+        es.setRatingbar1(R.id.ratingBar);
+
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
@@ -263,6 +263,7 @@ public class writegame_level1_screen extends AppCompatActivity {
     public void cambiarFoto(){
 
         setContentView(R.layout.activity_writegame_level1_screen);
+        es.setRatingbar1(R.id.ratingBar);
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);

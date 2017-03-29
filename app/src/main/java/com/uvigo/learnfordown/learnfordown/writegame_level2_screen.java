@@ -1,16 +1,11 @@
 package com.uvigo.learnfordown.learnfordown;
 
-import android.media.AudioManager;
-import android.media.SoundPool;
+import android.media.MediaPlayer;
 import android.net.Uri;
-import android.support.v4.content.ContextCompat;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
-import android.view.Gravity;
-import android.widget.RatingBar;
-import android.widget.Toast;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,7 +18,6 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -35,7 +29,6 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.TreeSet;
 
 
 public class writegame_level2_screen extends AppCompatActivity {
@@ -165,7 +158,7 @@ public class writegame_level2_screen extends AppCompatActivity {
                                     // finish();
                                     //Do something after 100ms
                                 }
-                            }, 1000 );
+                            }, 2000 );
 
 
                         }
@@ -344,6 +337,19 @@ public class writegame_level2_screen extends AppCompatActivity {
     public void RespuestaCorrecta(){
 
         es.acierto();
+
+
+        MediaPlayer aciertoMedia = es.getAciertoMedia();
+
+        aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
+
+
+
+
         es.pulsar(true);
 
         if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
@@ -368,7 +374,8 @@ public class writegame_level2_screen extends AppCompatActivity {
 
             }
         }
-
+            }
+        });
     }
 
     public void reset(View v){
