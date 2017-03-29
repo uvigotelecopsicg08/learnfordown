@@ -236,7 +236,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
            //Código para abrir otra pantalla
            activiftiFinalizado =true;
-           Intent intent = new Intent(frasegame1lvl_screen.this, home_screen.class);
+           Intent intent = new Intent(frasegame1lvl_screen.this, endScreen.class);
            startActivity(intent);
        } else {
            if (!activiftiFinalizado) {

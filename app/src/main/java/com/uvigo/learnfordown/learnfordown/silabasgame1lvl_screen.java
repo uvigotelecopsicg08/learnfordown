@@ -190,20 +190,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
                     }
                     else{
                         System.out.print("el nivel esta finalizado");
-                        gn.avanzaNivel();
-                        if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
-                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                            //Código para abrir otra pantalla
-                            Intent intent = new Intent(silabasgame1lvl_screen.this, silabasgame2lvl_screen.class);
-                            startActivity(intent);
-                        }
-                        else {
-                            fp= gn.getFotos();
-                            i=0;
-                            cambiarFoto();
-                            System.out.println("Se debe avanzar el nivel");
-                        }
-
+                        avanzaNivel();
 
                     }
 //Codigo de Animacion Acierto
@@ -225,32 +212,55 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
 
     }
 
-    private void cambiarFoto() {
-        horizontalList.clear();
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(),horizontalList);
-        Collections.shuffle(horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
-        System.out.println("+++++++++++++++++"+fp.get(i).getSilaba().toUpperCase());
-        Correcta= fp.get(i).getSilaba().toUpperCase();
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        tmpDownSlash = "";
-        for (int j=0;j<Correcta.length();j++){
-            tmpDownSlash += " _";
+    private void avanzaNivel() {
+        gn.avanzaNivel();
+        if(gn.getDificultad()!=1 ||!(gn.getTipo().equals(tipoNivel))){
+            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+            //Código para abrir otra pantalla
+            Intent intent = new Intent(silabasgame1lvl_screen.this, silabasgame2lvl_screen.class);
+            startActivity(intent);
         }
-        palabracom = fp.get(i).getPalabra().toUpperCase();
-        palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A","Á").replaceAll("E","É").replaceAll("I","Í").replaceAll("O","Ó").replaceAll("U","Ú"), tmpDownSlash);
-        palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
-        letracorrecta.setText(palabracom);
+        else {
+            fp= gn.getFotos();
+            i=0;
+            cambiarFoto();
+            System.out.println("Se debe avanzar el nivel");
+        }
 
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+    }
 
+    private void cambiarFoto() {
+        try {
+            horizontalList.clear();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getSilaba().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            letracorrecta.setText(fp.get(i).getSilaba().toUpperCase());
+            System.out.println("+++++++++++++++++" + fp.get(i).getSilaba().toUpperCase());
+            Correcta = fp.get(i).getSilaba().toUpperCase();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            tmpDownSlash = "";
+            for (int j = 0; j < Correcta.length(); j++) {
+                tmpDownSlash += " _";
+            }
+            palabracom = fp.get(i).getPalabra().toUpperCase();
+            palabracom = palabracom.replaceAll(Correcta.toUpperCase().replaceAll("A", "Á").replaceAll("E", "É").replaceAll("I", "Í").replaceAll("O", "Ó").replaceAll("U", "Ú"), tmpDownSlash);
+            palabracom = palabracom.replaceAll(Correcta.toUpperCase(), tmpDownSlash);
+            letracorrecta.setText(palabracom);
 
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(silabasgame1lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+        }
+
+        catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void reset(View v){
         i=0;

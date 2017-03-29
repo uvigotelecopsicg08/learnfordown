@@ -23,7 +23,7 @@
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="0.98"
+            android:layout_weight="0.8"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -33,13 +33,14 @@
             android:textColor="@android:color/white"/>
 
         <ImageButton
-            android:layout_width="115dp"
-            android:layout_height="115dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:id="@+id/home"
             android:scaleType="fitCenter"
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:onClick="home"
-            android:background="@mipmap/ic_home" />
+            android:background="@mipmap/ic_home"
+            android:layout_weight="0.2" />
 
 
     </LinearLayout>

@@ -9,9 +9,18 @@ import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
 import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
 import android.support.v4.database.DatabaseUtilsCompat;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -24,7 +33,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.io.File;
 import java.util.ArrayList;
 
-public class home_screen extends AppCompatActivity {
+public class home_screen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private GoogleApiClient client;
     private   GestionNiveles gn;
@@ -56,6 +65,33 @@ public class home_screen extends AppCompatActivity {
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
+        if(registrado){
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                builder.setView(R.layout.dialog_recuperar_nivel);
+            }
+            else {
+                builder.setMessage("¿Desea recuperar el último nivel?  ")
+                         .setTitle("Recuperacion nivel");
+            }
+            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    DataBaseManager db = new DataBaseManager(getApplicationContext());
+                    lanzaIntent(db.getPrimerNivel());
+                }
+            });
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+
+            AlertDialog dialog = builder.create();
+           dialog.show();
+        }
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
 
 
     }
@@ -68,6 +104,12 @@ public class home_screen extends AppCompatActivity {
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
+            //Aqui esta el codigo para lanzar el juego de Unity. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas2
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }*/
         }
         else{
             lanzaAlerta();
@@ -94,6 +136,8 @@ public class home_screen extends AppCompatActivity {
 
     public void salir (View view) {
         // Do something in response to button
+
+
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_HOME);
@@ -224,6 +268,69 @@ public class home_screen extends AppCompatActivity {
             startActivity(intent);
 
         }
+    }
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.prueb, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.info) {
+            // Handle the camera action
+        } else if (id == R.id.cambiar) {
+
+        } else if (id == R.id.registrar) {
+            Intent intent1 = new Intent(home_screen.this, login_screen.class);
+            startActivity(intent1);
+
+        } else if (id == R.id.puzzle) {
+            Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
+            startActivity(intent1);
+
+        } else if (id == R.id.plataformas) {
+
+
+        }
+        else if (id == R.id.parejas) {
+            Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
+            startActivity(intent1);
+
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
     }
     public void lanzaMensaje(){
 

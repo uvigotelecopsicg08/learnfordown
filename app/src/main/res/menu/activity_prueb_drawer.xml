@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/info"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Información Usuario" />
+        <item
+            android:id="@+id/cambiar"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Cambiar Usuario" />
+        <item
+            android:id="@+id/registrar"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Registrarse" />
+    </group>
+
+    <item android:title="Minijuegos">
+        <menu>
+            <item
+                android:id="@+id/puzzle"
+                android:enabled="true"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Puzzle" />
+
+            <item
+                android:id="@+id/plataformas"
+                android:enabled="false"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Plataformas" />
+            <item
+                android:id="@+id/parejas"
+                android:enabled="false"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Parejas" />
+        </menu>
+    </item>
+
+</menu>
