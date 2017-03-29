@@ -20,7 +20,10 @@ public class poppuzzle extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String nombre = getIntent().getStringExtra("primera");
+        int id = getIntent().getIntExtra("imagen",0);
+
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+
         setContentView(R.layout.activity_poppuzzle);
         texto1 = (TextView)findViewById(R.id.textView5);
         texto1.setTypeface(face);
@@ -46,7 +49,7 @@ public class poppuzzle extends AppCompatActivity {
         }
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
-        Bitmap mask = BitmapFactory.decodeResource(getResources(),R.drawable.bomboneschocolate);
+        Bitmap mask = BitmapFactory.decodeResource(getResources(),id);
         imagen.setImageBitmap(mask);
         int width = dm.widthPixels;
         int height = dm.heightPixels;

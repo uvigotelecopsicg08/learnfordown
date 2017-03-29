@@ -9,8 +9,6 @@
     tools:openDrawer="start">
 
 
-
-
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,47 +23,51 @@
             android:orientation="horizontal"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:layout_weight="0.8"
+            android:layout_weight="0.85"
             android:background="@color/colorPrimary"
             android:weightSum="1">
 
-            <ImageButton
-                android:layout_width="88dp"
-                android:layout_height="match_parent"
-                android:id="@+id/imagebutton6"
-                android:scaleType="fitCenter"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:onClick="ajustes"
-                android:background="@mipmap/ajustes" />
-
             <TextView
+
                 android:text="@string/qu_quieres_hacer_hoy"
                 android:layout_height="match_parent"
                 android:layout_width="wrap_content"
                 android:id="@+id/textView"
-                android:layout_weight="0.76"
+                android:layout_weight="0.74"
                 android:gravity="center"
-                android:textSize="40sp"
+                android:textSize="48sp"
                 android:textStyle="bold"
                 android:maxLines="1"
                 android:textAlignment="center"
                 tools:context=".MainActivity"
                 android:textColor="@android:color/white"/>
 
+
+
             <ImageButton
                 android:src="@mipmap/icon_exit"
-                android:layout_width="67dp"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:id="@+id/imagebutton7"
                 android:onClick="salir"
+                android:layout_weight="0.17"
                 android:scaleType="fitCenter"
                 android:background="@color/colorPrimary" />
 
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:id="@+id/imagebutton6"
+                android:scaleType="fitCenter"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                android:onClick="ajustes"
+                android:background="@mipmap/ajustes"
+                android:layout_weight="0.09" />
         </LinearLayout>
 
         <RelativeLayout
             android:orientation="horizontal"
-            android:layout_weight="0.2"
+            android:layout_weight="0.15"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:foregroundGravity="fill_horizontal"
@@ -86,22 +88,22 @@
                     android:gravity="center"
                     android:weightSum="1">
 
+                    <ImageButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="230dp"
+                        app:srcCompat="?android:attr/activatedBackgroundIndicator"
+                        android:id="@+id/imageButton3"
+                        android:onClick="sendMessage"
+
+                        android:layout_weight="0.21"
+                        android:background="@mipmap/quieroleer" />
+
                     <EditText
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.05"
                         android:visibility="invisible"/>
 
-
-                    <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                        android:id="@+id/imageButton3"
-                        android:onClick="sendMessage"
-                        android:gravity="center"
-                        android:layout_weight="0.15"
-                        android:background="@mipmap/quieroleer" />
 
                     <EditText
                         android:layout_width="wrap_content"
@@ -111,13 +113,12 @@
 
 
                     <ImageButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="341dp"
+                        android:layout_height="225dp"
                         app:srcCompat="?android:attr/activatedBackgroundIndicator"
                         android:id="@+id/imageButton10"
                         android:onClick="sendMessage2"
                         android:gravity="center"
-                        android:layout_weight="0.15"
                         android:background="@mipmap/quieroescribir" />
 
                 </LinearLayout>
@@ -135,6 +136,5 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/nav_header_prueb"
         app:menu="@menu/activity_prueb_drawer" />
-
 </android.support.v4.widget.DrawerLayout>
 

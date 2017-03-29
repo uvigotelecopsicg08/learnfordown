@@ -246,7 +246,7 @@ public class GestionNiveles {
     public void rellenarConletras(String elegida,ArrayList<String> horizontalList) {
 
         String relleno[]=null;
-        if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu"))){
+        if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu"))||(subnivel.equals("ñ"))){
             relleno= generaRelleno(elegida);
             System.out.println("Genero el relleno de manera artificial");
         }else {

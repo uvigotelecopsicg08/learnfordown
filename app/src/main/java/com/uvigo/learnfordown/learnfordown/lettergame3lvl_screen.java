@@ -79,20 +79,25 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 */
 
 
+try {
+    palabra = (ImageView) findViewById(R.id.imageView2);
+    horizontalList = new ArrayList<String>();
+    gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+    Collections.shuffle(horizontalList);
+    palabra.setImageResource(fp.get(i).getFoto());
+    Correcta = fp.get(i).getLetra().toUpperCase();
 
-        palabra= (ImageView)findViewById(R.id.imageView2);
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
-        Collections.shuffle(horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta = fp.get(i).getLetra().toUpperCase();
-
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+    DisplayMetrics metrics = new DisplayMetrics();
+    getWindowManager().getDefaultDisplay().getMetrics(metrics);
+    horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+    LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+    horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+    horizontal_recycler_view.setAdapter(horizontalAdapter);
+    }
+    catch (IndexOutOfBoundsException e){
+     e.printStackTrace();
+        avanzaNivel();
+}
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent(lettergame3lvl_screen.this, menu_screen.class);
@@ -155,19 +160,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
                     } else {
                         System.out.print("el nivel esta finalizado");
                         //gn.actualizarEstrellas(contador);
-                        gn.avanzaNivel();
-                        if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
-                            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-                            //Código para abrir otra pantalla
-                            Intent intent = new Intent(lettergame3lvl_screen.this, lettergame4lvl_screen.class);
-                            startActivity(intent);
-                        } else {
-                            fp = gn.getFotos();
-                            i = 0;
-                            cambiarFoto();
-                            System.out.println("Se debe avanzar el nivel");
-                        }
-
+                       avanzaNivel();
 
                     }
                 } else {
@@ -188,21 +181,45 @@ public class lettergame3lvl_screen extends AppCompatActivity {
         b.startAnimation(animation);
 
     }
+
+    private void avanzaNivel() {
+        gn.avanzaNivel();
+        if (gn.getDificultad() != 3 || !(gn.getTipo().equals(tipoNivel))) {
+            System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
+            //Código para abrir otra pantalla
+            Intent intent = new Intent(lettergame3lvl_screen.this, lettergame4lvl_screen.class);
+            startActivity(intent);
+        } else {
+            fp = gn.getFotos();
+            i = 0;
+            cambiarFoto();
+            System.out.println("Se debe avanzar el nivel");
+        }
+
+    }
+
     private void cambiarFoto() {
-        horizontalList.clear();
-        horizontalList = new ArrayList<String>();
-        gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(),horizontalList);
-        Collections.shuffle(horizontalList);
-        palabra.setImageResource(fp.get(i).getFoto());
-        Correcta= fp.get(i).getLetra().toUpperCase();
-        DisplayMetrics metrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapter(horizontalList,5,metrics,"lectura");
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-        horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+        try {
+            horizontalList.clear();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getLetra().toUpperCase();
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame3lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
 
-        horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+        }
+
+        catch(IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
     }
     public void reset(View v){
         i=0;
