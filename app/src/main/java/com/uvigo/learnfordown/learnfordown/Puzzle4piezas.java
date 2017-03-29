@@ -202,6 +202,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","si");
+        i.putExtra("imagen",R.drawable.bomboneschocolate);
         startActivity(i);
     }
     public Bitmap CreatePiece(int id_parte){
@@ -433,6 +434,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 */
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","no");
+        i.putExtra("imagen",R.drawable.bomboneschocolate);
         startActivity(i);
     }
     public static Bitmap scaleBitmap(Bitmap bitmap, int wantedWidth, int wantedHeight) {

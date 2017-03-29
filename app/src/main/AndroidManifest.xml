@@ -37,6 +37,14 @@
         </activity>-->
 
         <activity
+            android:name=".Puzzle4piezas"
+            android:screenOrientation="landscape">
+
+        </activity>
+        <activity
+            android:name=".poppuzzle"
+            android:theme="@style/AppTheme.CustomTheme" />
+        <activity
             android:name=".menu_screen"
             android:screenOrientation="landscape" />
         <activity
@@ -57,6 +65,7 @@
         <activity
             android:name=".lettergame4lvl_screen"
             android:screenOrientation="landscape" />
+
         <activity android:name=".DisplayMessageActivity" />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -121,8 +130,10 @@
         par
         <activity
             android:name=".loading_screen"
-            android:label="@string/title_activity_loading_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:screenOrientation="landscape">
+            <!--android:label="@string/title_activity_loading_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">-->
+        </activity>
         <activity
             android:name=".writegame_level1_screen"
             android:screenOrientation="landscape" />
@@ -139,8 +150,9 @@
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".endScreem" />
-        <activity android:name=".endScreen"></activity>
+
+        <activity android:name=".endScreen"
+            android:screenOrientation="landscape"></activity>
     </application>
 
 </manifest>
