@@ -127,7 +127,7 @@
         <activity
             android:name=".StrokesTrainingActivity"
             android:screenOrientation="landscape" />
-        par
+
         <activity
             android:name=".loading_screen"
             android:screenOrientation="landscape">
@@ -145,6 +145,9 @@
             android:screenOrientation="landscape" />
         <activity
             android:name=".writegame_level2_screen"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ParejasFacil"
             android:screenOrientation="landscape" />
         <activity
             android:name=".PRUEBA"
