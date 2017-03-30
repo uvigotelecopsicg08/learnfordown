@@ -11,7 +11,8 @@ import java.util.HashMap;
 public class InsertData {
     DataBaseManager db;
     private Context context;
-    private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","ñ","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
+  //  private String[] subnivelesDirectas = new String[]{"p","m","t","bv","n","ñ","kcq","l","s","d","zc","h","f","j","lly","gu","ch","r"};
+  private String[] subnivelesDirectas = new String[]{"p"};
     private String[] subnivelesInversas = new String[]{"m","n","l","s","r"};
    // private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gl","gr","tr","tl","fr","fr"};
    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
@@ -321,7 +322,7 @@ public class InsertData {
         db.insertar_foto("v","vo","directa","volante","Mi padre cuando conduce mantiene las dos manos en el *",R.drawable.volante,"otros",3,"bv");
 
 
-        db.insertar_foto("w","wa","directa","waterpolo","El * se juega en el agua",R.drawable.waterpolo,"otro",4,"gu");
+      //  db.insertar_foto("w","wa","directa","waterpolo","El * se juega en el agua",R.drawable.waterpolo,"otro",4,"gu");
         db.insertar_foto("x","xi","directa","xilófono","El * es un instrumento musical",R.drawable.xilofono,"otro",4,"x");
         db.insertar_foto("w","wa","directa","waterpolo","Hemos jugado al * en la piscina de casa",R.drawable.waterpolo,"otro",4,"w");
 

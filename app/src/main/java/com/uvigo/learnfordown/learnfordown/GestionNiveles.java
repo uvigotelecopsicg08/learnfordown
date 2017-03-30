@@ -246,7 +246,7 @@ public class GestionNiveles {
     public void rellenarConletras(String elegida,ArrayList<String> horizontalList) {
 
         String relleno[]=null;
-        if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu"))||(subnivel.equals("ñ"))){
+        if(condicionRellenoArtificial(elegida)){
             relleno= generaRelleno(elegida);
             System.out.println("Genero el relleno de manera artificial");
         }else {
@@ -262,6 +262,25 @@ public class GestionNiveles {
             }
             horizontalList.add(relleno[posicionArray]);
             posicionesUsadas[i]=posicionArray;
+        }
+    }
+    private boolean condicionRellenoArtificial(String elegida){
+      //  ((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu")))
+        if((subnivel.equals("kcq"))||(subnivel.equals("zc"))||(subnivel.equals("gu"))){
+            return  false;
+        }
+        else{
+            if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))){
+                return  true;
+            }
+            else{
+                if(subnivel.equals("ñ")&&tipo.equals("silabasdirectas")){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
         }
     }
 

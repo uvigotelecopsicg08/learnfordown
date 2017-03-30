@@ -106,16 +106,15 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         }
     }
     public void BackArrow (View v){
-        menu_screen pantalla_anterior = new menu_screen();
         Intent intent1 = new Intent();
-        switch (pantalla_anterior.getNivelAnterior()) {
-            case "SilabasDirectas":
+        switch (gn.getTipo()) {
+            case "silabasdirectas":
                 intent1 = new Intent(silabasgame4lvl_screen.this, sidirectas_screen.class);
                 break;
-            case "SilabasInversas":
+            case "silabasinversas":
                 intent1 = new Intent(silabasgame4lvl_screen.this, siinversas_screen.class);
                 break;
-            case "SilabasTrabadas":
+            case "silabastrabadas":
                 intent1 = new Intent(silabasgame4lvl_screen.this, sitrabadas_screen.class);
                 break;
         }
@@ -197,17 +196,17 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
             //Código para abrir otra pantalla
             activiftiFinalizado=true;
-            Intent intent = new Intent(silabasgame4lvl_screen.this, frasegame1lvl_screen.class);
+            Intent intent = new Intent(silabasgame4lvl_screen.this, palabrasgame1_2lvl_screen.class);
             String strName= null;
             if(gn.getTipo().contains("directas")){
-                strName = "frasessilabasdirectas";
+                strName = "palabrassilabasdirectas";
             }
             else{
                 if(gn.getTipo().contains("inversas")){
-                    strName = "frasessilabasinversas";
+                    strName = "palabrassilabasinversas";
                 }
                 else{
-                    strName ="frasessilabastrabadas";
+                    strName ="palabrassilabastrabadas";
                 }
             }
 

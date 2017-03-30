@@ -111,6 +111,7 @@ try {
                     if (Correcta.equals(ButtonActual.getText().toString())) {
 
                         ButtonActual.setBackgroundColor(Color.GREEN);
+                        horizontal_recycler_view.setEnabled(false);
                        //
                         // gn.acierto();
 
@@ -126,12 +127,13 @@ try {
 
                             if (Correcta.equals(ButtonActual.getText().toString())) {
                                 es.acierto();
+
                                 MediaPlayer aciertoMedia = es.getAciertoMedia();
                                 aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
                                     @Override
                                     public void onCompletion(MediaPlayer mp) {
-
+                                        horizontal_recycler_view.setEnabled(true);
                                         es.pulsar(true);
 
 
