@@ -57,7 +57,7 @@ public class InsertData {
         db.insertar_foto("c","co","directa","coche","El * de mi madre es gris ",R.drawable.coche,"vehiculos",2,"kcq");
         db.insertar_foto("c","ca","directa","caballo","Ayer monté a * ",R.drawable.caballo,"animales",3,"kcq");
         db.insertar_foto("c","ca","directa","cabra","Mi abuela tiene una *",R.drawable.cabra,"animales",2,"kcq");
-        db.insertar_foto("c","ca","directa","casa","La * es blanca",R.drawable.casa,"casa",2,"kcq");
+        db.insertar_foto("c","ca","directa","casa","La * es pequeña",R.drawable.casa,"casa",2,"kcq");
         db.insertar_foto("c","ca","directa","camello","Nunca he montado en un * ",R.drawable.camello,"animales",3,"kcq");
         db.insertar_foto("c","co","directa","cocina","Hacemos la comida en la *",R.drawable.cocina,"casa",3,"kcq");
         db.insertar_foto("c","co","directa","cocodrilo","El * tiene la boca muy grande",R.drawable.cocodrilo,"animales",4,"kcq");
