@@ -108,21 +108,18 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
+Button b=(Button)v;
 
 
 
-
-        Animation anim = new ScaleAnimation(
+     /*   Animation anim = new ScaleAnimation(
                 1f, 1f, // Start and end values for the X axis scaling
                 0f, 1.5f, // Start and end values for the Y axis scaling
                 Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
                 Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
         anim.setFillAfter(true); // Needed to keep the result of the animation
         anim.setDuration(500);
-        v.startAnimation(anim);
-
-
-
+        v.startAnimation(anim);*/
 
         if(ultimoPulsado != null) {
 
