@@ -65,31 +65,6 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
-        if(registrado){
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                builder.setView(R.layout.dialog_recuperar_nivel);
-            }
-            else {
-                builder.setMessage("¿Desea recuperar el último nivel?  ")
-                         .setTitle("Recuperacion nivel");
-            }
-            builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    DataBaseManager db = new DataBaseManager(getApplicationContext());
-                    lanzaIntent(db.getPrimerNivel());
-                }
-            });
-            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
-                }
-            });
-
-            AlertDialog dialog = builder.create();
-           dialog.show();
-        }
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
