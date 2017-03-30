@@ -15,7 +15,7 @@
         android:orientation="vertical"
         android:weightSum="1"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true">>
+        android:layout_alignParentLeft="true">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -81,53 +81,52 @@
                 android:layout_height="500dp"
                 app:srcCompat="@drawable/modelo4_piezas"
                 android:id="@+id/imageView10"
-                android:layout_marginEnd="43dp"
+                android:layout_marginRight="43dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"/>
 
             <ImageView
                 android:layout_width="477dp"
                 android:layout_height="500dp"
                 app:srcCompat="@drawable/modelo_part1"
                 android:id="@+id/imageView6"
-                android:layout_marginEnd="43dp"
+                android:layout_marginRight="43dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"/>
 
             <ImageView
                 android:layout_width="477dp"
                 android:layout_height="500dp"
                 app:srcCompat="@drawable/modelo_part2"
                 android:id="@+id/imageView5"
-                android:layout_marginEnd="43dp"
+                android:layout_marginRight="43dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"/>
 
             <ImageView
                 android:layout_width="477dp"
                 android:layout_height="500dp"
                 app:srcCompat="@drawable/modelo_part3"
                 android:id="@+id/imageView3"
-                android:layout_marginEnd="43dp"
+                android:layout_marginRight="43dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"/>
 
             <ImageView
                 android:layout_width="477dp"
                 android:layout_height="500dp"
                 app:srcCompat="@drawable/modelo_part4"
                 android:id="@+id/imageView"
-                android:layout_marginEnd="43dp"
+                android:layout_marginRight="43dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentRight="true"/>
 
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="477dp"
                 android:layout_height="250dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/linearLayout3"
-                android:layout_marginStart="30dp">
+                android:layout_marginLeft="30dp">
 
                 <ImageView
                     android:layout_width="238.5dp"
@@ -137,7 +136,7 @@
                     android:onClick="ButtonCheckPiezas"
                     android:layout_weight="0.02"
                     android:layout_below="@+id/linearLayout2"
-                    android:layout_alignStart="@+id/linearLayout2" />
+                    android:layout_alignLeft="@+id/linearLayout2" />
 
                 <ImageView
                     android:layout_width="238.5dp"
@@ -146,7 +145,7 @@
                     android:id="@+id/imageView15"
                     android:onClick="ButtonCheckPiezas"
                     android:layout_alignParentTop="true"
-                    android:layout_alignStart="@+id/imageView6"
+                    android:layout_alignLeft="@+id/imageView6"
                     android:layout_weight="0.02" />
             </LinearLayout>
 
@@ -157,7 +156,7 @@
                 android:id="@+id/button2"
                 android:onClick="ButtonCheckModelo"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/imageView10" />
+                android:layout_alignLeft="@+id/imageView10" />
 
             <Button
 
@@ -167,7 +166,7 @@
                 android:onClick="ButtonCheckModelo"
 
                 android:layout_alignParentTop="true"
-                android:layout_toEndOf="@+id/button2" />
+                android:layout_toRightOf="@+id/button2" />
 
             <Button
 
@@ -177,7 +176,7 @@
                 android:layout_height="250dp"
                 android:id="@+id/button"
                 android:layout_below="@+id/button2"
-                android:layout_alignStart="@+id/imageView10" />
+                android:layout_alignLeft="@+id/imageView10" />
 
             <Button
                 android:layout_width="238.5dp"
@@ -186,7 +185,7 @@
 
                 android:id="@+id/button6"
                 android:layout_alignBottom="@+id/imageView10"
-                android:layout_toEndOf="@+id/button" />
+                android:layout_toRightOf="@+id/button" />
 
             <TextView
                 android:text="¡ENHORABUENA LO HAS CONSEGUIDO!"
@@ -198,9 +197,9 @@
                 android:textSize="50dp"
                 android:layout_weight="0.05"
                 android:textStyle="normal|bold"
-                android:layout_marginStart="38dp"
+                android:layout_marginLeft="38dp"
                 android:layout_alignParentTop="true"
-                android:layout_alignStart="@+id/linearLayout"
+                android:layout_alignLeft="@+id/linearLayout"
                 android:layout_marginTop="70dp"
                 android:gravity="center_vertical|center_horizontal"
                 android:textAlignment="center" />
@@ -217,8 +216,8 @@
         android:layout_height="500dp"
         android:layout_marginTop="388dp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginStart="34dp">
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="34dp">
 
         <ImageView
             android:layout_width="238.5dp"
@@ -227,7 +226,7 @@
             android:id="@+id/imageView8"
             android:onClick="ButtonCheckPiezas"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/imageView6"
+            android:layout_alignLeft="@+id/imageView6"
             android:layout_weight="0.05" />
 
         <ImageView
@@ -237,7 +236,7 @@
             android:id="@+id/imageView4"
             android:onClick="ButtonCheckPiezas"
             android:layout_alignParentTop="true"
-            android:layout_alignStart="@+id/imageView6" />
+            android:layout_alignLeft="@+id/imageView6" />
 
     </LinearLayout>
 
