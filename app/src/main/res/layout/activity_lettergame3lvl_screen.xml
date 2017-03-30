@@ -39,7 +39,7 @@
             android:background="@color/colorGame" />
 
         <TextView
-            android:text="¡COMPLETA LA PALABRA!"
+            android:text="¿POR QUÉ LETRA EMPIEZA?"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -67,18 +68,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             titulo = (TextView) findViewById(R.id.textView2);
             palabra = (ImageView) findViewById(R.id.imageView2);
             titulo.setTypeface(face);
-        /*
-        contador=0;
-        ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
 
-        thresholds.clear();
-        thresholds.put(1, 1f); // 1 acierto, 1 estrella
-        thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-        thresholds.put(25, 3f); //25 aciertos, 3 estrellas
-        thresholds.put(45, 4f); //45 aciertos, 4 estrellas
-        thresholds.put(65, 5f); //65 aciertos, 5 estrellas
-        thresholds.put(80, 6f); //80 aciertos, 6 estrellas
-*/
 
             Context context = this.getApplicationContext();
 
@@ -116,30 +106,27 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         }
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(silabasgame4lvl_screen.this, menu_screen.class);
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()) {
+            case "SilabasDirectas":
+                intent1 = new Intent(silabasgame4lvl_screen.this, sidirectas_screen.class);
+                break;
+            case "SilabasInversas":
+                intent1 = new Intent(silabasgame4lvl_screen.this, siinversas_screen.class);
+                break;
+            case "SilabasTrabadas":
+                intent1 = new Intent(silabasgame4lvl_screen.this, sitrabadas_screen.class);
+                break;
+        }
+
         startActivity(intent1);
     }
     public void goHome (View v){
         Intent intent1 = new Intent(silabasgame4lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
-    */
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -164,7 +151,15 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
             public void onAnimationEnd(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     if (aciertos == 1) {
+
+
                         es.acierto();
+
+                        MediaPlayer aciertoMedia = es.getAciertoMedia();
+                        aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
                         es.pulsar(true);
                         System.out.println("Se ha anotado un acierto");
                         if (!gn.isnivelCompletado()) {
@@ -172,10 +167,14 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
                             cambiarFoto();
                         } else {
                             System.out.print("el nivel esta finalizado");
-                           avanzaNivel();
+                            avanzaNivel();
 
                         }
                         aciertos = 0;
+
+                    }
+
+                });
                     }
                 } else {
                    es.fallo();

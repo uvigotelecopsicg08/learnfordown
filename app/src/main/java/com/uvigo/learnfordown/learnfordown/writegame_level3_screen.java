@@ -1,6 +1,8 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
@@ -128,28 +130,36 @@ public class writegame_level3_screen extends AppCompatActivity {
             @Override
             public void onAnimationStart(Animation animation) {
 
-                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString())) {
+
+                // ¿El botón se ha pulsado ya?
+                boolean pulsado;
+
+                try {
+
+                    ColorDrawable buttonColor = (ColorDrawable)  ButtonActual.getBackground();
+                    buttonColor.getColor();
+                    if (buttonColor.getColor() == Color.GREEN) {
+                        pulsado = true;
+                    }
+                    else pulsado = false; // No esta pulsado
+
+                } catch(Exception e){
+                    pulsado = false; // No esta pulsado
+                }
+
+                if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()) && pulsado == false) {
                     SustituirLinea();
                     ButtonActual.setBackgroundColor(Color.GREEN);
                     num_iteracion++;
 
                     if(num_iteracion == Correcta.length()) {
 
-                        // Esperamos
-                        final android.os.Handler handler = new android.os.Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
                                 RespuestaCorrecta();
-                                // finish();
-                                //Do something after 100ms
-                            }
-                        }, 1000 );
 
                     }
 
                 } else {
-                    if (String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
+                    if (!String.valueOf(LetrasPalabra[num_iteracion]).equals(ButtonActual.getText().toString()))
                         es.fallo();
 
                 }
@@ -231,28 +241,36 @@ public class writegame_level3_screen extends AppCompatActivity {
 
     public void RespuestaCorrecta(){
         es.acierto();
-        es.pulsar(true);
 
-        if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
-            i++;
-            cambiarFoto();
+        MediaPlayer aciertoMedia = es.getAciertoMedia();
+        aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
-        } else {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
 
-            gn.avanzaNivel();
-            if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
+                es.pulsar(true);
+
+                if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
+                 i++;
+                cambiarFoto();
+
+                } else {
+
+                gn.avanzaNivel();
+                if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
                 //Código para abrir otra pantalla
                 Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
                 startActivity(intent);
-            } else {
+                } else {
                 fp = gn.getFotosAleatorias();
                 i = 0;
                 cambiarFoto();
 
             }
         }
-
+            }
+        });
     }
 
     public void reset(View v){

@@ -150,32 +150,45 @@ public class lettergame1lvl_screen extends AppCompatActivity {
                     letracorrecta.setText(palabracom);
                     es.acierto();
                     es.pulsar(true);
+
                 }
 
             }
 
             @Override
             public void onAnimationEnd(Animation animation) {
-                if (Correcta.equals(ButtonActual.getText().toString())){
-                    System.out.println(gn.getDificultad());
-                    if(!gn.isnivelCompletado()) {
-                        i++;
-                        cambiarFoto();
-                    }
-                    else{
-                        System.out.print("el nivel esta finalizado");
-                       avanzaNivel();
 
-                    }
+
+                MediaPlayer aciertoMedia = es.getAciertoMedia();
+                aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                    @Override
+                    public void onCompletion(MediaPlayer mp) {
+
+
+                        if (Correcta.equals(ButtonActual.getText().toString())) {
+                            System.out.println(gn.getDificultad());
+                            if (!gn.isnivelCompletado()) {
+                                i++;
+                                cambiarFoto();
+                            } else {
+                                System.out.print("el nivel esta finalizado");
+                                avanzaNivel();
+
+                            }
 //Codigo de Animacion Acierto
-                } else{
-                    //Codigo de Animacion Fallo
+                        } else {
+                            //Codigo de Animacion Fallo
 
-                    es.fallo();
-                    System.out.println("Se ha anotado un fallo");
+                            es.fallo();
+                            System.out.println("Se ha anotado un fallo");
 
 
-                }
+                        }
+
+                    }
+
+                });
             }
 
             @Override

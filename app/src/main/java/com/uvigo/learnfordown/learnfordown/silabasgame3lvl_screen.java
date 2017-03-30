@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -98,30 +99,27 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         }
     }
     public void BackArrow (View v){
-        Intent intent1 = new Intent(silabasgame3lvl_screen.this, menu_screen.class);
+        menu_screen pantalla_anterior = new menu_screen();
+        Intent intent1 = new Intent();
+        switch (pantalla_anterior.getNivelAnterior()) {
+            case "SilabasDirectas":
+                intent1 = new Intent(silabasgame3lvl_screen.this, sidirectas_screen.class);
+                break;
+            case "SilabasInversas":
+                intent1 = new Intent(silabasgame3lvl_screen.this, siinversas_screen.class);
+                break;
+            case "SilabasTrabadas":
+                intent1 = new Intent(silabasgame3lvl_screen.this, sitrabadas_screen.class);
+                break;
+        }
+
         startActivity(intent1);
     }
     public void goHome (View v){
         Intent intent1 = new Intent(silabasgame3lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -350, -50);
-            toast.show();
-        }
-    }
-    */
+
 
     public void ButtonCheck (View v){
         Button b = (Button)v;
@@ -144,20 +142,31 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
 
             @Override
             public void onAnimationEnd(Animation animation) {
+
+
                 if (Correcta.equals(ButtonActual.getText().toString())){
                     System.out.println(gn.getDificultad());
                     es.acierto();
-                    es.pulsar(true);
-                    if(!gn.isnivelCompletado()) {
-                        i++;
-                        cambiarFoto();
-                    }
-                    else{
-                        System.out.print("el nivel esta finalizado");
-                        avanzaNivel();
+
+                    MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                                             @Override
+                                                             public void onCompletion(MediaPlayer mp) {
+                                                                 es.pulsar(true);
+                                                                 if (!gn.isnivelCompletado()) {
+                                                                     i++;
+                                                                     cambiarFoto();
+                                                                 } else {
+                                                                     System.out.print("el nivel esta finalizado");
+                                                                     avanzaNivel();
 
 
-                    }
+                                                                 }
+
+                                                             }
+
+                                                         });
 //Codigo de Animacion Acierto
                 } else{
                     //Codigo de Animacion Fallo

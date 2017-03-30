@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -99,25 +100,16 @@ public class writegame_level4_screen extends AppCompatActivity {
 
             if (RellenoFrase.contains("*")) {
                 Frase.setText(RellenoFrase.replace("*", Correcta));
-
-                // Esperamos
-                final android.os.Handler handler = new android.os.Handler();
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        RespuestaCorrecta();
-                       // finish();
-                        //Do something after 100ms
-                    }
-                }, 1000 );
+                RespuestaCorrecta();
 
 
-            } else {
-                es.fallo();
 
             }
 
-        }
+
+            }else  es.fallo();
+
+
     }
 
     public void cambiarFoto() {
@@ -134,6 +126,13 @@ public class writegame_level4_screen extends AppCompatActivity {
 
         // Estrellitas
         es.acierto();
+
+        MediaPlayer aciertoMedia = es.getAciertoMedia();
+        aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+
         es.pulsar(true);
 
         // Otra pantalla
@@ -158,6 +157,9 @@ public class writegame_level4_screen extends AppCompatActivity {
                Texto.setText("");
            }
         }
+
+            }
+        });
     }
 
 
