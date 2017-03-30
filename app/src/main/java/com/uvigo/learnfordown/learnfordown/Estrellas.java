@@ -29,7 +29,7 @@ public class Estrellas {
 
     public  Estrellas(AppCompatActivity app, GestionNiveles gn, int contador){
 
-        aciertoMedia = MediaPlayer.create(app.getApplicationContext(),R.raw.acierto2);
+        aciertoMedia = MediaPlayer.create(app.getApplicationContext(),R.raw.acierto);
         fallo = MediaPlayer.create(app.getApplicationContext(),R.raw.disparo);
 
 

@@ -140,7 +140,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         b2.setEnabled(false);
                    //     animacionButton(b1);
                     }
-
+                    ultimoPulsado=0;
                     es.acierto();
                     aciertos++;
                     MediaPlayer aciertoMedia = es.getAciertoMedia();
@@ -169,7 +169,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
                     });
                 } else {
-                    es.fallo();
+                    if(ultimoPulsado==0)
+                        es.fallo();
 
                 }
             }
