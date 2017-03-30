@@ -1,5 +1,6 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
@@ -149,7 +150,14 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
         }
     }
 
-
+    public void goHome (View v){
+        Intent intent1 = new Intent(ParejasDificil.this, home_screen.class);
+        startActivity(intent1);
+    }
+    public void BackArrow (View v){
+        Intent intent1 = new Intent(ParejasDificil.this, home_screen.class);
+        startActivity(intent1);
+    }
 
     @Override
     public void onClick(View view) {
