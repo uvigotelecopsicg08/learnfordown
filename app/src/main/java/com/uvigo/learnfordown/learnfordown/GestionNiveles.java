@@ -201,7 +201,7 @@ public class GestionNiveles {
                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
                     int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
-                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras"))||palabra.startsWith(silaba)||dificultad<3) {
+                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3) {
                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
                     }
                 }while(cursor.moveToNext());
@@ -210,6 +210,28 @@ public class GestionNiveles {
         numeroFotos=fotos.size();
         return  fotos;
     }
+    private boolean validatePhoto(String palabra,String silaba){
+        //(!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3
+        if(tipo.equals("silabastrabadas")&&tipo.equals("silabasinversas")&&tipo.equals("silabasdirectas")&&tipo.contains("letras")){
+            if(palabra.startsWith(silaba)||dificultad<3){
+                return true;
+            }
+            else{
+               return false;
+            }
+        }
+        else{
+            if(tipo.equals("escribirletras")&&palabra.startsWith(silaba)){
+                return  true;
+            }
+            else
+                return false;
+        }
+
+    }
+
+
+
     public ArrayList<FotoPalabra> getFotosAleatorias(){
         Cursor   cursor = db.buscarFotosAleatorias(id_user);
         ArrayList<FotoPalabra> fotos=new ArrayList<FotoPalabra>();
@@ -246,7 +268,7 @@ public class GestionNiveles {
     public void rellenarConletras(String elegida,ArrayList<String> horizontalList) {
 
         String relleno[]=null;
-        if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu"))||(subnivel.equals("ñ"))){
+        if(condicionRellenoArtificial(elegida)){
             relleno= generaRelleno(elegida);
             System.out.println("Genero el relleno de manera artificial");
         }else {
@@ -262,6 +284,25 @@ public class GestionNiveles {
             }
             horizontalList.add(relleno[posicionArray]);
             posicionesUsadas[i]=posicionArray;
+        }
+    }
+    private boolean condicionRellenoArtificial(String elegida){
+      //  ((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))&&!(subnivel.equals("kcq"))&&!(subnivel.equals("zc"))&&!(subnivel.equals("gu")))
+        if((subnivel.equals("kcq"))||(subnivel.equals("zc"))||(subnivel.equals("gu"))){
+            return  false;
+        }
+        else{
+            if((tipo.contains("inversas")||tipo.contains("trabadas")||(tipo.equals("silabasdirectas")&&elegida.length()<3))){
+                return  true;
+            }
+            else{
+                if(subnivel.equals("ñ")&&tipo.equals("silabasdirectas")){
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
         }
     }
 

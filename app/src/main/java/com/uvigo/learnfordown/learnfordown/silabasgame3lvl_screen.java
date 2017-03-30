@@ -99,16 +99,15 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         }
     }
     public void BackArrow (View v){
-        menu_screen pantalla_anterior = new menu_screen();
         Intent intent1 = new Intent();
-        switch (pantalla_anterior.getNivelAnterior()) {
-            case "SilabasDirectas":
+        switch (gn.getTipo()) {
+            case "silabasdirectas":
                 intent1 = new Intent(silabasgame3lvl_screen.this, sidirectas_screen.class);
                 break;
-            case "SilabasInversas":
+            case "silabasinversas":
                 intent1 = new Intent(silabasgame3lvl_screen.this, siinversas_screen.class);
                 break;
-            case "SilabasTrabadas":
+            case "silabastrabadas":
                 intent1 = new Intent(silabasgame3lvl_screen.this, sitrabadas_screen.class);
                 break;
         }

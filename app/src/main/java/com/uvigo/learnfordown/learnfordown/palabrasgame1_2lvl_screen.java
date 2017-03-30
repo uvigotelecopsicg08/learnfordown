@@ -84,16 +84,15 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     }
     public void BackArrow (View v) {
 
-        menu_screen pantalla_anterior = new menu_screen();
         Intent intent1 = new Intent();
-        switch (pantalla_anterior.getNivelAnterior()) {
-            case "PalabrasDirectas":
+        switch (gn.getTipo()) {
+            case "palabrassilabasdirectas":
                 intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasdi_screen.class);
                 break;
-            case "PalabrasInversas":
+            case "palabrassilabasinversas":
                 intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrasin_screen.class);
                 break;
-            case "PalabrasTrabadas":
+            case "palabrassilabastrabadas":
                 intent1 = new Intent(palabrasgame1_2lvl_screen.this, palabrastra_screen.class);
                 break;
         }
@@ -108,7 +107,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
-Button b=(Button)v;
+//        Button b=(Button)v;
 
 
 
@@ -141,16 +140,15 @@ Button b=(Button)v;
                         b2.setEnabled(false);
                    //     animacionButton(b1);
                     }
-
+                    ultimoPulsado=0;
                     es.acierto();
-
+                    aciertos++;
                     MediaPlayer aciertoMedia = es.getAciertoMedia();
                     aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
                         @Override
                         public void onCompletion(MediaPlayer mp) {
                             es.pulsar(true);
-                            aciertos++;
 
 
                             if (aciertos == 3) {
@@ -171,7 +169,8 @@ Button b=(Button)v;
 
                     });
                 } else {
-                    es.fallo();
+                    if(ultimoPulsado==0)
+                        es.fallo();
 
                 }
             }
