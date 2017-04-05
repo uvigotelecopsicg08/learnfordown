@@ -47,7 +47,7 @@ public class Puzzle4piezas extends AppCompatActivity {
     int acierto;
     int posicion;
 
-    int id_imagen = R.drawable.bomboneschocolate;
+    int id_imagen;
     ArrayList<Bitmap> SegundaColumna;
     ArrayList<Bitmap> TerceraColumna;
     int LastClick;
@@ -89,6 +89,10 @@ public class Puzzle4piezas extends AppCompatActivity {
         imagen3 = (ImageView)findViewById(R.id.imageView5);
         imagen4 = (ImageView)findViewById(R.id.imageView6);
         texto = (TextView) findViewById(R.id.textView2);
+        int rand =(int) (Math.random() * 9);
+        id_imagen = this.getResources().getIdentifier("puzzle"+rand, "drawable", this.getPackageName());
+
+
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         texto.setTypeface(face);
 
@@ -202,7 +206,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","si");
-        i.putExtra("imagen",R.drawable.bomboneschocolate);
+        i.putExtra("imagen",id_imagen);
         startActivity(i);
     }
     public Bitmap CreatePiece(int id_parte){
@@ -341,8 +345,17 @@ public class Puzzle4piezas extends AppCompatActivity {
             acierto++;
             LastClick =0;
         }
-        if( acierto>=4)
+        if( acierto>=4) {
             mensaje.setVisibility(View.VISIBLE);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    finish();
+                    //Do something after 100ms
+                }
+            }, 5000 );
+        }
         LastClick =ActualClick;
         IDpieza=pieza.getId();
     }
@@ -434,7 +447,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 */
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","no");
-        i.putExtra("imagen",R.drawable.bomboneschocolate);
+        i.putExtra("imagen",id_imagen);
         startActivity(i);
     }
     public static Bitmap scaleBitmap(Bitmap bitmap, int wantedWidth, int wantedHeight) {

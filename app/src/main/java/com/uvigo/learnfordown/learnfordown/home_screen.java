@@ -296,6 +296,16 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         } else if (id == R.id.plataformas) {
 
 
+        }else if (id == R.id.parejasdificil) {
+            Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
+            startActivity(intent1);
+
+
+        }else if (id == R.id.puzzledificil) {
+            Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
+            startActivity(intent1);
+
+
         }
         else if (id == R.id.parejas) {
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);

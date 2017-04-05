@@ -17,7 +17,9 @@ import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,8 +31,8 @@ import java.util.TreeSet;
 public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     TextView titulo;
     Integer ultimoPulsado;
-  //  final HashMap<Integer, Float> thresholds = new HashMap<>();
-   // RatingBar ratingbar1 = null;
+    //  final HashMap<Integer, Float> thresholds = new HashMap<>();
+    // RatingBar ratingbar1 = null;
     String figure = "plato";
     HashMap<Integer,String>  map;
     GestionNiveles  gn;
@@ -38,9 +40,10 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
 
-  //  int contador;
+    //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
     Button button1,button2,button3;
+    TextView respuesta1,respuesta2,respuesta3;
     int aciertos=0;
     int nivel;
     boolean cambiado=false;
@@ -57,11 +60,17 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         titulo = (TextView) findViewById(R.id.textView2);
         titulo.setTypeface(face);
         ultimoPulsado = null;
-   //     ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
+        //     ratingbar1 = (RatingBar) findViewById(R.id.ratingBar);
         imageButton1 = (ImageButton) findViewById(R.id.imageButton1);
         imageButton2 = (ImageButton) findViewById(R.id.imageButton2);
         imageButton3 = (ImageButton) findViewById(R.id.imageButton3);
-
+//Respuestas
+        respuesta1 = (TextView) findViewById(R.id.textView9);
+        respuesta2 = (TextView) findViewById(R.id.textView10);
+        respuesta3 = (TextView) findViewById(R.id.textView11);
+       /* respuesta1.setVisibility(View.VISIBLE);
+        respuesta2.setVisibility(View.VISIBLE);
+        respuesta3.setVisibility(View.VISIBLE);*/
         button1 = (Button)  findViewById(R.id.button1);
         button2 = (Button)  findViewById(R.id.button2);
         button3 = (Button)  findViewById(R.id.button3);
@@ -76,7 +85,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         gn = new GestionNiveles(context);
 
 
-       es= new Estrellas(this,gn, gn.setNivel(tipoNivel,nivel));
+        es= new Estrellas(this,gn, gn.setNivel(tipoNivel,nivel));
         fp=gn.getFotos();
         cambiarFoto();
 
@@ -107,7 +116,11 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void pulsar (View v){
         Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
-//        Button b=(Button)v;
+        if (findViewById(v.getId()) instanceof Button) {
+            Button b2 = (Button) findViewById(v.getId());
+            b2.setBackgroundColor(getResources().getColor(R.color.Gris));
+        }
+   //     Button boton=(Button)v;
 
 
 
@@ -123,22 +136,56 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         if(ultimoPulsado != null) {
 
             if (v.getId()!=(ultimoPulsado)){
+
                 if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
-                   // anim.finalize();
+                    // anim.finalize();
                     if (findViewById(v.getId()) instanceof Button) {
                         Button b1 = (Button) findViewById(v.getId());
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                         b2.setEnabled(false);
-                     //   animacionButton(b1);
+
+
+                        switch( posicionImageButton(b1)){
+                            case 1:
+                                respuesta1.setText(b1.getText());
+                                respuesta1.setVisibility(View.VISIBLE);
+
+                                break;
+                            case 2:
+                                respuesta2.setText(b1.getText());
+                                respuesta2.setVisibility(View.VISIBLE);
+                                break;
+                            case 3:
+                                respuesta3.setText(b1.getText());
+                                respuesta3.setVisibility(View.VISIBLE);
+                                break;
+
+                        }
 
                     } else {
 
                         Button b1 = (Button) findViewById(ultimoPulsado);
+                        switch( posicionImageButton(b1)){
+                            case 1:
+                                respuesta1.setVisibility(View.VISIBLE);
+                                respuesta1.setText(b1.getText());
+                                break;
+                            case 2:
+                                respuesta2.setVisibility(View.VISIBLE);
+                                respuesta2.setText(b1.getText());
+
+                                break;
+                            case 3:
+                                respuesta3.setVisibility(View.VISIBLE);
+                                respuesta3.setText(b1.getText());
+
+                                break;
+
+                        }
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(v.getId());
                         b2.setEnabled(false);
-                   //     animacionButton(b1);
                     }
                     ultimoPulsado=0;
                     es.acierto();
@@ -189,40 +236,108 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     public void animacionButton(Button b){
         TranslateAnimation animation=null;
-        int posicion = posicionImageButton(b);
-        if(posicion==1) {
-            animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
-        }
-        else{
-            if(posicion==2){
+        int posicionImageButton = posicionImageButton(b);
+        int posicion =posicionButton(b);
+        int animacionposicion = posicion+posicionImageButton;
+        /*switch (animacionposicion) {
+            case 11:
+                //Posicion 1 del boton y posicion una de la imagen.... asi todas
+                animation = new TranslateAnimation(0.0f, -50.0f,
+                        0.0f, 0.0f);
+                break;
+            case 12:
                 animation = new TranslateAnimation(0.0f, 0.0f,
                         -50.0f, 0.0f);
-            }
-            else{
+
+                break;
+            case 13:
                 animation = new TranslateAnimation(0.0f, 0.0f,
-                        -100.0f, 0.0f);
-            }
+                        -50.0f, 0.0f);
+                break;
+            case 21:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+            case 22:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+            case 23:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+            case 31:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+            case 32:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+            case 33:
+                animation = new TranslateAnimation(0.0f, 0.0f,
+                        -50.0f, 0.0f);
+                break;
+
         }
+        */
+        animation = new TranslateAnimation(0.0f, -500.0f,
+                0.0f, 0.0f);
         animation.setDuration(500);
+        b.bringToFront();
+        ((View)b.getParent()).requestLayout();
+        ((View)b.getParent()).invalidate();
+   //     animation.setFillAfter(true);
         animation.setFillAfter(true);
+        animation.setFillEnabled(true);
+        animation.setFillBefore(false);
         b.startAnimation(animation);
     }
+    public void resetBotones(){
+        respuesta1.setVisibility(View.INVISIBLE);
+        respuesta2.setVisibility(View.INVISIBLE);
+        respuesta3.setVisibility(View.INVISIBLE);
+        button1.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
+        button2.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
+        button3.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
+    }
     public int posicionImageButton(Button b){
-      if(map.get(b.getId()).equals(map.get(R.id.imageButton1))){
-              return 1;
+        if(map.get(b.getId()).equals(map.get(R.id.imageButton1))){
+            return 1;
         }
         else{
             if(map.get(b.getId()).equals(map.get(R.id.imageButton2))){
                 return 2;
             }
-          else{
+            else{
                 return 3;
             }
         }
 
     }
+    public int posicionButton(Button b){
+        int posicion=0;
 
+
+        switch (b.getId()){
+            case R.id.button3:
+            /*    LinearLayout layout3 =(LinearLayout)findViewById(R.id.LinearLayoutBoton3);
+                layout3.bringToFront();*/
+                posicion= 10;
+                break;
+            case R.id.button1:
+             /*   LinearLayout layout1 =(LinearLayout)findViewById(R.id.LinearLayoutBoton1);
+                layout1.bringToFront();*/
+                posicion= 20;
+                break;
+            case R.id.button2:
+           /*     LinearLayout layout2 =(LinearLayout)findViewById(R.id.LinearLayoutBoton2);
+                layout2.bringToFront();*/
+                posicion= 30;
+            break;
+        }
+return posicion;
+    }
     private void cambiarFoto() {
         try {
             map = new HashMap<>();
@@ -235,10 +350,10 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
             imageButton1.setEnabled(true);
             imageButton2.setEnabled(true);
             imageButton3.setEnabled(true);
+            resetBotones();
             button1.setEnabled(true);
             button2.setEnabled(true);
             button3.setEnabled(true);
-
             imageButton1.clearFocus();
             imageButton1.setImageResource(arrayImageResource.get(0));
             imageButton2.clearFocus();
@@ -327,11 +442,12 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                 }
             }
         } catch (java.lang.IndexOutOfBoundsException e){
-        e.printStackTrace();
-        avanzaNivel();
+            e.printStackTrace();
+            avanzaNivel();
         }
     }
     public void avanzaNivel(){
+
         gn.avanzaNivel();
         cambiado=true;
         if (!(gn.getTipo().equals(tipoNivel))) {

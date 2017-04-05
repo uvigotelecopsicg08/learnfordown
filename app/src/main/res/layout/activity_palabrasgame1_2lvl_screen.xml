@@ -124,14 +124,24 @@
             android:weightSum="1">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/imageButton1"
-                android:onClick="pulsar"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@color/Blanco"
-                android:textSize="36sp" />
+                android:gravity="center"
+                android:onClick="pulsar"
+                android:textSize="36sp"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
         </LinearLayout>
 
@@ -151,13 +161,23 @@
             android:weightSum="1">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/imageButton2"
-                android:onClick="pulsar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Blanco"
                 android:gravity="center"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:background="@color/Blanco" />
+                android:onClick="pulsar"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator" />
+
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
 
         </LinearLayout>
@@ -178,13 +198,23 @@
             android:weightSum="1">
 
             <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 android:id="@+id/imageButton3"
-                android:onClick="pulsar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/Blanco"
                 android:gravity="center"
-                app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:background="@color/Blanco"></ImageButton>
+                android:onClick="pulsar"
+                app:srcCompat="?android:attr/activatedBackgroundIndicator"></ImageButton>
+
+            <TextView
+                android:id="@+id/textView11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="TextView"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:visibility="invisible" />
 
         </LinearLayout>
     </LinearLayout>
@@ -216,15 +246,16 @@
             android:weightSum="1">
 
             <Button
-                android:text="PLANO"
+                android:id="@+id/button3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/button3"
-                android:onClick="pulsar"
-                android:gravity="center"
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
-                android:textSize="36sp"
-                android:textAllCaps="false" />
+                android:elevation="0dp"
+                android:gravity="center"
+                android:onClick="pulsar"
+                android:text="PLANO"
+                android:textAllCaps="false"
+                android:textSize="36sp" />
 
         </LinearLayout>
 
@@ -305,13 +336,11 @@
             android:layout_weight="0.15"
             android:layout_height="match_parent"
             android:weightSum="1">
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:visibility="invisible"
                 android:id="@+id/editText1" />
-
         </LinearLayout>
     <LinearLayout
         android:orientation="vertical"
@@ -319,7 +348,6 @@
         android:layout_weight="0.25"
         android:layout_height="match_parent"
         android:weightSum="1">
-
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -330,13 +358,11 @@
             android:gravity="center"
             android:background="@color/Blanco"
             android:textSize="36sp" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.005"
             android:visibility="invisible"/>
-
         <ImageButton
             android:text="PLATO"
             android:layout_width="wrap_content"
@@ -347,13 +373,11 @@
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:background="@color/Blanco"
             android:textSize="36sp" />
-
         <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.005"
             android:visibility="invisible"/>
-
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
@@ -363,23 +387,18 @@
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:background="@color/Blanco"
             android:textSize="36sp" />
-
-
     </LinearLayout>
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_weight="0.20"
             android:layout_height="match_parent"
             android:weightSum="1">
-
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="fill_parent"
                 android:visibility="invisible"
                 android:id="@+id/editText" />
-
         </LinearLayout>
         <LinearLayout
             android:orientation="vertical"
@@ -387,7 +406,6 @@
             android:layout_weight="0.40"
             android:layout_height="match_parent"
             android:weightSum="1">
-
             <Button
                 android:text="PLANO"
                 android:layout_width="match_parent"
@@ -399,13 +417,11 @@
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
                 android:textSize="36sp"
                 android:textAllCaps="false" />
-
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.55"
                 android:visibility="invisible"/>
-
             <Button
                 android:text="PLATO"
                 android:layout_width="match_parent"
@@ -415,13 +431,11 @@
                 android:layout_weight="0.3"
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
                 android:textSize="36sp" />
-
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.05"
                 android:visibility="invisible"/>
-
             <Button
                 android:text="PLÁTANO"
                 android:layout_width="match_parent"
@@ -431,8 +445,6 @@
                 android:layout_weight="0.3"
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
                 android:textSize="36sp" />
-
-
         </LinearLayout>
     </LinearLayout-->
 
@@ -441,4 +453,3 @@
 
 
 </LinearLayout>
-
