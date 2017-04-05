@@ -26,8 +26,8 @@
             </intent-filter>
         </activity>
 
-        <!--
-        <activity
+
+        <!--<activity
             android:name="com.unity3d.player.UnityPlayerActivity"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -35,8 +35,8 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-        -->
+        </activity>-->
+
 
         <activity
             android:name=".Puzzle4piezas"

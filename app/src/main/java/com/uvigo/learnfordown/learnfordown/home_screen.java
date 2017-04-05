@@ -80,9 +80,9 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
-            //Aqui esta el codigo para lanzar el juego de Unity. Para la version dificil
-            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas2
-            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            //Aqui esta el codigo para lanzar el juego de Unity en version facil. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas11");
             if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
             }*/

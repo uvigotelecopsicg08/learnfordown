@@ -1,5 +1,6 @@
-package com.LearnForDown.RecogeMonedas2;
+package com.LearnForDown.RecogeMonedas11;
 
+import com.unity3d.player.*;
 import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.PixelFormat;
@@ -8,9 +9,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.Window;
 
-import com.unity3d.player.*;
-
-public class UnityPlayerActivity2 extends Activity
+public class UnityPlayerActivity11 extends Activity
 {
 	protected UnityPlayer mUnityPlayer; // don't change the name of this variable; referenced from native code
 
