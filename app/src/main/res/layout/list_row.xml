@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="#f0f0f0"
+    android:orientation="vertical" >
+
+
+            <LinearLayout
+                android:id="@+id/single_post_circuito_linearbox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:padding="5dp"
+                android:descendantFocusability="blocksDescendants"
+                android:addStatesFromChildren="true">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_gravity="center"
+                        android:id="@+id/imagen_single_post_circuito"
+                        android:src="@drawable/policia"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:text="Plaza 25 de Mayo"
+                        android:id="@+id/titulo"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#ff000000" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:text=""
+                        android:id="@+id/descripcion"
+                        android:layout_marginLeft="5dp"
+                        android:textColor="#ff868686" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.3"
+                    android:layout_height="wrap_content">
+
+                    <ImageButton
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/editar"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/icon_settings"
+                        android:scaleType="centerCrop"
+                        android:onClick="edit"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <ImageButton
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/borrar"
+                        android:layout_gravity="center"
+                        android:src="@mipmap/icon_papelera"
+                        android:scaleType="centerCrop"
+                        android:onClick="delete" />
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3">
+
+                    <ImageView
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:id="@+id/logueado"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop" />
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+</LinearLayout>
