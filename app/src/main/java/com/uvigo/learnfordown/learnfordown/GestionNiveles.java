@@ -20,9 +20,11 @@ public class GestionNiveles {
     private String subnivel;
     private int numeroFotos;
     DataBaseManager db;
+    Context context;
 
 
     public GestionNiveles(Context context) {
+        this.context =context;
         db = new DataBaseManager(context);
         //Consulta a la bd el id_user actual
        id_user= db.getIdUser();
@@ -121,7 +123,7 @@ public class GestionNiveles {
        Cursor cursor= db.getNivel(tipo,dificultad,id_user);
         if(cursor!=null) {
             if (cursor.moveToFirst()) {
-                id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL_LEVEL));
                 subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
             }
 
@@ -199,9 +201,10 @@ public class GestionNiveles {
                     String silaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SYLLABLE));
                     String palabra = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_WORD));
                     String frase = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_SENTENCE));
-                    int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
+                  //  int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                     String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
-                    if((!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3) {
+                    if(validatePhoto(palabra,silaba)) {
+                        int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
                     }
                 }while(cursor.moveToNext());
@@ -212,7 +215,7 @@ public class GestionNiveles {
     }
     private boolean validatePhoto(String palabra,String silaba){
         //(!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3
-        if(tipo.equals("silabastrabadas")&&tipo.equals("silabasinversas")&&tipo.equals("silabasdirectas")&&tipo.contains("letras")){
+        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("letras")){
             if(palabra.startsWith(silaba)||dificultad<3){
                 return true;
             }
@@ -336,18 +339,18 @@ public class GestionNiveles {
     }
     public void actualizarEstrellas(int aciertos){
         if(tipo.contains("palabras")||tipo.contains("frases")){
-            db.actualizarEstrellas(tipo,1,aciertos);
+            db.actualizarEstrellas(tipo,1,aciertos,id_user);
         }
         else{
-            db.actualizarEstrellas(tipo,dificultad,aciertos);
+            db.actualizarEstrellas(tipo,dificultad,aciertos,id_user);
         }
     }
     public int getEstrellas(){
         if( tipo.contains("palabras")||tipo.contains("frases")) {
-             return db.getEstrellas(tipo, 1);
+             return db.getEstrellas(tipo, 1,id_user);
      }
         else{
-             return db.getEstrellas(tipo, dificultad);
+             return db.getEstrellas(tipo, dificultad,id_user);
     }
 
     }

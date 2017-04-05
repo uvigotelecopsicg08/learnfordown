@@ -62,19 +62,7 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
 
         }
         if(numero==5){
-           // numero=0;
-          //  foto.setImageResource(drawable[numero]);
-            /*
-            Context context =this.getApplicationContext();
-            DataBaseManager db = new DataBaseManager(context);
-            context.deleteDatabase("learn.sqlite");
-            InsertData iD = new InsertData(context);
-            iD.insertar(nombre,edad,gustos);
-
-            */
-
-           // db.insertar_user(nombre,edad,gustos);
-            //db.close();
+       ;
             Intent intent = new Intent(this, loading_screen.class);
             intent.putExtra("map", gustos);
             intent.putExtra("edad",edad);

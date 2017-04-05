@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.session.PlaybackState;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -80,7 +81,7 @@ public class DataBaseManager {
 
     public static final String CREATE_TABLE_USER ="create table "+TABLE_USER+" ("+CN_ID_USER+
             " integer primary key autoincrement,"
-            + CN_NAME_USER + " VARCHAR(50) NOT NULL,"
+            + CN_NAME_USER + " VARCHAR(50) NOT NULL UNIQUE,"
             +CN_AGE_USER+" integer NOT NULL,"+
              CN_LOGGUED+" boolean NOT NULL);";
     //+CN_DATE+" timestamp  DEFAULT CURRENT_TIMESTAMP);";
@@ -137,6 +138,7 @@ public class DataBaseManager {
     public static final String CREATE_TABLE_STARS="create table "+TABLE_STARS+" ("+CN_STARS_TYPE+
             " VARCHAR(50)  NOT NULL, "+
           CN_STARS_DIFICULTAD + " integer NOT NULL, "+
+            CN_ID_USER + " integer NOT NULL, "+
             CN_NUMBER_STARS+" integer NOT NULL );";
 
 
@@ -145,21 +147,24 @@ public class DataBaseManager {
         db= helper.getWritableDatabase();
     }
     public void insertar_user (String nombre,int edad,  HashMap<String,Boolean> gustos){
+        int  id_user=0;
         ContentValues valores =new ContentValues();
         valores.put(CN_NAME_USER,nombre);
         valores.put(CN_AGE_USER,edad);
         valores.put(CN_LOGGUED,true);
         //Desloguear si hay otro usuario
+        singOut();
         db.insert(TABLE_USER,null,valores);
         Cursor cursor= cargarCursor_user();
         if(cursor!=null) {
             if (cursor.moveToLast()) {
-               int  id_user = cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER));
+                id_user = cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER));
                 insertar_Systemlog(id_user, 0);
                 insertarAfinidad(id_user,gustos);
                 insertarNivelUser(id_user);
             }
         }
+        inicializarEstrellas(id_user);
 
     }
 
@@ -267,7 +272,7 @@ public class DataBaseManager {
     public Cursor getNivel(String tipo, int dificultad,int id_user){
         Cursor cursor;
         String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
-        String columnas[] = new String[]{TABLE_LEVEL_USER+"."+CN_ID_LEVEL,CN_STEP};
+        String columnas[] = new String[]{TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL,CN_STEP};
 
         if(dificultad==-1){
             String whereClause = CN_TYPE+" = ? AND "+CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
@@ -537,7 +542,7 @@ public class DataBaseManager {
 
     }
 
-    public void inicializarEstrellas() {
+    public void inicializarEstrellas(int id_usuario) {
         String tablas = TABLE_LEVEL;
         String columnas[] = new String[]{CN_TYPE, CN_DIFFICULTY};
         Cursor cursor = db.query(true, tablas, columnas, null, null, null, null, null, null);
@@ -551,24 +556,25 @@ public class DataBaseManager {
                         valores.put(CN_STARS_TYPE, tipo);
                         valores.put(CN_NUMBER_STARS, 0);
                         valores.put(CN_STARS_DIFICULTAD, dificultad);
+                        valores.put(CN_ID_USER, id_usuario);
                         db.insert(TABLE_STARS, null, valores);
                     }
                 } while (cursor.moveToNext());
             }
         }
     }
-    public void actualizarEstrellas(String tipo,int dificultad,int aciertos){
+    public void actualizarEstrellas(String tipo,int dificultad,int aciertos,int id_user){
         ContentValues valores = new ContentValues();
         valores.put(CN_NUMBER_STARS,aciertos);
 
-        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =?";
-        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad)};
+        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =? AND "+CN_ID_USER+ " =?";
+        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad),String.valueOf(id_user)};
         db.update(TABLE_STARS, valores,whereClause, whereArgs);
 
     }
-    public int getEstrellas(String tipo,int dificultad){
-        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =?";
-        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad)};
+    public int getEstrellas(String tipo,int dificultad,int id_user){
+        String  whereClause =CN_STARS_TYPE+" = ? AND "+CN_STARS_DIFICULTAD+ " =? AND "+CN_ID_USER+ " =?";
+        String[]   whereArgs = new String[]{tipo,String.valueOf(dificultad),String.valueOf(id_user)};
         Cursor cursor= db.query(TABLE_STARS,null,whereClause,whereArgs,null,null,null ,null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
@@ -594,5 +600,43 @@ public class DataBaseManager {
         String  whereClause =CN_ID_LEVEL_LEVEL+" = ? AND "+CN_ID_USER_LEVEL+ " =?";
         String[]   whereArgs = new String[]{String.valueOf(id_nivel),String.valueOf(id_user)};
         db.update(TABLE_LEVEL_USER, valores,whereClause, whereArgs);
+    }
+    public Cursor getUser(){
+        return  db.query(TABLE_USER,null,null,null,null,null,null ,null);
+    }
+    public void deleteUser(int id_user) {
+        String whereClause = CN_ID_USER + " = ?";
+        String[] whereArgs = new String[]{String.valueOf(id_user)};
+        db.delete(TABLE_USER, whereClause, whereArgs);
+         whereClause = CN_ID_USER_LEVEL + " = ?";
+        db.delete(TABLE_LEVEL_USER, whereClause, whereArgs);
+        logueaUltimo();
+
+    }
+
+    private void singOut(){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_LOGGUED,0);
+
+        String  whereClause =CN_LOGGUED+" = ?";
+        String[]   whereArgs = new String[]{String.valueOf(1)};
+        db.update(TABLE_USER, valores,whereClause, whereArgs);
+    }
+    public void changeLogint(int id_user){
+        singOut();
+        ContentValues valores = new ContentValues();
+        valores.put(CN_LOGGUED,1);
+        String  whereClause =CN_ID_USER+" = ?";
+        String[]   whereArgs = new String[]{String.valueOf(id_user)};
+        db.update(TABLE_USER, valores,whereClause, whereArgs);
+    }
+
+    private void logueaUltimo(){
+        Cursor cursor = getUser();
+        if (cursor != null) {
+            if(cursor.moveToLast()){
+             changeLogint(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_USER)));
+            }
+        }
     }
 }

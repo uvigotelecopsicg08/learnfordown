@@ -53,6 +53,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //Prueba bd
+    //   getApplicationContext().deleteDatabase("learn.sqlite");
 /*
         Context context =this.getApplicationContext();
         context.deleteDatabase("learn.sqlite");
@@ -284,6 +285,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if (id == R.id.info) {
             // Handle the camera action
         } else if (id == R.id.cambiar) {
+            Intent intent1 = new Intent(home_screen.this, listusers_screen.class);
+            startActivity(intent1);
 
         } else if (id == R.id.registrar) {
             Intent intent1 = new Intent(home_screen.this, login_screen.class);

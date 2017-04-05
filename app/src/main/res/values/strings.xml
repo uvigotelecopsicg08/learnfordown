@@ -16,4 +16,6 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+    <string name="title_activity_list_users_screen">ListUsers_screen</string>
+    <string name="title_activity_listusers_screen">listusers_screen</string>
 </resources>
