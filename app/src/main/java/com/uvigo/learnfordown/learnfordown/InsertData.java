@@ -23,10 +23,14 @@ public class InsertData {
 
 
     }
-    public void insertar(String nombre, int edad, HashMap<String,Boolean>gustos) {
+
+    public void insertar_niveles() {
         insertarNiveles();
         insertarFotos();
-        db.insertar_user(nombre,edad,gustos);
+
+    }
+    public void insert_usuario(String nombre, int edad, HashMap<String,Boolean>gustos,int avatar){
+        db.insertar_user(nombre,edad,gustos,avatar);
         db.close();
     }
 
@@ -267,7 +271,7 @@ public class InsertData {
         db.insertar_foto("a","ar","inversa","armario","El * de mi habitación es muy amplio",R.drawable.armario,"casa",3,"r");
         db.insertar_foto("i","ir","inversa","invernadero","En el * hay pimientos plantados",R.drawable.invernadero,"otro",5,"r");
 
-        db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
+     //   db.insertar_foto("s","sa","directa","salero","Se rompió el * y cayó toda la sal",R.drawable.salero,"casa",3,"s");
         db.insertar_foto("s","si","directa","silla","Me senté en una *",R.drawable.silla,"otro",2,"s");
         db.insertar_foto("s","so","directa","sofá","Estoy viendo la televisión mientras estoy sentado en el *",R.drawable.sofa,"otro",2,"s");
         db.insertar_foto("s","so","directa","sopa","En las noches de frío me gusta tomar *",R.drawable.sopa,"casa",2,"s");
@@ -408,7 +412,7 @@ public class InsertData {
         db.insertar_nivel("escribirtecladopalabra",1,"subniveunico");
 
 
-        db.inicializarEstrellas();
+
 
     }
 }

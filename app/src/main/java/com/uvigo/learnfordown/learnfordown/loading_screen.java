@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import java.io.File;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 
@@ -17,6 +18,7 @@ public class loading_screen extends AppCompatActivity {
 
     String nombre;
     int edad;
+    int avatar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_screen);
@@ -35,11 +37,20 @@ public class loading_screen extends AppCompatActivity {
                     if(extras != null) {
                         nombre = extras.getString("nombre");
                         edad = extras.getInt("edad");
+                        avatar= extras.getInt("avatar");
                         HashMap<String,Boolean> gustos = (HashMap<String,Boolean>)intent.getSerializableExtra("map");
                         Context context =getApplicationContext();
-                        context.deleteDatabase("learn.sqlite");
-                        InsertData iD = new InsertData(context);
-                        iD.insertar(nombre,edad,gustos);
+                      //  context.deleteDatabase("learn.sqlite");
+                        File dbFile = context.getDatabasePath("learn.sqlite");
+                        if(!dbFile.exists()) {
+                            InsertData iD = new InsertData(context);
+                            iD.insertar_niveles();
+                            iD.insert_usuario(nombre, edad, gustos,avatar);
+                        }
+                        else {
+                            InsertData iD = new InsertData(context);
+                            iD.insert_usuario(nombre, edad, gustos,avatar);
+                        }
                     }
 
 

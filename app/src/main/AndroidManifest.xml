@@ -27,7 +27,7 @@
         </activity>
 
 
-        <activity
+        <!--<activity
             android:name="com.unity3d.player.UnityPlayerActivity"
             android:screenOrientation="landscape">
             <intent-filter>
@@ -36,6 +36,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+
 
 
         <activity
@@ -157,6 +158,17 @@
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".endScreen"
+            android:screenOrientation="landscape" />
+        <activity android:name=".avatarScreen"
+            android:screenOrientation="landscape"/>
+
+
+        <activity
+            android:name=".listusers_screen"
+            android:label="@string/title_activity_listusers_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity
             android:name=".endScreen"
             android:screenOrientation="landscape" />

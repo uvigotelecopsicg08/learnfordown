@@ -19,6 +19,7 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
     ImageView foto;
     String nombre;
     int edad;
+    int avatar;
     HashMap<String,Boolean> gustos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +39,7 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
         if(extras != null) {
             nombre = extras.getString("nombre");
             edad = extras.getInt("edad");
+            avatar=extras.getInt("avatar");
         }
 
 
@@ -62,23 +64,12 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
 
         }
         if(numero==5){
-           // numero=0;
-          //  foto.setImageResource(drawable[numero]);
-            /*
-            Context context =this.getApplicationContext();
-            DataBaseManager db = new DataBaseManager(context);
-            context.deleteDatabase("learn.sqlite");
-            InsertData iD = new InsertData(context);
-            iD.insertar(nombre,edad,gustos);
-
-            */
-
-           // db.insertar_user(nombre,edad,gustos);
-            //db.close();
+       ;
             Intent intent = new Intent(this, loading_screen.class);
             intent.putExtra("map", gustos);
             intent.putExtra("edad",edad);
             intent.putExtra("nombre",nombre);
+            intent.putExtra("avatar",avatar);
             startActivity(intent);
         }else {
             numero++;
