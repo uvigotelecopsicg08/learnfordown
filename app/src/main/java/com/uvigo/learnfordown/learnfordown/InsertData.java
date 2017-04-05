@@ -29,8 +29,8 @@ public class InsertData {
         insertarFotos();
 
     }
-    public void insert_usuario(String nombre, int edad, HashMap<String,Boolean>gustos){
-        db.insertar_user(nombre,edad,gustos);
+    public void insert_usuario(String nombre, int edad, HashMap<String,Boolean>gustos,int avatar){
+        db.insertar_user(nombre,edad,gustos,avatar);
         db.close();
     }
 

@@ -82,7 +82,7 @@ public class login_screen extends AppCompatActivity {
             System.out.println(" Nombre " + nombre + "  edad " + edadString);
             try{
                 int edad = Integer.parseInt(edadString);
-                Intent intent = new Intent(this, login_screen_like.class);
+                Intent intent = new Intent(this, avatarScreen.class);
                 intent.putExtra("nombre", nombre);
                 intent.putExtra("edad",edad);
                 startActivity(intent);

@@ -18,6 +18,7 @@ public class loading_screen extends AppCompatActivity {
 
     String nombre;
     int edad;
+    int avatar;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading_screen);
@@ -36,6 +37,7 @@ public class loading_screen extends AppCompatActivity {
                     if(extras != null) {
                         nombre = extras.getString("nombre");
                         edad = extras.getInt("edad");
+                        avatar= extras.getInt("avatar");
                         HashMap<String,Boolean> gustos = (HashMap<String,Boolean>)intent.getSerializableExtra("map");
                         Context context =getApplicationContext();
                       //  context.deleteDatabase("learn.sqlite");
@@ -43,11 +45,11 @@ public class loading_screen extends AppCompatActivity {
                         if(!dbFile.exists()) {
                             InsertData iD = new InsertData(context);
                             iD.insertar_niveles();
-                            iD.insert_usuario(nombre, edad, gustos);
+                            iD.insert_usuario(nombre, edad, gustos,avatar);
                         }
                         else {
                             InsertData iD = new InsertData(context);
-                            iD.insert_usuario(nombre, edad, gustos);
+                            iD.insert_usuario(nombre, edad, gustos,avatar);
                         }
                     }
 

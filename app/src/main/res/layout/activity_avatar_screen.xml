@@ -111,7 +111,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/image2"
                 android:onClick="pulsar2"
-                app:srcCompat="@drawable/avatara"
+                app:srcCompat="@drawable/policia"
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
                 android:textSize="36sp" />
 
@@ -138,7 +138,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/image3"
                 android:onClick="pulsar3"
-                app:srcCompat="@drawable/avatara"
+                app:srcCompat="@drawable/abeja"
                 android:background="@color/common_google_signin_btn_text_dark_pressed" />
 
         </LinearLayout>
@@ -170,7 +170,7 @@
             android:layout_height="match_parent"
             android:weightSum="1"
             android:id="@+id/image4"
-            app:srcCompat="@drawable/avatara"
+            app:srcCompat="@drawable/cabra"
             android:gravity="center"
             android:onClick="pulsar4"
             android:background="@color/common_google_signin_btn_text_dark_pressed"
@@ -200,7 +200,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/image5"
                 android:onClick="pulsar5"
-                app:srcCompat="@drawable/avatara"
+                app:srcCompat="@drawable/guitarra"
                 android:background="@color/common_google_signin_btn_text_dark_pressed"
                 android:textSize="36sp" />
 
@@ -227,7 +227,7 @@
                 android:layout_height="match_parent"
                 android:id="@+id/image6"
                 android:onClick="pulsar6"
-                app:srcCompat="@drawable/avatara"
+                app:srcCompat="@drawable/caballo"
                 android:background="@color/common_google_signin_btn_text_dark_pressed" />
 
         </LinearLayout>

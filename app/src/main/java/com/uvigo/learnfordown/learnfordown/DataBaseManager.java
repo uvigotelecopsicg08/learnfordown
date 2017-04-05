@@ -21,6 +21,7 @@ public class DataBaseManager {
     public static final String CN_NAME_USER ="nombre";
     public static final String CN_AGE_USER="edad";
     public static final String CN_LOGGUED="logeado";
+    public static final String CN_AVATAR="avatar";
 
     //Tabla afinidad
     public static final String TABLE_AFFINITY ="AFINIDAD";
@@ -83,6 +84,7 @@ public class DataBaseManager {
             " integer primary key autoincrement,"
             + CN_NAME_USER + " VARCHAR(50) NOT NULL UNIQUE,"
             +CN_AGE_USER+" integer NOT NULL,"+
+             CN_AVATAR+"  integer NOT NULL,"+
              CN_LOGGUED+" boolean NOT NULL);";
     //+CN_DATE+" timestamp  DEFAULT CURRENT_TIMESTAMP);";
 
@@ -146,12 +148,13 @@ public class DataBaseManager {
         DbHelper helper=new DbHelper(context);
         db= helper.getWritableDatabase();
     }
-    public void insertar_user (String nombre,int edad,  HashMap<String,Boolean> gustos){
+    public void insertar_user (String nombre,int edad,  HashMap<String,Boolean> gustos,int avatar){
         int  id_user=0;
         ContentValues valores =new ContentValues();
         valores.put(CN_NAME_USER,nombre);
         valores.put(CN_AGE_USER,edad);
         valores.put(CN_LOGGUED,true);
+        valores.put(CN_AVATAR,avatar);
         //Desloguear si hay otro usuario
         singOut();
         db.insert(TABLE_USER,null,valores);

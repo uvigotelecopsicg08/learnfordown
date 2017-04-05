@@ -44,6 +44,7 @@ public class TodoCursorAdapter extends CursorAdapter {
         TextView titulo = (TextView) view.findViewById(R.id.titulo);
         TextView descripcion = (TextView) view.findViewById(R.id.descripcion);
         ImageView logueado= (ImageView) view.findViewById(R.id.logueado);
+        ImageView avatar= (ImageView)  view.findViewById(R.id.imagen);
         // Extract properties from cursor
         String nombre = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_NAME_USER));
         int edad = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_AGE_USER));
@@ -51,6 +52,7 @@ public class TodoCursorAdapter extends CursorAdapter {
         // Populate fields with extracted properties
         titulo.setText(nombre);
         descripcion.setText("Tienes : "+ String.valueOf(edad)+" años");
+        avatar.setImageResource( cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_AVATAR)));
         if( cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_LOGGUED))==1){
              logueado.setImageResource(R.mipmap.icon_validate);
         }
