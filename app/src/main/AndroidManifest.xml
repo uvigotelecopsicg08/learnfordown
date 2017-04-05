@@ -157,6 +157,10 @@
         <activity
             android:name=".endScreen"
             android:screenOrientation="landscape" />
+        <activity android:name=".avatarScreen"
+            android:screenOrientation="landscape"/>
+
+
         <activity
             android:name=".listusers_screen"
             android:label="@string/title_activity_listusers_screen"
