@@ -341,6 +341,9 @@ public class Puzzle4piezas extends AppCompatActivity {
             acierto++;
             LastClick =0;
         }
+        else{
+            System.out.println("Fallo");
+        }
         if( acierto>=4)
             mensaje.setVisibility(View.VISIBLE);
         LastClick =ActualClick;
