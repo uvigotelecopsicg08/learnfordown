@@ -98,7 +98,7 @@ public class GestionNiveles {
        finNiveles();
         //lectura parametros del nivel
         getParameterNivel();
-        db.mostrarTablas();
+     //   db.mostrarTablas();
         db.actulizaTimeStamp(true,id_nivel,id_user);
 
     }
@@ -141,14 +141,14 @@ public class GestionNiveles {
         aciertos=fallos=0;
         Cursor cursor= db.resetNivel(tipo, dificultad, id_user);
         if (cursor.moveToFirst()) {
-            id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+            id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL_LEVEL));
             subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
         }
         if((tipo.contains("palabra")||tipo.contains("frase"))&&dificultad>1){
             for(int i=dificultad;i>=1;i--){
                 cursor= db.resetNivel(tipo, i, id_user);
                 if (cursor.moveToFirst()&&i==1) {
-                    id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL));
+                    id_nivel = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL_LEVEL));
                     subnivel = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_STEP));
                     dificultad=i;
                 }
@@ -224,11 +224,14 @@ public class GestionNiveles {
             }
         }
         else{
-            if(tipo.equals("escribirletras")&&palabra.startsWith(silaba)){
-                return  true;
+            if(tipo.equals("escribirletras")){
+                if(palabra.startsWith(silaba))
+                 return  true;
+                else
+                  return   false;
             }
             else
-                return false;
+                return true;
         }
 
     }
