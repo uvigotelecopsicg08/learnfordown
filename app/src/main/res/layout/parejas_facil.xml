@@ -29,14 +29,7 @@
             android:layout_weight="0.03" />
 
 
-        <ImageButton
-            android:src="@mipmap/icon_help"
-            android:layout_width="115dp"
-            android:layout_height="115dp"
-            android:id="@+id/button4"
-            android:layout_weight="0.1"
-            android:scaleType="fitCenter"
-            android:background="@color/colorGame" />
+
 
 
         <TextView
@@ -46,7 +39,7 @@
             android:id="@+id/textView2"
             android:layout_weight="0.87"
             android:gravity="center"
-            android:textSize="35sp"
+            android:textSize="50sp"
             android:textStyle="bold"
             android:maxLines="1"
             android:textAlignment="center"
@@ -60,6 +53,14 @@
             android:id="@+id/button5"
             android:onClick="goHome"
             android:layout_weight="0.1"
+            android:scaleType="fitCenter"
+            android:background="@color/colorGame" />
+
+        <ImageButton
+            android:src="@mipmap/icon_help"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:id="@+id/button4"
             android:scaleType="fitCenter"
             android:background="@color/colorGame" />
 

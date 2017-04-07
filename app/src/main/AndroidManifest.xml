@@ -150,10 +150,10 @@
         <activity
             android:name=".ParejasFacil"
             android:screenOrientation="landscape" />
-        <activity
+        <!--<activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
         <activity
             android:name=".endScreen"
             android:screenOrientation="landscape" />
