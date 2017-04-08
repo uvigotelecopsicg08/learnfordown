@@ -88,13 +88,15 @@ public class listusers_screen extends AppCompatActivity {
 
     public void edit(View v){
         Intent intent1 = new Intent(this, edit_screen.class);
-        startActivity(intent1);
         id_user=  recorreCursor((int) v.getTag(), cursor);
+        intent1.putExtra("id_user",id_user);
+        startActivity(intent1);
+      /*
         db.update_name(id_user,nombre);
         db.update_age(id_user,edad);
         db.update_photo(id_user,avatar);
         refreshLisView();
-
+*/
     }
 
     public void delete(View v){

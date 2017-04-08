@@ -33,7 +33,7 @@ public class edit_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<Integer> horizontalList;
     private HorizontalAdapterDrawable horizontalAdapter;
-
+    private int id_user;
     TextView titulo;
     ImageButton BackArrow,Home;
     TextView textoNombre, textoEdad;
@@ -48,6 +48,13 @@ public class edit_screen extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_screen);
+
+        Bundle extras = getIntent().getExtras();
+        if(extras != null) {
+            id_user = extras.getInt("id_user");
+
+        }
+
         textoNombre = (TextView) findViewById(R.id.editTextn);
         textoEdad = (TextView) findViewById(R.id.editTexte);
 
@@ -127,10 +134,13 @@ public class edit_screen extends AppCompatActivity {
         else{
             System.out.println(" Nombre " + nombre + "  edad " + edadString);
             try{
+                // O unico que hay que facer e crear un obxecto DataBaseManager
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
                 int edad = Integer.parseInt(edadString);
                 Intent intent = new Intent(this, home_screen.class);
-                intent.putExtra("nombre", nombre);
-                intent.putExtra("edad",edad);
+                // E chamar a os metodos para actualizar o nome e a edad
+                db.update_name(id_user,nombre);
+                db.update_age(id_user,edad);
                 startActivity(intent);
             }
             catch (NumberFormatException e){
