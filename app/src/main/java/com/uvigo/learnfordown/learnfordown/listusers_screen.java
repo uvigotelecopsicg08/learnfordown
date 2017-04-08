@@ -76,6 +76,12 @@ public class listusers_screen extends AppCompatActivity {
 
     public void edit(View v){
         System.out.println("Si lees esto vas bien  "+v.getTag());
+        id_user=  recorreCursor((int) v.getTag(), cursor);
+        db.update_name(id_user,"paco sanz");
+        db.update_age(id_user,34);
+        db.update_photo(id_user,R.drawable.rana);
+        refreshLisView();
+
     }
 
     public void delete(View v){

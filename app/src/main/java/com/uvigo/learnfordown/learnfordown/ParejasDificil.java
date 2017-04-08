@@ -60,7 +60,7 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
         sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
-        flujofallo= sp.load(this,R.raw.error,3);
+     //   flujofallo= sp.load(this,R.raw.error,3);
         flujovictoria= sp.load(this,R.raw.success,1);
 
         GridLayout gridLayout = (GridLayout)findViewById(R.id.activity_main_3x4);
