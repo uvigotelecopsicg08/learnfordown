@@ -12,7 +12,7 @@
 
         android:textSize="50sp"
         android:id="@+id/button4"
-        android:onClick="ButtonCheck"
+        android:onClick="pulsar"
         android:layout_width="170dp"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="55dp"

@@ -644,7 +644,7 @@ public class DataBaseManager {
     }
     public void update_photo(int id_user, int id_avatar){
         ContentValues valores = new ContentValues();
-        valores.put(CN_PHOTO,id_avatar);
+        valores.put(CN_AVATAR,id_avatar);
         update_values(valores,id_user);
 
     }

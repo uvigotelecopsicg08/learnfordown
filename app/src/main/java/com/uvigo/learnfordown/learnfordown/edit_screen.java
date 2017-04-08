@@ -38,17 +38,19 @@ public class edit_screen extends AppCompatActivity {
     ImageButton BackArrow,Home;
     TextView textoNombre, textoEdad;
     private GoogleApiClient client;
+    DataBaseManager db;
+    int id_photo;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-
+        id_photo=0;
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_screen);
-
+         db = new DataBaseManager(getApplicationContext());
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             id_user = extras.getInt("id_user");
@@ -109,7 +111,7 @@ public class edit_screen extends AppCompatActivity {
         String edadString=edadStringSpanable.toString();
 
 
-        if(edadString.equals("")||nombre.equals("")) {
+        if(edadString.equals("")||nombre.equals("")||id_photo==0) {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
 
             if(edadString.equals("")&&nombre.equals("")){
@@ -120,7 +122,13 @@ public class edit_screen extends AppCompatActivity {
                     alertDialogBuilder.setTitle("Introduce edad, por favor");
                 }
                 else{
+                    if(nombre.equals("")){
                     alertDialogBuilder.setTitle("Introduce nombre, por favor");
+                    }
+                    else{
+                        alertDialogBuilder.setTitle("Elige un avatar");
+                    }
+
                 }
             }
 
@@ -135,13 +143,13 @@ public class edit_screen extends AppCompatActivity {
             System.out.println(" Nombre " + nombre + "  edad " + edadString);
             try{
                 // O unico que hay que facer e crear un obxecto DataBaseManager
-                DataBaseManager db = new DataBaseManager(getApplicationContext());
                 int edad = Integer.parseInt(edadString);
-                Intent intent = new Intent(this, home_screen.class);
+
                 // E chamar a os metodos para actualizar o nome e a edad
                 db.update_name(id_user,nombre);
                 db.update_age(id_user,edad);
-                startActivity(intent);
+                db.update_photo(id_user,id_photo);
+                lanzaIntent();
             }
             catch (NumberFormatException e){
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -152,8 +160,18 @@ public class edit_screen extends AppCompatActivity {
         }
     }
 
+    public void pulsar(View v){
+//aqui hay  que saber cual se eligio
+     id_photo=R.drawable.casa;
 
 
+    }
+
+
+    public void lanzaIntent(){
+        Intent intent = new Intent(this, home_screen.class);
+        startActivity(intent);
+    }
 
 
 
