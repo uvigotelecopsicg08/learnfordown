@@ -1,5 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -47,6 +49,24 @@ public class Puzzle4piezas extends AppCompatActivity {
     int acierto;
     int posicion;
 
+    boolean clickPieza = false;
+    boolean clickPuzzle = false;
+    boolean ganaste = false;
+
+    boolean aciertoPieza = false;
+    boolean aciertoPuzzle = false;
+
+    //boolean repitePieza = false;
+    //boolean repitePuzzle = false;
+    //int contRepitePieza = 0;
+    //int contRepitePuzzle = 0;
+
+    //int contPieza = 0;
+    //int contPuzzle = 0;
+    //boolean inicioPieza = false;
+    //boolean inicioPuzzle = false;
+    boolean huboacierto = false;
+
     int id_imagen = R.drawable.bomboneschocolate;
     ArrayList<Bitmap> SegundaColumna;
     ArrayList<Bitmap> TerceraColumna;
@@ -78,6 +98,11 @@ public class Puzzle4piezas extends AppCompatActivity {
     RelativeLayout relativeLayout;
 
     Button button1,button2,button3,button4;
+
+    public SoundPool sp;
+    public int flujoacierto=0;
+    public int flujofallo=0;
+    public int flujovictoria=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,6 +154,13 @@ public class Puzzle4piezas extends AppCompatActivity {
       /*  imagen.setImageBitmap(CreatePiece(R.drawable.a_part13));
         imagen2.setImageBitmap(CreatePiece(R.drawable.a_part21));
         imagen3.setImageResource(R.drawable.a_layout);*/
+
+        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujoacierto= sp.load(this,R.raw.acierto,2);
+        flujofallo= sp.load(this,R.raw.error,3);
+        flujovictoria= sp.load(this,R.raw.success,1);
+
         verticalList=new ArrayList<>();
 
         verticalList.add(R.drawable.piezas_part1);
@@ -303,12 +335,16 @@ public class Puzzle4piezas extends AppCompatActivity {
 
     }
     public void ButtonCheckPiezas(View v) {
+        clickPieza = true;
+        //inicioPuzzle=true;
+        //clickPuzzle = false;
+
         ImageView pieza=(ImageView)v;
         ActualClick =Piezas.get(pieza.getId())+10;
 
         System.out.println(ActualClick);
-        if (ActualClick-10== LastClick){
-
+        /*if (ActualClick-10== LastClick){
+//huboacierto = true;
 //Codigo acierto
             pieza.setVisibility(View.INVISIBLE);
             switch (LastClick){
@@ -333,45 +369,78 @@ public class Puzzle4piezas extends AppCompatActivity {
                     imagen4.setVisibility(View.VISIBLE);
                     break;
 
-
             }
             System.out.println("ACIERTO!!");
-
+            aciertoPieza = true;
+            //contPieza = 0;
+            //contPuzzle = 0;
+            play_acierto();
 
             acierto++;
             LastClick =0;
-        }
-        if( acierto>=4)
+        }*/
+
+        LastClick =0;
+
+        //else play_fallo();
+
+        //huboacierto = false;
+
+        //if(clickPieza == false && contPieza != 0 && inicioPieza)
+            //play_fallo();
+
+
+        //aciertoPieza = false;
+
+        if(acierto>=4) {
+            if(!ganaste) {
+                play_victoria();
+                ganaste = true;
+            }
             mensaje.setVisibility(View.VISIBLE);
+        }
         LastClick =ActualClick;
         IDpieza=pieza.getId();
+
+        //contPieza++;
+
+        //clickPieza = true;
     }
 
+
     public void ButtonCheckModelo(View v) {
+
+
+        //inicioPieza = true;
+        //clickPieza = false;
+        if(huboacierto==false && clickPieza==true)
+            play_fallo();
         Button button=(Button)v;
-        switch (button.getId()){
+        switch (button.getId()) {
             case R.id.button2:
-                ActualClick =1;
+                ActualClick = 1;
                 break;
             case R.id.button7:
-                ActualClick =2;
+                ActualClick = 2;
 
                 break;
             case R.id.button:
-                ActualClick =3;
+                ActualClick = 3;
 
                 break;
             case R.id.button6:
-                ActualClick =4;
+                ActualClick = 4;
 
                 break;
 
 
-
         }
-
         if (ActualClick+10== LastClick){
             System.out.println("ACIERTO!!");
+            //contPuzzle = 0;
+            //contPieza = 0;
+            huboacierto=true;
+            play_acierto();
             acierto++;
             ImageView Acierto = (ImageView)findViewById(IDpieza);
             Acierto.setVisibility(View.INVISIBLE);
@@ -401,7 +470,20 @@ public class Puzzle4piezas extends AppCompatActivity {
             }
             LastClick =0;
         }
-        if( acierto>=4) {
+
+
+        //if(clickPuzzle == false && contPuzzle != 0 && inicioPuzzle)
+            //play_fallo();
+
+
+        //else play_fallo();
+        huboacierto = false;
+
+        if(acierto>=4) {
+            if(!ganaste){
+                play_victoria();
+                ganaste = true;
+            }
             mensaje.setVisibility(View.VISIBLE);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -414,6 +496,10 @@ public class Puzzle4piezas extends AppCompatActivity {
         }
 
         LastClick =ActualClick;
+
+        //contPuzzle++;
+        clickPieza = false;
+        //clickPuzzle = true;
     }
     public void HelpButton(View v) {
 
@@ -453,5 +539,20 @@ public class Puzzle4piezas extends AppCompatActivity {
     public void goHome (View v){
         Intent intent1 = new Intent(Puzzle4piezas.this, home_screen.class);
         startActivity(intent1);
+    }
+
+    private void play_acierto() {
+// TODO Auto-generated method stub
+        sp.play(flujoacierto, 1, 1, 0, 0, 1);
+    }
+
+    private void play_fallo() {
+// TODO Auto-generated method stub
+        sp.play(flujofallo, 1, 1, 0, 0, 1);
+    }
+
+    private void play_victoria() {
+// TODO Auto-generated method stub
+        sp.play(flujovictoria, 1, 1, 0, 0, 1);
     }
 }

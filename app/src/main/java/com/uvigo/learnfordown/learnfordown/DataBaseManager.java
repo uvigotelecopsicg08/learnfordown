@@ -25,7 +25,7 @@ public class DataBaseManager {
 
     //Tabla afinidad
     public static final String TABLE_AFFINITY ="AFINIDAD";
-    public static final String CN_ID_AFINITY = "_id";
+  //  public static final String CN_ID_AFINITY = "_id";
     public static final String CN_ID_USER_AFINITY ="id_usuario";
     public static final String CN_ID_WORD_AFINIFTY="id_palabra";
     public static final String CN_AFINITY_RATE ="grado_afinidad";
@@ -56,7 +56,7 @@ public class DataBaseManager {
 
     //Tabla NivelUser
     public static final String TABLE_LEVEL_USER="NIVELUSUARIO";
-    public static final String CN_ID_LEVELUSER= "_id";
+//    public static final String CN_ID_LEVELUSER= "_id";
     public static final String CN_ID_USER_LEVEL ="id_usuario";
     public static final String CN_ID_LEVEL_LEVEL="id_nivel";
     public static final String CN_RIGTHS = "aciertos";
@@ -88,8 +88,7 @@ public class DataBaseManager {
              CN_LOGGUED+" boolean NOT NULL);";
     //+CN_DATE+" timestamp  DEFAULT CURRENT_TIMESTAMP);";
 
-    public static final String CREATE_TABLE_AFFINITY="create table "+ TABLE_AFFINITY +" ("+CN_ID_AFINITY+
-            " integer primary key autoincrement,"
+    public static final String CREATE_TABLE_AFFINITY="create table "+ TABLE_AFFINITY +" ("
             + CN_ID_USER_AFINITY+ " integer NOT NULL,"
             +CN_ID_WORD_AFINIFTY+" integer NOT NULL,"+
             CN_AFINITY_RATE +"  FLOAT(5,4) NOT NULL,"+
@@ -118,8 +117,7 @@ public class DataBaseManager {
             CN_REGISTER_DATE+" timestamp,"+
             " FOREIGN KEY ("+CN_ID_USER_LOG+") REFERENCES "+TABLE_USER+"("+CN_ID_USER+") ON DELETE CASCADE);";
 
-    public static final String CREATE_TABLE_NIVELUSER="create table "+TABLE_LEVEL_USER+" ("+CN_ID_LEVELUSER+
-            " integer primary key autoincrement,"
+    public static final String CREATE_TABLE_NIVELUSER="create table "+TABLE_LEVEL_USER+" ("
             + CN_ID_USER_LEVEL+ " integer NOT NULL,"
             + CN_ID_LEVEL_LEVEL+ " integer NOT NULL,"
             +CN_RIGTHS+" integet NOT NULL,"+
@@ -281,10 +279,10 @@ public class DataBaseManager {
             String whereClause = CN_TYPE+" = ? AND "+CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
                     " AND "+CN_ID_USER_LEVEL+" = ?";
             String[] whereArgs = new String[] {tipo,String.valueOf(id_user)};
-             cursor= db.query(TABLE_LEVEL,columnas,whereClause,whereArgs,null,null,null,null);
+             cursor= db.query(tablas,columnas,whereClause,whereArgs,null,null,null,null);
         }
         else{
-            String whereClause =CN_TYPE+" = ? AND "+CN_DIFFICULTY+" = ? AND "+CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+            String whereClause =CN_TYPE+" = ? AND "+CN_DIFFICULTY+" = ? AND "+CN_COMPLETED+ " = 0 AND "+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
                     " AND "+CN_ID_USER_LEVEL+" = ?";
             String[] whereArgs = new String[] {tipo,String.valueOf(dificultad),String.valueOf(id_user)};
             cursor= db.query(tablas,columnas,whereClause,whereArgs,null,null,null,null);
@@ -325,12 +323,12 @@ public class DataBaseManager {
                     CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ? AND "+CN_NUMBER_SYLLABLES+ " = ?";
             whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo,String.valueOf(numeroSilabas)};
             */
-            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
-                    CN_TYPE_SYLLABE+" = ? AND "+CN_NUMBER_SYLLABLES+ " = ?";
+            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+CN_ID_WORD_AFINIFTY+" = "+CN_ID_WORD+" AND "+
+                    CN_TYPE_SYLLABE+" = ? AND "+CN_NUMBER_SYLLABLES+" = ?";
             whereArgs = new String[] {String.valueOf(id_user),tipo,String.valueOf(numeroSilabas)};
         }
         else{
-            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+TABLE_AFFINITY+"."+CN_ID_WORD_AFINIFTY+" = "+TABLE_WORD+"."+CN_ID_WORD+" AND "+
+            whereClause = CN_ID_USER_LEVEL+" = ?  AND "+CN_ID_WORD_AFINIFTY+" = "+CN_ID_WORD+" AND "+
                     CN_SOUND+" = ? AND "+CN_TYPE_SYLLABE+" = ?";
             whereArgs = new String[] {String.valueOf(id_user),subnivel,tipo};
         }
@@ -448,16 +446,16 @@ public class DataBaseManager {
     public Cursor resetNivel(String tipo, int dificultad, int id_user) {
         Cursor cursor;
         String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
-        String columnas[] = new String[]{TABLE_LEVEL_USER+"."+CN_ID_LEVEL,CN_STEP};
+        String columnas[] = new String[]{CN_ID_LEVEL_LEVEL,CN_STEP};
 
         if(dificultad==-1){
-            String whereClause = CN_TYPE+" = ? AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+            String whereClause = CN_TYPE+" = ? AND "+CN_ID_LEVEL_LEVEL+" = "+CN_ID_LEVEL+
                     " AND "+CN_ID_USER_LEVEL+" = ?";
             String[] whereArgs = new String[] {tipo,String.valueOf(id_user)};
-            cursor= db.query(TABLE_LEVEL,columnas,whereClause,whereArgs,null,null,null,null);
+            cursor= db.query(tablas,columnas,whereClause,whereArgs,null,null,null,null);
         }
         else {
-            String whereClause = CN_TYPE + " = ? AND " + CN_DIFFICULTY + " = ? AND " + TABLE_LEVEL_USER + "." + CN_ID_LEVEL_LEVEL + " = " + TABLE_LEVEL + "." + CN_ID_LEVEL +
+            String whereClause = CN_TYPE + " = ? AND " + CN_DIFFICULTY + " = ? AND "  + CN_ID_LEVEL_LEVEL + " = "  + CN_ID_LEVEL +
                     " AND " + CN_ID_USER_LEVEL + " = ?";
             String[] whereArgs = new String[]{tipo, String.valueOf(dificultad), String.valueOf(id_user)};
             cursor = db.query(tablas, columnas, whereClause, whereArgs, null, null, null, null);
@@ -471,7 +469,7 @@ public class DataBaseManager {
                         valores.put(CN_RIGTHS,0);
                         valores.put(CN_WRONGS,0);
                       String  whereClause2 =CN_ID_USER_LEVEL+" = ? AND "+CN_ID_LEVEL_LEVEL+ " =?";
-                      String[]   whereArgs2 = new String[]{String.valueOf(id_user),String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL))) };
+                      String[]   whereArgs2 = new String[]{String.valueOf(id_user),String.valueOf(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_LEVEL_LEVEL))) };
                         db.update(TABLE_LEVEL_USER, valores,whereClause2, whereArgs2);
                     }while(cursor.moveToNext());
                 }
@@ -519,7 +517,7 @@ public class DataBaseManager {
 
          //   String whereClause = CN_COMPLETED+ " = 0 AND "+TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
            //         " AND "+CN_ID_USER_LEVEL+" = ?";
-        String whereClause = TABLE_LEVEL_USER+"."+CN_ID_LEVEL_LEVEL+" = "+TABLE_LEVEL+"."+CN_ID_LEVEL+
+        String whereClause = CN_ID_LEVEL_LEVEL+" = "+CN_ID_LEVEL+
                         " AND "+CN_ID_USER_LEVEL+" = ?";
             String[] whereArgs = new String[] {String.valueOf(id_user)};
         String orderBy= CN_TIME_START +" DESC";
