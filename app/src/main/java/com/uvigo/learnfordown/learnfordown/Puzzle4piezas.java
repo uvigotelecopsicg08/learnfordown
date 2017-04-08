@@ -158,7 +158,7 @@ public class Puzzle4piezas extends AppCompatActivity {
         sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
- //       flujofallo= sp.load(this,R.raw.error,3);
+        //flujofallo= sp.load(this,R.raw.error,3);
         flujovictoria= sp.load(this,R.raw.success,1);
 
         verticalList=new ArrayList<>();

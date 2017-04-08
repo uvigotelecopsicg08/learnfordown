@@ -140,9 +140,6 @@ public class edit_screen extends AppCompatActivity {
                 alertDialog.show();
             }
         }
-
-
-
     }
 
     public Action getIndexApiAction() {

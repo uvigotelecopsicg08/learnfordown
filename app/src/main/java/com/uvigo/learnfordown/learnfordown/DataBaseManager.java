@@ -642,9 +642,9 @@ public class DataBaseManager {
             }
         }
     }
-    public void update_photo(int id_user, int id_photo){
+    public void update_photo(int id_user, int id_avatar){
         ContentValues valores = new ContentValues();
-        valores.put(CN_AVATAR,id_photo);
+        valores.put(CN_PHOTO,id_avatar);
         update_values(valores,id_user);
 
     }
@@ -665,4 +665,6 @@ public class DataBaseManager {
         String[]   whereArgs = new String[]{String.valueOf(id_user)};
         db.update(TABLE_USER, valores,whereClause, whereArgs);
     }
+
+
 }
