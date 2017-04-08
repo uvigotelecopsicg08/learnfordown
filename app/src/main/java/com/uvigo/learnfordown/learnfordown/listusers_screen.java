@@ -30,8 +30,8 @@ public class listusers_screen extends AppCompatActivity {
     private Cursor cursor;
     private ListView lista;
     private TodoCursorAdapter adapter;
-    private int id_user,id_photo,age;
-    String name;
+    private int id_user,edad,avatar;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,10 +87,13 @@ public class listusers_screen extends AppCompatActivity {
     }
 
     public void edit(View v){
+        Intent intent1 = new Intent(this, edit_screen.class);
+        startActivity(intent1);
         id_user=  recorreCursor((int) v.getTag(), cursor);
-        update_photo( id_user, id_photo);
-        update_age( id_user, age);
-        update_name( id_user,  name);
+        db.update_name(id_user,nombre);
+        db.update_age(id_user,edad);
+        db.update_photo(id_user,avatar);
+        refreshLisView();
 
     }
 
@@ -166,26 +169,5 @@ public class listusers_screen extends AppCompatActivity {
             dialog.show();
 
     }
-    public void update_photo(int id_user, int id_avatar){
-        ContentValues valores = new ContentValues();
-        valores.put(CN_PHOTO,id_avatar);
-        update_values(valores,id_user);
 
-    }
-    public void update_age(int id_user, int age){
-        ContentValues valores = new ContentValues();
-        valores.put(CN_AGE_USER,age);
-        update_values(valores,id_user);
-
-    }
-    public void update_name(int id_user, String name) {
-        ContentValues valores = new ContentValues();
-        valores.put(CN_NAME_USER, name);
-        update_values(valores, id_user);
-    }
-    private void update_values(ContentValues valores,int id_user){
-        String  whereClause =CN_ID_USER+" = ?";
-        String[]   whereArgs = new String[]{String.valueOf(id_user)};
-        db.update(TABLE_USER, valores,whereClause, whereArgs);
-    }
 }
