@@ -28,6 +28,8 @@ public class avatarScreen extends AppCompatActivity {
         Intent intent1 = new Intent(avatarScreen.this, home_screen.class);
         startActivity(intent1);
     }
+
+
     public void pulsar1(View v){
     lanzaIntent(R.drawable.avatara);
 
