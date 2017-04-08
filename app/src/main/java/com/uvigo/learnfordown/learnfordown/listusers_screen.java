@@ -28,7 +28,7 @@ public class listusers_screen extends AppCompatActivity {
         db = new DataBaseManager(this);
         cursor = db.getUser();
         if(cursor.getCount()==0){
-            System.out.println("El cursor está vacio");
+            System.out.println("El cursor está vacío");
             /*
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.activity_scores_screen);
             setContentView(R.layout.empty_scores);
@@ -75,6 +75,11 @@ public class listusers_screen extends AppCompatActivity {
     }
 
     public void edit(View v){
+        id_user=  recorreCursor((int) v.getTag(), cursor);
+        lanzaAlerta();
+        cambiaUserLoging(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_USER)));
+        Intent intent1 = new Intent(this, edit_screen.class);
+        startActivity(intent1);
         System.out.println("Si lees esto vas bien  "+v.getTag());
     }
 

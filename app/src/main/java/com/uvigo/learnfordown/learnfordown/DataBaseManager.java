@@ -625,6 +625,7 @@ public class DataBaseManager {
         String[]   whereArgs = new String[]{String.valueOf(1)};
         db.update(TABLE_USER, valores,whereClause, whereArgs);
     }
+
     public void changeLogint(int id_user){
         singOut();
         ContentValues valores = new ContentValues();

@@ -157,14 +157,14 @@
         <activity
             android:name=".endScreen"
             android:screenOrientation="landscape" />
-        <activity android:name=".avatarScreen"
-            android:screenOrientation="landscape"/>
-
-
+        <activity
+            android:name=".avatarScreen"
+            android:screenOrientation="landscape" />
         <activity
             android:name=".listusers_screen"
             android:label="@string/title_activity_listusers_screen"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".edit_screen"></activity>
     </application>
 
 </manifest>
