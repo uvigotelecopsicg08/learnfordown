@@ -1,6 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
@@ -14,12 +15,23 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import static android.R.attr.name;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.CN_AGE_USER;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.CN_COMPLETED;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.CN_ID_USER;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.CN_NAME_USER;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.CN_PHOTO;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.TABLE_LEVEL_USER;
+import static com.uvigo.learnfordown.learnfordown.DataBaseManager.TABLE_USER;
+
 public class listusers_screen extends AppCompatActivity {
     private DataBaseManager db;
     private Cursor cursor;
     private ListView lista;
     private TodoCursorAdapter adapter;
-    private int id_user;
+    private int id_user,edad,avatar;
+    String nombre;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +40,7 @@ public class listusers_screen extends AppCompatActivity {
         db = new DataBaseManager(this);
         cursor = db.getUser();
         if(cursor.getCount()==0){
-            System.out.println("El cursor está vacio");
+            System.out.println("El cursor está vacío");
             /*
             LinearLayout linearLayout = (LinearLayout) findViewById(R.id.activity_scores_screen);
             setContentView(R.layout.empty_scores);
@@ -49,8 +61,8 @@ public class listusers_screen extends AppCompatActivity {
 
                     System.out.println("position "+position+" id: "+id);
                     Cursor cursor= (Cursor)   lista.getItemAtPosition(position);
-                    System.out.println(cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_NAME_USER)));
-                    cambiaUserLoging(cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_USER)));
+                    System.out.println(cursor.getString(cursor.getColumnIndexOrThrow(CN_NAME_USER)));
+                    cambiaUserLoging(cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER)));
 
                 }
             });
@@ -75,7 +87,16 @@ public class listusers_screen extends AppCompatActivity {
     }
 
     public void edit(View v){
-        System.out.println("Si lees esto vas bien  "+v.getTag());
+        Intent intent1 = new Intent(this, edit_screen.class);
+        id_user=  recorreCursor((int) v.getTag(), cursor);
+        intent1.putExtra("id_user",id_user);
+        startActivity(intent1);
+      /*
+        db.update_name(id_user,nombre);
+        db.update_age(id_user,edad);
+        db.update_photo(id_user,avatar);
+        refreshLisView();
+*/
     }
 
     public void delete(View v){
@@ -101,10 +122,10 @@ public class listusers_screen extends AppCompatActivity {
 
                 }
             }
-            System.out.println(cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_NAME_USER)));
+            System.out.println(cursor.getString(cursor.getColumnIndexOrThrow(CN_NAME_USER)));
         }
 
-        return  cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_USER));
+        return  cursor.getInt(cursor.getColumnIndexOrThrow(CN_ID_USER));
 
 
 
@@ -120,7 +141,7 @@ public class listusers_screen extends AppCompatActivity {
 
 
     public void lanzaAlerta(){
-        String nombre = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_NAME_USER));
+        String nombre = cursor.getString(cursor.getColumnIndexOrThrow(CN_NAME_USER));
            String mensajeAlerta= "¿Quieres borrar a el  usuario "+ nombre+ " ?";
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -150,4 +171,5 @@ public class listusers_screen extends AppCompatActivity {
             dialog.show();
 
     }
+
 }

@@ -14,7 +14,7 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
+        android:background="@color/colorGame"
         android:weightSum="1">
 
         <ImageButton
@@ -22,13 +22,13 @@
             android:layout_height="115dp"
             android:id="@+id/button3"
             android:src="@mipmap/icon_backarrow"
-            android:background="@color/colorPrimary"
+            android:background="@color/colorGame"
             android:onClick="BackArrow"
             android:scaleType="fitCenter"
             android:layout_weight="0.03" />
 
         <TextView
-            android:text="REGÍSTRATE"
+            android:text="MODIFICA TUS DATOS"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
@@ -49,7 +49,7 @@
             android:onClick="goHome"
             android:layout_weight="0.1"
             android:scaleType="fitCenter"
-            android:background="@color/colorPrimary" />
+            android:background="@color/colorGame" />
 
 
     </LinearLayout>
@@ -66,31 +66,26 @@
         <TextView
             android:text="NOMBRE"
             android:textStyle="bold"
-            android:layout_width="match_parent"
+            android:layout_width="250dp"
             android:layout_height="74dp"
             android:id="@+id/button6"
             android:background="@android:color/white"
             android:fontFamily="sans-serif-medium"
             android:textSize="45sp"
             android:onClick="textNombreUp" />
-    </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_weight="0.2"
-        android:layout_height="wrap_content"
-        android:weightSum="1">
         <EditText
-            android:id="@+id/editTextNombre"
-            android:layout_width="match_parent"
+            android:id="@+id/editTextn"
+            android:layout_width="450dp"
+            android:layout_height="74dp"
             android:inputType="textCapCharacters"
             android:layout_gravity= "center"
             android:textStyle="bold"
             android:textSize="35dp"
-            android:textColor="#337ee1"
-            android:layout_height="78dp"> </EditText>
+            android:textColor="#337ee1"> </EditText>
     </LinearLayout>
+
+
 
     <LinearLayout
         android:orientation="horizontal"
@@ -102,16 +97,61 @@
         <TextView
             android:text="EDAD"
             android:textStyle="bold"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="74dp"
             android:id="@+id/button8"
             android:background="@android:color/white"
             android:onClick="textEdadUp"
             android:textSize="45sp"
             android:layout_weight="0.15" />
 
+        <EditText
+            android:id="@+id/editTexte"
+            android:layout_width="450dp"
+            android:inputType="textCapCharacters"
+            android:layout_gravity= "center"
+            android:textStyle="bold"
+            android:textSize="35dp"
+            android:textColor="#337ee1"
+            android:layout_height="74dp"></EditText>
+
     </LinearLayout>
     <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.25"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+        <TextView
+            android:text="¡ELIGE QUIÉN QUIERES SER!"
+            android:textStyle="bold"
+            android:layout_width="match_parent"
+            android:layout_height="74dp"
+            android:gravity="center"
+            android:id="@+id/button1"
+            android:background="@android:color/white"
+            android:onClick="textEdadUp"
+            android:textSize="45sp"
+            android:layout_weight="0.15" />
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_weight="0.25"
+        android:layout_height="wrap_content"
+        android:weightSum="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/horizontal_recycler_view"
+            android:orientation="horizontal"
+            android:background="#fff"
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </LinearLayout>
+
+    <!--LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_weight="0.05"
@@ -119,17 +159,80 @@
         android:weightSum="1">
 
 
-        <EditText
-            android:id="@+id/editTextEdad"
-            android:layout_width="match_parent"
-            android:inputType="textCapCharacters"
-            android:layout_gravity= "center"
-            android:textStyle="bold"
-            android:textSize="35dp"
-            android:textColor="#337ee1"
-            android:layout_height="wrap_content"></EditText>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1"
+            app:srcCompat="@drawable/avatara"
+            android:id="@+id/image1"
+            android:onClick="pulsar1"
+            android:gravity="center"
+            android:background="@color/common_google_signin_btn_text_dark_pressed"
+            android:textAllCaps="false" />
 
-    </LinearLayout>
+
+
+
+
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.045"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image2"
+                android:onClick="pulsar2"
+                app:srcCompat="@drawable/policia"
+                android:background="@color/common_google_signin_btn_text_dark_pressed"
+                android:textSize="36sp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.045"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_weight="0.3"
+            android:layout_height="match_parent"
+            android:weightSum="1">
+
+            <ImageButton
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/image3"
+                android:onClick="pulsar3"
+                app:srcCompat="@drawable/abeja"
+                android:background="@color/common_google_signin_btn_text_dark_pressed" />
+
+        </LinearLayout>-->
+
+
+
+
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -153,22 +256,16 @@
             </LinearLayout>
 
             <Button
-                android:text="Siguiente"
+                android:text="ACEPTAR"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button7"
                 android:onClick="registrar"
                 android:layout_weight="0.09"
+                android:background="@color/VerdeClarito"
                 android:textSize="34sp" />
 
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="wrap_content"
-                android:layout_weight="0.55"
-                android:layout_height="match_parent"
-                android:weightSum="1">
 
-            </LinearLayout>
 
 
         </LinearLayout>
@@ -176,8 +273,3 @@
     </LinearLayout>
 
 </LinearLayout>
-
-
-
-
-
