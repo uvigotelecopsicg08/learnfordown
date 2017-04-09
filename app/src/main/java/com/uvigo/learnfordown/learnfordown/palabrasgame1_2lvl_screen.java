@@ -3,6 +3,7 @@ package com.uvigo.learnfordown.learnfordown;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -114,185 +115,157 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         startActivity(intent1);
     }
 
-    public void pulsar (View v){
-        Log.i("pulsar()", v.getId() + " ultimoPulsado:" +  ultimoPulsado);
-        if (findViewById(v.getId()) instanceof Button) {
-            Button b2 = (Button) findViewById(v.getId());
-            b2.setBackgroundColor(getResources().getColor(R.color.Gris));
-        }
-   //     Button boton=(Button)v;
+    public void pulsar (View v) {
+        Log.i("pulsar()", v.getId() + " ultimoPulsado:" + ultimoPulsado);
 
 
+        if (ultimoPulsado != null ) {
+            if (findViewById(v.getId()) instanceof Button && findViewById(ultimoPulsado) instanceof Button) {
+                Button b2 = (Button) findViewById(ultimoPulsado);
+                b2.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                Button b3 = (Button) findViewById(v.getId());
+                b3.setBackgroundColor(getResources().getColor(R.color.Gris));
+            } else {
+                if (findViewById(v.getId()) instanceof ImageButton && findViewById(ultimoPulsado) instanceof ImageButton) {
+                    ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
+                    b2.clearColorFilter();
+                    ImageButton b3 = (ImageButton) findViewById(v.getId());
+                    b3.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
+                } else {
 
-     /*   Animation anim = new ScaleAnimation(
-                1f, 1f, // Start and end values for the X axis scaling
-                0f, 1.5f, // Start and end values for the Y axis scaling
-                Animation.RELATIVE_TO_SELF, 0f, // Pivot point of X scaling
-                Animation.RELATIVE_TO_SELF, 1f); // Pivot point of Y scaling
-        anim.setFillAfter(true); // Needed to keep the result of the animation
-        anim.setDuration(500);
-        v.startAnimation(anim);*/
+                    if (v.getId() != (ultimoPulsado)) {
 
-        if(ultimoPulsado != null) {
+                        if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
+                            if (findViewById(v.getId()) instanceof Button) {
+                                Button b1 = (Button) findViewById(v.getId());
+                                b1.setEnabled(false);
+                                ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
+                                b2.clearColorFilter();
+                                b2.setEnabled(false);
+                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
 
-            if (v.getId()!=(ultimoPulsado)){
+                                switch (posicionImageButton(b1)) {
+                                    case 1:
+                                        respuesta1.setText(b1.getText());
+                                        respuesta1.setVisibility(View.VISIBLE);
 
-                if (map.get(v.getId()).equals(map.get(ultimoPulsado))) {
-                    // anim.finalize();
-                    if (findViewById(v.getId()) instanceof Button) {
-                        Button b1 = (Button) findViewById(v.getId());
-                        b1.setEnabled(false);
-                        ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
-                        b2.setEnabled(false);
-
-
-                        switch( posicionImageButton(b1)){
-                            case 1:
-                                respuesta1.setText(b1.getText());
-                                respuesta1.setVisibility(View.VISIBLE);
-
-                                break;
-                            case 2:
-                                respuesta2.setText(b1.getText());
-                                respuesta2.setVisibility(View.VISIBLE);
-                                break;
-                            case 3:
-                                respuesta3.setText(b1.getText());
-                                respuesta3.setVisibility(View.VISIBLE);
-                                break;
-
-                        }
-
-                    } else {
-
-                        Button b1 = (Button) findViewById(ultimoPulsado);
-                        switch( posicionImageButton(b1)){
-                            case 1:
-                                respuesta1.setVisibility(View.VISIBLE);
-                                respuesta1.setText(b1.getText());
-                                break;
-                            case 2:
-                                respuesta2.setVisibility(View.VISIBLE);
-                                respuesta2.setText(b1.getText());
-
-                                break;
-                            case 3:
-                                respuesta3.setVisibility(View.VISIBLE);
-                                respuesta3.setText(b1.getText());
-
-                                break;
-
-                        }
-                        b1.setEnabled(false);
-                        ImageButton b2 = (ImageButton) findViewById(v.getId());
-                        b2.setEnabled(false);
-                    }
-                    ultimoPulsado=0;
-                    es.acierto();
-                    aciertos++;
-                    MediaPlayer aciertoMedia = es.getAciertoMedia();
-                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                        @Override
-                        public void onCompletion(MediaPlayer mp) {
-                            es.pulsar(true);
-
-
-                            if (aciertos == 3) {
-
-                                aciertos = 0;
-                                if (!gn.isnivelCompletado()) {
-                                    i += 3;
-                                    cambiarFoto();
-                                    cambiado = true;
-                                } else {
-                                    System.out.print("el nivel esta finalizado");
-                                    avanzaNivel();
+                                        break;
+                                    case 2:
+                                        respuesta2.setText(b1.getText());
+                                        respuesta2.setVisibility(View.VISIBLE);
+                                        break;
+                                    case 3:
+                                        respuesta3.setText(b1.getText());
+                                        respuesta3.setVisibility(View.VISIBLE);
+                                        break;
 
                                 }
+
+                            } else {
+
+                                Button b1 = (Button) findViewById(ultimoPulsado);
+                                switch (posicionImageButton(b1)) {
+                                    case 1:
+                                        respuesta1.setVisibility(View.VISIBLE);
+                                        respuesta1.setText(b1.getText());
+                                        break;
+                                    case 2:
+                                        respuesta2.setVisibility(View.VISIBLE);
+                                        respuesta2.setText(b1.getText());
+
+                                        break;
+                                    case 3:
+                                        respuesta3.setVisibility(View.VISIBLE);
+                                        respuesta3.setText(b1.getText());
+
+                                        break;
+
+                                }
+                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
+                                b1.setEnabled(false);
+                                ImageButton b2 = (ImageButton) findViewById(v.getId());
+                                b2.clearColorFilter();
+                                b2.setEnabled(false);
                             }
+                            cambiado = true;
+                            es.acierto();
+                            aciertos++;
+                            MediaPlayer aciertoMedia = es.getAciertoMedia();
+                            aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                                @Override
+                                public void onCompletion(MediaPlayer mp) {
+                                    es.pulsar(true);
+
+
+                                    if (aciertos == 3) {
+
+                                        aciertos = 0;
+                                        if (!gn.isnivelCompletado()) {
+                                            i += 3;
+                                            cambiarFoto();
+                                        } else {
+                                            System.out.print("el nivel esta finalizado");
+                                            avanzaNivel();
+
+                                        }
+                                    }
+
+                                }
+
+                            });
+                        } else {
+                            if (findViewById(v.getId()) instanceof Button) {
+                                Button b1 = (Button) findViewById(v.getId());
+                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+
+                            } else {
+
+                                Button b1 = (Button) findViewById(ultimoPulsado);
+                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                            }
+                            if (findViewById(v.getId()) instanceof ImageButton) {
+                                ImageButton b1 = (ImageButton) findViewById(v.getId());
+                                b1.clearColorFilter();
+
+                            } else {
+
+                                ImageButton b1 = (ImageButton) findViewById(ultimoPulsado);
+                                b1.clearColorFilter();
+                            }
+                            cambiado = true;
+                            es.fallo();
 
                         }
-
-                    });
-                } else {
-                    if(ultimoPulsado==0)
-                        es.fallo();
-
+                    }
                 }
             }
-        }
-        if(!cambiado) {
-            ultimoPulsado = v.getId();
-            System.out.println("has pulsado: "+map.get(ultimoPulsado));
-        }
-
-        else{
-            ultimoPulsado=0;
+        }else{
             cambiado=false;
-        }
+                if (findViewById(v.getId()) instanceof Button) {
+                    Button b2 = (Button) findViewById(v.getId());
+                    b2.setBackgroundColor(getResources().getColor(R.color.Gris));
+                } else {
+                    if (findViewById(v.getId()) instanceof ImageButton) {
+                        ImageButton b2 = (ImageButton) findViewById(v.getId());
+                        b2.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
+                    }
 
-    }
+                }
 
-    public void animacionButton(Button b){
-        TranslateAnimation animation=null;
-        int posicionImageButton = posicionImageButton(b);
-        int posicion =posicionButton(b);
-        int animacionposicion = posicion+posicionImageButton;
-        /*switch (animacionposicion) {
-            case 11:
-                //Posicion 1 del boton y posicion una de la imagen.... asi todas
-                animation = new TranslateAnimation(0.0f, -50.0f,
-                        0.0f, 0.0f);
-                break;
-            case 12:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-
-                break;
-            case 13:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 21:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 22:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 23:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 31:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 32:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
-            case 33:
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
-                break;
+            }
+            if (!cambiado) {
+                ultimoPulsado = v.getId();
+                System.out.println("has pulsado: " + map.get(ultimoPulsado));
+            } else {
+                ultimoPulsado = null;
+                cambiado = false;
+            }
 
         }
-        */
-        animation = new TranslateAnimation(0.0f, -500.0f,
-                0.0f, 0.0f);
-        animation.setDuration(500);
-        b.bringToFront();
-        ((View)b.getParent()).requestLayout();
-        ((View)b.getParent()).invalidate();
-   //     animation.setFillAfter(true);
-        animation.setFillAfter(true);
-        animation.setFillEnabled(true);
-        animation.setFillBefore(false);
-        b.startAnimation(animation);
-    }
+
+
+
     public void resetBotones(){
         respuesta1.setVisibility(View.INVISIBLE);
         respuesta2.setVisibility(View.INVISIBLE);
@@ -301,42 +274,17 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         button2.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
         button3.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
     }
-    public int posicionImageButton(Button b){
-        if(map.get(b.getId()).equals(map.get(R.id.imageButton1))){
+    public int posicionImageButton(Button b) {
+        if (map.get(b.getId()).equals(map.get(R.id.imageButton1))) {
             return 1;
-        }
-        else{
-            if(map.get(b.getId()).equals(map.get(R.id.imageButton2))){
+        } else {
+            if (map.get(b.getId()).equals(map.get(R.id.imageButton2))) {
                 return 2;
-            }
-            else{
+            } else {
                 return 3;
             }
         }
 
-    }
-    public int posicionButton(Button b){
-        int posicion=0;
-
-
-        switch (b.getId()){
-            case R.id.button3:
-            /*    LinearLayout layout3 =(LinearLayout)findViewById(R.id.LinearLayoutBoton3);
-                layout3.bringToFront();*/
-                posicion= 10;
-                break;
-            case R.id.button1:
-             /*   LinearLayout layout1 =(LinearLayout)findViewById(R.id.LinearLayoutBoton1);
-                layout1.bringToFront();*/
-                posicion= 20;
-                break;
-            case R.id.button2:
-           /*     LinearLayout layout2 =(LinearLayout)findViewById(R.id.LinearLayoutBoton2);
-                layout2.bringToFront();*/
-                posicion= 30;
-            break;
-        }
-return posicion;
     }
     private void cambiarFoto() {
         try {
@@ -447,7 +395,7 @@ return posicion;
         }
     }
     public void avanzaNivel(){
-
+resetBotones();
         gn.avanzaNivel();
         cambiado=true;
         if (!(gn.getTipo().equals(tipoNivel))) {

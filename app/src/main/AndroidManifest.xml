@@ -35,7 +35,7 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
+        </activity>-->
 
 
 
@@ -169,9 +169,7 @@
             android:name=".listusers_screen"
             android:label="@string/title_activity_listusers_screen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
-        <activity
-            android:name=".endScreen"
-            android:screenOrientation="landscape" />
+
         <activity android:name=".Puzzle9piezas"
             android:screenOrientation="landscape">
         </activity>

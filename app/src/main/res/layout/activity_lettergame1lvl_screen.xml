@@ -179,6 +179,8 @@
             android:orientation="horizontal"
             android:background="#fff"
             android:gravity="center"
+            android:scrollbars="horizontal"
+            android:scrollbarStyle="outsideInset"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
