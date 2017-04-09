@@ -107,7 +107,11 @@ public class writegame_level4_screen extends AppCompatActivity {
             }
 
 
-            }else  es.fallo();
+            }else {
+            es.fallo();
+            Texto.setText("");
+
+        }
 
 
     }

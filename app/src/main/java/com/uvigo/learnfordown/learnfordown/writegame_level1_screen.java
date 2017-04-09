@@ -30,6 +30,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeSet;
 
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
@@ -45,23 +46,24 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public static final float VALIDATION_THRESHOLD_MULTIPLIER = 1.8f;
 
+    private static ImageButton Borrar; // Para GifView
 
-
-    ImageButton Borrar;
+    ImageButton Help;
+    GifView gifImageView;
     LinearLayout Lienzo;
     ImageView plantilla,foto;
     CanvasView canvas;
     GestionNiveles  gn;
     String tipoNivel = "escribirletras";
     TextView Titulo;
-
-
+    Context context;
     ArrayList<FotoPalabra> fp;
-
     Estrellas  es;
-
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
+    public writegame_level1_screen() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {        // Inicializa la actividad
@@ -72,6 +74,9 @@ public class writegame_level1_screen extends AppCompatActivity {
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
+        Help = (ImageButton) findViewById(R.id.button4);
+        gifImageView = (GifView) findViewById(R.id.GifView);
+
 
         Titulo = (TextView) findViewById(R.id.textView2);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
@@ -83,11 +88,11 @@ public class writegame_level1_screen extends AppCompatActivity {
         Lienzo.addView(canvas);
 
 
-        Context context = this.getApplicationContext();
+        context = this.getApplicationContext();
 
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
-        fp=gn.getFotos();
+        fp = gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
         es.setRatingbar1(R.id.ratingBar);
 
@@ -109,12 +114,16 @@ public class writegame_level1_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
+        gifImageView = (GifView) findViewById(R.id.GifView);
 
         int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
 
     }
+
+
+
 
 
     public void validateStrokes(View v) {
@@ -260,6 +269,25 @@ public class writegame_level1_screen extends AppCompatActivity {
         Intent intent1 = new Intent(writegame_level1_screen.this, home_screen.class);
         startActivity(intent1);
         //Toast.makeText(this, "MENÚ PRINCIPAL", Toast.LENGTH_SHORT).show();
+    }
+
+    public ImageButton getBorrar() {
+        return Borrar;
+    }
+
+    public void showHelp (View v){
+
+        // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
+        setContentView(R.layout.activity_writegame_level1_screen);
+        es.setRatingbar1(R.id.ratingBar);
+        foto = (ImageView) findViewById(R.id.imageView2);
+        gifImageView = (GifView) findViewById(R.id.GifView);
+
+        int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
+        foto.setImageResource(fp.get(0).getFoto());
+
+        gifImageView.setGifImageResource(R.drawable.a_gif);
+
     }
 
 
