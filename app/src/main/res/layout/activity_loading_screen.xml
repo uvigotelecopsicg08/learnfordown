@@ -7,7 +7,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:layout_height="fill_parent"
-    android:background="@color/Verde"
+    android:background="@color/NaranjaClarito"
     android:weightSum="1">
 
     <ImageView
@@ -50,7 +50,7 @@
         android:layout_width="71dp"
         android:layout_height="156dp"
         android:indeterminate="true"
-        android:indeterminateTint="@color/Rojo"
+        android:indeterminateTint="@color/Verde"
         style="?android:attr/progressBarStyleInverse">
     </ProgressBar>
 
