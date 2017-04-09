@@ -1,5 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,8 +48,13 @@ public class Puzzle4piezas extends AppCompatActivity {
     private PopupWindow popupWindow;
     int acierto;
     int posicion;
-
-    int id_imagen = R.drawable.bomboneschocolate;
+    boolean clickPieza = false;
+    boolean clickPuzzle = false;
+    boolean ganaste = false;
+    boolean huboacierto = false;
+    boolean aciertoPieza = false;
+    boolean aciertoPuzzle = false;
+    int id_imagen;
     ArrayList<Bitmap> SegundaColumna;
     ArrayList<Bitmap> TerceraColumna;
     int LastClick;
@@ -78,7 +85,10 @@ public class Puzzle4piezas extends AppCompatActivity {
     RelativeLayout relativeLayout;
 
     Button button1,button2,button3,button4;
-
+    public SoundPool sp;
+    public int flujoacierto=0;
+    public int flujofallo=0;
+    public int flujovictoria=0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
