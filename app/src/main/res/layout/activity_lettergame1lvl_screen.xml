@@ -42,7 +42,6 @@
             android:text="¡COMPLETA LA PALABRA!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/textView2"
             android:layout_weight="0.87"
             android:gravity="center"
             android:textSize="35sp"

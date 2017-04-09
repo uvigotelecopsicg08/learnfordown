@@ -123,9 +123,6 @@ public class writegame_level1_screen extends AppCompatActivity {
     }
 
 
-
-
-
     public void validateStrokes(View v) {
 
         String l;

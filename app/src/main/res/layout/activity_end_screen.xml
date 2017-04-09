@@ -13,17 +13,16 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.41"
+        android:layout_height="116dp"
         android:background="@color/colorPrimary"
         android:weightSum="1">
 
         <TextView
-            android:text="HAS COMPLETADO TODOS LOS NIVELES"
+            android:text="¡HAS TERMINADO EL JUEGO!"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="0.8"
+            android:layout_weight="0.92"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -33,27 +32,27 @@
             android:textColor="@android:color/white"/>
 
         <ImageButton
-            android:layout_width="50dp"
-            android:layout_height="130dp"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
             android:id="@+id/home"
             android:scaleType="fitCenter"
             app:srcCompat="?android:attr/activatedBackgroundIndicator"
             android:onClick="home"
             android:background="@mipmap/ic_home"
-            android:layout_weight="0.2" />
+            android:layout_weight="0.04" />
 
 
     </LinearLayout>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="0.41"
+        android:layout_height="131dp"
         android:background="@color/colorGame"
         android:weightSum="1">
 
         <TextView
-            android:text="¡ENHORABUENA!"
+            android:text="¡ENHORABUENA! LO HAS HECHO MUY BIEN"
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:id="@+id/textView"
@@ -73,8 +72,7 @@
 
     <RelativeLayout
         android:orientation="horizontal"
-        android:layout_weight="0.18"
-        android:layout_width="wrap_content"
+        android:layout_width="1069dp"
         android:layout_height="match_parent"
         android:foregroundGravity="fill_horizontal"
         android:background="@drawable/fin"
