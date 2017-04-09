@@ -137,7 +137,6 @@
         </activity>
         <activity
             android:name=".writegame_level1_screen"
-            android:hardwareAccelerated="false"
             android:screenOrientation="landscape" />
         <activity
             android:name=".writegame_level3_screen"
@@ -151,6 +150,10 @@
         <activity
             android:name=".ParejasFacil"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".ParejasDificil"
+            android:screenOrientation="landscape" />
+        <activity
         <!--<activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
@@ -164,6 +167,11 @@
         <activity
             android:name=".listusers_screen"
             android:label="@string/title_activity_listusers_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <activity android:name=".Puzzle9piezas"
+            android:screenOrientation="landscape">
+        </activity>
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".edit_screen"></activity>
     </application>

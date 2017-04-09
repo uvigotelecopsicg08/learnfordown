@@ -19,15 +19,22 @@
                 android:id="@+id/puzzle"
                 android:enabled="true"
                 android:title="Puzzle" />
-
+            <item
+                android:id="@+id/puzzledificil"
+                android:enabled="true"
+                android:title="Puzzle dificil" />
             <item
                 android:id="@+id/plataformas"
-                android:enabled="false"
+                android:enabled="true"
                 android:title="Plataformas" />
             <item
                 android:id="@+id/parejas"
                 android:enabled="true"
                 android:title="Parejas" />
+            <item
+                android:id="@+id/parejasdificil"
+                android:enabled="true"
+                android:title="Parejas dificil" />
         </menu>
     </item>
 

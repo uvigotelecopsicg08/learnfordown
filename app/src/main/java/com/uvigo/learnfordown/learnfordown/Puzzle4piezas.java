@@ -48,26 +48,13 @@ public class Puzzle4piezas extends AppCompatActivity {
     private PopupWindow popupWindow;
     int acierto;
     int posicion;
-
     boolean clickPieza = false;
     boolean clickPuzzle = false;
     boolean ganaste = false;
-
+    boolean huboacierto = false;
     boolean aciertoPieza = false;
     boolean aciertoPuzzle = false;
-
-    //boolean repitePieza = false;
-    //boolean repitePuzzle = false;
-    //int contRepitePieza = 0;
-    //int contRepitePuzzle = 0;
-
-    //int contPieza = 0;
-    //int contPuzzle = 0;
-    //boolean inicioPieza = false;
-    //boolean inicioPuzzle = false;
-    boolean huboacierto = false;
-
-    int id_imagen = R.drawable.bomboneschocolate;
+    int id_imagen;
     ArrayList<Bitmap> SegundaColumna;
     ArrayList<Bitmap> TerceraColumna;
     int LastClick;
@@ -98,12 +85,10 @@ public class Puzzle4piezas extends AppCompatActivity {
     RelativeLayout relativeLayout;
 
     Button button1,button2,button3,button4;
-
     public SoundPool sp;
     public int flujoacierto=0;
     public int flujofallo=0;
     public int flujovictoria=0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -114,6 +99,10 @@ public class Puzzle4piezas extends AppCompatActivity {
         imagen3 = (ImageView)findViewById(R.id.imageView5);
         imagen4 = (ImageView)findViewById(R.id.imageView6);
         texto = (TextView) findViewById(R.id.textView2);
+        int rand =(int) (Math.random() * 9);
+        id_imagen = this.getResources().getIdentifier("puzzle"+rand, "drawable", this.getPackageName());
+
+
         Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         texto.setTypeface(face);
 
@@ -234,7 +223,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","si");
-        i.putExtra("imagen",R.drawable.bomboneschocolate);
+        i.putExtra("imagen",id_imagen);
         startActivity(i);
     }
     public Bitmap CreatePiece(int id_parte){
@@ -368,6 +357,7 @@ public class Puzzle4piezas extends AppCompatActivity {
                     imagen4.setImageBitmap(Imagenes.get(4));
                     imagen4.setVisibility(View.VISIBLE);
                     break;
+
 
             }
             System.out.println("ACIERTO!!");
@@ -520,7 +510,7 @@ public class Puzzle4piezas extends AppCompatActivity {
 */
         Intent i =new Intent(Puzzle4piezas.this,poppuzzle.class);
         i.putExtra("primera","no");
-        i.putExtra("imagen",R.drawable.bomboneschocolate);
+        i.putExtra("imagen",id_imagen);
         startActivity(i);
     }
     public static Bitmap scaleBitmap(Bitmap bitmap, int wantedWidth, int wantedHeight) {

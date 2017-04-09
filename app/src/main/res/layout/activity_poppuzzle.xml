@@ -10,6 +10,7 @@
 
     <LinearLayout
         android:orientation="vertical"
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/Morado"
@@ -43,7 +44,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:srcCompat="@drawable/tartamanzana"
+            app:srcCompat="@drawable/puzzle0"
             android:id="@+id/imageView2"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"

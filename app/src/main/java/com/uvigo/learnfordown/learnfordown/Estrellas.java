@@ -1,10 +1,16 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RatingBar;
+
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 
 import java.util.HashMap;
 import java.util.TreeSet;
@@ -21,6 +27,7 @@ public class Estrellas {
     GestionNiveles gn;
     AppCompatActivity app;
     SoundPool soundPool;
+    Intent minijuego;
     private MediaPlayer aciertoMedia,fallo;
 
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -38,11 +45,11 @@ public class Estrellas {
        ratingbar1 = (RatingBar) app.findViewById(R.id.ratingBar);
        thresholds.clear();
        thresholds.put(1, 1f); // 1 aciertoMedia, 1 estrella
-       thresholds.put(10, 2f); //10 aciertos, 2 estrellas
-       thresholds.put(20, 3f); //20 aciertos, 3 estrellas
-       thresholds.put(30, 4f); //30 aciertos, 4 estrellas
-       thresholds.put(40, 5f); //40 aciertos, 5 estrellas
-       thresholds.put(50, 6f); //50 aciertos, 6 estrellas
+       thresholds.put(2, 2f); //10 aciertos, 2 estrellas
+       thresholds.put(3, 3f); //20 aciertos, 3 estrellas
+       thresholds.put(4, 4f); //30 aciertos, 4 estrellas
+       thresholds.put(5, 5f); //40 aciertos, 5 estrellas
+       thresholds.put(6, 6f); //50 aciertos, 6 estrellas
        pulsar(false);
     }
 
@@ -65,12 +72,18 @@ public class Estrellas {
         }
         if (rating != ratingbar1.getRating()) {
             ratingbar1.setRating(rating);
+
             if (to){
                 //Toast toast = Toast.makeText(app, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
                 //toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
                 //toast.show();
+                Intent intent =new Intent(app.getApplicationContext(),poppuzzle.class);
+                intent.putExtra("primera","no");
+                intent.putExtra("imagen",R.drawable.estrellita);
+                app.getApplicationContext().startActivity(intent);
+                gn.actualizarEstrellas(contador);
              }
-            gn.actualizarEstrellas(contador);
+
         }
     }
     public void acierto(){
@@ -104,4 +117,7 @@ public class Estrellas {
 
 
 
-}
+    }
+
+
+
