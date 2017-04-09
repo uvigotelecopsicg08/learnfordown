@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.session.PlaybackState;
 
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -623,6 +624,7 @@ public class DataBaseManager {
         String[]   whereArgs = new String[]{String.valueOf(1)};
         db.update(TABLE_USER, valores,whereClause, whereArgs);
     }
+
     public void changeLogint(int id_user){
         singOut();
         ContentValues valores = new ContentValues();
@@ -640,4 +642,29 @@ public class DataBaseManager {
             }
         }
     }
+    public void update_photo(int id_user, int id_avatar){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_AVATAR,id_avatar);
+        update_values(valores,id_user);
+
+    }
+    public void update_age(int id_user, int age){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_AGE_USER,age);
+        update_values(valores,id_user);
+
+    }
+    public void update_name(int id_user, String name){
+        ContentValues valores = new ContentValues();
+        valores.put(CN_NAME_USER,name);
+        update_values(valores,id_user);
+
+    }
+    private void update_values(ContentValues valores,int id_user){
+        String  whereClause =CN_ID_USER+" = ?";
+        String[]   whereArgs = new String[]{String.valueOf(id_user)};
+        db.update(TABLE_USER, valores,whereClause, whereArgs);
+    }
+
+
 }

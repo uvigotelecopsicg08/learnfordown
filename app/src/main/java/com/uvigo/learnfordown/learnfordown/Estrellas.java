@@ -31,7 +31,6 @@ public class Estrellas {
     private MediaPlayer aciertoMedia,fallo;
 
     final HashMap<Integer, Float> thresholds = new HashMap<>();
-
     public Estrellas(){}
 
     public  Estrellas(AppCompatActivity app, GestionNiveles gn, int contador){
