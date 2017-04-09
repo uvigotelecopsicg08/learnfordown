@@ -7,12 +7,15 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.Button;
@@ -40,7 +43,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
   //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
-    Button button1,button2,button3;
+    Button button1,button2,button3, boton_mover;
     int aciertos=0;
     int nivel;
     boolean cambiado=false;
@@ -65,6 +68,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         button1 = (Button)  findViewById(R.id.button1);
         button2 = (Button)  findViewById(R.id.button2);
         button3 = (Button)  findViewById(R.id.button3);
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             tipoNivel = extras.getString("tipoSilaba");
@@ -130,7 +134,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                         b2.setEnabled(false);
-                     //   animacionButton(b1);
+                       animacionButton(b1,b2);
+
 
                     } else {
 
@@ -138,7 +143,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         b1.setEnabled(false);
                         ImageButton b2 = (ImageButton) findViewById(v.getId());
                         b2.setEnabled(false);
-                   //     animacionButton(b1);
+                       animacionButton1(b1,b2);
                     }
                     ultimoPulsado=0;
                     es.acierto();
@@ -188,26 +193,138 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     }
 
-    public void animacionButton(Button b){
-        TranslateAnimation animation=null;
+    public void animacionButton(Button b, ImageButton i){
+       // TranslateAnimation animation=null;
+        Animation animation;
+        i = (ImageButton) findViewById(ultimoPulsado);
         int posicion = posicionImageButton(b);
-        if(posicion==1) {
-            animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
+         b = (Button) findViewById(b.getId());
+
+       // if(posicion==1) {
+        if ((i.getId())==(R.id.imageButton1)) {
+           // if (map.get(b.getId()).equals(map.get(R.id.button3))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                 ViewCompat.setElevation(button1, 100.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+
+           /* if (map.get(b.getId()).equals(map.get(R.id.button1))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+
+            else /*(map.get(b.getId()).equals(map.get(R.id.button2))){
+                animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+
+        }*/
+   /*   //  else{
+            //if(posicion==2){
+                animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 0.0f);
+               // ViewCompat.setElevation(button1, 1000.0f);
+                button3.bringToFront();
+               // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+          //  }
+          //  else{
+               animation = new TranslateAnimation(0.0f, 0.0f, -100.0f, 0.0f);
+               // ViewCompat.setElevation(button3, 1000.0f);
+                button2.bringToFront();
+               // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button2.startAnimation(animation);
+           // }
+       // }
+        //animation.setDuration(500);
+       //animation.setFillAfter(true);
+      // b.startAnimation(animation);*/
+    }
+    public void animacionButton1(Button b, ImageButton i){
+        // TranslateAnimation animation=null;
+        Animation animation;
+        ImageButton b2 = (ImageButton) findViewById(b.getId());
+        int posicion = posicionImageButton(b);
+        Button b1 = (Button) findViewById(ultimoPulsado);
+        if ((i.getId())==(R.id.imageButton1)) {
+            if (map.get(b.getId()).equals(map.get(R.id.button3))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, 0.0f, 0.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+        }
+        if ((i.getId())==(R.id.imageButton1)) {
+            if (map.get(b.getId()).equals(map.get(R.id.button1))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 00.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button1.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button1.startAnimation(animation);
+            }
+        }
+        if ((i.getId())==(R.id.imageButton1)){
+            if(map.get(b.getId()).equals(map.get(R.id.button2))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, -100.0f, 0.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button2.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button2.startAnimation(animation);
+            }
+
+        }
+
+        /*if(posicion==1) {
+            if(map.get(b.getId()).equals(map.get(R.id.button3))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 0.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+            if(map.get(b.getId()).equals(map.get(R.id.button3))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, -50.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+            if(map.get(b.getId()).equals(map.get(R.id.button1))) {
+                animation = new TranslateAnimation(0.0f, 0.0f, -80.0f, -80.0f);
+                // ViewCompat.setElevation(button2, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
+            }
+
         }
         else{
             if(posicion==2){
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -50.0f, 0.0f);
+                animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 0.0f);
+                // ViewCompat.setElevation(button1, 1000.0f);
+                button3.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button3.startAnimation(animation);
             }
             else{
-                animation = new TranslateAnimation(0.0f, 0.0f,
-                        -100.0f, 0.0f);
+                animation = new TranslateAnimation(0.0f, 0.0f, -100.0f, 0.0f);
+                // ViewCompat.setElevation(button3, 1000.0f);
+                button2.bringToFront();
+                // animation = AnimationUtils.loadAnimation(getApplicationContext(),R.anim.mover);
+                button2.startAnimation(animation);
             }
         }
-        animation.setDuration(500);
-        animation.setFillAfter(true);
-        b.startAnimation(animation);
+        //animation.setDuration(500);
+        //animation.setFillAfter(true);
+        // b.startAnimation(animation);*/
     }
     public int posicionImageButton(Button b){
       if(map.get(b.getId()).equals(map.get(R.id.imageButton1))){
@@ -223,6 +340,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         }
 
     }
+
+
 
     private void cambiarFoto() {
         try {

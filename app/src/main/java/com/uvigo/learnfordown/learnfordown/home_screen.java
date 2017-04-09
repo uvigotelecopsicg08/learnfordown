@@ -53,6 +53,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         //Prueba bd
+    //   getApplicationContext().deleteDatabase("learn.sqlite");
 /*
         Context context =this.getApplicationContext();
         context.deleteDatabase("learn.sqlite");
@@ -79,9 +80,9 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
-            //Aqui esta el codigo para lanzar el juego de Unity. Para la version dificil
-            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas2
-            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            //Aqui esta el codigo para lanzar el juego de Unity en version facil. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas11");
             if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
             }*/
@@ -284,6 +285,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if (id == R.id.info) {
             // Handle the camera action
         } else if (id == R.id.cambiar) {
+            Intent intent1 = new Intent(home_screen.this, listusers_screen.class);
+            startActivity(intent1);
 
         } else if (id == R.id.registrar) {
             Intent intent1 = new Intent(home_screen.this, login_screen.class);

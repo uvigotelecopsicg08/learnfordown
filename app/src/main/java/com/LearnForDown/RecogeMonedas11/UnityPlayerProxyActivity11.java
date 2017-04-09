@@ -1,4 +1,4 @@
-package com.LearnForDown.RecogeMonedas2;
+package com.LearnForDown.RecogeMonedas11;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -6,17 +6,17 @@ import android.os.Bundle;
 import android.util.Log;
 
 /**
- * @deprecated Use UnityPlayerActivity2 instead.
+ * @deprecated Use UnityPlayerActivity11 instead.
  */
-public class UnityPlayerProxyActivity2 extends Activity
+public class UnityPlayerProxyActivity11 extends Activity
 {
 	@Override
 	protected void onCreate (Bundle savedInstanceState)
 	{
-		Log.w("Unity", "UnityPlayerNativeActivity2 has been deprecated, please update your AndroidManifest to use UnityPlayerActivity2 instead");
+		Log.w("Unity", "UnityPlayerNativeActivity11 has been deprecated, please update your AndroidManifest to use UnityPlayerActivity11 instead");
 		super.onCreate(savedInstanceState);
 
-		Intent intent = new Intent(this, UnityPlayerActivity2.class);
+		Intent intent = new Intent(this, UnityPlayerActivity11.class);
 		intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 		Bundle extras = getIntent().getExtras();
 		if (extras != null)

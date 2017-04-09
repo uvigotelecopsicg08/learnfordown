@@ -2,6 +2,8 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +39,11 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
 
     private static final AtomicInteger sNextGeneratedId = new AtomicInteger(1);
 
+    public SoundPool sp;
+    public int flujoacierto=0;
+    public int flujofallo=0;
+    public int flujovictoria=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -49,6 +56,12 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
 
         ayuda = (ImageButton)findViewById(R.id.button4);
         ayuda.setOnClickListener(this);
+
+        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujoacierto= sp.load(this,R.raw.acierto,2);
+        flujofallo= sp.load(this,R.raw.error,3);
+        flujovictoria= sp.load(this,R.raw.success,1);
 
         GridLayout gridLayout = (GridLayout)findViewById(R.id.activity_main_3x4);
 
@@ -229,6 +242,7 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
 
             if(contador==numberOfElements / 2)
             {
+                play_victoria();
                 isFinished = true;
 
                 for (int i=0; i < 2; i++)
@@ -253,11 +267,13 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
                 }, 4000 );
 
             }
+            else play_acierto();
 
             return;
         }
 
         else {
+            play_fallo();
             selectedButton2 = button;
             selectedButton2.flip();
             isBusy = true;
@@ -305,5 +321,19 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
         }
     }
 
+    private void play_acierto() {
+// TODO Auto-generated method stub
+        sp.play(flujoacierto, 1, 1, 0, 0, 1);
+    }
+
+    private void play_fallo() {
+// TODO Auto-generated method stub
+        sp.play(flujofallo, 1, 1, 0, 0, 1);
+    }
+
+    private void play_victoria() {
+// TODO Auto-generated method stub
+        sp.play(flujovictoria, 1, 1, 0, 0, 1);
+    }
 
 }

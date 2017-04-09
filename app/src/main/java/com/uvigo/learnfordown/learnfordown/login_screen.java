@@ -35,15 +35,7 @@ public class login_screen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
         textoNombre = (TextView) findViewById(R.id.editTextNombre);
         textoEdad = (TextView) findViewById(R.id.editTextEdad);
-      /*  playa= (CheckBox) findViewById(R.id.checkBoxPlaya);
-        musica= (CheckBox) findViewById(R.id.checkBoxMusica);
-        casas = (CheckBox) findViewById(R.id.checkBoxCasas);
-        coches = (CheckBox) findViewById(R.id.checkBoxCoches);
-        ropa = (CheckBox) findViewById(R.id.checkBoxRopa);
-        animales = (CheckBox) findViewById(R.id.checkBoxAnimales);
-        */
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
+
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
@@ -56,16 +48,7 @@ public class login_screen extends AppCompatActivity {
 
     }
 
-    /*
-    void gustosCheckUp(View v){
-        playa.setVisibility(View.VISIBLE);
-        musica.setVisibility(View.VISIBLE);
-        coches.setVisibility(View.VISIBLE);
-        ropa.setVisibility(View.VISIBLE);
-        animales.setVisibility(View.VISIBLE);
 
-    }
-*/
     public void registrar(View v) {
         SpannableStringBuilder nombreSpanable = (SpannableStringBuilder) textoNombre.getText();
         SpannableStringBuilder edadStringSpanable =  (SpannableStringBuilder) textoEdad.getText();
@@ -99,7 +82,7 @@ public class login_screen extends AppCompatActivity {
             System.out.println(" Nombre " + nombre + "  edad " + edadString);
             try{
                 int edad = Integer.parseInt(edadString);
-                Intent intent = new Intent(this, login_screen_like.class);
+                Intent intent = new Intent(this, avatarScreen.class);
                 intent.putExtra("nombre", nombre);
                 intent.putExtra("edad",edad);
                 startActivity(intent);
