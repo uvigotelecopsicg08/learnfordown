@@ -85,10 +85,12 @@ public class Puzzle4piezas extends AppCompatActivity {
     RelativeLayout relativeLayout;
 
     Button button1,button2,button3,button4;
+
     public SoundPool sp;
     public int flujoacierto=0;
     public int flujofallo=0;
     public int flujovictoria=0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -399,7 +401,6 @@ public class Puzzle4piezas extends AppCompatActivity {
 
 
     public void ButtonCheckModelo(View v) {
-
 
         //inicioPieza = true;
         //clickPieza = false;
