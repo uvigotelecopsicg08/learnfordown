@@ -77,9 +77,11 @@ public class Estrellas {
                 //Toast toast = Toast.makeText(app, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
                 //toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
                 //toast.show();
+
                 Intent intent =new Intent(app.getApplicationContext(),poppuzzle.class);
                 intent.putExtra("primera","no");
                 intent.putExtra("imagen",R.drawable.estrellita);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 app.getApplicationContext().startActivity(intent);
                 gn.actualizarEstrellas(contador);
              }
