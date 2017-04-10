@@ -10,6 +10,8 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Typeface;
+import android.media.AudioManager;
+import android.media.SoundPool;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +45,10 @@ public class Puzzle9piezas extends AppCompatActivity {
     private PopupWindow popupWindow;
     int acierto;
     int posicion;
+
+    boolean clickPieza = false;
+    boolean ganaste = false;
+    boolean huboacierto = false;
 
     int id_imagen;
     ArrayList<Bitmap> SegundaColumna;
@@ -85,6 +91,11 @@ public class Puzzle9piezas extends AppCompatActivity {
     RelativeLayout relativeLayout;
 
     Button button1,button2,button3,button4,button5,button6,button7,button8,button9;
+
+    public SoundPool sp;
+    public int flujoacierto=0;
+    public int flujofallo=0;
+    public int flujovictoria=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,9 +177,16 @@ public class Puzzle9piezas extends AppCompatActivity {
         // imagen8.setVisibility(View.GONE);
 
 
-      /*  imagen.setImageBitmap(CreatePiece(R.drawable.a_part13));
+      /*imagen.setImageBitmap(CreatePiece(R.drawable.a_part13));
         imagen2.setImageBitmap(CreatePiece(R.drawable.a_part21));
         imagen3.setImageResource(R.drawable.a_layout);*/
+
+        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        flujoacierto= sp.load(this,R.raw.acierto,2);
+        flujofallo= sp.load(this,R.raw.error,3);
+        flujovictoria= sp.load(this,R.raw.success,1);
+
         verticalList=new ArrayList<>();
 
         verticalList.add(R.drawable.modelo9piezas_1);
@@ -339,11 +357,12 @@ public class Puzzle9piezas extends AppCompatActivity {
 
     }
     public void ButtonCheckPiezas(View v) {
+        clickPieza = true;
         ImageView pieza=(ImageView)v;
         ActualClick =Piezas.get(pieza.getId())+10;
 
         System.out.println(ActualClick);
-        if (ActualClick-10== LastClick){
+        /*if (ActualClick-10== LastClick){
 
 //Codigo acierto
             pieza.setVisibility(View.INVISIBLE);
@@ -401,8 +420,15 @@ public class Puzzle9piezas extends AppCompatActivity {
 
             acierto++;
             LastClick =0;
-        }
+        }*/
+
+        LastClick =0;
+
         if( acierto>=9) {
+            if(!ganaste) {
+                play_victoria();
+                ganaste = true;
+            }
             mensaje.setVisibility(View.VISIBLE);
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
@@ -418,6 +444,9 @@ public class Puzzle9piezas extends AppCompatActivity {
     }
 
     public void ButtonCheckModelo(View v) {
+
+        if(huboacierto==false && clickPieza==true)
+            play_fallo();
         Button button=(Button)v;
         switch (button.getId()){
             case R.id.button9:
@@ -462,6 +491,8 @@ public class Puzzle9piezas extends AppCompatActivity {
 
         if (ActualClick+10== LastClick){
             System.out.println("ACIERTO!!");
+            huboacierto=true;
+            play_acierto();
             acierto++;
             ImageView Acierto = (ImageView)findViewById(IDpieza);
             Acierto.setVisibility(View.INVISIBLE);
@@ -516,7 +547,14 @@ public class Puzzle9piezas extends AppCompatActivity {
             }
             LastClick =0;
         }
+
+        huboacierto = false;
+
             if( acierto>=9) {
+                if(!ganaste){
+                    play_victoria();
+                    ganaste = true;
+                }
                 mensaje.setVisibility(View.VISIBLE);
                 final Handler handler = new Handler();
                 handler.postDelayed(new Runnable() {
@@ -529,6 +567,8 @@ public class Puzzle9piezas extends AppCompatActivity {
             }
 
         LastClick =ActualClick;
+
+        clickPieza = false;
     }
     public void HelpButton(View v) {
 
@@ -569,4 +609,20 @@ public class Puzzle9piezas extends AppCompatActivity {
         Intent intent1 = new Intent(Puzzle9piezas.this, home_screen.class);
         startActivity(intent1);
     }
+
+    private void play_acierto() {
+// TODO Auto-generated method stub
+        sp.play(flujoacierto, 1, 1, 0, 0, 1);
+    }
+
+    private void play_fallo() {
+// TODO Auto-generated method stub
+        sp.play(flujofallo, 1, 1, 0, 0, 1);
+    }
+
+    private void play_victoria() {
+// TODO Auto-generated method stub
+        sp.play(flujovictoria, 1, 1, 0, 0, 1);
+    }
+
 }
