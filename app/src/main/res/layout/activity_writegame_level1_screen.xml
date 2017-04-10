@@ -120,7 +120,7 @@
 
             <ImageButton
                 android:id="@+id/button7"
-                android:layout_height="130dp"
+                android:layout_height="115dp"
                 android:layout_width="115dp"
                 android:background="@color/Blanco"
                 android:scaleType="fitCenter"
@@ -162,12 +162,11 @@
                 android:id="@+id/GifView"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/lienzo"
                 android:layout_alignEnd="@+id/lienzo"
                 android:layout_alignLeft="@+id/lienzo"
                 android:layout_alignStart="@+id/lienzo"
-                android:layout_centerInParent="true" />
+                android:layout_alignParentTop="true" />
 
             <LinearLayout
                 android:id="@+id/lienzo"
@@ -179,8 +178,8 @@
                 android:layout_toLeftOf="@+id/button6"
                 android:layout_toStartOf="@+id/button6"
                 android:layout_alignParentTop="true"
-                android:layout_alignParentBottom="true">
-
+                android:layout_alignParentBottom="true"
+                android:weightSum="1">
 
 
             </LinearLayout>
