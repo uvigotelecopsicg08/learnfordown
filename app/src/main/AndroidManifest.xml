@@ -153,7 +153,7 @@
         <activity
             android:name=".ParejasDificil"
             android:screenOrientation="landscape" />
-        <activity
+
         <!--<activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"

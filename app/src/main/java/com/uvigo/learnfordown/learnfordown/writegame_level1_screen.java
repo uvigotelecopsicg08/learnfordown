@@ -278,11 +278,8 @@ public class writegame_level1_screen extends AppCompatActivity {
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
         foto = (ImageView) findViewById(R.id.imageView2);
-        gifImageView = (GifView) findViewById(R.id.GifView);
-
-        int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         foto.setImageResource(fp.get(0).getFoto());
-
+        gifImageView = (GifView) findViewById(R.id.GifView);
         gifImageView.setGifImageResource(R.drawable.a_gif);
 
     }
