@@ -146,9 +146,9 @@
             android:orientation="horizontal"
             android:background="#fff"
             android:gravity="center"
+            android:onClick="pulsar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:onClick="pulsar"/>
+            android:layout_height="match_parent"/>
 
     </LinearLayout>
 
@@ -263,7 +263,7 @@
                 android:id="@+id/button7"
                 android:onClick="registrar"
                 android:layout_weight="0.09"
-                android:background="@color/VerdeClarito"
+                android:background="@color/Verde"
                 android:textSize="34sp" />
 
 
