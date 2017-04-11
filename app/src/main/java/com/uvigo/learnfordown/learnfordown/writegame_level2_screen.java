@@ -1,10 +1,13 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.PaintDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.os.Build;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -24,6 +27,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -52,6 +56,8 @@ public class writegame_level2_screen extends AppCompatActivity {
     private Button ButtonActual,botonReferencia;
     private String RellenoFrase;
     private int num_iteracion = 0;
+    Intent minijuego;
+    AlertDialog dialog;
 
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -130,6 +136,7 @@ public class writegame_level2_screen extends AppCompatActivity {
 
         Button b = (Button) v;
         ButtonActual = b;
+
         TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f, -50.0f, 0.0f);
         animation.setDuration(500);
         animation.setFillAfter(true);
@@ -360,6 +367,9 @@ public class writegame_level2_screen extends AppCompatActivity {
 
 
         es.pulsar(true);
+                if (es.ratingbar1.getRating()==6){
+                    MensajeMinijuego();
+                }
 
         if (!gn.isnivelCompletado()) { // Aún no terminó el nivel
             i++;
@@ -393,7 +403,76 @@ public class writegame_level2_screen extends AppCompatActivity {
         fp=gn.getFotosAleatorias();
         cambiarFoto();
     }
+    public void MensajeMinijuego(){
+        String Minijuego;
+        Minijuego=MinijuegoRandom();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+            builder.setView(R.layout.dialogominijuegos);
+        }
+        else {
+            builder.setMessage("¿QUIERES JUGAR AHORA O MAS TARDE?")
+                    .setTitle("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+
+            builder.setPositiveButton("¡LO QUIERO AHORA!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(minijuego);
+                }
+            });
+            builder.setNegativeButton("¡LO QUIERO MAS TARDE!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+        }
+        dialog = builder.create();
+        dialog.show();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+
+            TextView Titulo =(TextView)dialog.findViewById(R.id.textView7);
+            Titulo.setText("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+            Titulo.setTypeface(face);
+            TextView mensaje =(TextView)dialog.findViewById(R.id.textView8);
+            mensaje.setTypeface(face);
+            Button positivo =(Button)dialog.findViewById(R.id.button11);
+            Button negativo =(Button)dialog.findViewById(R.id.button12);
+
+        }
+
+
+
+    }
+    public String MinijuegoRandom(){
+        String Nombre="";
+        int rand =(int) (Math.random() * 2.0);
+        switch(rand) {
+            case 0:
+                minijuego = new Intent(getApplicationContext(),Puzzle4piezas.class);
+                Nombre= "PUZZLE";
+                break;
+            case 1:
+                minijuego = new Intent(getApplicationContext(),ParejasFacil.class);
+                Nombre= "PAREJAS";
+                break;
+
+            case 2:
+                minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
+                Nombre= "PLATAFORMAS";
+                break;
+
+        }
+        return Nombre;
+    }
+    public void DialogPositive(View v){
+        startActivity(minijuego);
+        dialog.dismiss();
+    }
+    public void DialogNegative(View v){
+//Codigo de meter en la base de datos
+        dialog.dismiss();
+    }
 
 }
 

@@ -1,24 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="fill_parent"    android:gravity="center" android:orientation="vertical"
-    android:layout_height="fill_parent" android:background="#FFFFFF">
+    android:layout_width="fill_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_height="fill_parent"
+    android:background="@color/NaranjaClarito"
+    android:weightSum="1">
 
     <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="335dp"
-        app:srcCompat="@drawable/logo3"
-        android:id="@+id/imageView9" />
+        android:layout_width="1280dp"
+        android:layout_height="408dp"
+        app:srcCompat="@drawable/fotocarga"
+        android:id="@+id/imageView9"
+        android:layout_weight="0.55" />
 
-    <TextView android:text="El lápiz Steven está pensando, dale un minuto"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
-        android:textColor="#000000"
-        android:textSize="50px">
+    <TextView
+        android:text="¡Hola, me llamo Steven! ¿Puedes esperar un poquito?"
+        android:layout_width="wrap_content"
+        android:layout_height="71dp"
+        android:id="@+id/textView2"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@android:color/white"
+        android:layout_weight="0.20">
     </TextView>
-    <ProgressBar android:id="@+id/mainSpinner1" android:layout_gravity="center"
-        android:layout_width="wrap_content" android:layout_height="wrap_content"
+
+
+    <TextView
+        android:text="¡Estoy pensando a qué vamos a jugar!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:textSize="35sp"
+        android:textStyle="bold"
+        android:maxLines="2"
+        android:textAlignment="center"
+        android:textColor="@android:color/white" >
+    </TextView>
+
+    <ProgressBar
+        android:id="@+id/mainSpinner1"
+        android:layout_gravity="center"
+        android:layout_width="71dp"
+        android:layout_height="156dp"
         android:indeterminate="true"
+        android:indeterminateTint="@color/Verde"
         style="?android:attr/progressBarStyleInverse">
     </ProgressBar>
 

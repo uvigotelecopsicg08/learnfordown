@@ -1,18 +1,22 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.location.Address;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,8 +34,10 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.TreeSet;
 
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
 import com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
 import com.uvigo.learnfordown.learnfordown.strokes.app.U;
@@ -45,23 +51,27 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public static final float VALIDATION_THRESHOLD_MULTIPLIER = 1.8f;
 
+    private static ImageButton Borrar; // Para GifView
 
-
-    ImageButton Borrar;
+    ImageButton Help;
+    GifView gifImageView;
     LinearLayout Lienzo;
     ImageView plantilla,foto;
     CanvasView canvas;
     GestionNiveles  gn;
     String tipoNivel = "escribirletras";
     TextView Titulo;
+    Intent minijuego;
+    AlertDialog dialog;
 
-
+    Context context;
     ArrayList<FotoPalabra> fp;
-
     Estrellas  es;
-
     final HashMap<Integer, Float> thresholds = new HashMap<>();
 
+    public writegame_level1_screen() {
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {        // Inicializa la actividad
@@ -72,6 +82,9 @@ public class writegame_level1_screen extends AppCompatActivity {
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
+        Help = (ImageButton) findViewById(R.id.button4);
+        gifImageView = (GifView) findViewById(R.id.GifView);
+
 
         Titulo = (TextView) findViewById(R.id.textView2);
         Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
@@ -83,11 +96,11 @@ public class writegame_level1_screen extends AppCompatActivity {
         Lienzo.addView(canvas);
 
 
-        Context context = this.getApplicationContext();
+        context = this.getApplicationContext();
 
         gn = new GestionNiveles(context);
         gn.setNivel(tipoNivel,1);
-        fp=gn.getFotos();
+        fp = gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
         es.setRatingbar1(R.id.ratingBar);
 
@@ -109,6 +122,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
+        gifImageView = (GifView) findViewById(R.id.GifView);
 
         int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
@@ -207,6 +221,9 @@ public class writegame_level1_screen extends AppCompatActivity {
 
                     es.pulsar(true);
                     //Toast.makeText(this, "LETRA " + fp.get(0).getLetra().toUpperCase(), Toast.LENGTH_SHORT).show();
+                            if (es.ratingbar1.getRating()==6){
+                                MensajeMinijuego();
+                            }
 
                     gn.avanzaNivel();
                     if(!(gn.getTipo().equals(tipoNivel))) {
@@ -262,6 +279,22 @@ public class writegame_level1_screen extends AppCompatActivity {
         //Toast.makeText(this, "MENÚ PRINCIPAL", Toast.LENGTH_SHORT).show();
     }
 
+    public ImageButton getBorrar() {
+        return Borrar;
+    }
+
+    public void showHelp (View v){
+
+        // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
+        setContentView(R.layout.activity_writegame_level1_screen);
+        es.setRatingbar1(R.id.ratingBar);
+        foto = (ImageView) findViewById(R.id.imageView2);
+        foto.setImageResource(fp.get(0).getFoto());
+        gifImageView = (GifView) findViewById(R.id.GifView);
+        gifImageView.setGifImageResource(R.drawable.a_gif);
+
+    }
+
 
 
     public void reset(View v){
@@ -290,5 +323,74 @@ public class writegame_level1_screen extends AppCompatActivity {
         foto.setImageResource(fp.get(0).getFoto());
     }
 
+    public void MensajeMinijuego(){
+        String Minijuego;
+        Minijuego=MinijuegoRandom();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+            builder.setView(R.layout.dialogominijuegos);
+        }
+        else {
+            builder.setMessage("¿QUIERES JUGAR AHORA O MAS TARDE?")
+                    .setTitle("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+
+            builder.setPositiveButton("¡LO QUIERO AHORA!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(minijuego);
+                }
+            });
+            builder.setNegativeButton("¡LO QUIERO MAS TARDE!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+        }
+        dialog = builder.create();
+        dialog.show();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+
+            TextView Titulo =(TextView)dialog.findViewById(R.id.textView7);
+            Titulo.setText("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+            Titulo.setTypeface(face);
+            TextView mensaje =(TextView)dialog.findViewById(R.id.textView8);
+            mensaje.setTypeface(face);
+            Button positivo =(Button)dialog.findViewById(R.id.button11);
+            Button negativo =(Button)dialog.findViewById(R.id.button12);
+
+        }
+
+
+
+    }
+    public String MinijuegoRandom(){
+        String Nombre="";
+        int rand =(int) (Math.random() * 2.0);
+        switch(rand) {
+            case 0:
+                minijuego = new Intent(getApplicationContext(),Puzzle4piezas.class);
+                Nombre= "PUZZLE";
+                break;
+            case 1:
+                minijuego = new Intent(getApplicationContext(),ParejasFacil.class);
+                Nombre= "PAREJAS";
+                break;
+
+            case 2:
+                minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
+                Nombre= "PLATAFORMAS";
+                break;
+
+        }
+        return Nombre;
+    }
+    public void DialogPositive(View v){
+        startActivity(minijuego);
+        dialog.dismiss();
+    }
+    public void DialogNegative(View v){
+//Codigo de meter en la base de datos
+        dialog.dismiss();
+    }
 }

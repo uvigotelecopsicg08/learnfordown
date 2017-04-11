@@ -16,6 +16,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
         <activity
             android:name=".home_screen"
             android:screenOrientation="landscape">
@@ -150,6 +151,10 @@
         <activity
             android:name=".ParejasFacil"
             android:screenOrientation="landscape" />
+        <activity
+            android:name=".ParejasDificil"
+            android:screenOrientation="landscape" />
+
         <!--<activity
             android:name=".PRUEBA"
             android:label="@string/title_activity_prueb"
@@ -163,6 +168,11 @@
         <activity
             android:name=".listusers_screen"
             android:label="@string/title_activity_listusers_screen"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+
+        <activity android:name=".Puzzle9piezas"
+            android:screenOrientation="landscape">
+        </activity>
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".edit_screen"></activity>
     </application>

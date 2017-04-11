@@ -1,0 +1,408 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/Blanco"
+    android:id="@+id/puzzle9piezas"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/linear"
+        android:orientation="vertical"
+        android:weightSum="1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true">>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:background="@color/colorGame">
+
+            <ImageButton
+                android:layout_width="187dp"
+                android:layout_height="match_parent"
+                android:id="@+id/button3"
+                android:src="@mipmap/icon_backarrow"
+                android:background="@color/colorGame"
+                android:adjustViewBounds="true"
+                android:cropToPadding="true"
+                android:visibility="visible"
+                android:onClick="BackArrow"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                android:text="ROMPECABEZAS"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/textView2"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="60sp"
+                android:textAlignment="center"
+                android:textColor="@android:color/white"
+                android:paddingTop="25dp" />
+            <ImageButton
+                android:src="@mipmap/ic_home"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button5"
+                android:onClick="goHome"
+                android:layout_weight="0.03"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+            <ImageButton
+                android:src="@mipmap/icon_help"
+                android:layout_width="102dp"
+                android:layout_height="130dp"
+                android:id="@+id/button4"
+                android:layout_weight="0.03"
+                android:onClick="HelpButton"
+                android:scaleType="fitCenter"
+                android:background="@color/colorGame" />
+
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/Blanco"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="477dp"
+                app:srcCompat="@drawable/modelo9piezas"
+                android:id="@+id/imageView18"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_marginTop="11dp"
+                android:layout_marginRight="71dp"
+                android:layout_height="500dp"
+                android:layout_alignParentRight="true" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo9piezas"
+                android:id="@+id/imageView46"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                android:id="@+id/imageView45"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                android:id="@+id/imageView44"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                android:id="@+id/imageView43"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                android:id="@+id/imageView42"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <ImageView
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                android:id="@+id/imageView41"
+                android:onClick="ButtonCheckPiezas"
+                android:layout_weight="0.05"
+                android:layout_alignTop="@+id/imageView18"
+                android:layout_alignLeft="@+id/imageView18"
+                android:layout_alignRight="@+id/imageView18"
+                android:layout_alignBottom="@+id/imageView18" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                android:layout_marginLeft="35dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_marginTop="15dp"
+                android:id="@+id/linearLayout5">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_weight="0.05">
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView22"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_weight="0.05" />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView21"
+                        android:onClick="ButtonCheckPiezas" />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView20"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_weight="0.05" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignLeft="@+id/linearLayout3"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.05">
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView7"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_weight="0.02"
+                        />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView15"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_weight="0.02" />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView16"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_weight="0.02" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:weightSum="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/linearLayout7"
+                    android:layout_alignLeft="@+id/linearLayout7"
+                    android:layout_weight="0.05">
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView8"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignLeft="@+id/imageView6"
+                        android:layout_weight="0.05" />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView4"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignLeft="@+id/imageView6" />
+
+                    <ImageView
+                        android:layout_width="159dp"
+                        android:layout_height="166.7dp"
+                        app:srcCompat="@drawable/modelo_4_piezas_0_0"
+                        android:id="@+id/imageView14"
+                        android:onClick="ButtonCheckPiezas"
+                        android:layout_alignParentTop="true"
+                        android:layout_alignLeft="@+id/imageView6"
+                        android:layout_weight="0.05" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/a"
+                android:id="@+id/imageView25"
+                android:layout_alignTop="@+id/imageView46"
+                android:layout_alignLeft="@+id/imageView46" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/a"
+                android:id="@+id/imageView26"
+                android:layout_alignTop="@+id/imageView46"
+                android:layout_alignLeft="@+id/imageView46" />
+
+            <ImageView
+                android:layout_width="477dp"
+                android:layout_height="500dp"
+                app:srcCompat="@drawable/a"
+                android:id="@+id/imageView27"
+                android:layout_alignTop="@+id/imageView46"
+                android:layout_alignLeft="@+id/imageView46" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button16"
+                android:layout_alignBottom="@+id/imageView46"
+                android:layout_alignLeft="@+id/imageView46" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button12"
+                android:layout_above="@+id/button16"
+                android:layout_alignLeft="@+id/imageView46" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button9"
+                android:layout_above="@+id/button12"
+                android:layout_alignLeft="@+id/imageView18" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button10"
+                android:layout_above="@+id/button14"
+                android:layout_toRightOf="@+id/button12" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button11"
+                android:layout_above="@+id/button14"
+                android:layout_toRightOf="@+id/button10" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button13"
+                android:layout_below="@+id/button10"
+                android:layout_toRightOf="@+id/button12" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button14"
+                android:layout_alignBottom="@+id/button12"
+                android:layout_toRightOf="@+id/button13"
+                android:layout_below="@+id/button9" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button8"
+                android:layout_below="@+id/button13"
+                android:layout_toRightOf="@+id/button16" />
+
+            <Button
+                android:onClick="ButtonCheckModelo"
+
+                android:layout_width="159dp"
+                android:layout_height="166.7dp"
+                android:id="@+id/button15"
+                android:layout_toRightOf="@+id/button8"
+                android:layout_below="@+id/button14" />
+
+            <TextView
+                android:text="¡ENHORABUENA LO HAS CONSEGUIDO!"
+                android:layout_width="477dp"
+                android:layout_height="200dp"
+                android:id="@+id/textView"
+                android:textColor="@color/Blanco"
+                android:background="@color/Rojo"
+                android:textSize="50dp"
+                android:layout_weight="0.05"
+                android:textStyle="normal|bold"
+                android:gravity="center_vertical|center_horizontal"
+                android:textAlignment="center"
+                android:layout_below="@+id/button9"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="55dp" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

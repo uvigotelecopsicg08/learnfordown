@@ -122,10 +122,21 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     }
 
     private void lanzaAlerta() {
-        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setTitle("Registre un usuario en el boton de ajustes");
-        AlertDialog alertDialog = alertDialogBuilder.create();
-        alertDialog.show();
+
+        /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           alertDialogBuilder.setView(R.layout.dialog_recuperar_nivel);
+        } else {
+            alertDialogBuilder.setTitle("¡HOLA, PULSA EN EL ICONO VERDE PARA DECIRME CÓMO TE LLAMAS! ");
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        } */
+
+        Intent intent1 = new Intent(home_screen.this, login_screen.class);
+        startActivity(intent1);
+
+
 
     }
     /**
@@ -299,6 +310,16 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         } else if (id == R.id.plataformas) {
 
 
+        }else if (id == R.id.parejasdificil) {
+            Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
+            startActivity(intent1);
+
+
+        }else if (id == R.id.puzzledificil) {
+            Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
+            startActivity(intent1);
+
+
         }
         else if (id == R.id.parejas) {
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
@@ -319,7 +340,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
                 builder.setView(R.layout.dialog_recuperar_nivel);
             }
             else {
-                builder.setMessage("¿Desea recuperar el último nivel?  ")
+                builder.setMessage("¿Quieres seguir por donde estabas la última vez?  ")
                         .setTitle("Recuperacion nivel");
             }
             builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {

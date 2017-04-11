@@ -64,7 +64,7 @@ public class CanvasView extends View {
 		mStrokePaint = new Paint();
 		mStrokePaint.setAntiAlias(true);
 		mStrokePaint.setDither(true);
-		mStrokePaint.setColor(Color.GREEN);
+		mStrokePaint.setColor(Color.BLUE);
 		mStrokePaint.setStyle(Paint.Style.STROKE);
 		mStrokePaint.setStrokeJoin(Paint.Join.ROUND);
 		mStrokePaint.setStrokeCap(Paint.Cap.ROUND);
