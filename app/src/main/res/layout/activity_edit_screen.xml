@@ -263,6 +263,7 @@
                 android:id="@+id/button7"
                 android:onClick="registrar"
                 android:layout_weight="0.09"
+                android:gravity="center"
                 android:background="@color/Verde"
                 android:textSize="34sp" />
 
