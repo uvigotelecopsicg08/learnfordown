@@ -39,8 +39,8 @@ import com.uvigo.learnfordown.learnfordown.strokes.app.U;
 import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
 import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
 import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
+import com.uvigo.learnfordown.learnfordown.gifView.GifImageView;
 
-import static com.uvigo.learnfordown.learnfordown.R.drawable.f;
 
 public class writegame_level1_screen extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class writegame_level1_screen extends AppCompatActivity {
     private static ImageButton Borrar; // Para GifView
 
     ImageButton Help;
-    GifView gifImageView;
+    GifImageView gifImageView;
     LinearLayout Lienzo;
     ImageView plantilla,foto;
     CanvasView canvas;
@@ -75,7 +75,8 @@ public class writegame_level1_screen extends AppCompatActivity {
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
         Help = (ImageButton) findViewById(R.id.button4);
-        gifImageView = (GifView) findViewById(R.id.GifView);
+        // GIF
+        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
 
         Titulo = (TextView) findViewById(R.id.textView2);
@@ -114,7 +115,8 @@ public class writegame_level1_screen extends AppCompatActivity {
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
         canvas = new CanvasView(this);
         Lienzo.addView(canvas);
-        gifImageView = (GifView) findViewById(R.id.GifView);
+        // GIF
+        gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
         int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
@@ -274,13 +276,35 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void showHelp (View v){
 
-        // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
+       /* // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
         foto = (ImageView) findViewById(R.id.imageView2);
         foto.setImageResource(fp.get(0).getFoto());
         gifImageView = (GifView) findViewById(R.id.GifView);
-        gifImageView.setGifImageResource(R.drawable.a_gif);
+        gifImageView.setGifImageResource(R.drawable.a_gif); */
+
+        // ********************
+        try {
+
+            InputStream is = getResources().openRawResource(R.raw.prueba_buena);
+            byte[] bytes = new byte[is.available()];
+            is.read(bytes);
+            is.close();
+
+            gifImageView = new GifImageView(this);
+            gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+
+            gifImageView.setBytes(bytes);
+            gifImageView.startAnimation();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // *********************
+
+
 
     }
 
