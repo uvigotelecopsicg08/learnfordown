@@ -2,9 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="250dp"
+    android:layout_width="230dp"
     android:layout_height="200dp"
     android:id="@+id/linearLayout"
+    android:background="@color/Blanco"
     android:weightSum="1">
 
 
@@ -14,8 +15,8 @@
         android:id="@+id/button4"
         android:onClick="pulsar"
         android:layout_width="170dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="55dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="28dp"
         app:srcCompat="@drawable/tren"
         android:layout_height="170dp" />
 </LinearLayout>

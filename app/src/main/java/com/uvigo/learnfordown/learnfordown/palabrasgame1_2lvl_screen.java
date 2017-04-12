@@ -1,6 +1,8 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -8,6 +10,8 @@ import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -23,6 +27,8 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -40,6 +46,8 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     String tipoNivel="palabrassilabasdirectas";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    Intent minijuego;
+    AlertDialog dialog;
 
     //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
@@ -122,15 +130,15 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         if (ultimoPulsado != null ) {
             if (findViewById(v.getId()) instanceof Button && findViewById(ultimoPulsado) instanceof Button) {
                 Button b2 = (Button) findViewById(ultimoPulsado);
-                b2.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                b2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
                 Button b3 = (Button) findViewById(v.getId());
-                b3.setBackgroundColor(getResources().getColor(R.color.Gris));
+                b3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Gris));
             } else {
                 if (findViewById(v.getId()) instanceof ImageButton && findViewById(ultimoPulsado) instanceof ImageButton) {
                     ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                     b2.clearColorFilter();
                     ImageButton b3 = (ImageButton) findViewById(v.getId());
-                    b3.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
+                    b3.setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.Gris), PorterDuff.Mode.SRC_ATOP);
                 } else {
 
                     if (v.getId() != (ultimoPulsado)) {
@@ -142,7 +150,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                                 ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                                 b2.clearColorFilter();
                                 b2.setEnabled(false);
-                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.VerdeClarito));
 
                                 switch (posicionImageButton(b1)) {
                                     case 1:
@@ -181,7 +189,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                                         break;
 
                                 }
-                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.VerdeClarito));
                                 b1.setEnabled(false);
                                 ImageButton b2 = (ImageButton) findViewById(v.getId());
                                 b2.clearColorFilter();
@@ -199,6 +207,9 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 
                                     if (aciertos == 3) {
+                                        if (es.ratingbar1.getRating()==6){
+                                            MensajeMinijuego();
+                                        }
 
                                         aciertos = 0;
                                         if (!gn.isnivelCompletado()) {
@@ -217,12 +228,12 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         } else {
                             if (findViewById(v.getId()) instanceof Button) {
                                 Button b1 = (Button) findViewById(v.getId());
-                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
 
                             } else {
 
                                 Button b1 = (Button) findViewById(ultimoPulsado);
-                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
                             }
                             if (findViewById(v.getId()) instanceof ImageButton) {
                                 ImageButton b1 = (ImageButton) findViewById(v.getId());
@@ -242,27 +253,27 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
             }
         }else{
             cambiado=false;
-                if (findViewById(v.getId()) instanceof Button) {
-                    Button b2 = (Button) findViewById(v.getId());
-                    b2.setBackgroundColor(getResources().getColor(R.color.Gris));
-                } else {
-                    if (findViewById(v.getId()) instanceof ImageButton) {
-                        ImageButton b2 = (ImageButton) findViewById(v.getId());
-                        b2.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
-                    }
-
+            if (findViewById(v.getId()) instanceof Button) {
+                Button b2 = (Button) findViewById(v.getId());
+                b2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Gris));
+            } else {
+                if (findViewById(v.getId()) instanceof ImageButton) {
+                    ImageButton b2 = (ImageButton) findViewById(v.getId());
+                    b2.setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.Gris), PorterDuff.Mode.SRC_ATOP);
                 }
 
             }
-            if (!cambiado) {
-                ultimoPulsado = v.getId();
-                System.out.println("has pulsado: " + map.get(ultimoPulsado));
-            } else {
-                ultimoPulsado = null;
-                cambiado = false;
-            }
 
         }
+        if (!cambiado) {
+            ultimoPulsado = v.getId();
+            System.out.println("has pulsado: " + map.get(ultimoPulsado));
+        } else {
+            ultimoPulsado = null;
+            cambiado = false;
+        }
+
+    }
 
 
 
@@ -270,9 +281,9 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         respuesta1.setVisibility(View.INVISIBLE);
         respuesta2.setVisibility(View.INVISIBLE);
         respuesta3.setVisibility(View.INVISIBLE);
-        button1.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
-        button2.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
-        button3.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
+        button1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
+        button2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
+        button3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
     }
     public int posicionImageButton(Button b) {
         if (map.get(b.getId()).equals(map.get(R.id.imageButton1))) {
@@ -395,7 +406,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         }
     }
     public void avanzaNivel(){
-resetBotones();
+        resetBotones();
         gn.avanzaNivel();
         cambiado=true;
         if (!(gn.getTipo().equals(tipoNivel))) {
@@ -440,5 +451,74 @@ resetBotones();
         cambiarFoto();
     }
 
+    public void MensajeMinijuego(){
+        String Minijuego;
+        Minijuego=MinijuegoRandom();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 
+            builder.setView(R.layout.dialogominijuegos);
+        }
+        else {
+            builder.setMessage("¿QUIERES JUGAR AHORA O MAS TARDE?")
+                    .setTitle("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+
+            builder.setPositiveButton("¡LO QUIERO AHORA!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    startActivity(minijuego);
+                }
+            });
+            builder.setNegativeButton("¡LO QUIERO MAS TARDE!", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int id) {
+                    // User cancelled the dialog
+                }
+            });
+        }
+        dialog = builder.create();
+        dialog.show();
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+
+            TextView Titulo =(TextView)dialog.findViewById(R.id.textView7);
+            Titulo.setText("¡TIENES UN MINIJUEGO NUEVO!  " + Minijuego);
+            Titulo.setTypeface(face);
+            TextView mensaje =(TextView)dialog.findViewById(R.id.textView8);
+            mensaje.setTypeface(face);
+            Button positivo =(Button)dialog.findViewById(R.id.button11);
+            Button negativo =(Button)dialog.findViewById(R.id.button12);
+
+        }
+
+
+
+    }
+    public String MinijuegoRandom(){
+        String Nombre="";
+        int rand =(int) (Math.random() * 2.0);
+        switch(rand) {
+            case 0:
+                minijuego = new Intent(getApplicationContext(),Puzzle4piezas.class);
+                Nombre= "PUZZLE";
+                break;
+            case 1:
+                minijuego = new Intent(getApplicationContext(),ParejasFacil.class);
+                Nombre= "PAREJAS";
+                break;
+
+            case 2:
+                minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
+                Nombre= "PLATAFORMAS";
+                break;
+
+        }
+        return Nombre;
+    }
+    public void DialogPositive(View v){
+        startActivity(minijuego);
+        dialog.dismiss();
+    }
+    public void DialogNegative(View v){
+//Codigo de meter en la base de datos
+        dialog.dismiss();
+    }
 }
