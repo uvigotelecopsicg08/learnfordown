@@ -7,6 +7,7 @@ import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -16,14 +17,20 @@ import java.util.List;
 
 public class HorizontalAdapterDrawable extends RecyclerView.Adapter<HorizontalAdapterDrawable.MyViewHolder> {
 
+    private static OnItemClickListener onItemClickListener;
+
     private List<Integer> horizontalList;
     private int numeroletras;
     DisplayMetrics metrics;
     LinearLayout llImg;
 
 
-
-
+    public static interface OnItemClickListener {
+        public void onItemClick(View view, int position);
+    }
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        onItemClickListener = listener;
+    }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         public ImageButton button;
@@ -31,7 +38,13 @@ public class HorizontalAdapterDrawable extends RecyclerView.Adapter<HorizontalAd
         public MyViewHolder(View view) {
             super(view);
             button = (ImageButton) view.findViewById(R.id.button4);
-
+            button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    int position  = MyViewHolder.super.getAdapterPosition();
+                    onItemClickListener.onItemClick(view,position);
+                }
+            });
 
         }
     }
@@ -46,10 +59,10 @@ public class HorizontalAdapterDrawable extends RecyclerView.Adapter<HorizontalAd
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = null;
 
-            itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_item_view_drawable, parent, false);
-            llImg = (LinearLayout) itemView.findViewById(R.id.linearLayout);
+        itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.horizontal_item_view_drawable, parent, false);
+        llImg = (LinearLayout) itemView.findViewById(R.id.linearLayout);
 
-      
+
 
         int width = metrics.widthPixels; // ancho absoluto en pixels
         int height = metrics.heightPixels; // alto absoluto en pixels
@@ -61,8 +74,8 @@ public class HorizontalAdapterDrawable extends RecyclerView.Adapter<HorizontalAd
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-       // holder.button.setText(horizontalList.get(position));
-       // holder.button.setImageDrawable(horizontalList.get(position));
+        // holder.button.setText(horizontalList.get(position));
+        // holder.button.setImageDrawable(horizontalList.get(position));
         holder.button.setImageResource(horizontalList.get(position));
     }
 

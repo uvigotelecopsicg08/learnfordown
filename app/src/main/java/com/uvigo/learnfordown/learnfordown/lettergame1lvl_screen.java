@@ -49,13 +49,14 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
 Intent minijuego;
+    AlertDialog dialog;
+
     String Correcta;
     Button ButtonActual;
     TextView titulo,letracorrecta;
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
-    AlertDialog dialog;
     String tipoNivel="leerletras",palabracom, tmpDownSlash= " ";
 
 
@@ -169,7 +170,9 @@ Intent minijuego;
 
                     @Override
                     public void onCompletion(MediaPlayer mp) {
-
+                        if (es.ratingbar1.getRating()==6){
+                            MensajeMinijuego();
+                        }
 
                         if (Correcta.equals(ButtonActual.getText().toString())) {
                             System.out.println(gn.getDificultad());
@@ -179,9 +182,7 @@ Intent minijuego;
                             } else {
                                 System.out.print("el nivel esta finalizado");
                                 avanzaNivel();
-                                if (es.ratingbar1.getRating()==6){
-                                    MensajeMinijuego();
-                                }
+
                             }
 //Codigo de Animacion Acierto
                         } else {
