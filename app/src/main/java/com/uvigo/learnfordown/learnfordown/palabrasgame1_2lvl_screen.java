@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -129,15 +130,15 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         if (ultimoPulsado != null ) {
             if (findViewById(v.getId()) instanceof Button && findViewById(ultimoPulsado) instanceof Button) {
                 Button b2 = (Button) findViewById(ultimoPulsado);
-                b2.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                b2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
                 Button b3 = (Button) findViewById(v.getId());
-                b3.setBackgroundColor(getResources().getColor(R.color.Gris));
+                b3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Gris));
             } else {
                 if (findViewById(v.getId()) instanceof ImageButton && findViewById(ultimoPulsado) instanceof ImageButton) {
                     ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                     b2.clearColorFilter();
                     ImageButton b3 = (ImageButton) findViewById(v.getId());
-                    b3.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
+                    b3.setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.Gris), PorterDuff.Mode.SRC_ATOP);
                 } else {
 
                     if (v.getId() != (ultimoPulsado)) {
@@ -149,7 +150,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                                 ImageButton b2 = (ImageButton) findViewById(ultimoPulsado);
                                 b2.clearColorFilter();
                                 b2.setEnabled(false);
-                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.VerdeClarito));
 
                                 switch (posicionImageButton(b1)) {
                                     case 1:
@@ -188,7 +189,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                                         break;
 
                                 }
-                                b1.setBackgroundColor(getResources().getColor(R.color.VerdeClarito));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.VerdeClarito));
                                 b1.setEnabled(false);
                                 ImageButton b2 = (ImageButton) findViewById(v.getId());
                                 b2.clearColorFilter();
@@ -227,12 +228,12 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
                         } else {
                             if (findViewById(v.getId()) instanceof Button) {
                                 Button b1 = (Button) findViewById(v.getId());
-                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
 
                             } else {
 
                                 Button b1 = (Button) findViewById(ultimoPulsado);
-                                b1.setBackgroundColor(getResources().getColor(R.color.Blanco));
+                                b1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
                             }
                             if (findViewById(v.getId()) instanceof ImageButton) {
                                 ImageButton b1 = (ImageButton) findViewById(v.getId());
@@ -254,11 +255,11 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
             cambiado=false;
             if (findViewById(v.getId()) instanceof Button) {
                 Button b2 = (Button) findViewById(v.getId());
-                b2.setBackgroundColor(getResources().getColor(R.color.Gris));
+                b2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Gris));
             } else {
                 if (findViewById(v.getId()) instanceof ImageButton) {
                     ImageButton b2 = (ImageButton) findViewById(v.getId());
-                    b2.setColorFilter(getResources().getColor(R.color.Gris), PorterDuff.Mode.SRC_ATOP);
+                    b2.setColorFilter(ContextCompat.getColor(getApplicationContext(),R.color.Gris), PorterDuff.Mode.SRC_ATOP);
                 }
 
             }
@@ -280,9 +281,9 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         respuesta1.setVisibility(View.INVISIBLE);
         respuesta2.setVisibility(View.INVISIBLE);
         respuesta3.setVisibility(View.INVISIBLE);
-        button1.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
-        button2.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
-        button3.setBackgroundColor(getApplicationContext().getResources().getColor(R.color.Blanco));
+        button1.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
+        button2.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
+        button3.setBackgroundColor(ContextCompat.getColor(getApplicationContext(),R.color.Blanco));
     }
     public int posicionImageButton(Button b) {
         if (map.get(b.getId()).equals(map.get(R.id.imageButton1))) {
