@@ -183,7 +183,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     }
     public void lanzaIntent(Nivel nivel){
 
-            if(nivel.tipoNivel.equals("leerletras")) {
+            if(nivel.getTipo().equals("leerletras")) {
                 if (nivel.dificultad == 1) {
                     Intent intent = new Intent(this, lettergame1lvl_screen.class);
                     startActivity(intent);
@@ -201,56 +201,56 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
                     startActivity(intent);
                 }
             }
-            if(nivel.tipoNivel.equals("silabasdirectas")||nivel.tipoNivel.equals("silabasinversas")||nivel.tipoNivel.equals("silabastrabadas")){
+            if(nivel.getTipo().equals("silabasdirectas")||nivel.getTipo().equals("silabasinversas")||nivel.getTipo().equals("silabastrabadas")){
                 if(nivel.dificultad==1) {
                     Intent intent = new Intent(this, silabasgame1lvl_screen.class);
-                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
                     startActivity(intent);
                 }
                 if(nivel.dificultad==2) {
                     Intent intent = new Intent(this, silabasgame2lvl_screen.class);
-                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
                     startActivity(intent);
                 }
                 if(nivel.dificultad==3) {
                     Intent intent = new Intent(this, silabasgame3lvl_screen.class);
-                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
                     startActivity(intent);
                 }
                 if(nivel.dificultad==4) {
                     Intent intent = new Intent(this, silabasgame4lvl_screen.class);
-                    intent.putExtra("tipoSilaba", nivel.tipoNivel);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
                     startActivity(intent);
                 }
 
               }
-         if(nivel.tipoNivel.contains("palabras")){
+         if(nivel.getTipo().contains("palabras")){
             Intent intent = new Intent(this,palabrasgame1_2lvl_screen.class);
-            intent.putExtra("tipoSilaba", nivel.tipoNivel);
+            intent.putExtra("tipoSilaba", nivel.getTipo());
             intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
         }
-        if(nivel.tipoNivel.contains("frase")){
+        if(nivel.getTipo().contains("frase")){
             Intent intent = new Intent(this,frasegame1lvl_screen.class);
-            intent.putExtra("tipoSilaba", nivel.tipoNivel);
+            intent.putExtra("tipoSilaba", nivel.getTipo());
             intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
         }
-        if(nivel.tipoNivel.equals("escribirletras")){
+        if(nivel.getTipo().equals("escribirletras")){
             Intent intent = new Intent(this,writegame_level1_screen.class);
             startActivity(intent);
         }
-        if(nivel.tipoNivel.equals("escribirconsombreado")){
+        if(nivel.getTipo().equals("escribirconsombreado")){
             Intent intent = new Intent(this,writegame_level2_screen.class);
             startActivity(intent);
 
         }
-        if(nivel.tipoNivel.equals("escribirsinsombreado")){
+        if(nivel.getTipo().equals("escribirsinsombreado")){
             Intent intent = new Intent(this,writegame_level3_screen.class);
             startActivity(intent);
 
         }
-        if(nivel.tipoNivel.equals("escribirtecladopalabra")){
+        if(nivel.getTipo().equals("escribirtecladopalabra")){
             Intent intent = new Intent(this,writegame_level4_screen.class);
             startActivity(intent);
 

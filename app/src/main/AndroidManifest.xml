@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uvigo.learnfordown.learnfordown">
+    package="com.uvigo.learnfordown.learnfordown"
+    xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-sdk tools:overrideLibrary="com.microsoft.windowsazure.mobileservices"/>
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
