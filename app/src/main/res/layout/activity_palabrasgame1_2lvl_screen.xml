@@ -138,7 +138,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="invisible" />
@@ -174,7 +174,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="invisible" />
@@ -211,7 +211,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="TextView"
-                android:textAlignment="center"
+                android:gravity="center"
                 android:textSize="30sp"
                 android:textStyle="bold"
                 android:visibility="invisible" />
@@ -323,131 +323,6 @@
         android:layout_height="wrap_content"
         android:weightSum="1">
     </LinearLayout>
-
-    <!--LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_weight="0.75"
-        android:layout_height="wrap_content"
-        android:weightSum="1">
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_weight="0.15"
-            android:layout_height="match_parent"
-            android:weightSum="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:visibility="invisible"
-                android:id="@+id/editText1" />
-        </LinearLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_weight="0.25"
-        android:layout_height="match_parent"
-        android:weightSum="1">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton1"
-            android:onClick="pulsar"
-            android:layout_weight="0.33"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator"
-            android:gravity="center"
-            android:background="@color/Blanco"
-            android:textSize="36sp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.005"
-            android:visibility="invisible"/>
-        <ImageButton
-            android:text="PLATO"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton2"
-            android:onClick="pulsar"
-            android:layout_weight="0.33"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator"
-            android:background="@color/Blanco"
-            android:textSize="36sp" />
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.005"
-            android:visibility="invisible"/>
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/imageButton3"
-            android:onClick="pulsar"
-            android:layout_weight="0.33"
-            app:srcCompat="?android:attr/activatedBackgroundIndicator"
-            android:background="@color/Blanco"
-            android:textSize="36sp" />
-    </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_weight="0.20"
-            android:layout_height="match_parent"
-            android:weightSum="1">
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="fill_parent"
-                android:visibility="invisible"
-                android:id="@+id/editText" />
-        </LinearLayout>
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="wrap_content"
-            android:layout_weight="0.40"
-            android:layout_height="match_parent"
-            android:weightSum="1">
-            <Button
-                android:text="PLANO"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button3"
-                android:onClick="pulsar"
-                android:layout_weight="0.3"
-                android:gravity="center"
-                android:background="@color/common_google_signin_btn_text_dark_pressed"
-                android:textSize="36sp"
-                android:textAllCaps="false" />
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.55"
-                android:visibility="invisible"/>
-            <Button
-                android:text="PLATO"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button1"
-                android:onClick="pulsar"
-                android:layout_weight="0.3"
-                android:background="@color/common_google_signin_btn_text_dark_pressed"
-                android:textSize="36sp" />
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="0.05"
-                android:visibility="invisible"/>
-            <Button
-                android:text="PLÁTANO"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:id="@+id/button2"
-                android:onClick="pulsar"
-                android:layout_weight="0.3"
-                android:background="@color/common_google_signin_btn_text_dark_pressed"
-                android:textSize="36sp" />
-        </LinearLayout>
-    </LinearLayout-->
-
 
 
 
