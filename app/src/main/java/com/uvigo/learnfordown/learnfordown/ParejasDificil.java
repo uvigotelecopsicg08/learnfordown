@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -57,7 +58,13 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
         ayuda = (ImageButton)findViewById(R.id.button4);
         ayuda.setOnClickListener(this);
 
-        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        //sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            sp = new SoundPool.Builder()
+                    .build();
+        } else {
+            sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        }
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
         flujofallo= sp.load(this,R.raw.error,3);

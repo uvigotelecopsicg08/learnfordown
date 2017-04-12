@@ -5,6 +5,7 @@ package com.uvigo.learnfordown.learnfordown; /**
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.support.v7.widget.AppCompatDrawableManager;
 import android.widget.Button;
 import android.widget.GridLayout;
@@ -34,7 +35,12 @@ public class MemoryButtonDificil extends Button
         front = AppCompatDrawableManager.get().getDrawable(context, frontImageDrawableId);
         back = AppCompatDrawableManager.get().getDrawable(context, R.drawable.back);
 
-        setBackgroundDrawable(back);//setBackground() para API > 16
+        //setBackgroundDrawable(back);
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.JELLY_BEAN){
+            setBackgroundDrawable(back);
+        } else {
+            setBackground(back);//setBackground() para API > 16
+        }
 
         GridLayout.LayoutParams tempParams = new GridLayout.LayoutParams(GridLayout.spec(r), GridLayout.spec(c));
 
