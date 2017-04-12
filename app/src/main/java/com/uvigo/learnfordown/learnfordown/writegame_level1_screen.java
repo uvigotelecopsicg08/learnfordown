@@ -1,41 +1,16 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.Intent;
+import android.content.*;
+import android.os.*;
+import java.util.*;
+import java.io.*;
+import android.widget.*;
+
 import android.graphics.Typeface;
-import android.location.Address;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.media.SoundPool;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
-
-import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.TreeSet;
+import android.support.v7.app.AppCompatActivity;
 
 import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
@@ -44,7 +19,7 @@ import com.uvigo.learnfordown.learnfordown.strokes.app.U;
 import com.uvigo.learnfordown.learnfordown.strokes.app.datatype.Point2D;
 import com.uvigo.learnfordown.learnfordown.dtw.FastDTW;
 import com.uvigo.learnfordown.learnfordown.util.DistanceFunctionFactory;
-import com.uvigo.learnfordown.learnfordown.gifView.GifImageView;
+import com.uvigo.learnfordown.learnfordown.gifView.*;
 
 
 public class writegame_level1_screen extends AppCompatActivity {
@@ -63,7 +38,6 @@ public class writegame_level1_screen extends AppCompatActivity {
     TextView Titulo;
     Intent minijuego;
     AlertDialog dialog;
-
     Context context;
     ArrayList<FotoPalabra> fp;
     Estrellas  es;
@@ -287,13 +261,12 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void showHelp (View v){
 
-       /* // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
+        // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
         foto = (ImageView) findViewById(R.id.imageView2);
         foto.setImageResource(fp.get(0).getFoto());
-        gifImageView = (GifView) findViewById(R.id.GifView);
-        gifImageView.setGifImageResource(R.drawable.a_gif); */
+
 
         // ********************
         try {
@@ -308,6 +281,15 @@ public class writegame_level1_screen extends AppCompatActivity {
 
             gifImageView.setBytes(bytes);
             gifImageView.startAnimation();
+
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Borrar.performClick();
+                }
+            }, 3800);
+
 
         } catch (IOException e) {
             e.printStackTrace();

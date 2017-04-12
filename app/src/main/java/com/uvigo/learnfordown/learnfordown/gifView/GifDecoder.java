@@ -50,7 +50,8 @@ import java.util.Arrays;
  * Implementation adapted from sample code published in Lyons. (2004). <em>Java for Programmers</em>,
  * republished under the MIT Open Source License
  */
-class GifDecoder {
+public class GifDecoder {
+
   private static final String TAG = GifDecoder.class.getSimpleName();
 
   /**
@@ -279,7 +280,7 @@ class GifDecoder {
    *
    * @return frame count.
    */
-  int getFrameCount() {
+  public int getFrameCount() {
     return header.frameCount;
   }
 

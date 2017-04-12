@@ -108,6 +108,8 @@ public class GifImageView extends ImageView implements Runnable {
     }
   }
 
+
+
   public void resetAnimation(){
     gifDecoder.resetLoopIndex();
     gotoFrame(0);
