@@ -29,7 +29,7 @@ import java.util.ArrayList;
 
 import static com.uvigo.learnfordown.learnfordown.R.id.horizontal_recycler_view;
 
-public class edit_screen extends AppCompatActivity {
+public class edit_screen extends AppCompatActivity  {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<Integer> horizontalList;
     private HorizontalAdapterDrawable horizontalAdapter;
@@ -50,7 +50,7 @@ public class edit_screen extends AppCompatActivity {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_screen);
-         db = new DataBaseManager(getApplicationContext());
+        db = new DataBaseManager(getApplicationContext());
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             id_user = extras.getInt("id_user");
@@ -69,19 +69,23 @@ public class edit_screen extends AppCompatActivity {
 
 
         horizontalList = new ArrayList<>();
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
-        horizontalList.add(R.drawable.casa);
+        horizontalList.add(R.drawable.avatarcompas);
+        horizontalList.add(R.drawable.avatarglobo);
+        horizontalList.add(R.drawable.avatarlibro);
+        horizontalList.add(R.drawable.avatarregla);
+        horizontalList.add(R.drawable.avatarrotu);
+        horizontalList.add(R.drawable.avatartijeras);
 
         DisplayMetrics metrics = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(metrics);
-        horizontalAdapter = new HorizontalAdapterDrawable(horizontalList,3,metrics);
+        horizontalAdapter = new HorizontalAdapterDrawable(horizontalList,6,metrics);
+        horizontalAdapter.setOnItemClickListener(new HorizontalAdapterDrawable.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                id_photo = horizontalList.get(position);
+            }
+        });
+
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(edit_screen.this, LinearLayoutManager.HORIZONTAL, false);
         horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
         horizontal_recycler_view.setAdapter(horizontalAdapter);
@@ -123,7 +127,7 @@ public class edit_screen extends AppCompatActivity {
                 }
                 else{
                     if(nombre.equals("")){
-                    alertDialogBuilder.setTitle("Introduce nombre, por favor");
+                        alertDialogBuilder.setTitle("Introduce nombre, por favor");
                     }
                     else{
                         alertDialogBuilder.setTitle("Elige un avatar");
@@ -160,19 +164,13 @@ public class edit_screen extends AppCompatActivity {
         }
     }
 
-    public void pulsar(View v){
-//aqui hay  que saber cual se eligio
-     id_photo=R.drawable.casa;
 
-
-    }
 
 
     public void lanzaIntent(){
         Intent intent = new Intent(this, home_screen.class);
         startActivity(intent);
     }
-
 
 
 }

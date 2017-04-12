@@ -2,6 +2,7 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.media.AudioManager;
 import android.media.SoundPool;
+import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -146,7 +147,13 @@ public class Puzzle4piezas extends AppCompatActivity {
         imagen2.setImageBitmap(CreatePiece(R.drawable.a_part21));
         imagen3.setImageResource(R.drawable.a_layout);*/
 
-        sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        //sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            sp = new SoundPool.Builder()
+                    .build();
+        } else {
+            sp = new SoundPool(1, AudioManager.STREAM_MUSIC, 0);
+        }
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
         flujofallo= sp.load(this,R.raw.error,3);
