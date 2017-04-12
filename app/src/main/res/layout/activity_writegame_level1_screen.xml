@@ -158,15 +158,15 @@
                 android:layout_alignLeft="@+id/lienzo"
                 android:layout_alignStart="@+id/lienzo" />
 
-            <com.uvigo.learnfordown.learnfordown.GifView
-                android:id="@+id/GifView"
+            <com.uvigo.learnfordown.learnfordown.gifView.GifImageView
+                android:id="@+id/gifImageView"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
+                android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/lienzo"
                 android:layout_alignEnd="@+id/lienzo"
                 android:layout_alignLeft="@+id/lienzo"
-                android:layout_alignStart="@+id/lienzo"
-                android:layout_alignParentTop="true" />
+                android:layout_alignStart="@+id/lienzo" />
 
             <LinearLayout
                 android:id="@+id/lienzo"
