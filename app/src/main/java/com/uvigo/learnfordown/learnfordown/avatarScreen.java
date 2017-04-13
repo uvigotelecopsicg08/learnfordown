@@ -40,28 +40,28 @@ public class avatarScreen extends AppCompatActivity {
 
 
     public void pulsar1(View v){
-    lanzaIntent(R.drawable.avatara);
+    lanzaIntent(R.drawable.avatarcompas);
 
     }
     public void pulsar2(View v){
-        lanzaIntent(R.drawable.policia);
+        lanzaIntent(R.drawable.avatarglobo);
 
     }
     public void pulsar3(View v){
-        lanzaIntent(R.drawable.abeja);
+        lanzaIntent(R.drawable.avatarlibro);
 
     }
 
     public void pulsar4(View v){
-        lanzaIntent(R.drawable.cabra);
+        lanzaIntent(R.drawable.avatarregla);
 
     }
     public void pulsar5(View v){
-        lanzaIntent(R.drawable.guitarra);
+        lanzaIntent(R.drawable.avatarrotu);
 
     }
     public void pulsar6(View v){
-        lanzaIntent(R.drawable.caballo);
+        lanzaIntent(R.drawable.avatartijeras);
 
     }
 

@@ -4,10 +4,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by Juani on 10/02/2017.
@@ -24,8 +27,12 @@ public class GestionNiveles {
     private String subnivel;
     private int numeroFotos;
     DataBaseManager db;
-    AppCompatActivity app;
     Context context;
+    AppCompatActivity app;
+    AzureConnection azureConnection;
+    Date horainicio;
+
+
 
     public GestionNiveles(Context context) {
         this.context =context;
@@ -36,10 +43,12 @@ public class GestionNiveles {
     }
     public GestionNiveles(Context context,AppCompatActivity app) {
         this.context =context;
-        this.app =app;
         db = new DataBaseManager(context);
         //Consulta a la bd el id_user actual
-       id_user= db.getIdUser();
+        id_user= db.getIdUser();
+        this.app =app;
+        azureConnection = new AzureConnection(app);
+         horainicio = new Date(Calendar.getInstance().getTimeInMillis());
 
     }
 
@@ -104,8 +113,11 @@ public class GestionNiveles {
         }
     }
 
-
     public void avanzaNivel() {
+        if(app!=null){
+            Date horafin = new Date(Calendar.getInstance().getTimeInMillis());
+         azureConnection.addItem(id_user, id_nivel,horainicio, horafin, tipo, subnivel,fallos, aciertos, dificultad);
+        }
 
         //escritura en la BD  los resultados del nivel
         finNiveles();
@@ -132,6 +144,7 @@ public class GestionNiveles {
 
         //   db.mostrarTablas();
         db.actulizaTimeStamp(true,id_nivel,id_user);
+
 
     }
 
