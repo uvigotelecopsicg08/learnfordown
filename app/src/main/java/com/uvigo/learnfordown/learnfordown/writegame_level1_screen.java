@@ -269,6 +269,9 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
         setContentView(R.layout.activity_writegame_level1_screen);
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
         es.setRatingbar1(R.id.ratingBar);
         foto = (ImageView) findViewById(R.id.imageView2);
         foto.setImageResource(fp.get(0).getFoto());
@@ -294,7 +297,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                 public void run() {
                     Borrar.performClick();
                 }
-            }, 5000);
+            }, 8400);
 
 
         } catch (IOException e) {
