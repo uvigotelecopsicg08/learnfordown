@@ -42,7 +42,7 @@ public class poppuzzle extends AppCompatActivity {
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    System.out.println("AQUI");
+                    System.out.println("AQUI***************************************************************************");
                     finish();
                     //Do something after 100ms
                 }
