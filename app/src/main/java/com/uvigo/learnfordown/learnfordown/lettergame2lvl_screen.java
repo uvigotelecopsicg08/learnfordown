@@ -87,7 +87,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         thresholds.put(79, 6f); //79 aciertos, 6 estrellas
 */
         Context context = this.getApplicationContext();
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,2));
         fp=gn.getFotos();
 
@@ -136,23 +136,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         Intent intent1 = new Intent(lettergame2lvl_screen.this, home_screen.class);
         startActivity(intent1);
     }
-/*
-    public void pulsar() {
-        float rating = 0;
-        for (int i : new TreeSet<>(thresholds.keySet())) {
-            if (contador < i) {
-                break;
-            }
-            rating = thresholds.get(i);
-        }
-        if (rating != ratingbar1.getRating()) {
-            ratingbar1.setRating(rating);
-            Toast toast = Toast.makeText(this, "¡HAS CONSEGUIDO UNA ESTRELLITA!", Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.RELATIVE_LAYOUT_DIRECTION, -270, -50);
-            toast.show();
-        }
-    }
-*/
+
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
@@ -161,77 +145,70 @@ public class lettergame2lvl_screen extends AppCompatActivity {
         animation.setDuration(500);
         animation.setFillAfter(true);
         animation.setAnimationListener(new Animation.AnimationListener() {
-                                           @Override
-                                           public void onAnimationStart(Animation animation) {
-                                               if (Correcta.equals(ButtonActual.getText().toString())) {
 
-                                                   ButtonActual.setBackgroundColor(Color.GREEN);
-                                                   ButtonActual.setEnabled(false);
-                                                   aciertos++;
+            @Override
+            public void onAnimationStart(Animation animation) {
 
-                                                   palabracom = fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash, ButtonActual.getText().toString());
-                                                   letracorrecta.setText(palabracom);
+                if (Correcta.equals(ButtonActual.getText().toString())) {
 
-                                               }
+                    ButtonActual.setBackgroundColor(Color.GREEN);
+                    ButtonActual.setEnabled(false);
+                    aciertos++;
 
-                                           }
+                    palabracom = fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash, ButtonActual.getText().toString());
+                    letracorrecta.setText(palabracom);
 
-                                           @Override
-                                           public void onAnimationEnd(Animation animation) {
+                }
 
+            }
 
-                                               if (Correcta.equals(ButtonActual.getText().toString())) {
+            @Override
+            public void onAnimationEnd(Animation animation) {
 
-                                                   if (aciertos == 1) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    if (aciertos == 1) {
+                        es.acierto();
+                        MediaPlayer aciertoMedia = es.getAciertoMedia();
+                        aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
+                            @Override
+                            public void onCompletion(MediaPlayer mp) {
 
-
-                                                               // pulsar();
-                                                               es.acierto();
-                                                       MediaPlayer aciertoMedia = es.getAciertoMedia();
-                                                       aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-
-                                                           @Override
-                                                           public void onCompletion(MediaPlayer mp) {
-                                                               es.pulsar(true);
-                                                               if (es.ratingbar1.getRating()==6){
-                                                                   MensajeMinijuego();
-                                                               }
-                                                               System.out.println("Se ha anotado un acierto");
-                                                               if (!gn.isnivelCompletado()) {
-                                                                   i++;
-                                                                   cambiarFoto();
-                                                               } else {
-                                                                   System.out.print("el nivel esta finalizado");
-                                                                   avanzaNivel();
-                                                               }
-                                                               aciertos = 0;
+                                es.pulsar(true);
+                                if (es.ratingbar1.getRating() == 6) {
+                                    MensajeMinijuego();
+                                }
+                                System.out.println("Se ha anotado un acierto");
+                                if (!gn.isnivelCompletado()) {
+                                    i++;
+                                    cambiarFoto();
+                                } else {
+                                    System.out.print("el nivel esta finalizado");
+                                    avanzaNivel();
+                                }
+                                aciertos = 0;
 
 
-                                                           }
+                            }
 
-                                                       });
+                        });
+                    }
+                 } else {
+                     es.fallo();
+                 }
 
-                                                   } else {
-                                                       es.fallo();
-                                                       //Codigo de Animacion Fallo
+            }
 
-                                                   }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
 
-                                               }
-
-                                           }
-
-                                           @Override
-                                           public void onAnimationRepeat(Animation animation) {
-
-                                           }
-                                       });
+            }
+        });
 
 
 
-            b.startAnimation(animation);
-    }
+b.startAnimation(animation);
+}
 
 
 

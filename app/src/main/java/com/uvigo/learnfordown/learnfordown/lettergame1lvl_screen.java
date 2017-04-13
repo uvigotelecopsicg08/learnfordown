@@ -48,7 +48,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
-Intent minijuego;
+    Intent minijuego;
     AlertDialog dialog;
 
     String Correcta;
@@ -86,7 +86,7 @@ Intent minijuego;
         titulo.setTypeface(face);
 
         Context context = this.getApplicationContext();
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
 
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
@@ -148,14 +148,10 @@ Intent minijuego;
             public void onAnimationStart(Animation animation) {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     ButtonActual.setBackgroundColor(Color.GREEN);
-
-
-
                     palabracom=fp.get(i).getPalabra().toUpperCase().replaceAll(tmpDownSlash,ButtonActual.getText().toString());
-
                     letracorrecta.setText(palabracom);
-                    es.acierto();
-                    es.pulsar(true);
+                    //es.acierto();
+                    //es.pulsar(true);
 
                 }
 
@@ -164,8 +160,37 @@ Intent minijuego;
             @Override
             public void onAnimationEnd(Animation animation) {
 
+                if (Correcta.equals(ButtonActual.getText().toString())) {
+                    es.acierto();
 
-                MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            es.pulsar(true);
+                            if (es.ratingbar1.getRating()==6){
+                                MensajeMinijuego();
+                            }
+
+                            if (!gn.isnivelCompletado()) {
+                                i++;
+                                cambiarFoto();
+                            } else {
+                                System.out.print("el nivel esta finalizado");
+                                avanzaNivel();
+
+                            }
+                        }
+
+                    });
+
+                } else {
+                    es.fallo();
+                }
+
+            }
+               /* MediaPlayer aciertoMedia = es.getAciertoMedia();
                 aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
                     @Override
@@ -196,8 +221,8 @@ Intent minijuego;
 
                     }
 
-                });
-            }
+                });*/
+
 
             @Override
             public void onAnimationRepeat(Animation animation) {

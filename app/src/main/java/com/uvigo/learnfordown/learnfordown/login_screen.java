@@ -3,6 +3,7 @@ package com.uvigo.learnfordown.learnfordown;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -28,6 +29,7 @@ public class login_screen extends AppCompatActivity {
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
+    TextView Titulo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +37,10 @@ public class login_screen extends AppCompatActivity {
         setContentView(R.layout.activity_login_screen);
         textoNombre = (TextView) findViewById(R.id.editTextNombre);
         textoEdad = (TextView) findViewById(R.id.editTextEdad);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
 
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }

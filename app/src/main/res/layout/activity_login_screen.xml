@@ -28,7 +28,7 @@
             android:layout_weight="0.03" />
 
         <TextView
-            android:text="REGÍSTRATE"
+            android:text="¡NO NOS HEMOS PRESENTADO!"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/textView2"
@@ -64,7 +64,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="NOMBRE"
+            android:text="¿Cómo te llamas?"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="74dp"
@@ -100,7 +100,7 @@
         android:weightSum="1">
 
         <TextView
-            android:text="EDAD"
+            android:text="¿Cuántos años tienes?"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

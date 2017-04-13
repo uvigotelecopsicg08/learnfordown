@@ -71,7 +71,7 @@ public class lettergame3lvl_screen extends AppCompatActivity {
 
 
         Context context = this.getApplicationContext();
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
         es =new Estrellas(this,gn, gn.setNivel(tipoNivel, 3));
         fp = gn.getFotos();
 
@@ -109,25 +109,25 @@ try {
     public void ButtonCheck (View v){
         Button b = (Button)v;
         ButtonActual =b;
-            TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
-                    -50.0f, 0.0f);
-            animation.setDuration(500);
-            animation.setFillAfter(true);
-            animation.setAnimationListener(new Animation.AnimationListener() {
-                @Override
-                public void onAnimationStart(Animation animation) {
-                    if (Correcta.equals(ButtonActual.getText().toString())) {
+        TranslateAnimation animation = new TranslateAnimation(0.0f, 0.0f,
+                -50.0f, 0.0f);
+        animation.setDuration(500);
+        animation.setFillAfter(true);
+        animation.setAnimationListener(new Animation.AnimationListener() {
 
-                        ButtonActual.setBackgroundColor(Color.GREEN);
-                        horizontal_recycler_view.setEnabled(false);
-                       //
-                        // gn.acierto();
+            @Override
+            public void onAnimationStart(Animation animation) {
+                if (Correcta.equals(ButtonActual.getText().toString())) {
 
-                    }
-
-
+                    ButtonActual.setBackgroundColor(Color.GREEN);
+                    horizontal_recycler_view.setEnabled(false);
+                   //
+                    // gn.acierto();
 
                 }
+
+
+            }
 
                 @Override
                 public void onAnimationEnd(Animation animation) {

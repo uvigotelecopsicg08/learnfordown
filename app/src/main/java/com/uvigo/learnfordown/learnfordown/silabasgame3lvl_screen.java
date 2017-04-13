@@ -81,7 +81,7 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
             palabra = (ImageView) findViewById(R.id.imageView2);
 
             Context context = this.getApplicationContext();
-            gn = new GestionNiveles(context);
+            gn = new GestionNiveles(context,this);
             es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 3));
             fp = gn.getFotos();
             horizontalList = new ArrayList<String>();

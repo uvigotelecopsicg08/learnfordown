@@ -1,7 +1,11 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
+import android.support.v7.app.AppCompatActivity;
+import android.view.Gravity;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -20,11 +24,19 @@ public class GestionNiveles {
     private String subnivel;
     private int numeroFotos;
     DataBaseManager db;
+    AppCompatActivity app;
     Context context;
-
 
     public GestionNiveles(Context context) {
         this.context =context;
+        db = new DataBaseManager(context);
+        //Consulta a la bd el id_user actual
+        id_user= db.getIdUser();
+
+    }
+    public GestionNiveles(Context context,AppCompatActivity app) {
+        this.context =context;
+        this.app =app;
         db = new DataBaseManager(context);
         //Consulta a la bd el id_user actual
        id_user= db.getIdUser();
@@ -44,17 +56,17 @@ public class GestionNiveles {
     private boolean iscompletadoEscritura() {
        switch (tipo){
            case "escribirconsombreado":
-               if(aciertos>=30){
+               if(aciertos>=3){ // 30
                    return true;
                }
                else return false;
            case "escribirsinsombreado":
-               if(aciertos>=40){
+               if(aciertos>=4){ // 40
                    return true;
                }
                else return false;
            case "escribirtecladopalabra":
-               if(aciertos>=50){
+               if(aciertos>=5){ //50
                    return true;
                }
                else return false;
@@ -92,13 +104,33 @@ public class GestionNiveles {
         }
     }
 
+
     public void avanzaNivel() {
 
         //escritura en la BD  los resultados del nivel
-       finNiveles();
+        finNiveles();
+        //Guardamos el tipo del último nivel
+
+        String lastLevelType=tipo;
+        int lastDifficulty = dificultad;
+
         //lectura parametros del nivel
         getParameterNivel();
-     //   db.mostrarTablas();
+
+        if(!tipo.equals(lastLevelType)||lastDifficulty!=dificultad){
+            // ************
+
+            System.out.println("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE******");
+            Intent intent = new Intent(app.getApplicationContext(),poppuzzle.class);
+            intent.putExtra("primera","no");
+            intent.putExtra("imagen",R.drawable.cambionivel);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            app.getApplicationContext().startActivity(intent);
+
+            // ************
+        }
+
+        //   db.mostrarTablas();
         db.actulizaTimeStamp(true,id_nivel,id_user);
 
     }

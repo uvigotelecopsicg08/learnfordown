@@ -36,7 +36,8 @@ public class poppuzzle extends AppCompatActivity {
         texto2 = (TextView)findViewById(R.id.textView6);
         texto2.setTypeface(face);
         ImageView imagen = (ImageView) findViewById(R.id.imageView2);
-        if(id==R.drawable.estrellita){
+
+        if(id==R.drawable.estrellita || id == R.drawable.cambionivel){
             final Handler handler = new Handler();
             handler.postDelayed(new Runnable() {
                 @Override

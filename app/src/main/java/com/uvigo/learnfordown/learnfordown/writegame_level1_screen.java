@@ -53,6 +53,10 @@ public class writegame_level1_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);                           // Pasa el estado de la APP guardado en un "bundle" a la actividad para poder recrearla
         setContentView(R.layout.activity_writegame_level1_screen);    // Establece como layout la pantalla indicada
 
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
+
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto = (ImageView) findViewById(R.id.imageView2);
         Borrar= (ImageButton) findViewById(R.id.button6);
@@ -61,9 +65,6 @@ public class writegame_level1_screen extends AppCompatActivity {
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
 
-        Titulo = (TextView) findViewById(R.id.textView2);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
-        Titulo.setTypeface(face);
 
         // Canvas
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -73,7 +74,7 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         context = this.getApplicationContext();
 
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
         gn.setNivel(tipoNivel,1);
         fp = gn.getFotos();
         es= new Estrellas (this,gn,gn.setNivel(tipoNivel,1));
@@ -101,7 +102,8 @@ public class writegame_level1_screen extends AppCompatActivity {
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
 
         int resId=this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
-        plantilla.setImageResource(resId);
+        if (fp.get(0).getLetra().equals("ñ")) plantilla.setImageResource(R.drawable.nn);
+        else   plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
 
     }
@@ -271,7 +273,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         // ********************
         try {
 
-            InputStream is = getResources().openRawResource(R.raw.prueba_buena);
+            InputStream is = getResources().openRawResource(R.raw.a_gif);
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
             is.close();
@@ -288,7 +290,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                 public void run() {
                     Borrar.performClick();
                 }
-            }, 3800);
+            }, 5000);
 
 
         } catch (IOException e) {

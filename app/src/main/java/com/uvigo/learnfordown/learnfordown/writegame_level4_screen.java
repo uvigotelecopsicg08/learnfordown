@@ -66,7 +66,7 @@ public class writegame_level4_screen extends AppCompatActivity {
         Context context = this.getApplicationContext();
 
 
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
         gn.setNivel(TipoNivel, 1);
         fp = gn.getFotosAleatorias();
         es = new Estrellas(this, gn, gn.setNivel(TipoNivel, 4));

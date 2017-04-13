@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_width="wrap_content"
             android:id="@+id/textView2"
-            android:layout_weight="0.92"
+            android:layout_weight="0.95"
             android:gravity="center"
             android:textSize="40sp"
             android:textStyle="bold"
@@ -48,7 +48,7 @@
         android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="131dp"
-        android:background="@color/colorGame"
+        android:background="@color/Rojo"
         android:weightSum="1">
 
         <TextView

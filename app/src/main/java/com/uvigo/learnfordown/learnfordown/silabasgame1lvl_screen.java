@@ -82,8 +82,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
         letracorrecta=(TextView)findViewById(R.id.textView4);
         Context context = this.getApplicationContext();
 
-
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
         es= new Estrellas(this,gn,gn.setNivel(tipoNivel,1));
         fp=gn.getFotos();
 

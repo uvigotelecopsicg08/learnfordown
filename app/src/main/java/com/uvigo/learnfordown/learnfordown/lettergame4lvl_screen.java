@@ -67,7 +67,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         palabra= (ImageView)findViewById(R.id.imageView2);
 try {
     Context context = this.getApplicationContext();
-    gn = new GestionNiveles(context);
+    gn = new GestionNiveles(context,this);
     es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 4));
     fp = gn.getFotos();
 

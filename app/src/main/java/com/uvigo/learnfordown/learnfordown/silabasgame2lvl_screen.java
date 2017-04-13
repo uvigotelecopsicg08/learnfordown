@@ -85,7 +85,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
 
 
         Context context = this.getApplicationContext();
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
        es =new Estrellas(this,gn, gn.setNivel(tipoNivel,2));
         fp=gn.getFotos();
         horizontalList=new ArrayList<String>();

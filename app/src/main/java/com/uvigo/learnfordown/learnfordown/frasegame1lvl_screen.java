@@ -85,8 +85,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
         System.out.println(tipoNivel);
         Context context = this.getApplicationContext();
-
-        gn = new GestionNiveles(context);
+        gn = new GestionNiveles(context,this);
        es = new Estrellas(this,gn, gn.setNivel(tipoNivel, nivel));
         fp = gn.getFotos();
         figure=fp.get(i).getPalabra().toUpperCase();
