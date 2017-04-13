@@ -93,6 +93,10 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
+
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
