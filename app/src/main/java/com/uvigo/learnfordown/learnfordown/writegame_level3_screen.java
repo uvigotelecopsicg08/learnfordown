@@ -7,6 +7,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.widget.RatingBar;
@@ -271,8 +272,15 @@ public class writegame_level3_screen extends AppCompatActivity {
                 if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
 
                 //Código para abrir otra pantalla
-                Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
-                startActivity(intent);
+                    final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            Intent intent = new Intent(writegame_level3_screen.this, writegame_level4_screen.class);
+                            startActivity(intent);
+                        }
+                    }, 2000);
+
                 } else {
                 fp = gn.getFotosAleatorias();
                 i = 0;

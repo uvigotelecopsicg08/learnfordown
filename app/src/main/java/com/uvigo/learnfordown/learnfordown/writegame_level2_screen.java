@@ -8,6 +8,7 @@ import android.graphics.drawable.PaintDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Handler;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -381,10 +382,16 @@ public class writegame_level2_screen extends AppCompatActivity {
 
             gn.avanzaNivel();
             if (gn.getDificultad() != 1 || !(gn.getTipo().equals(TipoNivel))) {
-
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
+                        startActivity(intent);
+                    }
+                }, 2000);
                 //Código para abrir otra pantalla
-                Intent intent = new Intent(writegame_level2_screen.this, writegame_level3_screen.class);
-                startActivity(intent);
+
             } else {
                 fp = gn.getFotosAleatorias();
                 i = 0;

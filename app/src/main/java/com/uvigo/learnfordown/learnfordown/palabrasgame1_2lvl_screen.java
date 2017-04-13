@@ -11,6 +11,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -412,25 +413,45 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
         if (!(gn.getTipo().equals(tipoNivel))) {
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
             //Código para abrir otra pantalla
+
             nuevaActivity=true;
-            String strName=null;
+
             if(gn.getTipo().equals("silabastrabadas")||gn.getTipo().equals("silabasinversas")) {
-                Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, silabasgame1lvl_screen.class);
-                if(gn.getTipo().contains("inversas")) {
-                    strName = "silabasinversas";
-                }
-                else{
-                    strName = "silabastrabadas";
-                }
-                intent.putExtra("tipoSilaba", strName);
-                startActivity(intent);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String strName=null;
+
+                        Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, silabasgame1lvl_screen.class);
+                        if(gn.getTipo().contains("inversas")) {
+                            strName = "silabasinversas";
+                        }
+                        else{
+                            strName = "silabastrabadas";
+                        }
+                        intent.putExtra("tipoSilaba", strName);
+                        startActivity(intent);
+                    }
+                }, 2000);
+
+
             }
             else{
-                Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
-                strName = "frasessilabasdirectas";
-                intent.putExtra("tipoSilaba", strName);
-                intent.putExtra("nivel",1);
-                startActivity(intent);
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        String strName=null;
+
+                        Intent  intent = new Intent(palabrasgame1_2lvl_screen.this, frasegame1lvl_screen.class);
+                        strName = "frasessilabasdirectas";
+                        intent.putExtra("tipoSilaba", strName);
+                        intent.putExtra("nivel",1);
+                        startActivity(intent);
+                    }
+                }, 2000);
+
             }
 
         } else {

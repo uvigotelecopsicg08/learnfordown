@@ -210,8 +210,15 @@ public class writegame_level1_screen extends AppCompatActivity {
                     gn.avanzaNivel();
                     if(!(gn.getTipo().equals(tipoNivel))) {
                         // Terminó el nivel
-                        Intent intent = new Intent(writegame_level1_screen.this, writegame_level2_screen.class);
-                        startActivity(intent);
+                        final Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent intent = new Intent(writegame_level1_screen.this, writegame_level2_screen.class);
+                                startActivity(intent);
+                            }
+                        }, 2000);
+
                     }
 
                     cambiarFoto();

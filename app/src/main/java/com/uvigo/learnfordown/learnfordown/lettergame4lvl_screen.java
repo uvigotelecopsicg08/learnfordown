@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -176,8 +177,15 @@ catch (IndexOutOfBoundsException e){
         if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
             //Código para abrir otra pantalla
-            Intent intent = new Intent(lettergame4lvl_screen.this, silabasgame1lvl_screen.class);
-            startActivity(intent);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(lettergame4lvl_screen.this, silabasgame1lvl_screen.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+
         } else {
             fp = gn.getFotos();
             i = 0;

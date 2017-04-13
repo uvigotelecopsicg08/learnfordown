@@ -10,6 +10,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -201,8 +202,15 @@ public class silabasgame3lvl_screen extends AppCompatActivity {
         if(gn.getDificultad()!=3 ||!(gn.getTipo().equals(tipoNivel))){
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
             //Código para abrir otra pantalla
-            Intent intent = new Intent(silabasgame3lvl_screen.this, silabasgame4lvl_screen.class);
-            startActivity(intent);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(silabasgame3lvl_screen.this, silabasgame4lvl_screen.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+
         }
         else {
             fp= gn.getFotos();

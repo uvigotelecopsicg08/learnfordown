@@ -10,6 +10,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -207,24 +208,32 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
         if (gn.getDificultad() != 4 || !(gn.getTipo().equals(tipoNivel))) {
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
             //Código para abrir otra pantalla
-            activiftiFinalizado=true;
-            Intent intent = new Intent(silabasgame4lvl_screen.this, palabrasgame1_2lvl_screen.class);
-            String strName= null;
-            if(gn.getTipo().contains("directas")){
-                strName = "palabrassilabasdirectas";
-            }
-            else{
-                if(gn.getTipo().contains("inversas")){
-                    strName = "palabrassilabasinversas";
-                }
-                else{
-                    strName ="palabrassilabastrabadas";
-                }
-            }
 
-            intent.putExtra("tipoSilaba", strName);
-            intent.putExtra("nivel",1);
-            startActivity(intent);
+            activiftiFinalizado=true;
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(silabasgame4lvl_screen.this, palabrasgame1_2lvl_screen.class);
+                    String strName= null;
+                    if(gn.getTipo().contains("directas")){
+                        strName = "palabrassilabasdirectas";
+                    }
+                    else{
+                        if(gn.getTipo().contains("inversas")){
+                            strName = "palabrassilabasinversas";
+                        }
+                        else{
+                            strName ="palabrassilabastrabadas";
+                        }
+                    }
+
+                    intent.putExtra("tipoSilaba", strName);
+                    intent.putExtra("nivel",1);
+                    startActivity(intent);
+                }
+            }, 2000);
+
 
         } else {
             if(!activiftiFinalizado) {

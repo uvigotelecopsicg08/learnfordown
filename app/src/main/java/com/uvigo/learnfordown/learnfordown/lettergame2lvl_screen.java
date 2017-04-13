@@ -10,6 +10,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -216,8 +217,16 @@ b.startAnimation(animation);
         gn.avanzaNivel();
         if (gn.getDificultad() != 2 || !(gn.getTipo().equals(tipoNivel))) {
             System.out.println("Se debe abrir otra pantalla porque esta ya no vale");
-            Intent intent = new Intent(lettergame2lvl_screen.this, lettergame3lvl_screen.class);
-            startActivity(intent);
+            final Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    Intent intent = new Intent(lettergame2lvl_screen.this, lettergame3lvl_screen.class);
+                    startActivity(intent);
+                }
+            }, 2000);
+
+
         } else {
             fp = gn.getFotos();
             i = 0;
