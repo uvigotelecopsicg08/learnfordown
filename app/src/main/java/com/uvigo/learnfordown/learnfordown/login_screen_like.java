@@ -2,11 +2,13 @@ package com.uvigo.learnfordown.learnfordown;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.HashMap;
 
@@ -18,6 +20,7 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
     int numero=0;
     ImageView foto;
     String nombre;
+    TextView Titulo;
     int edad;
     int avatar;
     HashMap<String,Boolean> gustos;
@@ -27,7 +30,11 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
         setContentView(R.layout.activity_login_screen_like);
         numero=0;
         gustos =new HashMap<String,Boolean>();
-         foto = (ImageView) findViewById(R.id.imageView);
+        foto = (ImageView) findViewById(R.id.imageView);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
 
         drawable[0]=R.drawable.oso;
         drawable[1]=R.drawable.coche;

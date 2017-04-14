@@ -65,17 +65,17 @@ public class GestionNiveles {
     private boolean iscompletadoEscritura() {
        switch (tipo){
            case "escribirconsombreado":
-               if(aciertos>=3){ // 30
+               if(aciertos>=30){
                    return true;
                }
                else return false;
            case "escribirsinsombreado":
-               if(aciertos>=4){ // 40
+               if(aciertos>=40){
                    return true;
                }
                else return false;
            case "escribirtecladopalabra":
-               if(aciertos>=5){ //50
+               if(aciertos>=50){
                    return true;
                }
                else return false;
@@ -132,7 +132,7 @@ public class GestionNiveles {
         if(!tipo.equals(lastLevelType)||lastDifficulty!=dificultad){
             // ************
 
-            System.out.println("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE******");
+           // System.out.println("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE******");
             Intent intent = new Intent(app.getApplicationContext(),poppuzzle.class);
             intent.putExtra("primera","no");
             intent.putExtra("imagen",R.drawable.cambionivel);

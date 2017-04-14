@@ -66,14 +66,14 @@ public class login_screen extends AppCompatActivity {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             // set title
             if(edadString.equals("")&&nombre.equals("")){
-                alertDialogBuilder.setTitle("Introduce nombre y edad, por favor");
+                alertDialogBuilder.setTitle("¡Eh! ¡Todavía no me has dicho quién eres!");
             }
             else{
                 if(edadString.equals("")){
-                    alertDialogBuilder.setTitle("Introduce edad, por favor");
+                    alertDialogBuilder.setTitle("¡Dime cuantos años tienes!");
                 }
                 else{
-                    alertDialogBuilder.setTitle("Introduce nombre, por favor");
+                    alertDialogBuilder.setTitle("¡Dime cómo te llamas!");
                 }
             }
 
@@ -95,7 +95,7 @@ public class login_screen extends AppCompatActivity {
             }
             catch (NumberFormatException e){
                 AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-                alertDialogBuilder.setTitle("Introduce un valor numerico para la edad");
+                alertDialogBuilder.setTitle("¡Escribe tus años con números por favor!");
                 AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }

@@ -11,46 +11,37 @@
     <LinearLayout
         android:orientation="vertical"
         android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/Morado"
-        android:layout_centerVertical="true"
+        android:layout_width="400dp"
+        android:layout_height="200dp"
+        android:background="@color/Rojo"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
 
         <TextView
-            android:text="¡VAMOS A JUGAR!"
+            android:text="¡UPS!"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView5"
-            android:textSize="40dp"
+            android:textSize="60dp"
             android:textColor="@color/Blanco"
             android:layout_below="@+id/textView6"
-            android:gravity="center"
-            android:layout_toStartOf="@+id/imageView2"
             android:textAlignment="center"
+            android:gravity="center"
             android:textStyle="normal|bold" />
 
         <TextView
-            android:text="FORMA LA IMAGEN CON LAS PIEZAS DEL PUZZLE"
+            android:text="¡Ánimo! Inténtalo de nuevo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/textView6"
-            android:textSize="20dp"
+            android:textSize="40dp"
             android:textColor="@color/Blanco"
-            android:gravity="center"
             android:layout_alignTop="@+id/imageView2"
-            android:layout_toStartOf="@+id/textView5"
             android:textAlignment="center"
+            android:gravity="center"
             android:textStyle="normal|bold" />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/puzzle0"
-            android:id="@+id/imageView2"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            />
     </LinearLayout>
 
 </RelativeLayout>

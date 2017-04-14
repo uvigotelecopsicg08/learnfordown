@@ -40,8 +40,12 @@ public class writegame_level1_screen extends AppCompatActivity {
     AlertDialog dialog;
     Context context;
     ArrayList<FotoPalabra> fp;
+
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+
+
+    Map <String, Integer> duracion = new HashMap <String, Integer>(); // Clave: letra, Valor: Duracion GIF
 
     public writegame_level1_screen() {
 
@@ -63,6 +67,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         Help = (ImageButton) findViewById(R.id.button4);
         // GIF
         gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+        RellenaDuraciones();
 
 
 
@@ -118,7 +123,7 @@ public class writegame_level1_screen extends AppCompatActivity {
         String l;
         if (fp.get(0).getLetra().equals("ñ")) l = "nn";
         else l = fp.get(0).getLetra();
-        int resIdRaw=this.getResources().getIdentifier(l, "raw", this.getPackageName());
+        int resIdRaw = this.getResources().getIdentifier(l, "raw", this.getPackageName());
         InputStream fraw =  getResources().openRawResource(resIdRaw);
 
         // ** Carga de ficheros ** //
@@ -287,7 +292,9 @@ public class writegame_level1_screen extends AppCompatActivity {
         // ********************
         try {
 
-            InputStream is = getResources().openRawResource(R.raw.a_gif);
+            int resIdRaw = this.getResources().getIdentifier(fp.get(0).getLetra()+"_gif", "raw", this.getPackageName());
+            InputStream is =  getResources().openRawResource(resIdRaw);
+            //InputStream is = getResources().openRawResource(R.raw.a_gif);
             byte[] bytes = new byte[is.available()];
             is.read(bytes);
             is.close();
@@ -304,7 +311,7 @@ public class writegame_level1_screen extends AppCompatActivity {
                 public void run() {
                     Borrar.performClick();
                 }
-            }, 8400);
+            }, duracion.get(fp.get(0).getLetra()+"_gif"));
 
 
         } catch (IOException e) {
@@ -330,6 +337,10 @@ public class writegame_level1_screen extends AppCompatActivity {
 
         setContentView(R.layout.activity_writegame_level1_screen);
         es.setRatingbar1(R.id.ratingBar);
+
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
         plantilla =(ImageView) findViewById(R.id.imageView3);
         foto= (ImageView) findViewById(R.id.imageView2);
         Lienzo = (LinearLayout) findViewById(R.id.lienzo);
@@ -414,5 +425,12 @@ public class writegame_level1_screen extends AppCompatActivity {
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
         dialog.dismiss();
+    }
+
+
+    public void RellenaDuraciones(){
+        duracion.put("a_gif", 8000);
+        duracion.put("i_gif", 6000);
+        duracion.put("e_gif", 4000);
     }
 }

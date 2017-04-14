@@ -69,7 +69,7 @@ public class InsertData {
         db.insertar_foto("c","cu","directa","cuchillo","El filete se corta con un *",R.drawable.cuchillo,"casa",3,"kcq");
         db.insertar_foto("c","cu","directa","cuna","Mi prima pequeña aún duerme en la *",R.drawable.cuna,"casa",2,"kcq");
         db.insertar_foto("c","cla","trabada","clarinete","Mi madre toca el *",R.drawable.clarinete,"musica",4,"cl");
-        db.insertar_foto("c","cla","trabada","clave","Estoy aprendiendo a dibujar una * de sol",R.drawable.clave,"musica",2,"cl");
+        db.insertar_foto("c","cla","trabada","clave","En música aprendimos la * de sol",R.drawable.clave,"musica",2,"cl");
         db.insertar_foto("c","cro","trabada","croquetas","A mi padre no le gustan las *",R.drawable.croquetas,"comida",2,"cr");
         db.insertar_foto("c","clip","trabada","clip","Este * es de color rojo",R.drawable.clip,"otros",1,"mono");
 
