@@ -243,35 +243,35 @@ public class menu_screen extends AppCompatActivity {
     private List<SpinnerModel> createLettersValues() {
         List<SpinnerModel> nameValues = new ArrayList<>();
         nameValues.add(new SpinnerModel("", ""));
-        nameValues.add(new SpinnerModel("Nivel 1", ""));
-        nameValues.add(new SpinnerModel("Nivel 2", ""));
-        nameValues.add(new SpinnerModel("Nivel 3", ""));
-        nameValues.add(new SpinnerModel("Nivel 4", ""));
+        nameValues.add(new SpinnerModel("SOL (Nivel 1)", ""));
+        nameValues.add(new SpinnerModel("LUNA (Nivel 2)", ""));
+        nameValues.add(new SpinnerModel("ESTRELLA (Nivel 3)", ""));
+        nameValues.add(new SpinnerModel("MARTE (Nivel 4)", ""));
 
         return nameValues;
     }
     private List<SpinnerModel> createSilabasValues() {
         List<SpinnerModel> nameValues = new ArrayList<>();
         nameValues.add(new SpinnerModel("", ""));
-        nameValues.add(new SpinnerModel("Sílabas directas", ""));
-        nameValues.add(new SpinnerModel("Sílabas inversas", ""));
-        nameValues.add(new SpinnerModel("Sílabas trabadas", ""));
+        nameValues.add(new SpinnerModel("CLARINETE (Sílabas directas)", ""));
+        nameValues.add(new SpinnerModel("VIOLÍN (Sílabas inversas)", ""));
+        nameValues.add(new SpinnerModel("SAXOFÓN (Sílabas trabadas)", ""));
         return nameValues;
     }
     private List<SpinnerModel> createPalabrasValues() {
         List<SpinnerModel> nameValues = new ArrayList<>();
         nameValues.add(new SpinnerModel("", ""));
-        nameValues.add(new SpinnerModel("Palabras con sílabas directas", ""));
-        nameValues.add(new SpinnerModel("Palabras con sílabas inversas", ""));
-        nameValues.add(new SpinnerModel("Palabras con sílabas trabadas", ""));
+        nameValues.add(new SpinnerModel("PERRO (Palabras con sílabas directas)", ""));
+        nameValues.add(new SpinnerModel("GATO (Palabras con sílabas inversas)", ""));
+        nameValues.add(new SpinnerModel("RATÓN (Palabras con sílabas trabadas)", ""));
         return nameValues;
     }
     private List<SpinnerModel> createFrasesValues() {
         List<SpinnerModel> nameValues = new ArrayList<>();
         nameValues.add(new SpinnerModel("", ""));
-        nameValues.add(new SpinnerModel("Frases con sílabas directas", ""));
-        nameValues.add(new SpinnerModel("Frases con sílabas inversas", ""));
-        nameValues.add(new SpinnerModel("Frases con sílabas trabadas", ""));
+        nameValues.add(new SpinnerModel("BICICLETA (Frases con sílabas directas)", ""));
+        nameValues.add(new SpinnerModel("BARCO (Frases con sílabas inversas)", ""));
+        nameValues.add(new SpinnerModel("AVIÓN (Frases con sílabas trabadas)", ""));
 
         return nameValues;
     }
