@@ -70,7 +70,7 @@
         android:background="@color/Blanco">
 
         <Button
-            android:text="NIVEL 1"
+            android:text="DESIERTO (NIVEL 1)"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,7 +90,7 @@
             android:background="@color/Blanco"> </Spinner>
 
         <Button
-            android:text="NIVEL 2"
+            android:text="PRADO (NIVEL 2)"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
             android:background="@color/Blanco"> </Spinner>
 
         <Button
-            android:text="NIVEL 3"
+            android:text="BOSQUE (NIVEL 3)"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
             android:background="@color/Blanco"> </Spinner>
 
         <Button
-            android:text="NIVEL 4"
+            android:text="MONTAÑA (NIVEL 4)"
             android:textStyle="bold"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
