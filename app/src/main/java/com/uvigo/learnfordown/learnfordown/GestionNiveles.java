@@ -260,7 +260,7 @@ public class GestionNiveles {
     }
     private boolean validatePhoto(String palabra,String silaba){
         //(!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3
-        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("letras")){
+        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("leerletras")){
             if(palabra.startsWith(silaba)||dificultad<3){
                 return true;
             }
@@ -296,7 +296,10 @@ public class GestionNiveles {
                      int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                      String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
                      String tiposilaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE_SYLLABE));
-                     fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     if(validatePhoto(palabra,silaba)) {
+                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     }
+
                  }while(cursor.moveToNext());
             }
         }

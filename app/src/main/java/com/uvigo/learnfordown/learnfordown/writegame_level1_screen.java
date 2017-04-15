@@ -431,6 +431,8 @@ public class writegame_level1_screen extends AppCompatActivity {
     public void RellenaDuraciones(){
         duracion.put("a_gif", 8000);
         duracion.put("i_gif", 6000);
-        duracion.put("e_gif", 4000);
+        duracion.put("e_gif", 9000);
+        duracion.put("o_gif", 5000);
+        duracion.put("u_gif", 6000);
     }
 }
