@@ -24,6 +24,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class login_screen extends AppCompatActivity {
     TextView textoNombre, textoEdad;
+    boolean azureEnable=false;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -91,6 +92,9 @@ public class login_screen extends AppCompatActivity {
                 Intent intent = new Intent(this, avatarScreen.class);
                 intent.putExtra("nombre", nombre);
                 intent.putExtra("edad",edad);
+                intent.putExtra("azureEnable",azureEnable);
+                if(azureEnable)
+                    System.out.print("************");
                 startActivity(intent);
             }
             catch (NumberFormatException e){
@@ -152,5 +156,10 @@ public class login_screen extends AppCompatActivity {
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(client, getIndexApiAction());
         client.disconnect();
+    }
+
+    public void setAzure(View view) {
+        azureEnable=true;
+        System.out.println("habilitado azure");
     }
 }

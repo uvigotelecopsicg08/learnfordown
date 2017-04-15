@@ -23,6 +23,9 @@ public class DataBaseManager {
     public static final String CN_AGE_USER="edad";
     public static final String CN_LOGGUED="logeado";
     public static final String CN_AVATAR="avatar";
+    public static final String CN_ID_USER_AZURE="id_user_azure";
+    public static final String CN_AZURE="registradoAzure";
+
 
     //Tabla afinidad
     public static final String TABLE_AFFINITY ="AFINIDAD";
@@ -86,6 +89,8 @@ public class DataBaseManager {
             + CN_NAME_USER + " VARCHAR(50) NOT NULL UNIQUE,"
             +CN_AGE_USER+" integer NOT NULL,"+
              CN_AVATAR+"  integer NOT NULL,"+
+            CN_ID_USER_AZURE+" VARCHAR(50),"+
+            CN_AZURE+" boolean NOT NULL,"+
              CN_LOGGUED+" boolean NOT NULL);";
     //+CN_DATE+" timestamp  DEFAULT CURRENT_TIMESTAMP);";
 
@@ -154,6 +159,7 @@ public class DataBaseManager {
         valores.put(CN_AGE_USER,edad);
         valores.put(CN_LOGGUED,true);
         valores.put(CN_AVATAR,avatar);
+        valores.put(CN_AZURE,false);
         //Desloguear si hay otro usuario
         singOut();
         db.insert(TABLE_USER,null,valores);
@@ -667,4 +673,31 @@ public class DataBaseManager {
     }
 
 
+    public String isloggedinAzure(int id_user) {
+        int logged=0;
+        String tablas=TABLE_USER;
+
+        String columnas[] = new String[]{CN_ID_USER_AZURE};
+        String whereClause = CN_ID_USER+" = ?";
+        String[] whereArgs = new String[] {String.valueOf(id_user)};
+        Cursor cursor= db.query(tablas,columnas,whereClause,whereArgs,null,null,null,null);
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+            return   cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_ID_USER_AZURE));
+            }
+            return null;
+        }
+        else
+            return null;
+
+    }
+
+    public void updateAzureUser( int id_user,String id_azure) {
+        ContentValues valores = new ContentValues();
+        valores.put(CN_ID_USER_AZURE,id_azure);
+        valores.put(CN_AZURE,true);
+        String  whereClause =CN_ID_USER+" = ?";
+        String[]   whereArgs = new String[]{String.valueOf(id_user)};
+        db.update(TABLE_USER, valores,whereClause, whereArgs);
+    }
 }

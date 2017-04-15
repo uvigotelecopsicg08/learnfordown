@@ -11,6 +11,8 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by Juani on 10/02/2017.
@@ -18,6 +20,7 @@ import java.util.Date;
 
 public class GestionNiveles {
 
+    private String mId;
     private int id_nivel;
     private int aciertos;
     private int fallos;
@@ -30,6 +33,7 @@ public class GestionNiveles {
     Context context;
     AppCompatActivity app;
     AzureConnection azureConnection;
+    private boolean azureEnable=false;
     Date horainicio;
 
 
@@ -47,8 +51,12 @@ public class GestionNiveles {
         //Consulta a la bd el id_user actual
         id_user= db.getIdUser();
         this.app =app;
-        azureConnection = new AzureConnection(app);
-         horainicio = new Date(Calendar.getInstance().getTimeInMillis());
+        if(isloggedinAzure()) {
+            azureConnection = new AzureConnection(app);
+            horainicio = new Date(Calendar.getInstance().getTimeInMillis());
+            azureEnable=true;
+        }
+
 
     }
 
@@ -257,7 +265,7 @@ public class GestionNiveles {
     }
     private boolean validatePhoto(String palabra,String silaba){
         //(!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3
-        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("letras")){
+        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.equals("leerletras")){
             if(palabra.startsWith(silaba)||dificultad<3){
                 return true;
             }
@@ -293,7 +301,9 @@ public class GestionNiveles {
                      int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                      String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
                      String tiposilaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE_SYLLABE));
-                     fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     if(validatePhoto(palabra,silaba)) {
+                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     }
                  }while(cursor.moveToNext());
             }
         }
@@ -400,11 +410,12 @@ public class GestionNiveles {
 
     }
     public void enviaResultado(String palabra){
-        if(app!=null){
+
+        if(app!=null&&azureEnable){
             Date horafin = new Date(Calendar.getInstance().getTimeInMillis());
-            azureConnection.addItem(id_user, id_nivel,horainicio, horafin, tipo, subnivel,fallos, aciertos, dificultad,palabra);
+            azureConnection.addItem(mId, id_nivel,horainicio, horafin, tipo, subnivel,fallos, dificultad,palabra);
         }
-        aciertos=fallos=0;
+        fallos=0;
     }
 
     public int getId_nivel() {
@@ -447,5 +458,14 @@ public class GestionNiveles {
 
     public void setHorainicio(Date horainicio) {
         this.horainicio = horainicio;
+    }
+    public boolean isloggedinAzure(){
+       mId= db.isloggedinAzure(id_user);
+             if(mId==null){
+                 return  false;
+             }
+        else{
+                 return true;
+             }
     }
 }

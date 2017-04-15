@@ -14,6 +14,7 @@ public class avatarScreen extends AppCompatActivity {
     String nombre;
     ImageButton BackArrow,Home;
     TextView Titulo;
+    boolean azureEnable;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -30,6 +31,7 @@ public class avatarScreen extends AppCompatActivity {
         if(extras != null) {
             nombre = extras.getString("nombre");
             edad = extras.getInt("edad");
+            azureEnable=extras.getBoolean("azureEnable");
         }
     }
 
@@ -76,6 +78,8 @@ public class avatarScreen extends AppCompatActivity {
         intent.putExtra("nombre", nombre);
         intent.putExtra("edad",edad);
         intent.putExtra("avatar", avatar);
+        intent.putExtra("azureEnable",azureEnable);
+
         startActivity(intent);
     }
 }

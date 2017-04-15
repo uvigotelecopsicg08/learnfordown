@@ -1,27 +1,11 @@
 package com.uvigo.learnfordown.learnfordown;
 
-import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.ProgressBar;
 
-import com.google.common.util.concurrent.FutureCallback;
-import com.google.common.util.concurrent.Futures;
-import com.google.common.util.concurrent.ListenableFuture;
-import com.google.common.util.concurrent.SettableFuture;
 import com.microsoft.windowsazure.mobileservices.MobileServiceClient;
-import com.microsoft.windowsazure.mobileservices.http.NextServiceFilterCallback;
 import com.microsoft.windowsazure.mobileservices.http.OkHttpClientFactory;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilter;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterRequest;
-import com.microsoft.windowsazure.mobileservices.http.ServiceFilterResponse;
 import com.microsoft.windowsazure.mobileservices.table.MobileServiceTable;
 import com.microsoft.windowsazure.mobileservices.table.sync.MobileServiceSyncContext;
 import com.microsoft.windowsazure.mobileservices.table.sync.localstore.ColumnDataType;
@@ -31,33 +15,27 @@ import com.microsoft.windowsazure.mobileservices.table.sync.synchandler.SimpleSy
 import com.squareup.okhttp.OkHttpClient;
 
 import java.net.MalformedURLException;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-import static com.microsoft.windowsazure.mobileservices.table.query.QueryOperations.val;
-
 /**
- * Created by Juani on 12/04/2017.
+ * Created by Juani on 15/04/2017.
  */
 
-public class AzureConnection {
-    /**
-     * Mobile Service Client reference
-     */
+public class AzureUser {
     private MobileServiceClient mClient;
 
     /**
      * Mobile Service Table used to access data
      */
-    private MobileServiceTable<Nivel> nivelTable;
-        AppCompatActivity app;
+    private MobileServiceTable<Usuarios> nivelTable;
+    AppCompatActivity app;
 
 
-    public AzureConnection(AppCompatActivity app) {
+    public AzureUser(AppCompatActivity app) {
         this.app=app;
 
         try {
@@ -80,7 +58,7 @@ public class AzureConnection {
 
             // Get the Mobile Service Table instance to use
 
-            nivelTable = mClient.getTable(Nivel.class);
+            nivelTable = mClient.getTable(Usuarios.class);
 
             initLocalStore().get();
 
@@ -119,37 +97,38 @@ public class AzureConnection {
      * @param item
      *            The item to mark
      */
-    public void checkItemInTable(Nivel item) throws ExecutionException, InterruptedException {
+    public void checkItemInTable(Usuarios item) throws ExecutionException, InterruptedException {
         nivelTable.update(item).get();
     }
 
 
-    public void addItem(String id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int dificultad, String palabra) {
+    public String addItem(String nombre,int edad) {
         if (mClient == null) {
-            return;
+            return null;
         }
 
         // Create a new item
-        final Nivel item = new Nivel(id_user,id_nivel,horainicio,horafin,tipo,subnivel,fallos,dificultad,palabra);
+        final Usuarios item = new Usuarios(nombre,edad);
 
 
         // Insert the new item
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
+     //   AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+      //      @Override
+       //     protected Void doInBackground(Void... params) {
                 try {
-                    final Nivel entity = addItemInTable(item);
-
+                    final Usuarios entity = addItemInTable(item);
+                    return entity.getmId();
 
                 } catch (final Exception e) {
                     e.printStackTrace();
                     createAndShowDialogFromTask(e, "Error");
+                    return null;
                 }
-                return null;
-            }
-        };
+       //         return null;
+          //  }
+        //};
 
-        runAsyncTask(task);
+       // runAsyncTask(task);
 
 
     }
@@ -160,29 +139,31 @@ public class AzureConnection {
      * @param item
      *            The item to Add
      */
-    public Nivel addItemInTable(Nivel item) throws ExecutionException, InterruptedException {
-        Nivel entity = nivelTable.insert(item).get();
+    public Usuarios addItemInTable(Usuarios item) throws ExecutionException, InterruptedException {
+        Usuarios entity = nivelTable.insert(item).get();
         return entity;
     }
 
     /**
      * Refresh the list with the items in the Table
      */
-    public void refreshItemsFromTable() {
+    public String refreshItemsFromTable(String nombre) {
 
         // Get the items that weren't marked as completed and add them in the
         // adapter
-
-        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
-            @Override
-            protected Void doInBackground(Void... params) {
+        final String nombreFinal= new String(nombre);
+        //AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>(){
+         //   @Override
+          //  protected Void doInBackground(Void... params) {
 
                 try {
-                    final List<Nivel> results = refreshItemsFromMobileServiceTable();
-                    for(Nivel a : results){
-                        System.out.print(a.toString());
-                    }
 
+                    final List<Usuarios> results = refreshItemsFromMobileServiceTable(nombreFinal);
+                    for(Usuarios a : results){
+                        System.out.print(a.toString());
+                        return results.get(0).getmId();
+                    }
+                    return results.get(0).getmId();
                     //Offline Sync
                     //final List<ToDoItem> results = refreshItemsFromMobileServiceTableSyncTable();
 
@@ -192,19 +173,19 @@ public class AzureConnection {
                 }
 
                 return null;
-            }
-        };
+            //}
+     //   };
 
-        runAsyncTask(task);
+       // runAsyncTask(task);
     }
 
     /**
      * Refresh the list with the items in the Mobile Service Table
      */
 
-    private List<Nivel> refreshItemsFromMobileServiceTable() throws ExecutionException, InterruptedException {
-        return nivelTable.where().field("palabra").
-                eq("elefante").execute().get();
+    private List<Usuarios> refreshItemsFromMobileServiceTable(String nombre) throws ExecutionException, InterruptedException {
+        return nivelTable.where().field("nombre").
+                eq(nombre).execute().get();
     }
 
     //Offline Sync
@@ -241,18 +222,11 @@ public class AzureConnection {
                     SQLiteLocalStore localStore = new SQLiteLocalStore(mClient.getContext(), "OfflineStore", null, 1);
 
                     Map<String, ColumnDataType> tableDefinition = new HashMap<String, ColumnDataType>();
-                    tableDefinition.put("id", ColumnDataType.String);
-                    tableDefinition.put("horainicio", ColumnDataType.Date);
-                    tableDefinition.put("horafin", ColumnDataType.Date);
-                    tableDefinition.put("tipo", ColumnDataType.String);
-                    tableDefinition.put("fallos", ColumnDataType.Integer);
-                    tableDefinition.put("palabra", ColumnDataType.String);
-                    tableDefinition.put("dificultad", ColumnDataType.Integer);
-                    tableDefinition.put("aciertos", ColumnDataType.Integer);
-                    tableDefinition.put("id_user", ColumnDataType.Integer);
-                    tableDefinition.put("id_nivel", ColumnDataType.Integer);
+                    tableDefinition.put("mId", ColumnDataType.String);
+                    tableDefinition.put("nombre", ColumnDataType.String);
+                    tableDefinition.put("edad", ColumnDataType.Integer);
 
-                    localStore.defineTable("Nivel", tableDefinition);
+                    localStore.defineTable("Usuarios", tableDefinition);
 
                     SimpleSyncHandler handler = new SimpleSyncHandler();
 
@@ -336,11 +310,11 @@ public class AzureConnection {
      *            The dialog title
      */
     private void createAndShowDialog(final String message, final String title) {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(app);
+   ///     final AlertDialog.Builder builder = new AlertDialog.Builder(app);
 
-        builder.setMessage(message);
-        builder.setTitle(title);
-        builder.create().show();
+   //     builder.setMessage(message);
+  //      builder.setTitle(title);
+//        builder.create().show();
     }
 
     /**
@@ -355,7 +329,5 @@ public class AzureConnection {
             return task.execute();
         }
     }
-
-
 
 }
