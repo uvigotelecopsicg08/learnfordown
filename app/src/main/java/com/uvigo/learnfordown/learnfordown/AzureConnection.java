@@ -122,13 +122,13 @@ public class AzureConnection {
     }
 
 
-    public void addItem(int id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int aciertos, int dificultad) {
+    public void addItem(int id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int aciertos, int dificultad, String palabra) {
         if (mClient == null) {
             return;
         }
 
         // Create a new item
-        final Nivel item = new Nivel(id_user,id_nivel,horainicio,horafin,tipo,subnivel,fallos,aciertos,dificultad);
+        final Nivel item = new Nivel(id_user,id_nivel,horainicio,horafin,tipo,subnivel,fallos,aciertos,dificultad,palabra);
 
 
         // Insert the new item
@@ -246,6 +246,7 @@ public class AzureConnection {
                     tableDefinition.put("aciertos", ColumnDataType.Integer);
                     tableDefinition.put("id_user", ColumnDataType.Integer);
                     tableDefinition.put("id_nivel", ColumnDataType.Integer);
+                    tableDefinition.put("palabra", ColumnDataType.String);
 
                     localStore.defineTable("Nivel", tableDefinition);
 
