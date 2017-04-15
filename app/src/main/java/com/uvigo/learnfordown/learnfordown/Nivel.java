@@ -27,7 +27,7 @@ public class Nivel {
 ;
 
 
-    public Nivel(int id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int aciertos, int dificultad) {
+    public Nivel(int id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int aciertos, int dificultad, String palabra) {
         this.id_user = id_user;
         this.id_nivel = id_nivel;
         this.horainicio = horainicio;
@@ -37,6 +37,7 @@ public class Nivel {
         this.fallos = fallos;
         this.aciertos = aciertos;
         this.dificultad = dificultad;
+        this.palabra =palabra;
     }
 
 
