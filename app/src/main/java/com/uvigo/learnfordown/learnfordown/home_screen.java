@@ -23,6 +23,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -34,17 +35,19 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class home_screen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    NavigationView navigationView;
     private GoogleApiClient client;
     private   GestionNiveles gn;
     TextView titulo;
+
+    Typeface face;
     boolean registrado=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //Eliminar la barra con el titulo de la aplicacion
         setContentView(R.layout.activity_home_screen);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+        face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView);
 
         titulo.setTypeface(face);
@@ -66,9 +69,9 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
+        ActualizarDatosLateral();
 
     }
 
@@ -359,6 +362,27 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             dialog.show();
         }
     }
+    public void ActualizarDatosLateral(){
+        int id_user =0;
+        String nombre ="";
+        String avatar ="";
+Cursor cursor;
+        View header = navigationView.getHeaderView(0);
+        ImageView imagen = (ImageView) header.findViewById(R.id.imageView);
+        TextView texto = (TextView) header.findViewById(R.id.textView);
+        DataBaseManager db = new DataBaseManager(getApplicationContext());
+        cursor= db.getInfoLogged();
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                 id_user = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                 avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar"));
+                 nombre =  cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                texto.setText(nombre);
+                texto.setTypeface(face);
+                int resId=this.getResources().getIdentifier(avatar, "drawable", this.getPackageName());
+                imagen.setImageResource(resId);
+            }
+        }
 
-
+    }
 }

@@ -271,6 +271,15 @@ public class DataBaseManager {
 
     }
 
+    public  Cursor getInfoLogged(){
+
+        String columnas[] = new String[]{CN_ID_USER,CN_NAME_USER,CN_AVATAR};
+        String whereClause = CN_LOGGUED+" = ? ";
+        String[] whereArgs = new String[] {String.valueOf(1)};
+
+        return db.query(TABLE_USER,columnas,whereClause,whereArgs,null,null,null,null);
+
+    }
     public Cursor getNivel(String tipo, int dificultad,int id_user){
         Cursor cursor;
         String tablas=TABLE_LEVEL+","+TABLE_LEVEL_USER;
@@ -616,6 +625,7 @@ public class DataBaseManager {
 
     }
 
+
     private void singOut(){
         ContentValues valores = new ContentValues();
         valores.put(CN_LOGGUED,0);
@@ -642,6 +652,7 @@ public class DataBaseManager {
             }
         }
     }
+
     public void update_photo(int id_user, int id_avatar){
         ContentValues valores = new ContentValues();
         valores.put(CN_AVATAR,id_avatar);
