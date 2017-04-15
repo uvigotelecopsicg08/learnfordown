@@ -66,7 +66,7 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
         }
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
-        flujofallo= sp.load(this,R.raw.error,3);
+        flujofallo= sp.load(this,R.raw.disparo,3);
         flujovictoria= sp.load(this,R.raw.success,1);
 
         GridLayout gridLayout = (GridLayout)findViewById(R.id.activity_main_2x3);
@@ -252,9 +252,9 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
                 for (int i=0; i < 2; i++)
                 {
                     LayoutInflater inflater = getLayoutInflater();
-                    View layout = inflater.inflate(R.layout.victoria_parejas_facil, null);
+                    View layout = inflater.inflate(R.layout.popup_victoria_parejas, null);
                     Toast toast = new Toast(getApplicationContext());
-                    toast.setGravity(Gravity.RIGHT, 0, 110);
+                    toast.setGravity(Gravity.RIGHT, 100, 50);
                     toast.setDuration(Toast.LENGTH_SHORT);
                     toast.setView(layout);
                     toast.show();
@@ -282,10 +282,10 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
             isBusy = true;
 
             LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.fallo_parejas_facil, null);
+            View layout = inflater.inflate(R.layout.popup_fallo_parejas, null);
             Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.RIGHT, 280, 240);
-            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.RIGHT, 100, 50);
+            toast.setDuration(Toast.LENGTH_SHORT);
             toast.setView(layout);
             toast.show();
 
@@ -302,7 +302,7 @@ public class ParejasFacil extends AppCompatActivity implements View.OnClickListe
 
 
                 }
-            }, 3900);
+            }, 2000);
 
 
         }

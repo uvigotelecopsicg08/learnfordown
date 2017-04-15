@@ -13,15 +13,19 @@ public class avatarScreen extends AppCompatActivity {
     int edad;
     String nombre;
     ImageButton BackArrow,Home;
-    TextView titulo;
+    TextView Titulo;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
-        titulo = (TextView) findViewById(R.id.textView2);
-        BackArrow = (ImageButton) findViewById(R.id.button4);
-        Home = (ImageButton) findViewById(R.id.button6);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_avatar_screen);
+        BackArrow = (ImageButton) findViewById(R.id.button4);
+        Home = (ImageButton) findViewById(R.id.button6);
+        Titulo = (TextView) findViewById(R.id.textView2);
+        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        Titulo.setTypeface(face);
+
+
         Bundle extras = getIntent().getExtras();
         if(extras != null) {
             nombre = extras.getString("nombre");

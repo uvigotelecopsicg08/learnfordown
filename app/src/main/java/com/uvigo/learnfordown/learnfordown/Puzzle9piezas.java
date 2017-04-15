@@ -191,7 +191,7 @@ public class Puzzle9piezas extends AppCompatActivity {
         }
         this.setVolumeControlStream(AudioManager.STREAM_MUSIC);
         flujoacierto= sp.load(this,R.raw.acierto,2);
-        flujofallo= sp.load(this,R.raw.error,3);
+        flujofallo= sp.load(this,R.raw.disparo,3);
         flujovictoria= sp.load(this,R.raw.success,1);
 
         verticalList=new ArrayList<>();

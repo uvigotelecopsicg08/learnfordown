@@ -30,7 +30,9 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.TreeSet;
@@ -163,6 +165,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     es.acierto();
+                    gn.enviaResultado(fp.get(i).getPalabra());
 
                     MediaPlayer aciertoMedia = es.getAciertoMedia();
                     aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
@@ -264,6 +267,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     }
 
     private void cambiarFoto() {
+        gn.setHorainicio(new Date(Calendar.getInstance().getTimeInMillis()));
         try {
             horizontalList.clear();
             horizontalList = new ArrayList<String>();

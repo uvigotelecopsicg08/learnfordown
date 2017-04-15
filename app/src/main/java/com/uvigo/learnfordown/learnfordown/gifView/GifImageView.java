@@ -23,6 +23,7 @@ public class GifImageView extends ImageView implements Runnable {
   private OnAnimationStop animationStopCallback = null;
   private OnAnimationStart animationStartCallback = null;
 
+
   private final Runnable updateResults = new Runnable() {
     @Override
     public void run() {

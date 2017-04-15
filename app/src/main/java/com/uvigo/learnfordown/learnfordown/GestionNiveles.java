@@ -65,17 +65,17 @@ public class GestionNiveles {
     private boolean iscompletadoEscritura() {
        switch (tipo){
            case "escribirconsombreado":
-               if(aciertos>=3){ // 30
+               if(aciertos>=30){
                    return true;
                }
                else return false;
            case "escribirsinsombreado":
-               if(aciertos>=4){ // 40
+               if(aciertos>=40){
                    return true;
                }
                else return false;
            case "escribirtecladopalabra":
-               if(aciertos>=5){ //50
+               if(aciertos>=50){
                    return true;
                }
                else return false;
@@ -114,10 +114,7 @@ public class GestionNiveles {
     }
 
     public void avanzaNivel() {
-        if(app!=null){
-            Date horafin = new Date(Calendar.getInstance().getTimeInMillis());
-         azureConnection.addItem(id_user, id_nivel,horainicio, horafin, tipo, subnivel,fallos, aciertos, dificultad);
-        }
+
 
         //escritura en la BD  los resultados del nivel
         finNiveles();
@@ -132,7 +129,7 @@ public class GestionNiveles {
         if(!tipo.equals(lastLevelType)||lastDifficulty!=dificultad){
             // ************
 
-            System.out.println("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE******");
+           // System.out.println("LLEGUEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE******");
             Intent intent = new Intent(app.getApplicationContext(),poppuzzle.class);
             intent.putExtra("primera","no");
             intent.putExtra("imagen",R.drawable.cambionivel);
@@ -260,7 +257,7 @@ public class GestionNiveles {
     }
     private boolean validatePhoto(String palabra,String silaba){
         //(!tipo.equals("silabastrabadas")&&!tipo.equals("silabasinversas")&&!tipo.equals("silabasdirectas")&&!tipo.contains("letras")&&!tipo.equals("escribirletras"))||palabra.startsWith(silaba)||dificultad<3
-        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("letras")){
+        if(tipo.equals("silabastrabadas")||tipo.equals("silabasinversas")||tipo.equals("silabasdirectas")||tipo.contains("leerletras")){
             if(palabra.startsWith(silaba)||dificultad<3){
                 return true;
             }
@@ -296,7 +293,10 @@ public class GestionNiveles {
                      int foto = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PHOTO));
                      String tema = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TOPIC));
                      String tiposilaba = cursor.getString(cursor.getColumnIndexOrThrow(DataBaseManager.CN_TYPE_SYLLABE));
-                     fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     if(validatePhoto(palabra,silaba)) {
+                         fotos.add(new FotoPalabra(letra, silaba, tiposilaba, palabra, frase, foto, tema));
+                     }
+
                  }while(cursor.moveToNext());
             }
         }
@@ -402,6 +402,13 @@ public class GestionNiveles {
     }
 
     }
+    public void enviaResultado(String palabra){
+        if(app!=null){
+            Date horafin = new Date(Calendar.getInstance().getTimeInMillis());
+            azureConnection.addItem(id_user, id_nivel,horainicio, horafin, tipo, subnivel,fallos, aciertos, dificultad,palabra);
+        }
+        aciertos=fallos=0;
+    }
 
     public int getId_nivel() {
         return id_nivel;
@@ -439,5 +446,9 @@ public class GestionNiveles {
 
     public void close(){
         db.close();
+    }
+
+    public void setHorainicio(Date horainicio) {
+        this.horainicio = horainicio;
     }
 }

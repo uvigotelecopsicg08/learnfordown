@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Learnfordown</string>
-    <string name="qu_quieres_hacer_hoy">¿ QUÉ QUIERES HACER HOY ?</string>
-    <string name="qu_quieres_practicar">¿ QUÉ QUIERES PRACTICAR?</string>
+    <string name="qu_quieres_hacer_hoy">¿QUÉ QUIERES HACER HOY?</string>
+    <string name="qu_quieres_practicar">¿QUÉ QUIERES PRACTICAR?</string>
     <string name="frases_con_s_labas_directas">¡FRASES CON SÍLABAS DIRECTAS!</string>
     <string name="nivel_1">Nivel 1</string>
     <string name="nivel_2">Nivel 2</string>

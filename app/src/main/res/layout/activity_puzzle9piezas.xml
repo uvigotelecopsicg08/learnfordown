@@ -43,6 +43,7 @@
                 android:textStyle="bold"
                 android:textSize="60sp"
                 android:textAlignment="center"
+                android:gravity="center"
                 android:textColor="@android:color/white"
                 android:paddingTop="25dp" />
             <ImageButton
