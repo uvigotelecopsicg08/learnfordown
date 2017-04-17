@@ -317,7 +317,7 @@ public class writegame_level3_screen extends AppCompatActivity {
             });
             builder.setNegativeButton("¡LO QUIERO MAS TARDE!", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
+                    // Usuarios cancelled the dialog
                 }
             });
         }

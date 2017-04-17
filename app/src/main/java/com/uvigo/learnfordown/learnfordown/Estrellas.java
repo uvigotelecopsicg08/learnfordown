@@ -30,7 +30,7 @@ public class Estrellas {
     Intent minijuego;
     private MediaPlayer aciertoMedia,fallo;
 
-    final HashMap<Integer, Float> thresholds = new HashMap<>();
+     HashMap<Integer, Float> thresholds = new HashMap<>();
     public Estrellas(){}
 
     public  Estrellas(AppCompatActivity app, GestionNiveles gn, int contador){
@@ -43,6 +43,7 @@ public class Estrellas {
        this.gn =gn;
        this.contador = contador;
        ratingbar1 = (RatingBar) app.findViewById(R.id.ratingBar);
+        /*
        thresholds.clear();
        thresholds.put(100, 1f); // 1 aciertoMedia, 1 estrella
        thresholds.put(200, 2f); //10 aciertos, 2 estrellas
@@ -50,6 +51,8 @@ public class Estrellas {
        thresholds.put(400, 4f); //30 aciertos, 4 estrellas
        thresholds.put(500, 5f); //40 aciertos, 5 estrellas
        thresholds.put(600, 6f); //50 aciertos, 6 estrellas
+       */
+        thresholds =getThresholds();
        pulsar(false);
     }
 
@@ -116,10 +119,121 @@ public class Estrellas {
         ratingbar1 = (RatingBar) app.findViewById(id);
         pulsar(false);
     }
+    private HashMap<Integer, Float> getThresholds(){
+        int numeros[]=null;
+        switch(gn.getTipo()) {
+            case "leerletras":
+                switch (gn.getDificultad()){
+                    case 1:
+                        numeros = new int[]{1,12,24,36,50,68};
+                        break;
+                    case 2:
+                        numeros = new int[]{1,22,44,66,88,108};
+                        break;
+                    case 3:
+                        numeros = new int[]{1,30,60,90,120,153};
+                        break;
+                    case 4:
+                        numeros = new int[]{1,33,66,99,132,170};
+                        break;
+                }
+                break;
+            case "silabasdirectas":
+                switch (gn.getDificultad()){
+                    case 1:
+                        numeros = new int[]{1,12,24,36,50,68};
+                        break;
+                    case 2:
+                        numeros = new int[]{1,22,44,66,88,108};
+                        break;
+                    case 3:
+                        numeros = new int[]{1,30,60,90,120,153};
+                        break;
+                    case 4:
+                        numeros = new int[]{1,33,66,99,132,170};
+                        break;
+                }
+                break;
+            case "silabasinversas":
+                switch (gn.getDificultad()){
+                    case 1:
+                        numeros = new int[]{1,12,24,36,50,68};
+                        break;
+                    case 2:
+                        numeros = new int[]{1,22,44,66,88,108};
+                        break;
+                    case 3:
+                        numeros = new int[]{1,30,60,90,120,153};
+                        break;
+                    case 4:
+                        numeros = new int[]{1,33,66,99,132,170};
+                        break;
+                }
+                break;
+            case "silabastrabadas":
+                switch (gn.getDificultad()){
+                    case 1:
+                        numeros = new int[]{1,12,24,36,50,68};
+                        break;
+                    case 2:
+                        numeros = new int[]{1,22,44,66,88,108};
+                        break;
+                    case 3:
+                        numeros = new int[]{1,30,60,90,120,153};
+                        break;
+                    case 4:
+                        numeros = new int[]{1,33,66,99,132,170};
+                        break;
+                }
+                break;
+            case "palabrassilabasdirectas":
+                numeros = new int[]{1,7,12,18,24,29};
+                break;
+            case "palabrassilabasinversas":
+                numeros = new int[]{1,6,11,17,21,26};
+                break;
+            case "palabrassilabastrabas":
+                numeros = new int[]{1,4,7,10,14,17};
+                break;
+            case "frasessilabasdirectas":
+                numeros = new int[]{1,4,7,10,14,17};
+                break;
+            case "frasessilabasinversas":
+                numeros = new int[]{1,4,7,10,14,17};
+                break;
+            case "frasessilabastrabas":
+                numeros = new int[]{1,4,7,10,14,17};
+                break;
+            case "escribirletras":
+                numeros = new int[]{1,5,11,16,21,26};
+                break;
+            case "escribirconsombreado":
+                numeros = new int[]{1,7,12,18,24,29};
+                break;
+            case "escribirsinsombreado":
+                numeros = new int[]{1,8,16,24,32,39};
+                break;
+            case "escribirtecladopalabra":
+                numeros = new int[]{1,10,20,30,40,49};
+                break;
+        }
 
 
 
+
+        return generarMap(numeros);
     }
+
+private  HashMap<Integer, Float> generarMap(int[] numeros){
+    Float[] estrellas= new Float[]{1f,2f,3f,4f,5f,6f};
+    HashMap<Integer, Float> map = new HashMap<>();
+    for(int i=0;i<numeros.length;i++){
+        map.put(numeros[i],estrellas[i]);
+        }
+    return map;
+    }
+}
+
 
 
 

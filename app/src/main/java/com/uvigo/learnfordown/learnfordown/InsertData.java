@@ -17,6 +17,7 @@ public class InsertData {
    private String[] subnivelesTrabadas = new String[]{"pl","pr","br","bl","cl","cr","fr","gr","gl","tr"};
     private String[] subnivelesVocales = new String[] {"a","e","i","o","u"};
     private String[] subnivelesEscribirConsonantes=new String[]{"b","c","d","f","g","h","j","k","l","m","n","ñ","p","q","r","s","t","v","w","x","y","z"};
+    int id_user;
     public InsertData(Context context) {
         this.context =context;
         db = new DataBaseManager(context);
@@ -31,9 +32,13 @@ public class InsertData {
     }
     public void insert_usuario(String nombre, int edad, HashMap<String,Boolean>gustos,int avatar){
         db.insertar_user(nombre,edad,gustos,avatar);
+        id_user =  db.getIdUser();
         db.close();
     }
-
+    public void loggedAzure(String id_azure){
+        db = new DataBaseManager(context);
+        db.updateAzureUser(id_user,id_azure);
+    }
     private void insertarFotos() {
 
         db.insertar_foto("a","a","directa","abeja","La * hace miel ",R.drawable.abeja,"animales",3,"vocales");

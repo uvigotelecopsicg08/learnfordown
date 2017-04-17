@@ -351,7 +351,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
+                    // Usuarios cancelled the dialog
                 }
             });
 

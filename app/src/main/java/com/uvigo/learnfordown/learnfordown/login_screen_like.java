@@ -23,6 +23,7 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
     TextView Titulo;
     int edad;
     int avatar;
+    boolean azureEnable;
     HashMap<String,Boolean> gustos;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,9 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
             nombre = extras.getString("nombre");
             edad = extras.getInt("edad");
             avatar=extras.getInt("avatar");
+            azureEnable=extras.getBoolean("azureEnable");
+            if(azureEnable)
+                System.out.print("**********************");
         }
 
 
@@ -77,6 +81,9 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
             intent.putExtra("edad",edad);
             intent.putExtra("nombre",nombre);
             intent.putExtra("avatar",avatar);
+            intent.putExtra("azureEnable",azureEnable);
+            if(azureEnable)
+                System.out.print("**********************");
             startActivity(intent);
         }else {
             numero++;
