@@ -219,8 +219,6 @@ public class Estrellas {
         }
 
 
-
-
         return generarMap(numeros);
     }
 
