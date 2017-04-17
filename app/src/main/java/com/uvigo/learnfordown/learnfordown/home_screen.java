@@ -39,6 +39,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     private GoogleApiClient client;
     private   GestionNiveles gn;
     TextView titulo;
+    Menu menu;
 
     Typeface face;
     boolean registrado=false;
@@ -69,9 +70,10 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
-         navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         ActualizarDatosLateral();
+
 
     }
 
@@ -115,7 +117,6 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
     public void salir (View view) {
         // Do something in response to button
-
 
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -271,6 +272,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+
         getMenuInflater().inflate(R.menu.prueb, menu);
         return true;
     }
@@ -366,8 +369,15 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         int id_user =0;
         String nombre ="";
         String avatar ="";
-Cursor cursor;
+        Cursor cursor;
+        int puzzle= -1;
+        int memory = -1;
+        int plataforma = -1;
+        int puzzledificil= -1;
+        int memorydificil = -1;
+        int plataformadificil = -1;
         View header = navigationView.getHeaderView(0);
+        menu=navigationView.getMenu();
         ImageView imagen = (ImageView) header.findViewById(R.id.imageView);
         TextView texto = (TextView) header.findViewById(R.id.textView);
         DataBaseManager db = new DataBaseManager(getApplicationContext());
@@ -383,6 +393,37 @@ Cursor cursor;
                 imagen.setImageResource(resId);
             }
         }
+        cursor= db.getMinijuegos(id_user);
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                 puzzle=cursor.getInt(cursor.getColumnIndexOrThrow("puzzle"));
+                memory=cursor.getInt(cursor.getColumnIndexOrThrow("memory"));
+                plataforma=cursor.getInt(cursor.getColumnIndexOrThrow("plataform"));
+                puzzledificil=cursor.getInt(cursor.getColumnIndexOrThrow("puzzledificil"));
+                memorydificil=cursor.getInt(cursor.getColumnIndexOrThrow("memorydificil"));
+                plataformadificil=cursor.getInt(cursor.getColumnIndexOrThrow("plataformdificil"));            }
+        }
+        if (puzzle>0) {
+            menu.findItem(R.id.puzzle).setEnabled(true);
+        }
+        if  (puzzledificil>0){
+            menu.findItem(R.id.puzzledificil).setEnabled(true);
 
-    }
+        }
+        if (memory>0) {
+            menu.findItem(R.id.parejas).setEnabled(true);
+        }
+        if  (memorydificil>0){
+            menu.findItem(R.id.parejasdificil).setEnabled(true);
+
+        }
+        if (plataforma>0) {
+            menu.findItem(R.id.plataformas).setEnabled(true);
+        }
+        if  (plataformadificil>0){
+            menu.findItem(R.id.plataformasdificil).setEnabled(true);
+
+        }
+        }
+
 }

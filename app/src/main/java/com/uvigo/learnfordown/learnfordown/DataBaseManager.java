@@ -81,6 +81,16 @@ public class DataBaseManager {
     public static final String CN_NUMBER_STARS ="numero_estrellas";
     public static final String CN_STARS_DIFICULTAD ="dificultad_estrellas";
 
+    //Tabla minijuegos
+    public static final String TABLE_GAMES= "MINIJUEGOS";
+    public static final String CN_ID_USER_GAMES ="_id";
+    public static final String CN_PUZZLE ="puzzle";
+    public static final String CN_MEMORY ="memory";
+    public static final String CN_PLATAFORM ="plataform";
+    public static final String CN_PUZZLE_DIFICIL ="puzzledificil";
+    public static final String CN_MEMORY_DIFICIL ="memorydificil";
+    public static final String CN_PLATAFORM_DIFICIL ="plataformdificil";
+
     public static final String CREATE_TABLE_USER ="create table "+TABLE_USER+" ("+CN_ID_USER+
             " integer primary key autoincrement,"
             + CN_NAME_USER + " VARCHAR(50) NOT NULL UNIQUE,"
@@ -142,6 +152,15 @@ public class DataBaseManager {
             CN_ID_USER + " integer NOT NULL, "+
             CN_NUMBER_STARS+" integer NOT NULL );";
 
+    public static final String CREATE_TABLE_GAMES="create table "+TABLE_GAMES+" ("+CN_PUZZLE+
+            " integer NOT NULL, "+
+            CN_ID_USER_GAMES + " integer NOT NULL, "+
+            CN_PUZZLE_DIFICIL + " integer NOT NULL, "+
+            CN_MEMORY_DIFICIL + " integer NOT NULL, "+
+            CN_MEMORY + " integer NOT NULL, "+
+            CN_PLATAFORM_DIFICIL + " integer NOT NULL, "+
+            CN_PLATAFORM+" integer NOT NULL );";
+
 
     public DataBaseManager(Context context) {
         DbHelper helper=new DbHelper(context);
@@ -167,7 +186,7 @@ public class DataBaseManager {
             }
         }
         inicializarEstrellas(id_user);
-
+        inicializarMinijuegos(id_user);
     }
 
     public void insertarAfinidad(int id_user, HashMap<String,Boolean> gustos) {
@@ -574,6 +593,27 @@ public class DataBaseManager {
             }
         }
     }
+    public void inicializarMinijuegos(int id_usuario) {
+
+        ContentValues valores = new ContentValues();
+        valores.put(CN_PUZZLE, 0);
+        valores.put(CN_MEMORY, 0);
+        valores.put(CN_PLATAFORM, 0);
+        valores.put(CN_PUZZLE_DIFICIL, 0);
+        valores.put(CN_MEMORY_DIFICIL, 0);
+        valores.put(CN_PLATAFORM_DIFICIL, 0);
+        valores.put(CN_ID_USER_GAMES, id_usuario);
+        db.insert(TABLE_GAMES, null, valores);
+    }
+    public Cursor getMinijuegos(int id_usuario) {
+        String columnas[] = new String[]{CN_MEMORY,CN_PUZZLE,CN_PLATAFORM,CN_MEMORY_DIFICIL,CN_PUZZLE_DIFICIL,CN_PLATAFORM_DIFICIL};
+        String whereClause = CN_ID_USER_GAMES+" = ? ";
+        String[] whereArgs = new String[] {String.valueOf(id_usuario)};
+        return db.query(TABLE_GAMES,columnas,whereClause,whereArgs,null,null,null,null);
+
+    }
+
+
     public void actualizarEstrellas(String tipo,int dificultad,int aciertos,int id_user){
         ContentValues valores = new ContentValues();
         valores.put(CN_NUMBER_STARS,aciertos);
