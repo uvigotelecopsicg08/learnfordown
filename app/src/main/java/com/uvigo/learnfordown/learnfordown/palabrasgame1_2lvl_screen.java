@@ -208,6 +208,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 
                                     if (aciertos == 3) {
+
                                         if (es.ratingbar1.getRating()==6){
                                             MensajeMinijuego();
                                         }

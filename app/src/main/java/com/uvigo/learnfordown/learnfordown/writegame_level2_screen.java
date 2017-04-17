@@ -357,7 +357,7 @@ public class writegame_level2_screen extends AppCompatActivity {
     public void RespuestaCorrecta(){
 
         es.acierto();
-
+        gn.enviaResultado(fp.get(i).getPalabra());
 
         MediaPlayer aciertoMedia = es.getAciertoMedia();
 

@@ -192,7 +192,7 @@ public class Estrellas {
             case "palabrassilabasinversas":
                 numeros = new int[]{1,6,11,17,21,26};
                 break;
-            case "palabrassilabastrabas":
+            case "palabrassilabastrabadas":
                 numeros = new int[]{1,4,7,10,14,17};
                 break;
             case "frasessilabasdirectas":
