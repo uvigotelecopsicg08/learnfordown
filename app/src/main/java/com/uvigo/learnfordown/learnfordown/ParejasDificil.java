@@ -82,12 +82,12 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
 
         buttonGraphics = new int[numberOfElements/2];
 
-        int[] res = {R.drawable.parejasbasketball, R.drawable.parejascandle, R.drawable.parejassiren, R.drawable.parejascitycar, R.drawable.parejascomb,
-                R.drawable.parejascow, R.drawable.parejasdice, R.drawable.parejasearth, R.drawable.parejasgclef, R.drawable.parejasglobe,
-                R.drawable.parejasigloo, R.drawable.parejasmonkey, R.drawable.parejasmushroom, R.drawable.parejasorange, R.drawable.parejaspawn,
-                R.drawable.parejassubmarine, R.drawable.parejassunglasses, R.drawable.parejasvolleyball, R.drawable.parejaswhistle, R.drawable.parejaszeppelin,
-                R.drawable.parejaspear, R.drawable.parejaspig, R.drawable.parejaspinetree, R.drawable.parejaspolarbear, R.drawable.parejasseahorse,
-                R.drawable.parejasshipwheel, R.drawable.parejassoccerball};
+        int[] res = {R.drawable.parejasajedrez, R.drawable.parejasbaloncesto, R.drawable.parejasbanador, R.drawable.parejasbarco,
+                R.drawable.parejasbota, R.drawable.parejascamara, R.drawable.parejascompas, R.drawable.parejasdados, R.drawable.parejasestuche,
+                R.drawable.parejasgafas, R.drawable.parejasgaita, R.drawable.parejasgaviota, R.drawable.parejasgrifo, R.drawable.parejashuron,
+                R.drawable.parejasmacarrones, R.drawable.parejasmango, R.drawable.parejasparaguas, R.drawable.parejaspera, R.drawable.parejaspinata,
+                R.drawable.parejasrastrillo, R.drawable.parejassandia, R.drawable.parejassilbato, R.drawable.parejassirena, R.drawable.parejastambor,
+                R.drawable.parejastornillo, R.drawable.parejasvieiras, R.drawable.parejasviolin};
 
         /*int[] res = {R.drawable.anillo, R.drawable.brujula, R.drawable.chaqueta, R.drawable.conejo, R.drawable.domino,
                 R.drawable.esponja, R.drawable.flor, R.drawable.fresa, R.drawable.gato, R.drawable.globo,
