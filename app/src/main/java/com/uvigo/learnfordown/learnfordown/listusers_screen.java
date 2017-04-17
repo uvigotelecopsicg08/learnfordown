@@ -163,7 +163,7 @@ public class listusers_screen extends AppCompatActivity {
             });
             builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                 public void onClick(DialogInterface dialog, int id) {
-                    // User cancelled the dialog
+                    // Usuarios cancelled the dialog
                 }
             });
 

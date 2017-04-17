@@ -40,6 +40,15 @@
             android:textAlignment="center"
             android:textColor="@android:color/white" />
 
+        <ImageButton
+            android:src="@mipmap/ic_grafica"
+            android:layout_width="115dp"
+            android:layout_height="115dp"
+            android:id="@+id/button10"
+
+            android:onClick="setAzure"
+            android:scaleType="fitCenter"
+            android:background="@color/colorPrimary" />
 
         <ImageButton
             android:src="@mipmap/ic_home"

@@ -7,7 +7,7 @@ import java.util.Date;
  */
 
 public class Nivel {
-    private int id_user;
+    private String id_user;
     private int id_nivel;
     private Date horainicio;
     private Date horafin;
@@ -27,7 +27,7 @@ public class Nivel {
 ;
 
 
-    public Nivel(int id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int aciertos, int dificultad, String palabra) {
+    public Nivel(String id_user, int id_nivel, Date horainicio, Date horafin, String tipo, String subnivel, int fallos, int dificultad, String palabra) {
         this.id_user = id_user;
         this.id_nivel = id_nivel;
         this.horainicio = horainicio;
@@ -35,7 +35,6 @@ public class Nivel {
         this.tipo = tipo;
         this.subnivel = subnivel;
         this.fallos = fallos;
-        this.aciertos = aciertos;
         this.dificultad = dificultad;
         this.palabra =palabra;
     }
@@ -45,11 +44,11 @@ public class Nivel {
     @com.google.gson.annotations.SerializedName("id")
     private String mId;
 
-    public int getId_user() {
+    public String getId_user() {
         return id_user;
     }
 
-    public void setId_user(int id_user) {
+    public void setId_user(String id_user) {
         this.id_user = id_user;
     }
 
@@ -123,5 +122,22 @@ public class Nivel {
 
     public void setDificultad(int dificultad) {
         this.dificultad = dificultad;
+    }
+
+    @Override
+    public String toString() {
+        return "Nivel{" +
+                "id_user=" + id_user +
+                ", id_nivel=" + id_nivel +
+                ", horainicio=" + horainicio +
+                ", horafin=" + horafin +
+                ", tipo='" + tipo + '\'' +
+                ", subnivel='" + subnivel + '\'' +
+                ", palabra='" + palabra + '\'' +
+                ", fallos=" + fallos +
+                ", aciertos=" + aciertos +
+                ", dificultad=" + dificultad +
+                ", mId='" + mId + '\'' +
+                '}';
     }
 }
