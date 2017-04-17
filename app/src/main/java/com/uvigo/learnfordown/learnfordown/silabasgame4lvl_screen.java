@@ -162,6 +162,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
 
 
                         es.acierto();
+                        gn.enviaResultado(fp.get(i).getPalabra());
 
                         MediaPlayer aciertoMedia = es.getAciertoMedia();
                         aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

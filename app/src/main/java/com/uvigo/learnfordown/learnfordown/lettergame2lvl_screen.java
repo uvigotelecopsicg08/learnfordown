@@ -169,6 +169,7 @@ public class lettergame2lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     if (aciertos == 1) {
                         es.acierto();
+                        gn.enviaResultado(fp.get(i).getPalabra());
                         MediaPlayer aciertoMedia = es.getAciertoMedia();
                         aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 
