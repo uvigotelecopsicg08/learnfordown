@@ -40,6 +40,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     String figure = "plato";
     Button button1,button2,button3;
     Button Actual;
+    String Nombre="";
 
    // int contador;
     //final HashMap<Integer, Float> thresholds = new HashMap<>();
@@ -320,7 +321,6 @@ public class frasegame1lvl_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -346,6 +346,9 @@ public class frasegame1lvl_screen extends AppCompatActivity {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 }

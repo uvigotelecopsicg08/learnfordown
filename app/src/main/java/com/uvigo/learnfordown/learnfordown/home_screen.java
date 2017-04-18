@@ -19,6 +19,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -40,7 +41,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     private   GestionNiveles gn;
     TextView titulo;
     Menu menu;
-
+    int id_user =0;
+    DrawerLayout menulateral;
     Typeface face;
     boolean registrado=false;
     @Override
@@ -50,7 +52,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_home_screen);
         face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView);
-
+        menulateral= (DrawerLayout) findViewById(R.id.drawer_layout);
         titulo.setTypeface(face);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -73,6 +75,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         ActualizarDatosLateral();
+
 
 
     }
@@ -183,6 +186,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onRestart() {
         super.onRestart();
+        ActualizarDatosLateral();
         lanzaMensaje();
     }
     public void lanzaIntent(Nivel nivel){
@@ -296,6 +300,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        DataBaseManager db = new DataBaseManager(getApplicationContext());
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -310,24 +316,39 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent1);
 
         } else if (id == R.id.puzzle) {
+
+            db.updateMinijuego(id_user,"PUZZLE","resta");
             Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
             startActivity(intent1);
 
         } else if (id == R.id.plataformas) {
+            db.updateMinijuego(id_user,"PLATAFORMA","resta");
 
 
-        }else if (id == R.id.parejasdificil) {
+        }
+     else if (id == R.id.plataformasdificil) {
+        db.updateMinijuego(id_user,"PLATAFORMADIFICIL","resta");
+
+
+    }
+        else if (id == R.id.parejasdificil) {
+            db.updateMinijuego(id_user,"PAREJASDIFICIL","resta");
+
             Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
             startActivity(intent1);
 
 
         }else if (id == R.id.puzzledificil) {
+            db.updateMinijuego(id_user,"PUZZLEDIFICIL","resta");
+
             Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
             startActivity(intent1);
 
 
         }
         else if (id == R.id.parejas) {
+            db.updateMinijuego(id_user,"PAREJAS","resta");
+
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
             startActivity(intent1);
 
@@ -366,7 +387,6 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         }
     }
     public void ActualizarDatosLateral(){
-        int id_user =0;
         String nombre ="";
         String avatar ="";
         Cursor cursor;
@@ -405,25 +425,31 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         }
         if (puzzle>0) {
             menu.findItem(R.id.puzzle).setEnabled(true);
-        }
+        } else             menu.findItem(R.id.puzzle).setEnabled(false);
+
         if  (puzzledificil>0){
             menu.findItem(R.id.puzzledificil).setEnabled(true);
 
-        }
+        } else             menu.findItem(R.id.puzzledificil).setEnabled(false);
         if (memory>0) {
             menu.findItem(R.id.parejas).setEnabled(true);
-        }
+        } else             menu.findItem(R.id.parejas).setEnabled(false);
         if  (memorydificil>0){
-            menu.findItem(R.id.parejasdificil).setEnabled(true);
+            menu.findItem(R.id.parejasdificil).setEnabled(false);
 
-        }
+        } else             menu.findItem(R.id.parejasdificil).setEnabled(false);
         if (plataforma>0) {
-            menu.findItem(R.id.plataformas).setEnabled(true);
-        }
+            menu.findItem(R.id.plataformas).setEnabled(false);
+        } else             menu.findItem(R.id.plataformas).setEnabled(false);
         if  (plataformadificil>0){
             menu.findItem(R.id.plataformasdificil).setEnabled(true);
 
+        } else             menu.findItem(R.id.plataformasdificil).setEnabled(false);
         }
+
+       public void FlechaMenu(View v){
+            menulateral.openDrawer(Gravity.LEFT);
         }
+
 
 }

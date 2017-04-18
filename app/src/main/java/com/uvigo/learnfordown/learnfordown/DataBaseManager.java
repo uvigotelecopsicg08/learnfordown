@@ -618,7 +618,94 @@ public class DataBaseManager {
         return db.query(TABLE_GAMES,columnas,whereClause,whereArgs,null,null,null,null);
 
     }
+    public void updateMinijuego(int id_usuario, String juego,String operacion) {
+        Cursor cursor = getMinijuegos(id_usuario);
+        ContentValues valores = new ContentValues();
+        int juegos;
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                switch (juego) {
+                    case "PUZZLE":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PUZZLE));
 
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_PUZZLE, juegos + 1);
+
+                        } else {
+
+                            valores.put(CN_PUZZLE, juegos - 1);
+                        }
+                        break;
+                    case "PUZZLEDIFICIL":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PUZZLE_DIFICIL));
+
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_PUZZLE_DIFICIL, juegos + 1);
+
+                        } else {
+                            valores.put(CN_PUZZLE_DIFICIL, juegos - 1);
+
+
+                        }
+                        break;
+                    case "PAREJAS":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_MEMORY));
+
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_MEMORY, juegos + 1);
+
+                        } else {
+                            valores.put(CN_MEMORY, juegos - 1);
+
+
+                        }
+                        break;
+                    case "PAREJASDIFICIL":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_MEMORY_DIFICIL));
+
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_MEMORY_DIFICIL, juegos + 1);
+
+                        } else {
+                            valores.put(CN_MEMORY_DIFICIL, juegos - 1);
+
+
+                        }
+                        break;
+                    case "PLATAFORMA":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PLATAFORM));
+
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_PLATAFORM, juegos + 1);
+
+                        } else {
+                            valores.put(CN_PLATAFORM, juegos - 1);
+
+
+                        }
+                        break;
+                    case "PLATAFORMADIFICIL":
+                        juegos = cursor.getInt(cursor.getColumnIndexOrThrow(DataBaseManager.CN_PLATAFORM_DIFICIL));
+
+                        if (operacion.equals("suma")) {
+                            valores.put(CN_PLATAFORM_DIFICIL, juegos + 1);
+
+                        } else {
+                            valores.put(CN_PLATAFORM_DIFICIL, juegos - 1);
+
+
+                        }
+                        break;
+
+                }
+            }
+            String whereClause = CN_ID_USER_GAMES + " = ? ";
+            String[] whereArgs = new String[]{String.valueOf(id_usuario)};
+
+            db.update(TABLE_GAMES, valores, whereClause, whereArgs);
+
+        }
+    }
 
     public void actualizarEstrellas(String tipo,int dificultad,int aciertos,int id_user){
         ContentValues valores = new ContentValues();

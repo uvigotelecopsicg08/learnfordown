@@ -423,6 +423,10 @@ public class GestionNiveles {
         return id_nivel;
     }
 
+    public int getId_user() {
+        return id_user;
+    }
+
     public int getAciertos() {
         return aciertos;
     }

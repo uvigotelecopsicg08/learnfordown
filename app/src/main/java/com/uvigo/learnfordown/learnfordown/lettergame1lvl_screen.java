@@ -57,6 +57,7 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     String Correcta;
     Button ButtonActual;
     TextView titulo,letracorrecta;
+    String Nombre="";
     ImageButton BackArrow,Home;
     ImageView palabra;
     GestionNiveles  gn;
@@ -384,7 +385,6 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -409,6 +409,10 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         dialog.dismiss();
     }
     public void DialogNegative(View v){
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
+
 //Codigo de meter en la base de datos
     dialog.dismiss();
     }

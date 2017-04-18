@@ -45,6 +45,7 @@ public class writegame_level2_screen extends AppCompatActivity {
     private HorizontalAdapter HorizontalAdapter;
     private ArrayList<String> ListaHorizontal;
     private char[] LetrasPalabra;
+    String Nombre="";
 
     private GestionNiveles gn;
     private ArrayList<FotoPalabra> fp;
@@ -452,7 +453,6 @@ public class writegame_level2_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -478,6 +478,9 @@ public class writegame_level2_screen extends AppCompatActivity {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 

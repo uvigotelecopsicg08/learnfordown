@@ -27,6 +27,7 @@ public class writegame_level1_screen extends AppCompatActivity {
     public static final float VALIDATION_THRESHOLD_MULTIPLIER = 1.8f;
 
     private static ImageButton Borrar; // Para GifView
+    String Nombre="";
 
     ImageButton Help;
     GifImageView gifImageView;
@@ -398,7 +399,6 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -424,7 +424,10 @@ public class writegame_level1_screen extends AppCompatActivity {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
-        dialog.dismiss();
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
+       dialog.dismiss();
     }
 
 
