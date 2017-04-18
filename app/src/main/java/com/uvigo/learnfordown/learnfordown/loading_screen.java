@@ -78,7 +78,7 @@ public class loading_screen extends AppCompatActivity {
 
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 } finally {
 
                     Intent intent = new Intent(loading_screen.this,home_screen.class);

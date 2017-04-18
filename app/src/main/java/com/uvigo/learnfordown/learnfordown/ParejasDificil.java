@@ -82,12 +82,19 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
 
         buttonGraphics = new int[numberOfElements/2];
 
-        int[] res = {R.drawable.anillo, R.drawable.brujula, R.drawable.chaqueta, R.drawable.conejo, R.drawable.domino,
+        int[] res = {R.drawable.parejasajedrez, R.drawable.parejasbaloncesto, R.drawable.parejasbanador, R.drawable.parejasbarco,
+                R.drawable.parejasbota, R.drawable.parejascamara, R.drawable.parejascompas, R.drawable.parejasdados, R.drawable.parejasestuche,
+                R.drawable.parejasgafas, R.drawable.parejasgaita, R.drawable.parejasgaviota, R.drawable.parejasgrifo, R.drawable.parejashuron,
+                R.drawable.parejasmacarrones, R.drawable.parejasmango, R.drawable.parejasparaguas, R.drawable.parejaspera, R.drawable.parejaspinata,
+                R.drawable.parejasrastrillo, R.drawable.parejassandia, R.drawable.parejassilbato, R.drawable.parejassirena, R.drawable.parejastambor,
+                R.drawable.parejastornillo, R.drawable.parejasvieiras, R.drawable.parejasviolin};
+
+        /*int[] res = {R.drawable.anillo, R.drawable.brujula, R.drawable.chaqueta, R.drawable.conejo, R.drawable.domino,
                 R.drawable.esponja, R.drawable.flor, R.drawable.fresa, R.drawable.gato, R.drawable.globo,
                 R.drawable.guitarra, R.drawable.jeringa, R.drawable.judias, R.drawable.lapiz, R.drawable.llavero,
                 R.drawable.mariposa, R.drawable.mesa, R.drawable.miel, R.drawable.muneca, R.drawable.naranja,
                 R.drawable.nido, R.drawable.nuez, R.drawable.oso, R.drawable.pimiento, R.drawable.platano,
-                R.drawable.sofa, R.drawable.taza};
+                R.drawable.sofa, R.drawable.taza};*/
 
         /*int[] res = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e,
                 R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.j,

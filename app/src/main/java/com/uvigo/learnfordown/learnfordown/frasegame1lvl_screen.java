@@ -176,6 +176,7 @@ public class frasegame1lvl_screen extends AppCompatActivity {
                 if ((fp.get(i).getPalabra().toUpperCase()).equals(Actual.getText().toString())) {
                     Actual.setBackgroundColor(Color.WHITE);
                     es.acierto();
+                    gn.enviaResultado(fp.get(i).getPalabra());
                     es.pulsar(true);
                     if (es.ratingbar1.getRating()==6){
                         MensajeMinijuego();

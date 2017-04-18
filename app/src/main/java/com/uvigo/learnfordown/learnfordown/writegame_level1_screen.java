@@ -199,6 +199,7 @@ public class writegame_level1_screen extends AppCompatActivity {
 
 
                     es.acierto();
+                    gn.enviaResultado(fp.get(0).getPalabra());
 
                     MediaPlayer aciertoMedia = es.getAciertoMedia();
                     aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {

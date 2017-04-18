@@ -56,7 +56,7 @@
 
     <TextView
         android:layout_weight="0.15"
-        android:text="¡DIVIÉRTETE CON LAS SÍLABAS DIRECTAS!"
+        android:text="¡DIVIÉRTETE CON LAS SÍLABAS TRABADAS!"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:id="@+id/textView3"

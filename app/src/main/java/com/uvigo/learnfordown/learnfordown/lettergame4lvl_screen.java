@@ -143,6 +143,7 @@ catch (IndexOutOfBoundsException e){
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                         es.acierto();
                         es.pulsar(true);
+                    gn.enviaResultado(fp.get(i).getPalabra());
                     if (es.ratingbar1.getRating()==6){
                         MensajeMinijuego();
                     }

@@ -138,7 +138,7 @@ public class writegame_level4_screen extends AppCompatActivity {
 
         // Estrellitas
         es.acierto();
-
+        gn.enviaResultado(fp.get(i).getPalabra());
         MediaPlayer aciertoMedia = es.getAciertoMedia();
         aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 

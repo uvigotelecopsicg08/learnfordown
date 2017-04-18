@@ -175,6 +175,7 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                     System.out.println("Se ha anotado un acierto");
                     es.acierto();
+                    gn.enviaResultado(fp.get(i).getPalabra());
                     MediaPlayer aciertoMedia = es.getAciertoMedia();
                     aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
 

@@ -125,100 +125,98 @@ public class Estrellas {
             case "leerletras":
                 switch (gn.getDificultad()){
                     case 1:
-                        numeros = new int[]{1,12,24,36,50,68};
+                        numeros = new int[]{1,12,24,36,50,69};
                         break;
                     case 2:
-                        numeros = new int[]{1,22,44,66,88,108};
+                        numeros = new int[]{1,22,44,66,88,109};
                         break;
                     case 3:
-                        numeros = new int[]{1,30,60,90,120,153};
+                        numeros = new int[]{1,30,60,90,120,154};
                         break;
                     case 4:
-                        numeros = new int[]{1,33,66,99,132,170};
+                        numeros = new int[]{1,33,66,99,132,171};
                         break;
                 }
                 break;
             case "silabasdirectas":
                 switch (gn.getDificultad()){
                     case 1:
-                        numeros = new int[]{1,12,24,36,50,68};
+                        numeros = new int[]{1,10,20,30,40,51};
                         break;
                     case 2:
-                        numeros = new int[]{1,22,44,66,88,108};
+                        numeros = new int[]{1,15,31,45,63,83};
                         break;
                     case 3:
-                        numeros = new int[]{1,30,60,90,120,153};
+                        numeros = new int[]{1,24,48,72,96,119};
                         break;
                     case 4:
-                        numeros = new int[]{1,33,66,99,132,170};
+                        numeros = new int[]{1,25,50,75,100,122};
                         break;
                 }
                 break;
             case "silabasinversas":
                 switch (gn.getDificultad()){
                     case 1:
-                        numeros = new int[]{1,12,24,36,50,68};
+                        numeros = new int[]{1,3,6,9,11,15};
                         break;
                     case 2:
-                        numeros = new int[]{1,22,44,66,88,108};
+                        numeros = new int[]{1,4,8,13,18,24};
                         break;
                     case 3:
-                        numeros = new int[]{1,30,60,90,120,153};
+                        numeros = new int[]{1,5,10,15,20,26};
                         break;
                     case 4:
-                        numeros = new int[]{1,33,66,99,132,170};
+                        numeros = new int[]{1,5,11,16,21,28};
                         break;
                 }
                 break;
             case "silabastrabadas":
                 switch (gn.getDificultad()){
                     case 1:
-                        numeros = new int[]{1,12,24,36,50,68};
+                        numeros = new int[]{1,4,7,11,15,20};
                         break;
                     case 2:
-                        numeros = new int[]{1,22,44,66,88,108};
+                        numeros = new int[]{1,5,9,14,19,26};
                         break;
                     case 3:
-                        numeros = new int[]{1,30,60,90,120,153};
+                        numeros = new int[]{1,4,8,12,16,22};
                         break;
                     case 4:
-                        numeros = new int[]{1,33,66,99,132,170};
+                        numeros = new int[]{1,4,8,12,16,22};
                         break;
                 }
                 break;
             case "palabrassilabasdirectas":
-                numeros = new int[]{1,7,12,18,24,29};
+                numeros = new int[]{1,7,12,18,24,30};
                 break;
             case "palabrassilabasinversas":
-                numeros = new int[]{1,6,11,17,21,26};
+                numeros = new int[]{1,6,11,17,21,27};
                 break;
-            case "palabrassilabastrabas":
-                numeros = new int[]{1,4,7,10,14,17};
+            case "palabrassilabastrabadas":
+                numeros = new int[]{1,4,7,10,14,18};
                 break;
             case "frasessilabasdirectas":
-                numeros = new int[]{1,4,7,10,14,17};
+                numeros = new int[]{1,3,5,7,9,12};
                 break;
             case "frasessilabasinversas":
-                numeros = new int[]{1,4,7,10,14,17};
+                numeros = new int[]{1,3,5,7,9,12};
                 break;
-            case "frasessilabastrabas":
-                numeros = new int[]{1,4,7,10,14,17};
+            case "frasessilabastrabadas":
+                numeros = new int[]{1,2,4,6,8,11};
                 break;
             case "escribirletras":
-                numeros = new int[]{1,5,11,16,21,26};
+                numeros = new int[]{1,5,11,16,21,27};
                 break;
             case "escribirconsombreado":
-                numeros = new int[]{1,7,12,18,24,29};
+                numeros = new int[]{1,7,12,18,24,30};
                 break;
             case "escribirsinsombreado":
-                numeros = new int[]{1,8,16,24,32,39};
+                numeros = new int[]{1,8,16,24,32,40};
                 break;
             case "escribirtecladopalabra":
-                numeros = new int[]{1,10,20,30,40,49};
+                numeros = new int[]{1,10,20,30,40,50};
                 break;
         }
-
-
 
 
         return generarMap(numeros);
