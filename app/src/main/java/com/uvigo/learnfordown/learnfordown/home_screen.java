@@ -82,10 +82,10 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent);
             //Aqui esta el codigo para lanzar el juego de Unity en version facil. Para la version dificil
             //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
             if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
-            }
+            }*/
         }
         else{
             lanzaAlerta();
