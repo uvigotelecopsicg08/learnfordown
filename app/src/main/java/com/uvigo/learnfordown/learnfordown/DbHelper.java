@@ -24,6 +24,8 @@ public class DbHelper  extends SQLiteOpenHelper  {
         System.out.println(DataBaseManager.CREATE_TABLE_NIVELUSER);
         System.out.println(DataBaseManager.CREATE_TABLE_SYSTEM);
         System.out.println(DataBaseManager.CREATE_TABLE_STARS);
+        System.out.println(DataBaseManager.CREATE_TABLE_GAMES);
+
         /*
         db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_LEVEL_USER);
         db.execSQL("DROP TABLE IF EXITS "+DataBaseManager.TABLE_AFFINITY);
@@ -39,6 +41,8 @@ public class DbHelper  extends SQLiteOpenHelper  {
         db.execSQL(DataBaseManager.CREATE_TABLE_NIVELUSER);
         db.execSQL(DataBaseManager.CREATE_TABLE_SYSTEM);
         db.execSQL(DataBaseManager.CREATE_TABLE_STARS);
+        db.execSQL(DataBaseManager.CREATE_TABLE_GAMES);
+
     }
 
     @Override

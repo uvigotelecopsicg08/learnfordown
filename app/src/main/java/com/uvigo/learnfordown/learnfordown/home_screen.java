@@ -19,10 +19,12 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.appindexing.Action;
@@ -34,19 +36,23 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class home_screen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    NavigationView navigationView;
     private GoogleApiClient client;
     private   GestionNiveles gn;
     TextView titulo;
+    Menu menu;
+    int id_user =0;
+    DrawerLayout menulateral;
+    Typeface face;
     boolean registrado=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //Eliminar la barra con el titulo de la aplicacion
         setContentView(R.layout.activity_home_screen);
-        Typeface face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
+        face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView);
-
+        menulateral= (DrawerLayout) findViewById(R.id.drawer_layout);
         titulo.setTypeface(face);
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -66,8 +72,10 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         Context context =this.getApplicationContext();
         File dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        ActualizarDatosLateral();
+
 
 
     }
@@ -112,7 +120,6 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
     public void salir (View view) {
         // Do something in response to button
-
 
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -179,6 +186,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onRestart() {
         super.onRestart();
+        ActualizarDatosLateral();
         lanzaMensaje();
     }
     public void lanzaIntent(Nivel nivel){
@@ -268,6 +276,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
+
+
         getMenuInflater().inflate(R.menu.prueb, menu);
         return true;
     }
@@ -290,6 +300,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
+        DataBaseManager db = new DataBaseManager(getApplicationContext());
+
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -304,24 +316,39 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent1);
 
         } else if (id == R.id.puzzle) {
+
+            db.updateMinijuego(id_user,"PUZZLE","resta");
             Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
             startActivity(intent1);
 
         } else if (id == R.id.plataformas) {
+            db.updateMinijuego(id_user,"PLATAFORMA","resta");
 
 
-        }else if (id == R.id.parejasdificil) {
+        }
+     else if (id == R.id.plataformasdificil) {
+        db.updateMinijuego(id_user,"PLATAFORMADIFICIL","resta");
+
+
+    }
+        else if (id == R.id.parejasdificil) {
+            db.updateMinijuego(id_user,"PAREJASDIFICIL","resta");
+
             Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
             startActivity(intent1);
 
 
         }else if (id == R.id.puzzledificil) {
+            db.updateMinijuego(id_user,"PUZZLEDIFICIL","resta");
+
             Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
             startActivity(intent1);
 
 
         }
         else if (id == R.id.parejas) {
+            db.updateMinijuego(id_user,"PAREJAS","resta");
+
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
             startActivity(intent1);
 
@@ -359,6 +386,70 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             dialog.show();
         }
     }
+    public void ActualizarDatosLateral(){
+        String nombre ="";
+        String avatar ="";
+        Cursor cursor;
+        int puzzle= -1;
+        int memory = -1;
+        int plataforma = -1;
+        int puzzledificil= -1;
+        int memorydificil = -1;
+        int plataformadificil = -1;
+        View header = navigationView.getHeaderView(0);
+        menu=navigationView.getMenu();
+        ImageView imagen = (ImageView) header.findViewById(R.id.imageView);
+        TextView texto = (TextView) header.findViewById(R.id.textView);
+        DataBaseManager db = new DataBaseManager(getApplicationContext());
+        cursor= db.getInfoLogged();
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                 id_user = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                 avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar"));
+                 nombre =  cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                texto.setText(nombre);
+                texto.setTypeface(face);
+                int resId=this.getResources().getIdentifier(avatar, "drawable", this.getPackageName());
+                imagen.setImageResource(resId);
+            }
+        }
+        cursor= db.getMinijuegos(id_user);
+        if(cursor!=null) {
+            if (cursor.moveToFirst()) {
+                 puzzle=cursor.getInt(cursor.getColumnIndexOrThrow("puzzle"));
+                memory=cursor.getInt(cursor.getColumnIndexOrThrow("memory"));
+                plataforma=cursor.getInt(cursor.getColumnIndexOrThrow("plataform"));
+                puzzledificil=cursor.getInt(cursor.getColumnIndexOrThrow("puzzledificil"));
+                memorydificil=cursor.getInt(cursor.getColumnIndexOrThrow("memorydificil"));
+                plataformadificil=cursor.getInt(cursor.getColumnIndexOrThrow("plataformdificil"));            }
+        }
+        if (puzzle>0) {
+            menu.findItem(R.id.puzzle).setEnabled(true);
+        } else             menu.findItem(R.id.puzzle).setEnabled(false);
+
+        if  (puzzledificil>0){
+            menu.findItem(R.id.puzzledificil).setEnabled(true);
+
+        } else             menu.findItem(R.id.puzzledificil).setEnabled(false);
+        if (memory>0) {
+            menu.findItem(R.id.parejas).setEnabled(true);
+        } else             menu.findItem(R.id.parejas).setEnabled(false);
+        if  (memorydificil>0){
+            menu.findItem(R.id.parejasdificil).setEnabled(false);
+
+        } else             menu.findItem(R.id.parejasdificil).setEnabled(false);
+        if (plataforma>0) {
+            menu.findItem(R.id.plataformas).setEnabled(false);
+        } else             menu.findItem(R.id.plataformas).setEnabled(false);
+        if  (plataformadificil>0){
+            menu.findItem(R.id.plataformasdificil).setEnabled(true);
+
+        } else             menu.findItem(R.id.plataformasdificil).setEnabled(false);
+        }
+
+       public void FlechaMenu(View v){
+            menulateral.openDrawer(Gravity.LEFT);
+        }
 
 
 }

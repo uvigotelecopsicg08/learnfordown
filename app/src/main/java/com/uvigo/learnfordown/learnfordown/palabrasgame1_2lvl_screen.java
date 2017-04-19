@@ -49,6 +49,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     int i=0;
     Intent minijuego;
     AlertDialog dialog;
+    String Nombre="";
 
     //  int contador;
     ImageButton imageButton1,imageButton2,imageButton3;
@@ -515,7 +516,6 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -541,6 +541,9 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 }

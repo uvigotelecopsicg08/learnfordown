@@ -54,6 +54,7 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     ArrayList<FotoPalabra> fp;
     int i=0;
     int aciertos=0;
+    String Nombre="";
 
   //  int contador;
     boolean activiftiFinalizado =false;
@@ -324,7 +325,6 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -350,6 +350,9 @@ public class silabasgame4lvl_screen extends AppCompatActivity {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 }

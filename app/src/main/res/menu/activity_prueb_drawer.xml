@@ -13,27 +13,33 @@
             android:title="Registrarse" />
     </group>
 
-    <item android:title="Minijuegos">
+    <item android:title="MINIJUEGOS"
+        android:id="@+id/minijuegos"
+        >
         <menu>
             <item
                 android:id="@+id/puzzle"
-                android:enabled="true"
+                android:enabled="false"
                 android:title="Puzzle" />
             <item
                 android:id="@+id/puzzledificil"
-                android:enabled="true"
+                android:enabled="false"
                 android:title="Puzzle dificil" />
             <item
                 android:id="@+id/plataformas"
-                android:enabled="true"
+                android:enabled="false"
                 android:title="Plataformas" />
             <item
+                android:id="@+id/plataformasdificil"
+                android:enabled="false"
+                android:title="Plataformas Dificil" />
+            <item
                 android:id="@+id/parejas"
-                android:enabled="true"
+                android:enabled="false"
                 android:title="Parejas" />
             <item
                 android:id="@+id/parejasdificil"
-                android:enabled="true"
+                android:enabled="false"
                 android:title="Parejas dificil" />
         </menu>
     </item>

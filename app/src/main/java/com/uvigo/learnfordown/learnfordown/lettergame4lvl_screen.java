@@ -48,6 +48,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     String tipoNivel="leerletras";
     ArrayList<FotoPalabra> fp;
     int i=0;
+    String Nombre="";
 
     int aciertos=0;
 
@@ -281,7 +282,6 @@ catch (IndexOutOfBoundsException e){
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -307,6 +307,9 @@ catch (IndexOutOfBoundsException e){
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 }

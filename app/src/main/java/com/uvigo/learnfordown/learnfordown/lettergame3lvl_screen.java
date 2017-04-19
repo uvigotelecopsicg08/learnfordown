@@ -37,6 +37,8 @@ import java.util.TreeSet;
 public class lettergame3lvl_screen extends AppCompatActivity {
     TextView titulo;
     String Correcta="";
+    String Nombre="";
+
     Button ButtonActual;
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
@@ -275,7 +277,7 @@ try {
 
     }
     public String MinijuegoRandom(){
-        String Nombre="";
+
         int rand =(int) (Math.random() * 2.0);
         switch(rand) {
             case 0:
@@ -301,6 +303,9 @@ try {
     }
     public void DialogNegative(View v){
 //Codigo de meter en la base de datos
+        DataBaseManager db =  new DataBaseManager(getApplicationContext());
+
+        db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
 }

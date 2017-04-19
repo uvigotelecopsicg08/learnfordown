@@ -32,8 +32,8 @@
                 android:id="@+id/imagebutton6"
                 android:scaleType="fitCenter"
                 app:srcCompat="?android:attr/activatedBackgroundIndicator"
-                android:onClick="ajustes"
-                android:background="@mipmap/ajustes" />
+                android:onClick="FlechaMenu"
+                android:background="@mipmap/icon_rosca" />
 
             <TextView
 
@@ -83,6 +83,7 @@
                 android:layout_height="619dp"
                 android:gravity="center"
                 android:weightSum="1">
+
 
                 <ImageButton
                     android:layout_width="wrap_content"
