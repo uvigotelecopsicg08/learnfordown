@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class DbHelper  extends SQLiteOpenHelper  {
     private static final String DB_learn = "learn.sqlite";
-    private static final int DB_SCHEME_VERSION=2;
+    private static final int DB_SCHEME_VERSION=3;
     public DbHelper(Context context) {
         super(context, DB_learn, null, DB_SCHEME_VERSION);
     }
