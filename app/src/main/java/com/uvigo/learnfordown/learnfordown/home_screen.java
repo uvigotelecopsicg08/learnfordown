@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -41,6 +42,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     private   GestionNiveles gn;
     TextView titulo;
     Menu menu;
+    File dbFile;
     int id_user =0;
     DrawerLayout menulateral;
     Typeface face;
@@ -70,12 +72,13 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         //db.insertar_user("pepe",5);
 */
         Context context =this.getApplicationContext();
-        File dbFile = context.getDatabasePath("learn.sqlite");
+         dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        ActualizarDatosLateral();
-
+        if(dbFile.exists()) {
+            ActualizarDatosLateral();
+        }
 
 
     }
@@ -85,10 +88,17 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
      */
     public void sendMessage(View view) {
         // Do something in response to button
+    /*    PackageManager pm =getPackageManager();
+        String prueba =getPackageName();
+                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }
+*/
         if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
-            //Aqui esta el codigo para lanzar el juego de Unity en version facil. Para la version dificil
+            //Aqui esta el codigo para lanzar  el juego de Unity en version facil. Para la version dificil
             //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
             /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
             if (launchIntent != null) {
@@ -98,6 +108,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         else{
             lanzaAlerta();
         }
+
     }
 
 
@@ -186,7 +197,9 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @Override
     public void onRestart() {
         super.onRestart();
-        ActualizarDatosLateral();
+        if(dbFile.exists()) {
+            ActualizarDatosLateral();
+        }
         lanzaMensaje();
     }
     public void lanzaIntent(Nivel nivel){
@@ -300,7 +313,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        DataBaseManager db = new DataBaseManager(getApplicationContext());
+
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
@@ -316,22 +329,32 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             startActivity(intent1);
 
         } else if (id == R.id.puzzle) {
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
 
             db.updateMinijuego(id_user,"PUZZLE","resta");
             Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
             startActivity(intent1);
 
         } else if (id == R.id.plataformas) {
-            db.updateMinijuego(id_user,"PLATAFORMA","resta");
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
 
+         //   db.updateMinijuego(id_user,"PLATAFORMA","resta");
+            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }
 
         }
      else if (id == R.id.plataformasdificil) {
-        db.updateMinijuego(id_user,"PLATAFORMADIFICIL","resta");
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
+
+            db.updateMinijuego(id_user,"PLATAFORMADIFICIL","resta");
 
 
     }
         else if (id == R.id.parejasdificil) {
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
+
             db.updateMinijuego(id_user,"PAREJASDIFICIL","resta");
 
             Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
@@ -339,6 +362,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
 
         }else if (id == R.id.puzzledificil) {
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
+
             db.updateMinijuego(id_user,"PUZZLEDIFICIL","resta");
 
             Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
@@ -347,6 +372,8 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
         }
         else if (id == R.id.parejas) {
+            DataBaseManager db = new DataBaseManager(getApplicationContext());
+
             db.updateMinijuego(id_user,"PAREJAS","resta");
 
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
@@ -398,6 +425,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         int plataformadificil = -1;
         View header = navigationView.getHeaderView(0);
         menu=navigationView.getMenu();
+
         ImageView imagen = (ImageView) header.findViewById(R.id.imageView);
         TextView texto = (TextView) header.findViewById(R.id.textView);
         DataBaseManager db = new DataBaseManager(getApplicationContext());
