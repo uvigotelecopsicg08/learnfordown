@@ -61,7 +61,7 @@
                 android:scaleType="fitCenter"
                 app:srcCompat="?android:attr/activatedBackgroundIndicator"
                 android:onClick="ajustes"
-                android:background="@mipmap/ajustes"
+                android:background="@mipmap/icon_rosca"
                 android:layout_weight="0.09" />
         </LinearLayout>
 
