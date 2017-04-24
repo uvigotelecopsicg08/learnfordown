@@ -1,6 +1,7 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -28,6 +29,7 @@ import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
@@ -84,20 +86,35 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     }
 
     /**
-     * Called when the user clicks the Send button
+     * Called when the user clicks the Send
      */
     public void sendMessage(View view) {
         // Do something in response to button
-    /*    PackageManager pm =getPackageManager();
+        PackageManager pm =getPackageManager();
         String prueba =getPackageName();
-                    Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
-            if (launchIntent != null) {
+     /*   Intent launchIntent =  new Intent(Intent.ACTION_MAIN) ;
+        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        launchIntent.addFlags(0x10000000);
+        launchIntent.setComponent(new ComponentName("com.LearnForDown.RecogeMonedas",".UnityPlayerActivity"));*/
+     //   Intent launchIntent =  new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class) ;
+
+        //  Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+      //  Intent launchIntent =  new Intent(home_screen.this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class) ;
+        Intent intent = new Intent(this, com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+        startActivity(intent);
+
+        /*    if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
-            }
-*/
+            }*/
+        Intent i4=new Intent(this, com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+
+        i4.addCategory(Intent.CATEGORY_LAUNCHER);
+        i4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i4);
+      //  startActivity(launchIntent);
         if(registrado) {
-            Intent intent = new Intent(home_screen.this, menu_screen.class);
-            startActivity(intent);
+       //     Intent intent = new Intent(home_screen.this, menu_screen.class);
+          //  startActivity(intent);
             //Aqui esta el codigo para lanzar  el juego de Unity en version facil. Para la version dificil
             //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
             /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
@@ -106,7 +123,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             }*/
         }
         else{
-            lanzaAlerta();
+        //    lanzaAlerta();
         }
 
     }
