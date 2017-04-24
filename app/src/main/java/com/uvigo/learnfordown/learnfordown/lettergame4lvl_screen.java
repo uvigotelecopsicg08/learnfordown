@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -142,22 +143,33 @@ catch (IndexOutOfBoundsException e){
 
                 if (Correcta.equals(ButtonActual.getText().toString())) {
                         es.acierto();
-                        es.pulsar(true);
+                        //es.pulsar(true);
                     gn.enviaResultado(fp.get(i).getPalabra());
-                    if (es.ratingbar1.getRating()==6){
-                        MensajeMinijuego();
-                    }
-                    //Codigo de Animacion Acierto
 
-                        System.out.println("Se ha anotado un acierto");
-                        if (!gn.isnivelCompletado()) {
-                            i++;
-                            cambiarFoto();
-                        } else {
-                            System.out.print("el nivel esta finalizado");
-                           avanzaNivel();
+                    MediaPlayer aciertoMedia = es.getAciertoMedia();
+                    aciertoMedia.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+
+
+                            if (es.ratingbar1.getRating() == 6) {
+                                MensajeMinijuego();
+                            }
+                            //Codigo de Animacion Acierto
+
+                            System.out.println("Se ha anotado un acierto");
+                            if (!gn.isnivelCompletado()) {
+                                i++;
+                                cambiarFoto();
+                            } else {
+                                System.out.print("el nivel esta finalizado");
+                                avanzaNivel();
+
+                            }
 
                         }
+
+                });
                         aciertos = 0;
 
                 } else {
