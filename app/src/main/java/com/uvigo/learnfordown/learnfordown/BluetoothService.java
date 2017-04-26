@@ -6,6 +6,7 @@ import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,7 +16,11 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.inputmethod.BaseInputConnection;
 import android.widget.Toast;
+
+import com.unity3d.player.UnityPlayer;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,7 +33,8 @@ import java.util.Vector;
 
 
 public  class  BluetoothService extends Service {
- private BluetoothAdapter mBluetoothAdapter;
+    private static final long INTERVALO_ACTUALIZACION = 1000;
+    private BluetoothAdapter mBluetoothAdapter;
     private String MAC_LFD = null;
     private IBinder mBinder = new LocalBinder();
     static BluetoothConnection BT;
@@ -38,6 +44,9 @@ public  class  BluetoothService extends Service {
     private Looper mServiceLooper;
     private  Handler mServiceHandler;
     final int handlerState = 0;
+    private  Timer temporizador;
+            private boolean pulsado;
+
 
 
     private static boolean BluetoothEnable=false;
@@ -62,7 +71,7 @@ public  class  BluetoothService extends Service {
     }
 
     public class LocalBinder extends Binder {
-        BluetoothService getService() {
+        public BluetoothService getService() {
             return BluetoothService.this;
         }
     }
@@ -129,7 +138,17 @@ public  class  BluetoothService extends Service {
            else BT.conectarBluetooth();
        }
     }
+    public void lanzarTemporizador() {
+        temporizador = new Timer();
+        temporizador.scheduleAtFixedRate(new TimerTask() {
+            public void run() {
+                app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP,KeyEvent.KEYCODE_DPAD_RIGHT));
+                pulsado=false;
+                this.cancel();
 
+            }
+        }, 0, INTERVALO_ACTUALIZACION);
+    }
     public void analizarEntradaBT(String entrada){
         Intent intent=null;
         switch (entrada){
@@ -186,6 +205,35 @@ public  class  BluetoothService extends Service {
                     wl.Help.performClick();
                 }
                 break;
+            case "left":
+                if(app.getClass().toString().contains("UnityPlayerActivity")) {
+                    System.out.print(app.getClass());
+                    UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
+
+                }
+                break;
+            case "right":
+                if(app.getClass().toString().contains("UnityPlayerActivity")) {
+                    System.out.print(app.getClass());
+                    UnityPlayer.UnitySendMessage("Pencil", "Right", "derecha");
+                    if(!pulsado) {
+                        app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
+                        lanzarTemporizador();
+                        pulsado=true;
+                    }
+
+
+                }
+                break;
+            case "game":
+                intent = null;
+                if(app.getClass().toString().contains("UnityPlayerActivity")) {
+                    /*System.out.print(app.getClass());
+                    writegame_level1_screen wl = (writegame_level1_screen) app;
+                    wl.Help.performClick();*/
+                }
+                break;
+
 
         }
 
