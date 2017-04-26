@@ -1,14 +1,18 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.DialogInterface;
+import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.RatingBar;
 import android.widget.Toast;
@@ -111,6 +115,8 @@ public class writegame_level3_screen extends AppCompatActivity {
         HorizontalAdapter = new HorizontalAdapter(ListaHorizontal,ListaHorizontal.size(),metrics,"escritura");
         PanelHorizontal.setAdapter(HorizontalAdapter);
 
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
 
 
 
@@ -371,5 +377,29 @@ public class writegame_level3_screen extends AppCompatActivity {
         db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }
 

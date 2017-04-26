@@ -1,10 +1,14 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Typeface;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -59,6 +63,9 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
         Button buttonNo=(Button)findViewById(R.id.buttonNo);
         buttonNo.setOnClickListener(this);
 
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
+
     }
 
     public void onClick(View v) {
@@ -101,4 +108,28 @@ public class login_screen_like extends AppCompatActivity implements View.OnClick
         Intent intent1 = new Intent(login_screen_like.this, login_screen.class);
         startActivity(intent1);
     }
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }

@@ -1,9 +1,11 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.AudioManager;
@@ -11,11 +13,13 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -129,6 +133,9 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
 
 
         horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
+
     }
     public void BackArrow (View v){
         Intent intent1 = new Intent();
@@ -358,5 +365,29 @@ public class silabasgame2lvl_screen extends AppCompatActivity {
         db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }
 

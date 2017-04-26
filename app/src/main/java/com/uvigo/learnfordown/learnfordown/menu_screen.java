@@ -1,9 +1,13 @@
 package com.uvigo.learnfordown.learnfordown;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Typeface;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,7 +31,9 @@ public class menu_screen extends AppCompatActivity {
     private Spinner nameValueSpinner2;
     private Spinner nameValueSpinner3;
     private static String NivelAnterior;
-
+    private boolean  mBound= false;
+    private  BluetoothService mService;
+    private AppCompatActivity app=this;
 
     public menu_screen() {}
 
@@ -56,6 +62,8 @@ public class menu_screen extends AppCompatActivity {
 
 
         setupSpinner();
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
 
     }
 
@@ -299,4 +307,25 @@ public class menu_screen extends AppCompatActivity {
         Intent intent1 = new Intent(menu_screen.this, home_screen.class);
         startActivity(intent1);
     }
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }

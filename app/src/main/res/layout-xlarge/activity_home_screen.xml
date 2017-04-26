@@ -60,6 +60,15 @@
                 android:scaleType="fitCenter"
                 android:background="@color/colorPrimary" />
 
+            <ImageButton
+                android:src="@mipmap/bluetooth"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:id="@+id/imagebutton8"
+                android:onClick="Bluetooth"
+                android:scaleType="fitCenter"
+                android:background="@color/colorPrimary" />
+
         </LinearLayout>
 
     <RelativeLayout

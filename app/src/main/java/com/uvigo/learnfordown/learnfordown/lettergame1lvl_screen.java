@@ -1,9 +1,13 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothSocket;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
@@ -11,6 +15,7 @@ import android.media.SoundPool;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -48,12 +53,21 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class lettergame1lvl_screen extends AppCompatActivity {
 
+    // *** VARIABLES NECESARIAS BLUETOOTH ****
+
+    final int handlerState = 0;
+    private String MAC_LFD = null;
+    BluetoothSocket BS = null;
+    Handler BTLetter1;
+    BluetoothConnection BT;
+
+    // *************************************
+
     private RecyclerView horizontal_recycler_view;
     private ArrayList<String> horizontalList;
     private HorizontalAdapter horizontalAdapter;
     Intent minijuego;
     AlertDialog dialog;
-
     String Correcta;
     Button ButtonActual;
     TextView titulo,letracorrecta;
@@ -64,10 +78,13 @@ public class lettergame1lvl_screen extends AppCompatActivity {
     String tipoNivel="leerletras",palabracom, tmpDownSlash= " ";
 
 
+
     ArrayList<FotoPalabra> fp;
     int i = 0;
     Estrellas  es;
-
+    AppCompatActivity app = this;
+  private boolean  mBound= false;
+  private  BluetoothService mService;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -125,8 +142,71 @@ public class lettergame1lvl_screen extends AppCompatActivity {
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
+
+
+
+
+        // ************************************
+
+/*
+
+        BTLetter1 = new Handler() {
+            public void handleMessage(android.os.Message msg) { // msg = mensaje que contiene descripción y datos
+                // que se pueden enviar a un handler
+
+                if (msg.what == handlerState) {                 // msg.what = Código de mensaje definido por el usuario para que
+                    // el destinatario pueda identificar de qué se trata este mensaje
+
+                    String readMessage = (String) msg.obj;      // msg.obj = Objeto arbitrario para enviar al destinatario
+                    readMessage = readMessage.trim();           // Le metimos dos espacios al envío desde ARDUINO
+                    System.out.println("/////////////" + readMessage + "//////////////");
+                    analizarEntradaBT(readMessage);
+                }
+            }
+        };
+
+        BT = new BluetoothConnection(this.getApplicationContext(),BTLetter1);
+
+        Bluetooth();
+
+        */
+// ***********************************
+
+    }
+/*
+    public void Bluetooth() {
+
+        if (!BT.configurarBluetooth()){
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, BT.getREQUEST_ENABLE_BT());
+        }
+        BT.obtenerListaDispositivos();
+        MAC_LFD = BT.buscaDispositivo();
+        if (MAC_LFD == null)
+            Toast.makeText(getBaseContext(), "No se ha encontrado el dispositivo", Toast.LENGTH_LONG).show();
+        else BT.conectarBluetooth();
+
     }
 
+
+    public void analizarEntradaBT(String entrada){
+
+        switch (entrada){
+            case "back":
+                BackArrow.performClick();
+                break;
+
+            case "home":
+                Home.performClick();
+                break;
+
+        }
+
+    }
+*/
 
 
     public void BackArrow (View v){
@@ -416,4 +496,25 @@ public class lettergame1lvl_screen extends AppCompatActivity {
 //Codigo de meter en la base de datos
     dialog.dismiss();
     }
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }

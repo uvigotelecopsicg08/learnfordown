@@ -5,6 +5,8 @@ import android.content.*;
 import android.os.*;
 import java.util.*;
 import java.io.*;
+
+import android.util.Log;
 import android.widget.*;
 
 import android.graphics.Typeface;
@@ -29,7 +31,7 @@ public class writegame_level1_screen extends AppCompatActivity {
     private static ImageButton Borrar; // Para GifView
     String Nombre="";
 
-    ImageButton Help;
+  public  ImageButton Help;
     GifImageView gifImageView;
     LinearLayout Lienzo;
     ImageView plantilla,foto;
@@ -44,6 +46,9 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     Estrellas  es;
     final HashMap<Integer, Float> thresholds = new HashMap<>();
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
 
 
     Map <String, Integer> duracion = new HashMap <String, Integer>(); // Clave: letra, Valor: Duracion GIF
@@ -89,6 +94,9 @@ public class writegame_level1_screen extends AppCompatActivity {
         int resId = this.getResources().getIdentifier(fp.get(0).getLetra(), "drawable", this.getPackageName());
         plantilla.setImageResource(resId);
         foto.setImageResource(fp.get(0).getFoto());
+
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
 
 
     }
@@ -439,4 +447,26 @@ public class writegame_level1_screen extends AppCompatActivity {
         duracion.put("o_gif", 5000);
         duracion.put("u_gif", 6000);
     }
+
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }
