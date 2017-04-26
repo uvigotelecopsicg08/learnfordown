@@ -65,6 +65,7 @@
 
         <ImageButton
             android:src="@mipmap/icon_help"
+            android:onClick="showHelp"
             android:layout_width="115dp"
             android:layout_height="115dp"
             android:id="@+id/button6"

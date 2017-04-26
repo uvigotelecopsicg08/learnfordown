@@ -20,6 +20,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
@@ -473,6 +474,34 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
         }
     }
+
+
+    public void showHelp(View v){
+
+
+        LayoutInflater inflater = getLayoutInflater();
+        View layout = inflater.inflate(R.layout.pop_up_palabras_help, null);
+        Toast toast = new Toast(getApplicationContext());
+        toast.setGravity(Gravity.RIGHT, 100, 50);
+        toast.setDuration(Toast.LENGTH_SHORT);
+        toast.setView(layout);
+        toast.show();
+
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                finish();
+
+            }
+        }, 4000 );
+    }
+
+
+
+
     public void reset(View v){
         i=0;
         es.resetPanelEstrellas();
