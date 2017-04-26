@@ -21,6 +21,9 @@ public class menu_write_screen extends AppCompatActivity {
 
     TextView titulo;
     ImageButton BackArrow;
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
 
 
     @Override

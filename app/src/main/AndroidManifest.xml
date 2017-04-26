@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.uvigo.learnfordown.learnfordown"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.uvigo.learnfordown.learnfordown">
+
+    <uses-sdk tools:overrideLibrary="com.microsoft.windowsazure.mobileservices" />
+    <uses-permission android:name="android.permission.BLUETOOTH"/>
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-sdk tools:overrideLibrary="com.microsoft.windowsazure.mobileservices"/>
+
     <supports-screens
         android:anyDensity="true"
         android:largeScreens="true"
@@ -22,7 +26,6 @@
 
         <activity
             android:name=".home_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape">
             <intent-filter>
@@ -39,15 +42,16 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>-->
         <activity
             android:name="com.LearnForDown.RecogeMonedas.UnityPlayerActivity"
             android:configChanges="mcc|mnc|locale|touchscreen|keyboard|keyboardHidden|navigation|orientation|screenLayout|uiMode|screenSize|smallestScreenSize|fontScale"
             android:label="@string/app_name"
+            android:process=":game1"
             android:launchMode="singleTask"
-            android:process=":MapView02"
+
 
             android:screenOrientation="landscape">
             <intent-filter>
@@ -60,51 +64,40 @@
 
         <activity
             android:name=".Puzzle4piezas"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".poppuzzle"
-            android:process=":MapView01"
 
             android:theme="@style/AppTheme.CustomTheme" />
         <activity
             android:name=".menu_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".login_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".login_screen_like"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".lettergame1lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".lettergame2lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".lettergame3lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".lettergame4lvl_screen"
-            android:process=":MapView01"
-
             android:screenOrientation="landscape" />
         <activity android:name=".DisplayMessageActivity"
-            android:process=":MapView01"
             />
         <!--
  ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -113,98 +106,78 @@
 
         <meta-data
             android:name="com.google.android.gms.version"
-            android:process=":MapView01"
 
             android:value="@integer/google_play_services_version" />
 
         <activity
             android:name=".sidirectas_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".siinversas_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".sitrabadas_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".palabrasdi_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".palabrasin_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".palabrastra_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".frasein_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".frasedi_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".menu_write_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".frasetra_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".palabrasgame1_2lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".frasegame1lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".silabasgame1lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".silabasgame2lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".silabasgame3lvl_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".silabasgame4lvl_screen"
-            android:process=":MapView01"
-
             android:screenOrientation="landscape" />
         <activity
             android:name=".StrokesTrainingActivity"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".loading_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape">
 
@@ -215,32 +188,26 @@
         </activity>
         <activity
             android:name=".writegame_level1_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".writegame_level3_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".writegame_level4_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".writegame_level2_screen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".ParejasFacil"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".ParejasDificil"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
 
@@ -250,30 +217,28 @@
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
         <activity
             android:name=".endScreen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".avatarScreen"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape" />
         <activity
             android:name=".listusers_screen"
-            android:process=":MapView01"
 
             android:label="@string/title_activity_listusers_screen"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
 
         <activity android:name=".Puzzle9piezas"
-            android:process=":MapView01"
 
             android:screenOrientation="landscape">
         </activity>
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".edit_screen"
-            android:process=":MapView01"
             ></activity>
+        <service android:name=".BluetoothService"
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>

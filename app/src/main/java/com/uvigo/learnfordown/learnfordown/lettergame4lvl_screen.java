@@ -1,19 +1,23 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Handler;
+import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
@@ -52,6 +56,9 @@ public class lettergame4lvl_screen extends AppCompatActivity {
     String Nombre="";
 
     int aciertos=0;
+    AppCompatActivity app = this;
+    private boolean  mBound= false;
+    private  BluetoothService mService;
 
 
     Estrellas es;
@@ -68,44 +75,47 @@ public class lettergame4lvl_screen extends AppCompatActivity {
         titulo.setTypeface(face);
 
         palabra= (ImageView)findViewById(R.id.imageView2);
-try {
-    Context context = this.getApplicationContext();
-    gn = new GestionNiveles(context,this);
-    es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 4));
-    fp = gn.getFotos();
+        try {
+            Context context = this.getApplicationContext();
+            gn = new GestionNiveles(context,this);
+            es = new Estrellas(this, gn, gn.setNivel(tipoNivel, 4));
+            fp = gn.getFotos();
 
 
-    horizontalList = new ArrayList<String>();
-    gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
-    Collections.shuffle(horizontalList);
-    palabra.setImageResource(fp.get(i).getFoto());
-    Correcta = fp.get(i).getLetra().toUpperCase();
+            horizontalList = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList);
+            Collections.shuffle(horizontalList);
+            palabra.setImageResource(fp.get(i).getFoto());
+            Correcta = fp.get(i).getLetra().toUpperCase();
 
 
-    //horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
-    DisplayMetrics metrics = new DisplayMetrics();
-    getWindowManager().getDefaultDisplay().getMetrics(metrics);
-    horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
+            //horizontalAdapter = new HorizontalAdapter(horizontalList,"lectura");
+            DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+            horizontalAdapter = new HorizontalAdapter(horizontalList, 5, metrics, "lectura");
 
-    LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-    horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
+            LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view.setLayoutManager(horizontalLayoutManagaer);
 
-    horizontalList2 = new ArrayList<String>();
-    gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList2);
-    Collections.shuffle(horizontalList2);
-    // horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
-    DisplayMetrics metrics2 = new DisplayMetrics();
-    getWindowManager().getDefaultDisplay().getMetrics(metrics2);
-    horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics2, "lectura");
-    LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
-    horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
-    horizontal_recycler_view.setAdapter(horizontalAdapter);
-    horizontal_recycler_view2.setAdapter(horizontalAdapter2);
-}
-catch (IndexOutOfBoundsException e){
-    e.printStackTrace();
-    avanzaNivel();
-}
+            horizontalList2 = new ArrayList<String>();
+            gn.rellenarConletras(fp.get(i).getLetra().toUpperCase(), horizontalList2);
+            Collections.shuffle(horizontalList2);
+            // horizontalAdapter2=new HorizontalAdapter(horizontalList2,"lectura");
+            DisplayMetrics metrics2 = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics2);
+            horizontalAdapter2 = new HorizontalAdapter(horizontalList2, 5, metrics2, "lectura");
+            LinearLayoutManager horizontalLayoutManagaer2 = new LinearLayoutManager(lettergame4lvl_screen.this, LinearLayoutManager.HORIZONTAL, false);
+            horizontal_recycler_view2.setLayoutManager(horizontalLayoutManagaer2);
+            horizontal_recycler_view.setAdapter(horizontalAdapter);
+            horizontal_recycler_view2.setAdapter(horizontalAdapter2);
+        }
+                catch (IndexOutOfBoundsException e){
+            e.printStackTrace();
+            avanzaNivel();
+        }
+        Intent intent=new Intent(this,BluetoothService.class);
+        bindService(intent,mConnection,BIND_AUTO_CREATE);
+
     }
 
     public void BackArrow(View v) {
@@ -324,5 +334,26 @@ catch (IndexOutOfBoundsException e){
         db.updateMinijuego(gn.getId_user(),Nombre,"suma");
         dialog.dismiss();
     }
+    private ServiceConnection mConnection = new ServiceConnection() {
+
+
+
+        @Override
+        public void onServiceConnected(ComponentName className,
+                                       IBinder service) {
+            // We've bound to LocalService, cast the IBinder and get LocalService instance
+            Log.d("BINDER", "service="+service + " className" + className);
+            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
+            mService= binder.getService();
+            mBound = true;
+            mService.setApp(app);
+            mService.setConnection();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName arg0) {
+            mBound = false;
+        }
+    };
 }
 
