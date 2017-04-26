@@ -89,19 +89,7 @@ public class ParejasDificil extends AppCompatActivity implements View.OnClickLis
                 R.drawable.parejasrastrillo, R.drawable.parejassandia, R.drawable.parejassilbato, R.drawable.parejassirena, R.drawable.parejastambor,
                 R.drawable.parejastornillo, R.drawable.parejasvieiras, R.drawable.parejasviolin};
 
-        /*int[] res = {R.drawable.anillo, R.drawable.brujula, R.drawable.chaqueta, R.drawable.conejo, R.drawable.domino,
-                R.drawable.esponja, R.drawable.flor, R.drawable.fresa, R.drawable.gato, R.drawable.globo,
-                R.drawable.guitarra, R.drawable.jeringa, R.drawable.judias, R.drawable.lapiz, R.drawable.llavero,
-                R.drawable.mariposa, R.drawable.mesa, R.drawable.miel, R.drawable.muneca, R.drawable.naranja,
-                R.drawable.nido, R.drawable.nuez, R.drawable.oso, R.drawable.pimiento, R.drawable.platano,
-                R.drawable.sofa, R.drawable.taza};*/
 
-        /*int[] res = {R.drawable.a, R.drawable.b, R.drawable.c, R.drawable.d, R.drawable.e,
-                R.drawable.f, R.drawable.g, R.drawable.h, R.drawable.i, R.drawable.j,
-                R.drawable.k, R.drawable.l, R.drawable.m, R.drawable.n, R.drawable.enie,
-                R.drawable.o, R.drawable.p, R.drawable.q, R.drawable.r, R.drawable.s,
-                R.drawable.t, R.drawable.u, R.drawable.v, R.drawable.w, R.drawable.x,
-                R.drawable.y, R.drawable.z};*/
 
 
         int[] res1 = new int[26];

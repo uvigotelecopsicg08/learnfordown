@@ -152,13 +152,13 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
 
     public void sendMessage(View view) {
-Intent intent1 = new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
-        startActivity(intent1);
-       /* if (registrado) {
+/*Intent intent1 = new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+        startActivity(intent1);*/
+        if (registrado) {
 
             Intent intent = new Intent(home_screen.this, menu_screen.class);
             startActivity(intent);
-        } else lanzaAlerta();*/
+        } else lanzaAlerta();
     }
 
 

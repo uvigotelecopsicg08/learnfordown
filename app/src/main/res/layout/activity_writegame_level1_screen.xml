@@ -111,7 +111,7 @@
                 android:layout_alignLeft="@+id/lienzo"
                 android:layout_alignStart="@+id/lienzo"
                 android:layout_alignTop="@+id/gifImageView"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignBottom="@+id/gifImageView" />
 
             <com.uvigo.learnfordown.learnfordown.gifView.GifImageView
                 android:id="@+id/gifImageView"
@@ -121,7 +121,8 @@
                 android:layout_alignEnd="@+id/lienzo"
                 android:layout_alignLeft="@+id/lienzo"
                 android:layout_alignStart="@+id/lienzo"
-                android:layout_alignParentBottom="true" />
+                android:layout_alignTop="@+id/lienzo"
+                android:layout_alignBottom="@+id/lienzo" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -183,14 +184,13 @@
                 android:id="@+id/lienzo"
                 android:orientation="vertical"
                 android:layout_width="500dp"
-                android:layout_height="600dp"
+                android:layout_height="560dp"
                 android:layout_marginRight="96dp"
                 android:layout_marginEnd="96dp"
                 android:weightSum="1"
+                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true">
+                android:layout_alignParentEnd="true">
 
 
             </LinearLayout>
