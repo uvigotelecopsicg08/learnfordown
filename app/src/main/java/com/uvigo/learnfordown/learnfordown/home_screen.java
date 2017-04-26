@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothSocket;
 import android.content.ComponentName;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -30,13 +31,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
 import java.io.File;
-
-
+import java.util.ArrayList;
 
 public class home_screen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -53,6 +54,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
     NavigationView navigationView;
     private GoogleApiClient client;
+    private   GestionNiveles gn;
     TextView titulo;
     Menu menu;
     File dbFile;
