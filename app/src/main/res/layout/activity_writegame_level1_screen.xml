@@ -92,43 +92,37 @@
                 android:progressTint="#FFFDED1B"
                 android:layout_weight="0"/>
 
+            <ImageView
+                android:id="@+id/imageView4"
+                android:src="@drawable/libreta"
+                android:layout_height="match_parent"
+                android:layout_width="1000dp"
+
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/imageView2"
+                android:layout_toEndOf="@+id/imageView2" />
 
             <ImageView
                 android:id="@+id/imageView3"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/lienzo"
                 android:layout_alignEnd="@+id/lienzo"
                 android:layout_alignLeft="@+id/lienzo"
-                android:layout_alignStart="@+id/lienzo" />
+                android:layout_alignStart="@+id/lienzo"
+                android:layout_alignTop="@+id/gifImageView"
+                android:layout_alignBottom="@+id/gifImageView" />
 
             <com.uvigo.learnfordown.learnfordown.gifView.GifImageView
                 android:id="@+id/gifImageView"
                 android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:layout_alignParentTop="true"
                 android:layout_alignRight="@+id/lienzo"
                 android:layout_alignEnd="@+id/lienzo"
                 android:layout_alignLeft="@+id/lienzo"
-                android:layout_alignStart="@+id/lienzo" />
-
-            <LinearLayout
-                android:id="@+id/lienzo"
-                android:orientation="vertical"
-                android:layout_width="500dp"
-                android:layout_height="600dp"
-                android:layout_marginRight="107dp"
-                android:layout_marginEnd="107dp"
-
-                android:weightSum="1"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:layout_alignParentBottom="true">
-
-
-            </LinearLayout>
+                android:layout_alignStart="@+id/lienzo"
+                android:layout_alignTop="@+id/lienzo"
+                android:layout_alignBottom="@+id/lienzo" />
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -141,20 +135,6 @@
                 android:layout_toRightOf="@+id/button6"
                 android:layout_toEndOf="@+id/button6" />
 
-            <ImageButton
-                android:id="@+id/button4"
-                android:layout_width="115dp"
-                android:layout_height="115dp"
-                android:onClick="showHelp"
-                android:background="@color/Blanco"
-                android:scaleType="fitCenter"
-                android:src="@mipmap/icon_help"
-                android:layout_weight="0.04"
-                android:layout_below="@+id/button7"
-                android:layout_alignLeft="@+id/button7"
-                android:layout_alignStart="@+id/button7"
-                android:layout_marginTop="20dp" />
-
             <ImageButton android:id="@+id/button6"
                 android:layout_height="115dp"
                 android:layout_width="115dp"
@@ -163,12 +143,12 @@
                 android:src="@mipmap/icon_papelera"
                 android:layout_weight="0.03"
                 android:onClick="resetCanvas"
-                android:layout_marginLeft="33dp"
-                android:layout_marginStart="33dp"
-                android:layout_above="@+id/button7"
+                android:layout_marginLeft="45dp"
+                android:layout_marginStart="45dp"
+                android:layout_below="@+id/button7"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginBottom="47dp" />
+                android:layout_marginTop="29dp" />
 
             <ImageButton
                 android:id="@+id/button7"
@@ -182,24 +162,39 @@
                 android:adjustViewBounds="true"
                 android:src="@mipmap/icon_validate"
                 android:layout_weight="0.03"
-                android:layout_alignBottom="@+id/imageView2"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/imageView2"
+                android:layout_toStartOf="@+id/imageView2" />
+
+            <ImageButton
+                android:id="@+id/button4"
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:onClick="showHelp"
+                android:background="@color/Blanco"
+                android:scaleType="fitCenter"
+                android:src="@mipmap/icon_help"
+                android:layout_weight="0.04"
+                android:layout_above="@+id/button7"
                 android:layout_toLeftOf="@+id/imageView2"
                 android:layout_toStartOf="@+id/imageView2"
-                android:layout_marginBottom="18dp" />
+                android:layout_marginBottom="36dp" />
+
+            <LinearLayout
+                android:id="@+id/lienzo"
+                android:orientation="vertical"
+                android:layout_width="500dp"
+                android:layout_height="560dp"
+                android:layout_marginRight="96dp"
+                android:layout_marginEnd="96dp"
+                android:weightSum="1"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true">
+
+
+            </LinearLayout>
 
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
-
-
-
-
-
-
-
-
-
-
-
-
-
