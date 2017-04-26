@@ -1,192 +1,153 @@
 package com.uvigo.learnfordown.learnfordown;
 
 import android.app.AlertDialog;
-import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothSocket;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Build;
-import android.os.Handler;
-import android.os.IBinder;
+import android.provider.ContactsContract;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.database.DatabaseUtilsCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+
 import java.io.File;
-
-
+import java.util.ArrayList;
 
 public class home_screen extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    // *** VARIABLES NECESARIAS BLUETOOTH ****
-
-    final int handlerState = 0;
-    private String MAC_LFD = null;
-    BluetoothSocket BS = null;
-    Handler bluetoothIn;
-    BluetoothConnection BT;
-    private boolean mBound;
-
-    // *************************************
-
     NavigationView navigationView;
     private GoogleApiClient client;
+    private   GestionNiveles gn;
     TextView titulo;
     Menu menu;
     File dbFile;
-    int id_user = 0;
+    int id_user =0;
     DrawerLayout menulateral;
     Typeface face;
-    boolean registrado = false;
-    BluetoothService mService;
-    private StringBuilder recDataString = new StringBuilder();
-
-    ImageButton Exit;
-
-
+    boolean registrado=false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE); //Eliminar la barra con el titulo de la aplicacion
         setContentView(R.layout.activity_home_screen);
-
-        // Botones
-
-        Exit = (ImageButton) findViewById(R.id.imagebutton7);
-
-        // ******
-        face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+        face=Typeface.createFromAsset(getAssets(),"fonts/Berlin Sans FB Demi Bold.ttf");
         titulo = (TextView) findViewById(R.id.textView);
-        menulateral = (DrawerLayout) findViewById(R.id.drawer_layout);
+        menulateral= (DrawerLayout) findViewById(R.id.drawer_layout);
         titulo.setTypeface(face);
+
+        // ATTENTION: This was auto-generated to implement the App Indexing API.
+        // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+        //Prueba bd
+    //   getApplicationContext().deleteDatabase("learn.sqlite");
+/*
+        Context context =this.getApplicationContext();
+        context.deleteDatabase("learn.sqlite");
+        DataBaseManager db = new DataBaseManager(context);
 
-
-        Context context = this.getApplicationContext();
-        dbFile = context.getDatabasePath("learn.sqlite");
+        InsertData iD = new InsertData(context);
+        iD.insertar();
+        //db.insertar_user("pepe",5);
+*/
+        Context context =this.getApplicationContext();
+         dbFile = context.getDatabasePath("learn.sqlite");
         registrado = dbFile.exists();
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        if (dbFile.exists()) {
+        if(dbFile.exists()) {
             ActualizarDatosLateral();
         }
 
-        Intent intent=new Intent(this,BluetoothService.class);
-        bindService(intent,mConnection,Context.BIND_AUTO_CREATE);
-
-
-
-// ************************************
-
-
-
-        bluetoothIn = new Handler() {
-            public void handleMessage(android.os.Message msg) { // msg = mensaje que contiene descripciÃ³n y datos
-                // que se pueden enviar a un handler
-
-                if (msg.what == handlerState) {                 // msg.what = CÃ³digo de mensaje definido por el usuario para que
-                    // el destinatario pueda identificar de quÃ© se trata este mensaje
-
-                    String readMessage = (String) msg.obj;      // msg.obj = Objeto arbitrario para enviar al destinatario
-                    readMessage = readMessage.trim();           // Le metimos dos espacios al envÃ­o desde ARDUINO
-                    System.out.println("**************** " + readMessage + "***************");
-                    analizarEntradaBT(readMessage);
-                }
-            }
-        };
-
-    //    BT = new BluetoothConnection(this.getApplicationContext(),bluetoothIn);
-// ***********************************
 
     }
 
-    public void Bluetooth(View V) {
-/*
-        if (!BT.configurarBluetooth()){
-            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-            startActivityForResult(enableBtIntent, BT.getREQUEST_ENABLE_BT());
-        }
-        BT.obtenerListaDispositivos();
-        MAC_LFD = BT.buscaDispositivo();
-        if (MAC_LFD == null)
-            Toast.makeText(getBaseContext(), "No se ha encontrado el dispositivo", Toast.LENGTH_LONG).show();
-        else BT.conectarBluetooth();
-
-
- */
-
-        if(mBound){
-            mService.setHandler(bluetoothIn,this);
-            mService.setConnection();
-        }
-
-    }
-
-
-    public void analizarEntradaBT(String entrada){
-
-        switch (entrada){
-            case "exit":
-                Exit.performClick();
-                break;
-
-        }
-
-    }
-
-
+    /**
+     * Called when the user clicks the Send
+     */
     public void sendMessage(View view) {
+        // Do something in response to button
+        PackageManager pm =getPackageManager();
+        String prueba =getPackageName();
+     /*   Intent launchIntent =  new Intent(Intent.ACTION_MAIN) ;
+        launchIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        launchIntent.addFlags(0x10000000);
+        launchIntent.setComponent(new ComponentName("com.LearnForDown.RecogeMonedas",".UnityPlayerActivity"));*/
+     //   Intent launchIntent =  new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class) ;
 
-        if (registrado) {
+        //  Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+      //  Intent launchIntent =  new Intent(home_screen.this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class) ;
+        Intent intent = new Intent(this, com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+        startActivity(intent);
 
-            Intent intent = new Intent(home_screen.this, menu_screen.class);
-            startActivity(intent);
-        } else lanzaAlerta();
+        /*    if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }*/
+        Intent i4=new Intent(this, com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+
+        i4.addCategory(Intent.CATEGORY_LAUNCHER);
+        i4.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(i4);
+      //  startActivity(launchIntent);
+        if(registrado) {
+       //     Intent intent = new Intent(home_screen.this, menu_screen.class);
+          //  startActivity(intent);
+            //Aqui esta el codigo para lanzar  el juego de Unity en version facil. Para la version dificil
+            //cambiar el nombre del paquete por com.LearnForDown.RecogeMonedas
+            /*Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
+            if (launchIntent != null) {
+                startActivity(launchIntent);//null pointer check in case package name was not found
+            }*/
+        }
+        else{
+        //    lanzaAlerta();
+        }
+
     }
+
 
 
     public void sendMessage2(View view) {
-
-        if (registrado) {
-
+        // Do something in response to button
+        if(registrado) {
             Intent intent = new Intent(home_screen.this, menu_write_screen.class);
             startActivity(intent);
-        } else lanzaAlerta();
+        }
+
+        else{
+            lanzaAlerta();
+        }
     }
-
-    public void ajustes(View view) {
-
+    public void ajustes (View view){
         Intent intent1 = new Intent(home_screen.this, login_screen.class);
         startActivity(intent1);
     }
 
-    public void salir(View view) {
-
-        BT.cerrarSocketBT();
-
+    public void salir (View view) {
+        // Do something in response to button
 
         finish();
         Intent intent = new Intent(Intent.ACTION_MAIN);
@@ -197,11 +158,26 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
     private void lanzaAlerta() {
 
+        /* AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+           alertDialogBuilder.setView(R.layout.dialog_recuperar_nivel);
+        } else {
+            alertDialogBuilder.setTitle("¡HOLA, PULSA EN EL ICONO VERDE PARA DECIRME CÓMO TE LLAMAS! ");
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        } */
+
         Intent intent1 = new Intent(home_screen.this, login_screen.class);
         startActivity(intent1);
+
+
+
     }
-
-
+    /**
+     * ATTENTION: This was auto-generated to implement the App Indexing API.
+     * See https://g.co/AppIndexing/AndroidStudio for more information.
+     */
     public Action getIndexApiAction() {
         Thing object = new Thing.Builder()
                 .setName("home_screen Page") // TODO: Define a title for the content shown.
@@ -235,94 +211,89 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         client.disconnect();
 
     }
-
     @Override
     public void onRestart() {
         super.onRestart();
-        if (dbFile.exists()) {
+        if(dbFile.exists()) {
             ActualizarDatosLateral();
         }
         lanzaMensaje();
     }
+    public void lanzaIntent(Nivel nivel){
 
-    public void lanzaIntent(Nivel nivel) {
+            if(nivel.getTipo().equals("leerletras")) {
+                if (nivel.dificultad == 1) {
+                    Intent intent = new Intent(this, lettergame1lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 2) {
+                    Intent intent = new Intent(this, lettergame2lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 3) {
+                    Intent intent = new Intent(this, lettergame3lvl_screen.class);
+                    startActivity(intent);
+                }
+                if (nivel.dificultad == 4) {
+                    Intent intent = new Intent(this, lettergame4lvl_screen.class);
+                    startActivity(intent);
+                }
+            }
+            if(nivel.getTipo().equals("silabasdirectas")||nivel.getTipo().equals("silabasinversas")||nivel.getTipo().equals("silabastrabadas")){
+                if(nivel.dificultad==1) {
+                    Intent intent = new Intent(this, silabasgame1lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==2) {
+                    Intent intent = new Intent(this, silabasgame2lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==3) {
+                    Intent intent = new Intent(this, silabasgame3lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
+                    startActivity(intent);
+                }
+                if(nivel.dificultad==4) {
+                    Intent intent = new Intent(this, silabasgame4lvl_screen.class);
+                    intent.putExtra("tipoSilaba", nivel.getTipo());
+                    startActivity(intent);
+                }
 
-
-
-        if (nivel.getTipo().equals("leerletras")) {
-            if (nivel.dificultad == 1) {
-                Intent intent = new Intent(this, lettergame1lvl_screen.class);
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 2) {
-                Intent intent = new Intent(this, lettergame2lvl_screen.class);
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 3) {
-                Intent intent = new Intent(this, lettergame3lvl_screen.class);
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 4) {
-                Intent intent = new Intent(this, lettergame4lvl_screen.class);
-                startActivity(intent);
-            }
-        }
-        if (nivel.getTipo().equals("silabasdirectas") || nivel.getTipo().equals("silabasinversas") || nivel.getTipo().equals("silabastrabadas")) {
-            if (nivel.dificultad == 1) {
-                Intent intent = new Intent(this, silabasgame1lvl_screen.class);
-                intent.putExtra("tipoSilaba", nivel.getTipo());
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 2) {
-                Intent intent = new Intent(this, silabasgame2lvl_screen.class);
-                intent.putExtra("tipoSilaba", nivel.getTipo());
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 3) {
-                Intent intent = new Intent(this, silabasgame3lvl_screen.class);
-                intent.putExtra("tipoSilaba", nivel.getTipo());
-                startActivity(intent);
-            }
-            if (nivel.dificultad == 4) {
-                Intent intent = new Intent(this, silabasgame4lvl_screen.class);
-                intent.putExtra("tipoSilaba", nivel.getTipo());
-                startActivity(intent);
-            }
-
-        }
-        if (nivel.getTipo().contains("palabras")) {
-            Intent intent = new Intent(this, palabrasgame1_2lvl_screen.class);
+              }
+         if(nivel.getTipo().contains("palabras")){
+            Intent intent = new Intent(this,palabrasgame1_2lvl_screen.class);
             intent.putExtra("tipoSilaba", nivel.getTipo());
             intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
         }
-        if (nivel.getTipo().contains("frase")) {
-            Intent intent = new Intent(this, frasegame1lvl_screen.class);
+        if(nivel.getTipo().contains("frase")){
+            Intent intent = new Intent(this,frasegame1lvl_screen.class);
             intent.putExtra("tipoSilaba", nivel.getTipo());
             intent.putExtra("nivel", nivel.dificultad);
             startActivity(intent);
         }
-        if (nivel.getTipo().equals("escribirletras")) {
-            Intent intent = new Intent(this, writegame_level1_screen.class);
+        if(nivel.getTipo().equals("escribirletras")){
+            Intent intent = new Intent(this,writegame_level1_screen.class);
             startActivity(intent);
         }
-        if (nivel.getTipo().equals("escribirconsombreado")) {
-            Intent intent = new Intent(this, writegame_level2_screen.class);
-            startActivity(intent);
-
-        }
-        if (nivel.getTipo().equals("escribirsinsombreado")) {
-            Intent intent = new Intent(this, writegame_level3_screen.class);
+        if(nivel.getTipo().equals("escribirconsombreado")){
+            Intent intent = new Intent(this,writegame_level2_screen.class);
             startActivity(intent);
 
         }
-        if (nivel.getTipo().equals("escribirtecladopalabra")) {
-            Intent intent = new Intent(this, writegame_level4_screen.class);
+        if(nivel.getTipo().equals("escribirsinsombreado")){
+            Intent intent = new Intent(this,writegame_level3_screen.class);
+            startActivity(intent);
+
+        }
+        if(nivel.getTipo().equals("escribirtecladopalabra")){
+            Intent intent = new Intent(this,writegame_level4_screen.class);
             startActivity(intent);
 
         }
     }
-
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -367,61 +338,60 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         if (id == R.id.info) {
             // Handle the camera action
         } else if (id == R.id.cambiar) {
-
             Intent intent1 = new Intent(home_screen.this, listusers_screen.class);
             startActivity(intent1);
 
         } else if (id == R.id.registrar) {
-
             Intent intent1 = new Intent(home_screen.this, login_screen.class);
             startActivity(intent1);
 
         } else if (id == R.id.puzzle) {
-
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PUZZLE", "resta");
+            db.updateMinijuego(id_user,"PUZZLE","resta");
             Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
             startActivity(intent1);
 
         } else if (id == R.id.plataformas) {
-
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            //   db.updateMinijuego(id_user,"PLATAFORMA","resta");
+         //   db.updateMinijuego(id_user,"PLATAFORMA","resta");
             Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
             if (launchIntent != null) {
                 startActivity(launchIntent);//null pointer check in case package name was not found
             }
 
-        } else if (id == R.id.plataformasdificil) {
+        }
+     else if (id == R.id.plataformasdificil) {
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PLATAFORMADIFICIL", "resta");
+            db.updateMinijuego(id_user,"PLATAFORMADIFICIL","resta");
 
 
-        } else if (id == R.id.parejasdificil) {
+    }
+        else if (id == R.id.parejasdificil) {
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PAREJASDIFICIL", "resta");
+            db.updateMinijuego(id_user,"PAREJASDIFICIL","resta");
 
             Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
             startActivity(intent1);
 
 
-        } else if (id == R.id.puzzledificil) {
+        }else if (id == R.id.puzzledificil) {
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PUZZLEDIFICIL", "resta");
+            db.updateMinijuego(id_user,"PUZZLEDIFICIL","resta");
 
             Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
             startActivity(intent1);
 
 
-        } else if (id == R.id.parejas) {
+        }
+        else if (id == R.id.parejas) {
             DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PAREJAS", "resta");
+            db.updateMinijuego(id_user,"PAREJAS","resta");
 
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
             startActivity(intent1);
@@ -432,16 +402,16 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    public void lanzaMensaje(){
 
-    public void lanzaMensaje() {
-
-        if (registrado) {
+        if(registrado){
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 builder.setView(R.layout.dialog_recuperar_nivel);
-            } else {
-                builder.setMessage("Â¿Quieres seguir por donde estabas la Ãºltima vez?  ")
+            }
+            else {
+                builder.setMessage("¿Quieres seguir por donde estabas la última vez?  ")
                         .setTitle("Recuperacion nivel");
             }
             builder.setPositiveButton("Vale", new DialogInterface.OnClickListener() {
@@ -460,98 +430,71 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             dialog.show();
         }
     }
-
-    public void ActualizarDatosLateral() {
-        String nombre = "";
-        String avatar = "";
+    public void ActualizarDatosLateral(){
+        String nombre ="";
+        String avatar ="";
         Cursor cursor;
-        int puzzle = -1;
+        int puzzle= -1;
         int memory = -1;
         int plataforma = -1;
-        int puzzledificil = -1;
+        int puzzledificil= -1;
         int memorydificil = -1;
         int plataformadificil = -1;
         View header = navigationView.getHeaderView(0);
-        menu = navigationView.getMenu();
+        menu=navigationView.getMenu();
 
         ImageView imagen = (ImageView) header.findViewById(R.id.imageView);
         TextView texto = (TextView) header.findViewById(R.id.textView);
         DataBaseManager db = new DataBaseManager(getApplicationContext());
-        cursor = db.getInfoLogged();
-        if (cursor != null) {
+        cursor= db.getInfoLogged();
+        if(cursor!=null) {
             if (cursor.moveToFirst()) {
-                id_user = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
-                avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar"));
-                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
+                 id_user = cursor.getInt(cursor.getColumnIndexOrThrow("_id"));
+                 avatar = cursor.getString(cursor.getColumnIndexOrThrow("avatar"));
+                 nombre =  cursor.getString(cursor.getColumnIndexOrThrow("nombre"));
                 texto.setText(nombre);
                 texto.setTypeface(face);
-                int resId = this.getResources().getIdentifier(avatar, "drawable", this.getPackageName());
+                int resId=this.getResources().getIdentifier(avatar, "drawable", this.getPackageName());
                 imagen.setImageResource(resId);
             }
         }
-        cursor = db.getMinijuegos(id_user);
-        if (cursor != null) {
+        cursor= db.getMinijuegos(id_user);
+        if(cursor!=null) {
             if (cursor.moveToFirst()) {
-                puzzle = cursor.getInt(cursor.getColumnIndexOrThrow("puzzle"));
-                memory = cursor.getInt(cursor.getColumnIndexOrThrow("memory"));
-                plataforma = cursor.getInt(cursor.getColumnIndexOrThrow("plataform"));
-                puzzledificil = cursor.getInt(cursor.getColumnIndexOrThrow("puzzledificil"));
-                memorydificil = cursor.getInt(cursor.getColumnIndexOrThrow("memorydificil"));
-                plataformadificil = cursor.getInt(cursor.getColumnIndexOrThrow("plataformdificil"));
-            }
+                 puzzle=cursor.getInt(cursor.getColumnIndexOrThrow("puzzle"));
+                memory=cursor.getInt(cursor.getColumnIndexOrThrow("memory"));
+                plataforma=cursor.getInt(cursor.getColumnIndexOrThrow("plataform"));
+                puzzledificil=cursor.getInt(cursor.getColumnIndexOrThrow("puzzledificil"));
+                memorydificil=cursor.getInt(cursor.getColumnIndexOrThrow("memorydificil"));
+                plataformadificil=cursor.getInt(cursor.getColumnIndexOrThrow("plataformdificil"));            }
         }
-        if (puzzle > 0) {
+        if (puzzle>0) {
             menu.findItem(R.id.puzzle).setEnabled(true);
-        } else menu.findItem(R.id.puzzle).setEnabled(false);
+        } else             menu.findItem(R.id.puzzle).setEnabled(false);
 
-        if (puzzledificil > 0) {
+        if  (puzzledificil>0){
             menu.findItem(R.id.puzzledificil).setEnabled(true);
 
-        } else menu.findItem(R.id.puzzledificil).setEnabled(false);
-        if (memory > 0) {
+        } else             menu.findItem(R.id.puzzledificil).setEnabled(false);
+        if (memory>0) {
             menu.findItem(R.id.parejas).setEnabled(true);
-        } else menu.findItem(R.id.parejas).setEnabled(false);
-        if (memorydificil > 0) {
+        } else             menu.findItem(R.id.parejas).setEnabled(false);
+        if  (memorydificil>0){
             menu.findItem(R.id.parejasdificil).setEnabled(false);
 
-        } else menu.findItem(R.id.parejasdificil).setEnabled(false);
-        if (plataforma > 0) {
+        } else             menu.findItem(R.id.parejasdificil).setEnabled(false);
+        if (plataforma>0) {
             menu.findItem(R.id.plataformas).setEnabled(false);
-        } else menu.findItem(R.id.plataformas).setEnabled(false);
-        if (plataformadificil > 0) {
+        } else             menu.findItem(R.id.plataformas).setEnabled(false);
+        if  (plataformadificil>0){
             menu.findItem(R.id.plataformasdificil).setEnabled(true);
 
-        } else menu.findItem(R.id.plataformasdificil).setEnabled(false);
-    }
-
-    public void FlechaMenu(View v) {
-        menulateral.openDrawer(Gravity.LEFT);
-    }
-    private ServiceConnection mConnection = new ServiceConnection() {
-
-
-
-        @Override
-        public void onServiceConnected(ComponentName className,
-                                       IBinder service) {
-            // We've bound to LocalService, cast the IBinder and get LocalService instance
-            BluetoothService.LocalBinder binder = (BluetoothService.LocalBinder) service;
-            mService= binder.getService();
-            mBound = true;
-           // mService.setApp(app);
+        } else             menu.findItem(R.id.plataformasdificil).setEnabled(false);
         }
 
-        @Override
-        public void onServiceDisconnected(ComponentName arg0) {
-            mBound = false;
+       public void FlechaMenu(View v){
+            menulateral.openDrawer(Gravity.LEFT);
         }
-    };
 
 
 }
-
-
-
-
-
-
