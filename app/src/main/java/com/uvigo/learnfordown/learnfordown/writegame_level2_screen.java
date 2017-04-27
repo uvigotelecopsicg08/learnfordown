@@ -5,8 +5,6 @@ import android.content.ComponentName;
 import android.content.DialogInterface;
 import android.content.ServiceConnection;
 import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.PaintDrawable;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -32,11 +30,11 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.appindexing.Thing;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.unity3d.player.UnityPlayerActivity;
 
 import java.util.ArrayList;
 import java.util.Collections;

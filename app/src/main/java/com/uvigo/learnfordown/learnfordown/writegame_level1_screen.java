@@ -14,7 +14,7 @@ import android.media.MediaPlayer;
 import android.view.View;
 import android.support.v7.app.AppCompatActivity;
 
-import com.LearnForDown.RecogeMonedas.UnityPlayerActivity;
+import com.unity3d.player.UnityPlayerActivity;
 import com.uvigo.learnfordown.learnfordown.strokes.app.view.CanvasView;
 import com.uvigo.learnfordown.learnfordown.timeseries.TimeSeries;
 import com.uvigo.learnfordown.learnfordown.strokes.app.U;
@@ -288,7 +288,8 @@ public class writegame_level1_screen extends AppCompatActivity {
     }
 
     public void showHelp (View v){
-
+        //File file = new File(filePath);
+        //if(file.exists())
         // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
         setContentView(R.layout.activity_writegame_level1_screen);
         Titulo = (TextView) findViewById(R.id.textView2);
@@ -442,10 +443,10 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void RellenaDuraciones(){
         duracion.put("a_gif", 8000);
-        duracion.put("i_gif", 6000);
+        duracion.put("i_gif", 5000);
         duracion.put("e_gif", 9000);
-        duracion.put("o_gif", 5000);
-        duracion.put("u_gif", 6000);
+        duracion.put("o_gif", 9000);
+        duracion.put("u_gif", 8500);
     }
 
     private ServiceConnection mConnection = new ServiceConnection() {
