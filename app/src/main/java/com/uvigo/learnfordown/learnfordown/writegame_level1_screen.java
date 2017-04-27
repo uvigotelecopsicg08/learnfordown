@@ -288,47 +288,47 @@ public class writegame_level1_screen extends AppCompatActivity {
     }
 
     public void showHelp (View v){
-        //File file = new File(filePath);
-        //if(file.exists())
-        // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
-        setContentView(R.layout.activity_writegame_level1_screen);
-        Titulo = (TextView) findViewById(R.id.textView2);
-        Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
-        Titulo.setTypeface(face);
-        es.setRatingbar1(R.id.ratingBar);
-        foto = (ImageView) findViewById(R.id.imageView2);
-        foto.setImageResource(fp.get(0).getFoto());
+        int resIdRaw = this.getResources().getIdentifier(fp.get(0).getLetra()+"_gif", "raw", this.getPackageName());
+        if(resIdRaw!=0) {
+            // Pantalla sin Canvas, no quiero que me deje escribir mientras se reproduce el GIF
+            setContentView(R.layout.activity_writegame_level1_screen);
+            Titulo = (TextView) findViewById(R.id.textView2);
+            Typeface face = Typeface.createFromAsset(getAssets(), "fonts/Berlin Sans FB Demi Bold.ttf");
+            Titulo.setTypeface(face);
+            es.setRatingbar1(R.id.ratingBar);
+            foto = (ImageView) findViewById(R.id.imageView2);
+            foto.setImageResource(fp.get(0).getFoto());
 
 
-        // ********************
-        try {
-
-            int resIdRaw = this.getResources().getIdentifier(fp.get(0).getLetra()+"_gif", "raw", this.getPackageName());
-            InputStream is =  getResources().openRawResource(resIdRaw);
-            //InputStream is = getResources().openRawResource(R.raw.a_gif);
-            byte[] bytes = new byte[is.available()];
-            is.read(bytes);
-            is.close();
-
-            gifImageView = new GifImageView(this);
-            gifImageView = (GifImageView) findViewById(R.id.gifImageView);
-
-            gifImageView.setBytes(bytes);
-            gifImageView.startAnimation();
-
-            final Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Borrar.performClick();
-                }
-            }, duracion.get(fp.get(0).getLetra()+"_gif"));
+            // ********************
+            try {
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
+                InputStream is = getResources().openRawResource(resIdRaw);
+                //InputStream is = getResources().openRawResource(R.raw.a_gif);
+                byte[] bytes = new byte[is.available()];
+                is.read(bytes);
+                is.close();
+
+                gifImageView = new GifImageView(this);
+                gifImageView = (GifImageView) findViewById(R.id.gifImageView);
+
+                gifImageView.setBytes(bytes);
+                gifImageView.startAnimation();
+
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        Borrar.performClick();
+                    }
+                }, duracion.get(fp.get(0).getLetra() + "_gif"));
+
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
-
         // *********************
 
 
@@ -443,9 +443,9 @@ public class writegame_level1_screen extends AppCompatActivity {
 
     public void RellenaDuraciones(){
         duracion.put("a_gif", 8000);
-        duracion.put("i_gif", 5000);
-        duracion.put("e_gif", 9000);
-        duracion.put("o_gif", 9000);
+        duracion.put("i_gif", 2000);
+        duracion.put("e_gif", 10000);
+        duracion.put("o_gif", 3000);
         duracion.put("u_gif", 8500);
     }
 
