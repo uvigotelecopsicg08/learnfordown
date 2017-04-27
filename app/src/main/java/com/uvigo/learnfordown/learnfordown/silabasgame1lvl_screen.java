@@ -343,7 +343,7 @@ public class silabasgame1lvl_screen extends AppCompatActivity {
                 break;
 
             case 2:
-                minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
+    //            minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
                 Nombre= "PLATAFORMAS";
                 break;
 

@@ -66,8 +66,8 @@ public class login_screen extends AppCompatActivity {
     public void registrar(View v) {
         SpannableStringBuilder nombreSpanable = (SpannableStringBuilder) textoNombre.getText();
         SpannableStringBuilder edadStringSpanable =  (SpannableStringBuilder) textoEdad.getText();
-       String nombre= nombreSpanable.toString();
-        String edadString=edadStringSpanable.toString();
+       String nombre= nombreSpanable.toString().trim();
+        String edadString=edadStringSpanable.toString().trim(  );
 
 
         if(edadString.equals("")||nombre.equals("")) {
