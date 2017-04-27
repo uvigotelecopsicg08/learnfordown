@@ -213,6 +213,8 @@ public class InsertData {
         db.insertar_foto("m","miel","directa","miel","Las abejas hacen *",R.drawable.miel,"comida",1,"mono");
         db.insertar_foto("m","mil","directa","mil","Este número es el * ",R.drawable.mil,"otro",1,"mono");
 
+        db.insertar_foto("ñ","ñu","directa","ñu","Nunca he visto un * ",R.drawable.nu,"animales",1,"mono");
+
         db.insertar_foto("n","na","directa","naranja","Comí una * de postre",R.drawable.naranja,"comida",3,"n");
         db.insertar_foto("n","na","directa","nariz","Me pica la *",R.drawable.nariz,"otro",2,"n");
         db.insertar_foto("n","ne","directa","nevera","En la * se mantienen las cosas frías",R.drawable.nevera,"casa",3,"n");
