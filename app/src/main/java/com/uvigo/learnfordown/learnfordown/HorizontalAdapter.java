@@ -64,7 +64,6 @@ public class HorizontalAdapter extends RecyclerView.Adapter<HorizontalAdapter.My
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.button.setText(horizontalList.get(position));
-
     }
 
     @Override

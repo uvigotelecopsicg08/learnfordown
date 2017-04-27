@@ -43,7 +43,9 @@ public class loading_screen extends AppCompatActivity {
 
                         HashMap<String,Boolean> gustos = (HashMap<String,Boolean>)intent.getSerializableExtra("map");
                         Context context =getApplicationContext();
-                      //  context.deleteDatabase("learn.sqlite");
+
+
+                   //     context.deleteDatabase("learn.sqlite");
                         File dbFile = context.getDatabasePath("learn.sqlite");
                         //Aun que parezca un poco repetitivo  no se puede crear una instancia de insertData fuera del if
                         // De no ser asi se generaria un archivo sqlite y el if no tendria sentido

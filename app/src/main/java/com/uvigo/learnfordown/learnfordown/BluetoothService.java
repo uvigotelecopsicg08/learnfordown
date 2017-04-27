@@ -208,29 +208,38 @@ public  class  BluetoothService extends Service {
             case "left":
                 if(app.getClass().toString().contains("UnityPlayerActivity")) {
                     System.out.print(app.getClass());
-                    UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
+                    app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+                 //   UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
 
                 }
                 break;
             case "right":
+
                 if(app.getClass().toString().contains("UnityPlayerActivity")) {
                     System.out.print(app.getClass());
-                    UnityPlayer.UnitySendMessage("Pencil", "Right", "derecha");
-                    if(!pulsado) {
+               //     UnityPlayer.UnitySendMessage("Pencil", "Right", "derecha");
+                  //  if(!pulsado) {
+
                         app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_RIGHT));
-                        lanzarTemporizador();
-                        pulsado=true;
-                    }
+                   //     lanzarTemporizador();
+                  //      pulsado=true;
+                   // }
 
 
                 }
                 break;
             case "game":
-                intent = null;
+
                 if(app.getClass().toString().contains("UnityPlayerActivity")) {
-                    /*System.out.print(app.getClass());
-                    writegame_level1_screen wl = (writegame_level1_screen) app;
-                    wl.Help.performClick();*/
+                    System.out.print(app.getClass());
+              //      UnityPlayer.UnitySendMessage("Pencil", "Salto", "");
+                    app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+
+                    //    app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_UP));
+                //    app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DPAD_UP));
+
+
+
                 }
                 break;
 

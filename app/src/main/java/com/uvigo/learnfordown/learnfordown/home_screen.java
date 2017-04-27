@@ -59,6 +59,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
     Menu menu;
     File dbFile;
     int id_user = 0;
+    boolean ModoPrueba =false;
     DrawerLayout menulateral;
     Typeface face;
     boolean registrado = false;
@@ -152,8 +153,7 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
 
     public void sendMessage(View view) {
-/*Intent intent1 = new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
-        startActivity(intent1);*/
+
         if (registrado) {
 
             Intent intent = new Intent(home_screen.this, menu_screen.class);
@@ -381,56 +381,81 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
 
         } else if (id == R.id.puzzle) {
 
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+if (!ModoPrueba) {
+    DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PUZZLE", "resta");
+    db.updateMinijuego(id_user, "PUZZLE", "resta");
+}
             Intent intent1 = new Intent(home_screen.this, Puzzle4piezas.class);
             startActivity(intent1);
 
         } else if (id == R.id.plataformas) {
 
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+            if (!ModoPrueba) {
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            //   db.updateMinijuego(id_user,"PLATAFORMA","resta");
-            Intent launchIntent = getPackageManager().getLaunchIntentForPackage("com.LearnForDown.RecogeMonedas");
-            if (launchIntent != null) {
-                startActivity(launchIntent);//null pointer check in case package name was not found
+                db.updateMinijuego(id_user, "PLATAFORMA", "resta");
             }
+            Intent intent1 = new Intent(this,com.LearnForDown.RecogeMonedas.UnityPlayerActivity.class);
+            startActivity(intent1);
+
 
         } else if (id == R.id.plataformasdificil) {
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+            if (!ModoPrueba) {
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PLATAFORMADIFICIL", "resta");
-
+                db.updateMinijuego(id_user, "PLATAFORMADIFICIL", "resta");
+            }
 
         } else if (id == R.id.parejasdificil) {
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+            if (!ModoPrueba) {
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PAREJASDIFICIL", "resta");
-
+                db.updateMinijuego(id_user, "PAREJASDIFICIL", "resta");
+            }
             Intent intent1 = new Intent(home_screen.this, ParejasDificil.class);
             startActivity(intent1);
 
 
         } else if (id == R.id.puzzledificil) {
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+            if (!ModoPrueba) {
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PUZZLEDIFICIL", "resta");
-
+                db.updateMinijuego(id_user, "PUZZLEDIFICIL", "resta");
+            }
             Intent intent1 = new Intent(home_screen.this, Puzzle9piezas.class);
             startActivity(intent1);
 
 
         } else if (id == R.id.parejas) {
-            DataBaseManager db = new DataBaseManager(getApplicationContext());
+            if (!ModoPrueba) {
+                DataBaseManager db = new DataBaseManager(getApplicationContext());
 
-            db.updateMinijuego(id_user, "PAREJAS", "resta");
-
+                db.updateMinijuego(id_user, "PAREJAS", "resta");
+            }
             Intent intent1 = new Intent(home_screen.this, ParejasFacil.class);
             startActivity(intent1);
 
         }
+        else if (id == R.id.ModoPrueba) {
+            menu = navigationView.getMenu();
 
+            if (!ModoPrueba){
+
+                menu.findItem(R.id.puzzle).setEnabled(true);
+                menu.findItem(R.id.puzzledificil).setEnabled(true);
+                menu.findItem(R.id.parejas).setEnabled(true);
+                menu.findItem(R.id.parejasdificil).setEnabled(true);
+                menu.findItem(R.id.plataformas).setEnabled(true);
+                menu.findItem(R.id.plataformasdificil).setEnabled(false);
+            }
+            else{
+                ActualizarDatosLateral();
+            }
+            ModoPrueba = !ModoPrueba;
+
+
+        }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -515,11 +540,11 @@ public class home_screen extends AppCompatActivity implements NavigationView.OnN
             menu.findItem(R.id.parejas).setEnabled(true);
         } else menu.findItem(R.id.parejas).setEnabled(false);
         if (memorydificil > 0) {
-            menu.findItem(R.id.parejasdificil).setEnabled(false);
+            menu.findItem(R.id.parejasdificil).setEnabled(true);
 
         } else menu.findItem(R.id.parejasdificil).setEnabled(false);
         if (plataforma > 0) {
-            menu.findItem(R.id.plataformas).setEnabled(false);
+            menu.findItem(R.id.plataformas).setEnabled(true);
         } else menu.findItem(R.id.plataformas).setEnabled(false);
         if (plataformadificil > 0) {
             menu.findItem(R.id.plataformasdificil).setEnabled(true);

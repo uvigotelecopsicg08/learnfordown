@@ -316,7 +316,7 @@ public class lettergame4lvl_screen extends AppCompatActivity {
                 break;
 
             case 2:
-                minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
+            //    minijuego = new Intent(getApplicationContext(),UnityPlayerActivity.class);
                 Nombre= "PLATAFORMAS";
                 break;
 

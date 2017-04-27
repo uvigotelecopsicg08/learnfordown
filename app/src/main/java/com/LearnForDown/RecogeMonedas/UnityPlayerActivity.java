@@ -98,8 +98,10 @@ public class UnityPlayerActivity extends AppCompatActivity
 			UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
 		if (keyCode == KeyEvent.KEYCODE_DPAD_RIGHT)
 			UnityPlayer.UnitySendMessage("Pencil", "Right", "derecha");
+		if (keyCode == KeyEvent.KEYCODE_DPAD_UP)
+			UnityPlayer.UnitySendMessage("Pencil", "Salto", "");
 		return mUnityPlayer.injectEvent(event); }
-	@Override public boolean onTouchEvent(MotionEvent event)          { return mUnityPlayer.injectEvent(event); }
+    @Override public boolean onTouchEvent(MotionEvent event)          { return mUnityPlayer.injectEvent(event); }
 	/*API12*/ public boolean onGenericMotionEvent(MotionEvent event)  { return mUnityPlayer.injectEvent(event); }
 
 

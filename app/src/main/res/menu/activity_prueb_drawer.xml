@@ -11,6 +11,11 @@
         <item
             android:id="@+id/registrar"
             android:title="Registrarse" />
+
+        <item
+            android:id="@+id/ModoPrueba"
+            android:enabled="true"
+            android:title="ModoPrueba" />
     </group>
 
     <item android:title="MINIJUEGOS"
