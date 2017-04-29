@@ -211,7 +211,7 @@ public  class  BluetoothService extends Service {
                 if(app.getClass().toString().contains("UnityPlayerActivity")) {
                     System.out.print(app.getClass());
                     app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
-                    app.dispatchKeyEvent(new  KeyEvent (uptimeMillis(),uptimeMillis(), KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT, 1));
+              //      app.dispatchKeyEvent(new  KeyEvent (uptimeMillis(),uptimeMillis(), KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT, 1));
                  //   UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
 
                 }
