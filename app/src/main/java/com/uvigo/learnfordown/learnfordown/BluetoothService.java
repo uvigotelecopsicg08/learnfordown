@@ -31,6 +31,8 @@ import java.util.TimerTask;
 import java.util.UUID;
 import java.util.Vector;
 
+import static android.os.SystemClock.uptimeMillis;
+
 
 public  class  BluetoothService extends Service {
     private static final long INTERVALO_ACTUALIZACION = 1000;
@@ -209,6 +211,7 @@ public  class  BluetoothService extends Service {
                 if(app.getClass().toString().contains("UnityPlayerActivity")) {
                     System.out.print(app.getClass());
                     app.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT));
+                    app.dispatchKeyEvent(new  KeyEvent (uptimeMillis(),uptimeMillis(), KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DPAD_LEFT, 1));
                  //   UnityPlayer.UnitySendMessage("Pencil", "Left", "izquierda");
 
                 }

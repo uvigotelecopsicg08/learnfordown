@@ -477,7 +477,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
 
     public void showHelp(View v){
-
+        /*
 
         LayoutInflater inflater = getLayoutInflater();
         View layout = inflater.inflate(R.layout.pop_up_palabras_help, null);
@@ -497,6 +497,7 @@ public class palabrasgame1_2lvl_screen extends AppCompatActivity {
 
             }
         }, 4000 );
+        */
     }
 
 

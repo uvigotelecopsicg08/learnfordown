@@ -119,7 +119,7 @@ public class DataBaseManager {
             CN_TYPE_SYLLABE+" VARCHAR(20) NOT NULL,"+
             CN_WORD+"  VARCHAR(50) NOT NULL UNIQUE,"+
             CN_SENTENCE+" VARCHAR(200) NOT NULL,"+
-            CN_PHOTO+ "  integer NOT NULL,"+
+            CN_PHOTO+ "  integer ,"+
             CN_TOPIC+" VARCHAR(50) NOT NULL,"+
             CN_NUMBER_SYLLABLES +" integer NOT NULL,"+
             CN_SOUND +" VARCHAR(50) NOT NULL);";
